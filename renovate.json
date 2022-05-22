@@ -1,5 +1,33 @@
 {
   "extends": [
     "config:base"
-  ]
+  ],
+  "automerge": true,
+  "automergeType": "branch",
+  "rebaseWhen": "auto",
+  "packageRules": [
+    {
+      "excludePackagePatterns": [
+        "(.)*tabulator-tables(.)*"
+      ],
+      "enabled": true
+    },
+    {
+      "matchUpdateTypes": [
+        "major",
+        "minor",
+        "patch",
+        "pin",
+        "digest"
+      ],
+      "automerge": true
+    },
+    {
+      "matchDepTypes": [
+        "devDependencies"
+      ],
+      "automerge": true
+    }
+  ],
+  "requiredStatusChecks": null
 }
