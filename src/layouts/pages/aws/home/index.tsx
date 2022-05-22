@@ -1,6 +1,3 @@
-// @mui material components
-// Settings page components
-
 import MDBox from "../../../../components/MDBox";
 import Grid from "@mui/material/Grid";
 import SalesByCountry from "../../../dashboards/analytics/components/SalesByCountry";
@@ -21,36 +18,125 @@ import Icon from "@mui/material/Icon";
 import MDButton from "../../../../components/MDButton";
 import { useState } from "react";
 import { Modal } from "@mui/material";
-import { Form, Formik } from "formik";
-import initialValues from "../../users/new-user/schemas/initialValues";
+import { Form, Formik, FormikErrors, FormikTouched, FormikValues } from "formik";
 import Card from "@mui/material/Card";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
-import form from "../../users/new-user/schemas/form";
-import validations from "../../users/new-user/schemas/validations";
-import UserInfo from "../../users/new-user/components/UserInfo";
-import Address from "../../users/new-user/components/Address";
-import Socials from "../../users/new-user/components/Socials";
-import Profile from "../../users/new-user/components/Profile";
+import FormField from "../../users/new-user/components/FormField";
+import * as Yup from "yup";
 
 function getSteps(): string[] {
-  return ["User Info", "Address", "Social", "Profile"];
+  return ["AWS Profile"];
 }
 
-function getStepContent(stepIndex: number, formData: any): JSX.Element {
+function getStepContent(stepIndex: number, formData: FormDataSchema): JSX.Element {
   switch (stepIndex) {
     case 0:
-      return <UserInfo formData={formData} />;
-    case 1:
-      return <Address formData={formData} />;
-    case 2:
-      return <Socials formData={formData} />;
-    case 3:
-      return <Profile formData={formData} />;
+      return <AddAwsProfile formFields={formData.formFields} errors={formData.errors} touched={formData.touched}
+                            values={formData.values} />;
     default:
       return null;
   }
+}
+
+interface FormFieldSchema {
+  name: string,
+  label: string,
+  type: string,
+  errorMsg: string
+}
+
+interface FormSchema {
+  formId: string,
+  formFields: {
+    [key: string]: FormFieldSchema
+  }
+}
+
+interface FormDataSchema {
+  values: FormikValues
+  touched: FormikTouched<FormikValues>,
+  formFields: {
+    [key: string]: FormFieldSchema
+  },
+  errors: FormikErrors<FormikValues>
+}
+
+const addProfileForm: FormSchema = {
+  formId: "add-aws-profile",
+  formFields: {
+    accessKey: {
+      name: "accessKey",
+      label: "Access Key",
+      type: "text",
+      errorMsg: "Access Key is required."
+    },
+    secretKey: {
+      name: "secretKey",
+      label: "Secret Key",
+      type: "text",
+      errorMsg: "Secret Key is required."
+    }
+  }
+};
+
+const { formFields: { accessKey, secretKey } } = addProfileForm;
+
+const initialValues = {
+  [accessKey.name]: "",
+  [secretKey.name]: ""
+};
+
+const validations = [
+  Yup.object().shape({
+    [accessKey.name]: Yup.string().required(accessKey.errorMsg),
+    [secretKey.name]: Yup.string().required(secretKey.errorMsg)
+  })
+];
+
+
+function AddAwsProfile(formData: FormDataSchema): JSX.Element {
+  const { formFields, values, errors, touched } = formData;
+  const { accessKey, secretKey } = formFields;
+  const {
+    accessKey: accessKeyV,
+    secretKey: secretKeyV
+  } = values;
+
+  return (
+    <MDBox>
+      <MDBox lineHeight={0}>
+        <MDTypography variant="h5">Create AWS Profile</MDTypography>
+      </MDBox>
+      <MDBox mt={1.625}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={6}>
+            <FormField
+              type={accessKey.type}
+              label={accessKey.label}
+              name={accessKey.name}
+              value={accessKey}
+              placeholder={accessKeyV.placeholder}
+              error={errors.accessKey && touched.accessKey}
+              success={accessKeyV.length > 0 && !errors.accessKey}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <FormField
+              type={secretKey.type}
+              label={secretKey.label}
+              name={secretKey.name}
+              value={secretKeyV}
+              placeholder={secretKeyV.placeholder}
+              error={errors.secretKey && touched.secretKey}
+              success={secretKeyV.length > 0 && !errors.secretKey}
+            />
+          </Grid>
+        </Grid>
+      </MDBox>
+    </MDBox>
+  );
 }
 
 function AwsHome(): JSX.Element {
@@ -90,7 +176,7 @@ function AwsHome(): JSX.Element {
   };
 
   const steps = getSteps();
-  const { formId, formField } = form;
+  const { formId, formFields } = addProfileForm;
   const currentValidation = validations[activeStep];
   const isLastStep = activeStep === steps.length - 1;
 
@@ -154,7 +240,7 @@ function AwsHome(): JSX.Element {
                           {getStepContent(activeStep, {
                             values,
                             touched,
-                            formField,
+                            formFields,
                             errors
                           })}
                           <MDBox mt={2} width="100%" display="flex" justifyContent="space-between">
@@ -171,7 +257,7 @@ function AwsHome(): JSX.Element {
                               variant="gradient"
                               color="dark"
                             >
-                              {isLastStep ? "send" : "next"}
+                              {isLastStep ? "Save" : "next"}
                             </MDButton>
                           </MDBox>
                         </MDBox>
