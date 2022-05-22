@@ -1,0 +1,79 @@
+{
+  "name": "localstack-ui",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Localstack UI",
+  "dependencies": {
+    "@asseinfo/react-kanban": "2.2.0",
+    "@emotion/cache": "11.7.1",
+    "@emotion/react": "11.7.1",
+    "@emotion/styled": "11.6.0",
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-brands-svg-icons": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.1.18",
+    "@fullcalendar/daygrid": "5.10.0",
+    "@fullcalendar/interaction": "5.10.0",
+    "@fullcalendar/react": "5.10.0",
+    "@fullcalendar/timegrid": "5.10.0",
+    "@mui/icons-material": "5.4.1",
+    "@mui/material": "5.4.1",
+    "@mui/styled-engine": "5.4.1",
+    "@react-jvectormap/core": "1.0.1",
+    "@react-jvectormap/world": "1.0.0",
+    "@testing-library/jest-dom": "5.16.2",
+    "@testing-library/react": "12.1.2",
+    "@testing-library/user-event": "13.5.0",
+    "chart.js": "3.4.1",
+    "chroma-js": "2.4.2",
+    "dropzone": "5.9.2",
+    "flatpickr": "4.6.9",
+    "formik": "2.2.9",
+    "html-react-parser": "1.4.8",
+    "react": "17.0.2",
+    "react-chartjs-2": "3.0.4",
+    "react-dom": "17.0.2",
+    "react-flatpickr": "3.10.7",
+    "react-github-btn": "1.2.1",
+    "react-images-viewer": "1.7.1",
+    "react-quill": "^2.0.0-beta.4",
+    "react-router-dom": "6.2.1",
+    "react-scripts": "5.0.1",
+    "react-table": "7.7.0",
+    "stylis": "4.0.13",
+    "uuid": "8.3.2",
+    "web-vitals": "2.1.4",
+    "yup": "0.32.11"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/chroma-js": "2.1.3",
+    "@types/dropzone": "5.7.4",
+    "@types/jest": "27.4.0",
+    "@types/node": "16.11.21",
+    "@types/react": "17.0.45",
+    "@types/react-dom": "17.0.11",
+    "@types/react-flatpickr": "3.8.5",
+    "@types/react-table": "7.7.9",
+    "@types/uuid": "8.3.4",
+    "prettier": "2.6.2",
+    "typescript": "^4.6.4"
+  }
+}
