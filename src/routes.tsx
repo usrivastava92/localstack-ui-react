@@ -37,6 +37,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAws } from "@fortawesome/free-brands-svg-icons";
 import AwsHome from "./layouts/pages/aws/AwsHome";
 import DdbDashboard from "./layouts/pages/aws/DdbDashboard";
+import SQSHome from "./layouts/pages/aws/sqs";
 
 const routes = [
   {
@@ -55,7 +56,7 @@ const routes = [
         name: "SQS",
         key: "sqs",
         route: "/pages/aws/sqs",
-        component: <AwsHome />
+        component: <SQSHome />
       },
       {
         name: "S3",
