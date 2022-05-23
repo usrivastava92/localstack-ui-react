@@ -2,10 +2,10 @@
 import Card from "@mui/material/Card";
 import Divider from "@mui/material/Divider";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDButton from "components/MDButton";
-import MDBadge from "components/MDBadge";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
+import MDButton from "@/components/MDButton";
+import MDBadge from "@/components/MDBadge";
 
 function Authentication(): JSX.Element {
   return (

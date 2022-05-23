@@ -1,7 +1,7 @@
-import typography from "assets/theme-dark/base/typography";
-import borders from "assets/theme-dark/base/borders";
+import typography from "@/assets/theme-dark/base/typography";
+import borders from "@/assets/theme-dark/base/borders";
 
-import pxToRem from "assets/theme-dark/functions/pxToRem";
+import pxToRem from "@/assets/theme-dark/functions/pxToRem";
 
 const { fontWeightBold, size } = typography;
 const { borderRadius } = borders;

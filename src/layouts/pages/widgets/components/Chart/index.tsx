@@ -6,15 +6,15 @@ import { Line } from "react-chartjs-2";
 // @mui material components
 import Card from "@mui/material/Card";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
-import gradientChartLine from "assets/theme/functions/gradientChartLine";
+import gradientChartLine from "@/assets/theme/functions/gradientChartLine";
 
 // Chart configurations
-import configs from "layouts/pages/widgets/components/Chart/configs";
+import configs from "@/layouts/pages/widgets/components/Chart/configs";
 
-import colors from "assets/theme/base/colors";
+import colors from "@/assets/theme/base/colors";
 
 // Declaring props types for Chart
 interface Props {

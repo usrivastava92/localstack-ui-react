@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 // @mui material components
 import { Theme } from "@mui/material/styles";
 
-import MDBox from "components/MDBox";
+import MDBox from "@/components/MDBox";
 
 // Declaring prop types for DataTableBodyCell
 interface Props {

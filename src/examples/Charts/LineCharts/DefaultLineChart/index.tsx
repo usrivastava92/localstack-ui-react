@@ -7,13 +7,13 @@ import { Line } from "react-chartjs-2";
 import Card from "@mui/material/Card";
 import Icon from "@mui/material/Icon";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
 // DefaultLineChart configurations
-import configs from "examples/Charts/LineCharts/DefaultLineChart/configs";
+import configs from "@/examples/Charts/LineCharts/DefaultLineChart/configs";
 
-import colors from "assets/theme/base/colors";
+import colors from "@/assets/theme/base/colors";
 
 // Declaring props types for DefaultLineChart
 interface Props {

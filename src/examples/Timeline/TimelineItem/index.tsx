@@ -3,14 +3,14 @@ import { ReactNode } from "react";
 // @mui material components
 import Icon from "@mui/material/Icon";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
 // Timeline context
-import { useTimeline } from "examples/Timeline/context";
+import { useTimeline } from "@/examples/Timeline/context";
 
 // Custom styles for the TimelineItem
-import timelineItem from "examples/Timeline/TimelineItem/styles";
+import timelineItem from "@/examples/Timeline/TimelineItem/styles";
 
 // Declaring prop types for TimelineItem
 interface Props {

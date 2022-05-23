@@ -4,17 +4,17 @@ import Icon from "@mui/material/Icon";
 import Tooltip from "@mui/material/Tooltip";
 import { Theme } from "@mui/material/styles";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDAvatar from "components/MDAvatar";
-import MDButton from "components/MDButton";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
+import MDAvatar from "@/components/MDAvatar";
+import MDButton from "@/components/MDButton";
 
 // Image
-import team1 from "assets/images/team-1.jpg";
-import team2 from "assets/images/team-2.jpg";
-import team3 from "assets/images/team-3.jpg";
-import team4 from "assets/images/team-4.jpg";
-import team5 from "assets/images/team-5.jpg";
+import team1 from "@/assets/images/team-1.jpg";
+import team2 from "@/assets/images/team-2.jpg";
+import team3 from "@/assets/images/team-3.jpg";
+import team4 from "@/assets/images/team-4.jpg";
+import team5 from "@/assets/images/team-5.jpg";
 
 function Header(): JSX.Element {
   const avatarStyles: { [key: string]: any } = {

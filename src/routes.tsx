@@ -1,38 +1,36 @@
-import Analytics from "layouts/dashboards/analytics";
-import Sales from "layouts/dashboards/sales";
-import ProfileOverview from "layouts/pages/profile/profile-overview";
-import AllProjects from "layouts/pages/profile/all-projects";
-import NewUser from "layouts/pages/users/new-user";
-import Settings from "layouts/pages/account/settings";
-import Billing from "layouts/pages/account/billing";
-import Invoice from "layouts/pages/account/invoice";
-import Timeline from "layouts/pages/projects/timeline";
-import PricingPage from "layouts/pages/pricing-page";
-import Widgets from "layouts/pages/widgets";
-import Charts from "layouts/pages/charts";
-import Notifications from "layouts/pages/notifications";
-import Kanban from "layouts/applications/kanban";
-import Wizard from "layouts/applications/wizard";
-import DataTables from "layouts/applications/data-tables";
-import Calendar from "layouts/applications/calendar";
-import NewProduct from "layouts/ecommerce/products/new-product";
-import EditProduct from "layouts/ecommerce/products/edit-product";
-import ProductPage from "layouts/ecommerce/products/product-page";
-import OrderList from "layouts/ecommerce/orders/order-list";
-import OrderDetails from "layouts/ecommerce/orders/order-details";
-import SignInBasic from "layouts/authentication/sign-in/basic";
-import SignInCover from "layouts/authentication/sign-in/cover";
-import SignInIllustration from "layouts/authentication/sign-in/illustration";
-import SignUpCover from "layouts/authentication/sign-up/cover";
-import ResetCover from "layouts/authentication/reset-password/cover";
-
-import MDAvatar from "components/MDAvatar";
+import Analytics from "@/layouts/dashboards/analytics";
+import Sales from "@/layouts/dashboards/sales";
+import ProfileOverview from "@/layouts/pages/profile/profile-overview";
+import AllProjects from "@/layouts/pages/profile/all-projects";
+import NewUser from "@/layouts/pages/users/new-user";
+import Settings from "@/layouts/pages/account/settings";
+import Billing from "@/layouts/pages/account/billing";
+import Invoice from "@/layouts/pages/account/invoice";
+import Timeline from "@/layouts/pages/projects/timeline";
+import PricingPage from "@/layouts/pages/pricing-page";
+import Widgets from "@/layouts/pages/widgets";
+import Charts from "@/layouts/pages/charts";
+import Notifications from "@/layouts/pages/notifications";
+import Kanban from "@/layouts/applications/kanban";
+import Wizard from "@/layouts/applications/wizard";
+import DataTables from "@/layouts/applications/data-tables";
+import Calendar from "@/layouts/applications/calendar";
+import NewProduct from "@/layouts/ecommerce/products/new-product";
+import EditProduct from "@/layouts/ecommerce/products/edit-product";
+import ProductPage from "@/layouts/ecommerce/products/product-page";
+import OrderList from "@/layouts/ecommerce/orders/order-list";
+import OrderDetails from "@/layouts/ecommerce/orders/order-details";
+import SignInBasic from "@/layouts/authentication/sign-in/basic";
+import SignInCover from "@/layouts/authentication/sign-in/cover";
+import SignInIllustration from "@/layouts/authentication/sign-in/illustration";
+import SignUpCover from "@/layouts/authentication/sign-up/cover";
+import ResetCover from "@/layouts/authentication/reset-password/cover";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
 
 // Images
-import profilePicture from "assets/images/team-3.jpg";
+import profilePicture from "@/assets/images/team-3.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAws } from "@fortawesome/free-brands-svg-icons";
 import AwsHome from "./layouts/pages/aws/home";

@@ -8,11 +8,11 @@ import Card from "@mui/material/Card";
 import Divider from "@mui/material/Divider";
 import Icon from "@mui/material/Icon";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
 // ReportsLineChart configurations
-import configs from "examples/Charts/LineCharts/ReportsLineChart/configs";
+import configs from "@/examples/Charts/LineCharts/ReportsLineChart/configs";
 
 // Declaring props types for ReportsLineChart
 interface Props {

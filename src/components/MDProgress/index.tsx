@@ -1,9 +1,9 @@
 import { FC, forwardRef } from "react";
 
-import MDTypography from "components/MDTypography";
+import MDTypography from "@/components/MDTypography";
 
 // Custom styles for MDProgress
-import MDProgressRoot from "components/MDProgress/MDProgressRoot";
+import MDProgressRoot from "@/components/MDProgress/MDProgressRoot";
 
 // Delcare props types for MDProgress
 interface Props {

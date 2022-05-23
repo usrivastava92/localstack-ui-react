@@ -1,6 +1,6 @@
-import breakpoints from "assets/theme/base/breakpoints";
+import breakpoints from "@/assets/theme/base/breakpoints";
 
-import pxToRem from "assets/theme/functions/pxToRem";
+import pxToRem from "@/assets/theme/functions/pxToRem";
 
 // types
 type Types = any;

@@ -1,10 +1,10 @@
 // @mui material components
 import Card from "@mui/material/Card";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
-import DefaultItem from "examples/Items/DefaultItem";
+import DefaultItem from "@/examples/Items/DefaultItem";
 
 function UpcomingEvents(): JSX.Element {
   return (

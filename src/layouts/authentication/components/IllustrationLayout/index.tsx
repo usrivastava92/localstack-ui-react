@@ -3,15 +3,15 @@ import { ReactNode } from "react";
 // @mui material components
 import Grid from "@mui/material/Grid";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
-import DefaultNavbar from "examples/Navbars/DefaultNavbar";
-import PageLayout from "examples/LayoutContainers/PageLayout";
+import DefaultNavbar from "@/examples/Navbars/DefaultNavbar";
+import PageLayout from "@/examples/LayoutContainers/PageLayout";
 
-import pageRoutes from "page.routes";
+import pageRoutes from "@/page.routes";
 
-import { useMaterialUIController } from "context";
+import { useMaterialUIController } from "@/context";
 
 // Declaring props types for IllustrationLayout
 interface Props {

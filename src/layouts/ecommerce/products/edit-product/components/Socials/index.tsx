@@ -2,11 +2,11 @@
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
 // EditProduct page components
-import FormField from "layouts/ecommerce/products/edit-product/components/FormField";
+import FormField from "@/layouts/ecommerce/products/edit-product/components/FormField";
 
 function Socials(): JSX.Element {
   return (

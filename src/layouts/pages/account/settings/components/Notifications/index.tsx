@@ -5,11 +5,11 @@ import TableRow from "@mui/material/TableRow";
 import TableBody from "@mui/material/TableBody";
 import Switch from "@mui/material/Switch";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
 // Setting pages components
-import TableCell from "layouts/pages/account/settings/components/TableCell";
+import TableCell from "@/layouts/pages/account/settings/components/TableCell";
 
 function Notifications(): JSX.Element {
   return (

@@ -4,11 +4,11 @@ import { ReactNode } from "react";
 import Icon from "@mui/material/Icon";
 import { Theme } from "@mui/material/styles";
 
-import MDBox from "components/MDBox";
-import MDBadge from "components/MDBadge";
-import MDTypography from "components/MDTypography";
-import MDAvatar from "components/MDAvatar";
-import MDProgress from "components/MDProgress";
+import MDBox from "@/components/MDBox";
+import MDBadge from "@/components/MDBadge";
+import MDTypography from "@/components/MDTypography";
+import MDAvatar from "@/components/MDAvatar";
+import MDProgress from "@/components/MDProgress";
 
 // Declaring props types for Card
 interface Props {

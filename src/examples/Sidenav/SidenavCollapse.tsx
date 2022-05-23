@@ -7,7 +7,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Icon from "@mui/material/Icon";
 
-import MDBox from "components/MDBox";
+import MDBox from "@/components/MDBox";
 
 // Custom styles for the SidenavCollapse
 import {
@@ -16,9 +16,9 @@ import {
   collapseIconBox,
   collapseItem,
   collapseText
-} from "examples/Sidenav/styles/sidenavCollapse";
+} from "@/examples/Sidenav/styles/sidenavCollapse";
 
-import { useMaterialUIController } from "context";
+import { useMaterialUIController } from "@/context";
 
 // Declaring props types for SidenavCollapse
 interface Props {

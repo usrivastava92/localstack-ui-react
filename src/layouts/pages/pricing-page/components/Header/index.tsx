@@ -9,15 +9,15 @@ import AppBar from "@mui/material/AppBar";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
-import DefaultNavbar from "examples/Navbars/DefaultNavbar";
+import DefaultNavbar from "@/examples/Navbars/DefaultNavbar";
 
-import pageRoutes from "page.routes";
+import pageRoutes from "@/page.routes";
 
 // Images
-import bgImage from "assets/images/bg-pricing.jpg";
+import bgImage from "@/assets/images/bg-pricing.jpg";
 
 // Declaring props types for Header
 interface Props {

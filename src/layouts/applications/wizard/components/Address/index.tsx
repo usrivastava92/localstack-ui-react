@@ -1,11 +1,11 @@
 // @mui material components
 import Grid from "@mui/material/Grid";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
 // Wizard application components
-import FormField from "layouts/applications/wizard/components/FormField";
+import FormField from "@/layouts/applications/wizard/components/FormField";
 
 function Address(): JSX.Element {
   return (

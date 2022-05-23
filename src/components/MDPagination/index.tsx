@@ -1,9 +1,9 @@
 import { createContext, FC, forwardRef, ReactNode, useContext, useMemo } from "react";
 
-import MDBox from "components/MDBox";
+import MDBox from "@/components/MDBox";
 
 // Custom styles for MDPagination
-import MDPaginationItemRoot from "components/MDPagination/MDPaginationItemRoot";
+import MDPaginationItemRoot from "@/components/MDPagination/MDPaginationItemRoot";
 
 // The Pagination main context
 const Context = createContext<any>(null);

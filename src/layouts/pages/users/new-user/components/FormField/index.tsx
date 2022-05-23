@@ -2,9 +2,9 @@
 import { ErrorMessage, Field } from "formik";
 
 // Material Dashboard 2 PRO React TS components
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDInput from "components/MDInput";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
+import MDInput from "@/components/MDInput";
 
 // Declaring props types for FormField
 interface Props {

@@ -6,13 +6,13 @@ import AppBar from "@mui/material/AppBar";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 
-import MDBox from "components/MDBox";
+import MDBox from "@/components/MDBox";
 
-import breakpoints from "assets/theme/base/breakpoints";
+import breakpoints from "@/assets/theme/base/breakpoints";
 
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import Footer from "examples/Footer";
+import DashboardLayout from "@/examples/LayoutContainers/DashboardLayout";
+import DashboardNavbar from "@/examples/Navbars/DashboardNavbar";
+import Footer from "@/examples/Footer";
 
 // Declaring props types for BaseLayout
 interface Props {

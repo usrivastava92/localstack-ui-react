@@ -1,7 +1,7 @@
-import colors from "assets/theme/base/colors";
-import typography from "assets/theme/base/typography";
+import colors from "@/assets/theme/base/colors";
+import typography from "@/assets/theme/base/typography";
 
-import pxToRem from "assets/theme/functions/pxToRem";
+import pxToRem from "@/assets/theme/functions/pxToRem";
 
 const { white, text, info, secondary } = colors;
 const { size } = typography;

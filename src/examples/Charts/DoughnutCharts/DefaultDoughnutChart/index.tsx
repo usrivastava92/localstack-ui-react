@@ -7,11 +7,11 @@ import { Doughnut } from "react-chartjs-2";
 import Card from "@mui/material/Card";
 import Icon from "@mui/material/Icon";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
 // DefaultDoughnutChart configurations
-import configs from "examples/Charts/DoughnutCharts/DefaultDoughnutChart/configs";
+import configs from "@/examples/Charts/DoughnutCharts/DefaultDoughnutChart/configs";
 
 // Declaring props types for DefaultDoughnutChart
 interface Props {

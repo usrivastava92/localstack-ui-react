@@ -1,5 +1,5 @@
-import MDInput from "components/MDInput";
-import MDBox from "components/MDBox";
+import MDInput from "@/components/MDInput";
+import MDBox from "@/components/MDBox";
 
 // Declaring props types for FormField
 interface Props {

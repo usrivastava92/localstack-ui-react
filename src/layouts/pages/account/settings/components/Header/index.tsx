@@ -5,12 +5,12 @@ import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import Switch from "@mui/material/Switch";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDAvatar from "components/MDAvatar";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
+import MDAvatar from "@/components/MDAvatar";
 
 // Images
-import burceMars from "assets/images/bruce-mars.jpg";
+import burceMars from "@/assets/images/bruce-mars.jpg";
 
 function Header(): JSX.Element {
   const [visible, setVisible] = useState<boolean>(true);

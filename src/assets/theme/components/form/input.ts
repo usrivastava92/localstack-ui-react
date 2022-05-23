@@ -1,6 +1,6 @@
-import colors from "assets/theme/base/colors";
-import typography from "assets/theme/base/typography";
-import borders from "assets/theme/base/borders";
+import colors from "@/assets/theme/base/colors";
+import typography from "@/assets/theme/base/typography";
+import borders from "@/assets/theme/base/borders";
 
 const { info, inputBorderColor, dark } = colors;
 const { size } = typography;

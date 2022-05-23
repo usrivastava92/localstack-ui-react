@@ -4,15 +4,15 @@ import { ReactNode } from "react";
 import Grid from "@mui/material/Grid";
 import { Theme } from "@mui/material/styles";
 
-import MDBox from "components/MDBox";
+import MDBox from "@/components/MDBox";
 
-import DefaultNavbar from "examples/Navbars/DefaultNavbar";
-import PageLayout from "examples/LayoutContainers/PageLayout";
+import DefaultNavbar from "@/examples/Navbars/DefaultNavbar";
+import PageLayout from "@/examples/LayoutContainers/PageLayout";
 
 // Authentication layout components
-import Footer from "layouts/authentication/components/Footer";
+import Footer from "@/layouts/authentication/components/Footer";
 
-import pageRoutes from "page.routes";
+import pageRoutes from "@/page.routes";
 
 // Declaring props types for CoverLayout
 interface Props {

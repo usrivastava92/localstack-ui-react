@@ -9,13 +9,13 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Icon from "@mui/material/Icon";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
 // Chart configurations
-import configs from "layouts/applications/calendar/components/ProductivityChart/configs";
+import configs from "@/layouts/applications/calendar/components/ProductivityChart/configs";
 
-import typography from "assets/theme/base/typography";
+import typography from "@/assets/theme/base/typography";
 
 function ProductivityChart(): JSX.Element {
   const { size } = typography;

@@ -3,14 +3,14 @@ import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import Autocomplete from "@mui/material/Autocomplete";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
 // Settings page components
-import FormField from "layouts/pages/account/components/FormField";
+import FormField from "@/layouts/pages/account/components/FormField";
 
 // Data
-import selectData from "layouts/pages/account/settings/components/BasicInfo/data/selectData";
+import selectData from "@/layouts/pages/account/settings/components/BasicInfo/data/selectData";
 
 function BasicInfo(): JSX.Element {
   return (

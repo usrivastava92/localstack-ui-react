@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 // @mui material components
 import Card from "@mui/material/Card";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDAvatar from "components/MDAvatar";
-import MDButton from "components/MDButton";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
+import MDAvatar from "@/components/MDAvatar";
+import MDButton from "@/components/MDButton";
 
 // Declaring props types for ProfilesList
 interface Props {

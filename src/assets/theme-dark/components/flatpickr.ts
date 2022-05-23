@@ -1,6 +1,6 @@
-import colors from "assets/theme-dark/base/colors";
+import colors from "@/assets/theme-dark/base/colors";
 
-import rgba from "assets/theme-dark/functions/rgba";
+import rgba from "@/assets/theme-dark/functions/rgba";
 
 const { info, white, gradients } = colors;
 

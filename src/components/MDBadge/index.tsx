@@ -4,7 +4,7 @@ import { FC, forwardRef, ReactNode } from "react";
 import { BadgeProps } from "@mui/material";
 
 // Custom styles for the MDBadge
-import MDBadgeRoot from "components/MDBadge/MDBadgeRoot";
+import MDBadgeRoot from "@/components/MDBadge/MDBadgeRoot";
 
 // declaring props types for MDBadge
 interface Props extends Omit<BadgeProps, "color" | "variant"> {

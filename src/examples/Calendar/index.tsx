@@ -7,13 +7,13 @@ import interactionPlugin from "@fullcalendar/interaction";
 // @mui material components
 import Card from "@mui/material/Card";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
 // Custom styles for Calendar
-import CalendarRoot from "examples/Calendar/CalendarRoot";
+import CalendarRoot from "@/examples/Calendar/CalendarRoot";
 
-import { useMaterialUIController } from "context";
+import { useMaterialUIController } from "@/context";
 
 // Declaring props types for the Calender
 interface Props {

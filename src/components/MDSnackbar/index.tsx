@@ -10,13 +10,13 @@ import Divider from "@mui/material/Divider";
 import Fade from "@mui/material/Fade";
 import { SnackbarProps } from "@mui/material";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
 // Custom styles for the MDSnackbar
-import MDSnackbarIconRoot from "components/MDSnackbar/MDSnackbarIconRoot";
+import MDSnackbarIconRoot from "@/components/MDSnackbar/MDSnackbarIconRoot";
 
-import { useMaterialUIController } from "context";
+import { useMaterialUIController } from "@/context";
 
 // Declaring props types for MDSnackbar
 interface Props extends SnackbarProps {

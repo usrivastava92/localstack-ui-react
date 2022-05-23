@@ -1,8 +1,8 @@
-import typography from "assets/theme-dark/base/typography";
-import borders from "assets/theme-dark/base/borders";
-import colors from "assets/theme-dark/base/colors";
+import typography from "@/assets/theme-dark/base/typography";
+import borders from "@/assets/theme-dark/base/borders";
+import colors from "@/assets/theme-dark/base/colors";
 
-import pxToRem from "assets/theme-dark/functions/pxToRem";
+import pxToRem from "@/assets/theme-dark/functions/pxToRem";
 
 const { size, fontWeightRegular } = typography;
 const { borderRadius } = borders;

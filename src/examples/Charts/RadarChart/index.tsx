@@ -7,15 +7,15 @@ import { Radar } from "react-chartjs-2";
 import Card from "@mui/material/Card";
 import Icon from "@mui/material/Icon";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
 // RadarChart configurations
-import configs from "examples/Charts/RadarChart/configs";
+import configs from "@/examples/Charts/RadarChart/configs";
 
-import colors from "assets/theme/base/colors";
+import colors from "@/assets/theme/base/colors";
 
-import rgba from "assets/theme/functions/rgba";
+import rgba from "@/assets/theme/functions/rgba";
 
 // Declaring props types for RadarChart
 interface Props {

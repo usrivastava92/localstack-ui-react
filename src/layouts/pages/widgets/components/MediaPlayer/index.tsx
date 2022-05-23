@@ -3,12 +3,12 @@ import Card from "@mui/material/Card";
 import Icon from "@mui/material/Icon";
 import { Theme } from "@mui/material/styles";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDButton from "components/MDButton";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
+import MDButton from "@/components/MDButton";
 
 // Images
-import bgImage from "assets/images/bg-player.jpeg";
+import bgImage from "@/assets/images/bg-player.jpeg";
 
 function MediaPlayer(): JSX.Element {
   const mediaPlayerButtonStyles = ({ functions: { pxToRem } }: Theme) => ({
