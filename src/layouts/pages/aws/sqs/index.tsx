@@ -34,6 +34,9 @@ import Address from "../../users/new-user/components/Address";
 import Socials from "../../users/new-user/components/Socials";
 import Profile from "../../users/new-user/components/Profile";
 
+import { ListQueuesCommand } from  "@aws-sdk/client-sqs";
+import { sqsClient } from  "./sqsClient";
+
 function getSteps(): string[] {
   return ["User Info", "Address", "Social", "Profile"];
 }
@@ -53,33 +56,10 @@ function getStepContent(stepIndex: number, formData: any): JSX.Element {
   }
 }
 
-function SQSHome(): JSX.Element {
-
-  const { sales, tasks } = reportsLineChartData;
+function SQSDashboard(): JSX.Element {
 
   const [activeStep, setActiveStep] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
-
-  // Action buttons for the BookingCard
-  const actionButtons = (
-    <>
-      <Tooltip title="Refresh" placement="bottom">
-        <MDTypography
-          variant="body1"
-          color="primary"
-          lineHeight={1}
-          sx={{ cursor: "pointer", mx: 3 }}
-        >
-          <Icon color="inherit">refresh</Icon>
-        </MDTypography>
-      </Tooltip>
-      <Tooltip title="Edit" placement="bottom">
-        <MDTypography variant="body1" color="info" lineHeight={1} sx={{ cursor: "pointer", mx: 3 }}>
-          <Icon color="inherit">edit</Icon>
-        </MDTypography>
-      </Tooltip>
-    </>
-  );
 
   const handleAddNewProfile = () => {
     setModalOpen(true);
@@ -122,9 +102,20 @@ function SQSHome(): JSX.Element {
     }
   };
 
+  const getQueueList = async () => {
+    try {
+      const data = await sqsClient.send(new ListQueuesCommand({}));
+      console.log("Success", data);
+      // return data;
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <DashboardLayout>
       <h1>SQS</h1>
+      {getQueueList()}
       <Modal
         open={modalOpen}
         onClose={handleCloseModal}
@@ -212,4 +203,4 @@ function SQSHome(): JSX.Element {
   );
 }
 
-export default SQSHome;
+export default SQSDashboard;
