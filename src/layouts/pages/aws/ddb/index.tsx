@@ -1,31 +1,17 @@
 import MDBox from "../../../../components/MDBox";
 import Grid from "@mui/material/Grid";
-import SalesByCountry from "../../../dashboards/analytics/components/SalesByCountry";
-import ReportsBarChart from "../../../../examples/Charts/BarCharts/ReportsBarChart";
-import reportsBarChartData from "../../../dashboards/analytics/data/reportsBarChartData";
-import ReportsLineChart from "../../../../examples/Charts/LineCharts/ReportsLineChart";
-import ComplexStatisticsCard from "../../../../examples/Cards/StatisticsCards/ComplexStatisticsCard";
-import BookingCard from "../../../../examples/Cards/BookingCard";
-import booking1 from "../../../../assets/images/products/product-1-min.jpg";
-import booking2 from "../../../../assets/images/products/product-2-min.jpg";
-import booking3 from "../../../../assets/images/products/product-3-min.jpg";
 import Footer from "../../../../examples/Footer";
 import DashboardLayout from "../../../../examples/LayoutContainers/DashboardLayout";
-import reportsLineChartData from "../../../dashboards/analytics/data/reportsLineChartData";
-import Tooltip from "@mui/material/Tooltip";
 import MDTypography from "../../../../components/MDTypography";
 import Icon from "@mui/material/Icon";
 import MDButton from "../../../../components/MDButton";
-import {useState} from "react";
-import {Modal} from "@mui/material";
-import {Form, Formik, FormikErrors, FormikTouched, FormikValues} from "formik";
+import { useState } from "react";
+import { Modal } from "@mui/material";
+import { Form, Formik, FormikErrors, FormikTouched, FormikValues } from "formik";
 import Card from "@mui/material/Card";
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
 import FormField from "../../users/new-user/components/FormField";
 import * as Yup from "yup";
-import {DynamoDB} from "@aws-sdk/client-dynamodb";
+import { DynamoDB } from "@aws-sdk/client-dynamodb";
 import MDSnackbar from "../../../../components/MDSnackbar";
 
 interface FormFieldSchema {
@@ -69,7 +55,7 @@ const addProfileForm: FormSchema = {
   }
 };
 
-const {formFields: {accessKey, secretKey}} = addProfileForm;
+const { formFields: { accessKey, secretKey } } = addProfileForm;
 
 const initialValues = {
   [accessKey.name]: "",
@@ -85,9 +71,9 @@ const addProfileValidation = [
 
 
 function AddAwsProfileForm(formData: FormDataSchema): JSX.Element {
-  const {formFields, values, errors, touched} = formData;
-  const {accessKey, secretKey} = formFields;
-  const {accessKey: accessKeyV, secretKey: secretKeyV} = values;
+  const { formFields, values, errors, touched } = formData;
+  const { accessKey, secretKey } = formFields;
+  const { accessKey: accessKeyV, secretKey: secretKeyV } = values;
 
   return (
     <MDBox>
@@ -130,7 +116,7 @@ function DDBDashboard(): JSX.Element {
     region: "ap-south-1",
     credentials: {
       accessKeyId: "local-access-key-id",
-      secretAccessKey: "local-secret-access-key",
+      secretAccessKey: "local-secret-access-key"
     }
   });
 
@@ -141,9 +127,9 @@ function DDBDashboard(): JSX.Element {
   const handleAddNewProfile = () => setModalOpen(true);
   const handleCloseModal = () => setModalOpen(false);
 
-  client.listTables({Limit: 10})
+  client.listTables({ Limit: 10 })
     .then(output => setTables(output?.TableNames))
-    .catch(error => setShowError(true))
+    .catch(error => setShowError(true));
 
   const sleep = (ms: any) =>
     new Promise((resolve) => {
@@ -166,16 +152,16 @@ function DDBDashboard(): JSX.Element {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <MDBox py={3} mb={20} height="65vh">
-          <Grid container justifyContent="center" alignItems="center" sx={{height: "100%", mt: 8}}>
+          <Grid container justifyContent="center" alignItems="center" sx={{ height: "100%", mt: 8 }}>
             <Grid item xs={12} lg={8}>
               <Formik initialValues={initialValues} validationSchema={addProfileValidation} onSubmit={submitForm}>
-                {({values, errors, touched, isSubmitting}) => (
+                {({ values, errors, touched, isSubmitting }) => (
                   <Form id={addProfileForm.formId} autoComplete="off">
-                    <Card sx={{height: "100%"}}>
+                    <Card sx={{ height: "100%" }}>
                       <MDBox p={3}>
                         <MDBox>
                           <AddAwsProfileForm formFields={addProfileForm.formFields} errors={errors} touched={touched}
-                                             values={values}/>
+                                             values={values} />
                           <MDBox mt={2} width="100%" display="flex" justifyContent="right">
                             <MDButton disabled={isSubmitting} type="submit" variant="gradient"
                                       color="dark">Save</MDButton>
@@ -202,7 +188,7 @@ function DDBDashboard(): JSX.Element {
             </MDTypography>
           </MDBox>
         </Grid>
-        <Grid item xs={12} md={5} sx={{textAlign: "right"}}>
+        <Grid item xs={12} md={5} sx={{ textAlign: "right" }}>
           <MDButton variant="gradient" color="info" onClick={handleAddNewProfile}>
             <Icon>add</Icon>&nbsp; Add New
           </MDButton>
@@ -219,7 +205,7 @@ function DDBDashboard(): JSX.Element {
         close={closeError}
         bgWhite
       />
-      <Footer/>
+      <Footer />
     </DashboardLayout>
   );
 }
