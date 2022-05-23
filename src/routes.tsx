@@ -36,6 +36,7 @@ import profilePicture from "assets/images/team-3.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAws } from "@fortawesome/free-brands-svg-icons";
 import AwsHome from "./layouts/pages/aws/home";
+import DDBDashboard from "./layouts/pages/aws/ddb";
 
 const routes = [
   {
@@ -48,7 +49,7 @@ const routes = [
         name: "Dynamo DB",
         key: "ddb",
         route: "/pages/aws/dynamodb",
-        component: <AwsHome />
+        component: <DDBDashboard />
       },
       {
         name: "SQS",
