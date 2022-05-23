@@ -51,29 +51,45 @@ const addProfileForm: FormSchema = {
       label: "Secret Key",
       type: "text",
       errorMsg: "Secret Key is required."
+    },
+    sessionKey: {
+      name: "sessionKey",
+      label: "Session Key",
+      type: "text",
+      errorMsg: "Session Key is required."
+    },
+    endpoint: {
+      name: "endpoint",
+      label: "Endpoint",
+      type: "text",
+      errorMsg: "Endpoint is required."
     }
   }
 };
 
-const { formFields: { accessKey, secretKey } } = addProfileForm;
+const { formFields: { accessKey, secretKey, sessionKey, endpoint } } = addProfileForm;
 
 const initialValues = {
   [accessKey.name]: "",
-  [secretKey.name]: ""
+  [secretKey.name]: "",
+  [sessionKey.name]: "",
+  [endpoint.name]: ""
 };
 
-const addProfileValidation = [
+const addProfileFormValidation = [
   Yup.object().shape({
     [accessKey.name]: Yup.string().required(accessKey.errorMsg),
-    [secretKey.name]: Yup.string().required(secretKey.errorMsg)
+    [secretKey.name]: Yup.string().required(secretKey.errorMsg),
+    [sessionKey.name]: Yup.string().required(sessionKey.errorMsg),
+    [endpoint.name]: Yup.string().required(endpoint.errorMsg)
   })
 ];
 
-
 function AddAwsProfileForm(formData: FormDataSchema): JSX.Element {
+
   const { formFields, values, errors, touched } = formData;
-  const { accessKey, secretKey } = formFields;
-  const { accessKey: accessKeyV, secretKey: secretKeyV } = values;
+  const { accessKey, secretKey, sessionKey, endpoint } = formFields;
+  const { accessKey: accessKeyV, secretKey: secretKeyV, sessionKey: sessionKeyV, endpoint: endpointV } = values;
 
   return (
     <MDBox>
@@ -102,6 +118,28 @@ function AddAwsProfileForm(formData: FormDataSchema): JSX.Element {
               placeholder={secretKeyV.placeholder}
               error={errors.secretKey && touched.secretKey}
               success={secretKeyV.length > 0 && !errors.secretKey}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <FormField
+              type={sessionKey.type}
+              label={sessionKey.label}
+              name={sessionKey.name}
+              value={sessionKey}
+              placeholder={sessionKeyV.placeholder}
+              error={errors.sessionKey && touched.sessionKey}
+              success={sessionKeyV.length > 0 && !errors.sessionKey}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <FormField
+              type={endpoint.type}
+              label={endpoint.label}
+              name={endpoint.name}
+              value={endpointV}
+              placeholder={endpointV.placeholder}
+              error={errors.endpoint && touched.endpoint}
+              success={secretKeyV.length > 0 && !errors.endpoint}
             />
           </Grid>
         </Grid>
@@ -154,7 +192,7 @@ function DDBDashboard(): JSX.Element {
         <MDBox py={3} mb={20} height="65vh">
           <Grid container justifyContent="center" alignItems="center" sx={{ height: "100%", mt: 8 }}>
             <Grid item xs={12} lg={8}>
-              <Formik initialValues={initialValues} validationSchema={addProfileValidation} onSubmit={submitForm}>
+              <Formik initialValues={initialValues} validationSchema={addProfileFormValidation} onSubmit={submitForm}>
                 {({ values, errors, touched, isSubmitting }) => (
                   <Form id={addProfileForm.formId} autoComplete="off">
                     <Card sx={{ height: "100%" }}>
@@ -194,7 +232,7 @@ function DDBDashboard(): JSX.Element {
           </MDButton>
         </Grid>
       </Grid>
-      <MDSnackbar
+      {/*<MDSnackbar
         color="error"
         icon="warning"
         title="AWS Error"
@@ -204,7 +242,7 @@ function DDBDashboard(): JSX.Element {
         onClose={closeError}
         close={closeError}
         bgWhite
-      />
+      />*/}
       <Footer />
     </DashboardLayout>
   );
