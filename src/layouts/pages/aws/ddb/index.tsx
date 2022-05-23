@@ -13,8 +13,10 @@ import FormField from "../../users/new-user/components/FormField";
 import * as Yup from "yup";
 import { DynamoDB } from "@aws-sdk/client-dynamodb";
 import MDSnackbar from "../../../../components/MDSnackbar";
+import { FormikHelpers } from "formik/dist/types";
 
 interface FormFieldSchema {
+  placeholder?: string;
   name: string,
   label: string,
   type: string,
@@ -37,6 +39,10 @@ interface FormDataSchema {
   errors: FormikErrors<FormikValues>
 }
 
+interface ValuesSchema {
+  [key: string]: string;
+}
+
 const addProfileForm: FormSchema = {
   formId: "add-aws-profile",
   formFields: {
@@ -50,40 +56,39 @@ const addProfileForm: FormSchema = {
       name: "secretKey",
       label: "Secret Key",
       type: "text",
-      errorMsg: "Secret Key is required."
+      errorMsg: "Secret Key is required.",
+      placeholder: ""
     },
     sessionKey: {
       name: "sessionKey",
       label: "Session Key",
       type: "text",
-      errorMsg: "Session Key is required."
+      errorMsg: "Session Key is required.",
+      placeholder: "Session Key (Optional)"
     },
     endpoint: {
       name: "endpoint",
       label: "Endpoint",
       type: "text",
-      errorMsg: "Endpoint is required."
+      errorMsg: "Endpoint is required.",
+      placeholder: "Endpoint (Optional)"
     }
   }
 };
 
 const { formFields: { accessKey, secretKey, sessionKey, endpoint } } = addProfileForm;
 
-const initialValues = {
+const initialValues: ValuesSchema = {
   [accessKey.name]: "",
   [secretKey.name]: "",
   [sessionKey.name]: "",
   [endpoint.name]: ""
 };
 
-const addProfileFormValidation = [
-  Yup.object().shape({
-    [accessKey.name]: Yup.string().required(accessKey.errorMsg),
-    [secretKey.name]: Yup.string().required(secretKey.errorMsg),
-    [sessionKey.name]: Yup.string().required(sessionKey.errorMsg),
-    [endpoint.name]: Yup.string().required(endpoint.errorMsg)
-  })
-];
+const addProfileFormValidation = Yup.object().shape({
+  [accessKey.name]: Yup.string().trim().required(accessKey.errorMsg),
+  [secretKey.name]: Yup.string().trim().required(secretKey.errorMsg)
+});
 
 function AddAwsProfileForm(formData: FormDataSchema): JSX.Element {
 
@@ -103,8 +108,8 @@ function AddAwsProfileForm(formData: FormDataSchema): JSX.Element {
               type={accessKey.type}
               label={accessKey.label}
               name={accessKey.name}
-              value={accessKey}
-              placeholder={accessKeyV.placeholder}
+              value={accessKeyV}
+              placeholder={accessKey.placeholder}
               error={errors.accessKey && touched.accessKey}
               success={accessKeyV.length > 0 && !errors.accessKey}
             />
@@ -115,7 +120,7 @@ function AddAwsProfileForm(formData: FormDataSchema): JSX.Element {
               label={secretKey.label}
               name={secretKey.name}
               value={secretKeyV}
-              placeholder={secretKeyV.placeholder}
+              placeholder={secretKey.placeholder}
               error={errors.secretKey && touched.secretKey}
               success={secretKeyV.length > 0 && !errors.secretKey}
             />
@@ -125,8 +130,8 @@ function AddAwsProfileForm(formData: FormDataSchema): JSX.Element {
               type={sessionKey.type}
               label={sessionKey.label}
               name={sessionKey.name}
-              value={sessionKey}
-              placeholder={sessionKeyV.placeholder}
+              value={sessionKeyV}
+              placeholder={sessionKey.placeholder}
               error={errors.sessionKey && touched.sessionKey}
               success={sessionKeyV.length > 0 && !errors.sessionKey}
             />
@@ -137,7 +142,7 @@ function AddAwsProfileForm(formData: FormDataSchema): JSX.Element {
               label={endpoint.label}
               name={endpoint.name}
               value={endpointV}
-              placeholder={endpointV.placeholder}
+              placeholder={endpoint.placeholder}
               error={errors.endpoint && touched.endpoint}
               success={secretKeyV.length > 0 && !errors.endpoint}
             />
@@ -182,6 +187,8 @@ function DDBDashboard(): JSX.Element {
     actions.resetForm();
   };
 
+  const handleSubmit = (values: ValuesSchema, actions: FormikHelpers<ValuesSchema>) => submitForm(values, actions);
+
   return (
     <DashboardLayout>
       <Modal
@@ -192,17 +199,25 @@ function DDBDashboard(): JSX.Element {
         <MDBox py={3} mb={20} height="65vh">
           <Grid container justifyContent="center" alignItems="center" sx={{ height: "100%", mt: 8 }}>
             <Grid item xs={12} lg={8}>
-              <Formik initialValues={initialValues} validationSchema={addProfileFormValidation} onSubmit={submitForm}>
+              <Formik initialValues={initialValues} validationSchema={addProfileFormValidation} onSubmit={handleSubmit}>
                 {({ values, errors, touched, isSubmitting }) => (
                   <Form id={addProfileForm.formId} autoComplete="off">
                     <Card sx={{ height: "100%" }}>
                       <MDBox p={3}>
                         <MDBox>
-                          <AddAwsProfileForm formFields={addProfileForm.formFields} errors={errors} touched={touched}
-                                             values={values} />
+                          <AddAwsProfileForm
+                            formFields={addProfileForm.formFields}
+                            errors={errors}
+                            touched={touched}
+                            values={values} />
                           <MDBox mt={2} width="100%" display="flex" justifyContent="right">
-                            <MDButton disabled={isSubmitting} type="submit" variant="gradient"
-                                      color="dark">Save</MDButton>
+                            <MDButton
+                              disabled={isSubmitting}
+                              type="submit"
+                              variant="gradient"
+                              color="dark">
+                              Save
+                            </MDButton>
                           </MDBox>
                         </MDBox>
                       </MDBox>
