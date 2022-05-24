@@ -1,4 +1,4 @@
-import  { SQSClient, AddPermissionCommand} from "@aws-sdk/client-sqs";
+import  { SQSClient } from "@aws-sdk/client-sqs";
 
 // Set the AWS Region.
 const REGION = "ap-south-1"; //e.g. "us-east-1"
