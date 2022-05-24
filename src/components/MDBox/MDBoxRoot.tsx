@@ -1,15 +1,15 @@
 // @mui material components
 import Box from "@mui/material/Box";
-import { styled, Theme } from "@mui/material/styles";
+import {styled, Theme} from "@mui/material/styles";
 
-export default styled(Box)(({ theme, ownerState }: { theme?: Theme | any; ownerState: any }) => {
-  const { palette, functions, borders, boxShadows } = theme;
-  const { variant, bgColor, color, opacity, borderRadius, shadow, coloredShadow } = ownerState;
+export default styled(Box)(({theme, ownerState}: { theme?: Theme | any; ownerState: any }) => {
+  const {palette, functions, borders, boxShadows} = theme;
+  const {variant, bgColor, color, opacity, borderRadius, shadow, coloredShadow} = ownerState;
 
-  const { gradients, grey, white } = palette;
-  const { linearGradient } = functions;
-  const { borderRadius: radius } = borders;
-  const { colored } = boxShadows;
+  const {gradients, grey, white} = palette;
+  const {linearGradient} = functions;
+  const {borderRadius: radius} = borders;
+  const {colored} = boxShadows;
 
   const greyColors: { [key: string]: string } = {
     "grey-100": grey[100],
