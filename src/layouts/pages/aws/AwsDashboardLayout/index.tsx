@@ -46,7 +46,14 @@ interface ValuesSchema {
 }
 
 const awsProfiles: AWSProfile[] = [
-  { displayName: "first profile", accessKey: "1", secretKey: "2", region: "ap-southeast-1", isDefault: true },
+  {
+    displayName: "localstack",
+    accessKey: "a",
+    secretKey: "a",
+    region: "ap-southeast-1",
+    endpoint: "http://localhost:4566",
+    isDefault: true
+  },
   { displayName: "second profile", accessKey: "1", secretKey: "2", region: "ap-southeast-2", isDefault: false },
   { displayName: "third profile", accessKey: "1", secretKey: "2", region: "ap-southeast-3", isDefault: false }
 ];
