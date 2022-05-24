@@ -9,7 +9,7 @@ import {ReactNode, useState} from "react";
 import {Modal} from "@mui/material";
 import {Form, Formik, FormikErrors, FormikTouched, FormikValues} from "formik";
 import Card from "@mui/material/Card";
-import FormField, {FormSwitch} from "../../users/new-user/components/FormField";
+import FormField, {FormSelect, FormSwitch} from "../../users/new-user/components/FormField";
 import * as Yup from "yup";
 import {FormikHelpers} from "formik/dist/types";
 import Autocomplete from "@mui/material/Autocomplete";
@@ -40,7 +40,7 @@ interface FormDataSchema {
 }
 
 interface ValuesSchema {
-  [key: string]: string;
+  [key: string]: any;
 }
 
 const awsRegions = ['af-south-1', 'ap-east-1', 'ap-northeast-1', 'ap-northeast-2', 'ap-northeast-3', 'ap-south-1', 'ap-southeast-1',
@@ -69,20 +69,20 @@ const addProfileForm: FormSchema = {
   formFields: {
     accessKey: {
       name: "accessKey",
-      label: "Access Key",
+      label: "Access Key *",
       type: "text",
       errorMsg: "Access Key is required."
     },
     secretKey: {
       name: "secretKey",
-      label: "Secret Key",
+      label: "Secret Key *",
       type: "text",
       errorMsg: "Secret Key is required.",
       placeholder: ""
     },
     region: {
       name: "region",
-      label: "Region",
+      label: "Region *",
       type: "text",
       errorMsg: "Invalid AWS Region",
       placeholder: ""
@@ -103,7 +103,7 @@ const addProfileForm: FormSchema = {
     },
     isDefault: {
       name: "isDefault",
-      label: "Make this default?",
+      label: "Use this as default ",
       type: "text",
       errorMsg: "Default option can only be true/false",
       placeholder: ""
@@ -119,13 +119,14 @@ const initialValues: ValuesSchema = {
   [sessionKey.name]: "",
   [endpoint.name]: "",
   [region.name]: awsRegions[0],
-  [isDefault.name]: "false"
+  [isDefault.name]: false
 };
 
+const mutableListAwsRegions = [...awsRegions]
 const addProfileFormValidation = Yup.object().shape({
   [accessKey.name]: Yup.string().trim().required(accessKey.errorMsg),
   [secretKey.name]: Yup.string().trim().required(secretKey.errorMsg),
-  [region.name]: Yup.string().trim().required(region.errorMsg).oneOf([...awsRegions], region.errorMsg),
+  [region.name]: Yup.string().trim().required(region.errorMsg).oneOf(mutableListAwsRegions, region.errorMsg),
   [isDefault.name]: Yup.string().trim().required(isDefault.errorMsg).oneOf(["true", "false"], isDefault.errorMsg)
 });
 
@@ -141,6 +142,7 @@ function AddAwsProfileForm(formData: FormDataSchema): JSX.Element {
     region: regionV,
     isDefault: isDefaultV
   } = values;
+  const [regionState, setRegionState] = useState<string>(regionV);
 
   return (
     <MDBox>
@@ -172,21 +174,14 @@ function AddAwsProfileForm(formData: FormDataSchema): JSX.Element {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            {regionV}
-            <Autocomplete
-              defaultValue={awsRegions[0]}
-              options={awsRegions}
-              renderInput={(params) => (
-                <FormField
-                  {...params}
-                  type={region.type}
-                  label={region.label}
-                  name={region.name}
-                  placeholder={region.placeholder}
-                  error={errors.region && touched.region}
-                  success={!errors.region}
-                />
-              )}
+            <FormSelect
+              options={mutableListAwsRegions}
+              label={region.label}
+              name={region.name}
+              value={regionV}
+              placeholder={region.placeholder}
+              error={errors.region && touched.region}
+              success={regionV.length > 0 && !errors.region}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -200,7 +195,7 @@ function AddAwsProfileForm(formData: FormDataSchema): JSX.Element {
               success={sessionKeyV.length > 0 && !errors.sessionKey}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={12}>
             <FormField
               type={endpoint.type}
               label={endpoint.label}
@@ -209,17 +204,6 @@ function AddAwsProfileForm(formData: FormDataSchema): JSX.Element {
               placeholder={endpoint.placeholder}
               error={errors.endpoint && touched.endpoint}
               success={endpointV.length > 0 && !errors.endpoint}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <FormSwitch
-              type={isDefault.type}
-              label={isDefault.label}
-              name={isDefault.name}
-              checked={isDefaultV === 'true'}
-              placeholder={isDefault.placeholder}
-              error={errors.isDefault && touched.isDefault}
-              success={secretKeyV.length > 0 && !errors.isDefault}
             />
           </Grid>
         </Grid>
@@ -290,7 +274,12 @@ function AwsDashboardLayout({children}: { children: ReactNode }): JSX.Element {
                             errors={errors}
                             touched={touched}
                             values={values}/>
-                          <MDBox mt={2} width="100%" display="flex" justifyContent="right">
+                          <MDBox mt={2} width="100%" display="flex" justifyContent="space-between">
+                            <FormSwitch
+                              type={isDefault.type}
+                              label={isDefault.label}
+                              name={isDefault.name}
+                            />
                             <MDButton
                               disabled={isSubmitting}
                               type="submit"
