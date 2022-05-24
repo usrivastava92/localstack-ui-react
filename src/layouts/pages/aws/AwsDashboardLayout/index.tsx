@@ -5,11 +5,11 @@ import DashboardLayout from "../../../../examples/LayoutContainers/DashboardLayo
 import MDTypography from "../../../../components/MDTypography";
 import Icon from "@mui/material/Icon";
 import MDButton from "../../../../components/MDButton";
-import {ReactNode, SyntheticEvent, useState} from "react";
+import {ReactNode, useState} from "react";
 import {Modal} from "@mui/material";
 import {Form, Formik, FormikErrors, FormikTouched, FormikValues} from "formik";
 import Card from "@mui/material/Card";
-import FormField from "../../users/new-user/components/FormField";
+import FormField, {FormSwitch} from "../../users/new-user/components/FormField";
 import * as Yup from "yup";
 import {FormikHelpers} from "formik/dist/types";
 import Autocomplete from "@mui/material/Autocomplete";
@@ -43,19 +43,25 @@ interface ValuesSchema {
   [key: string]: string;
 }
 
+const awsRegions = ['af-south-1', 'ap-east-1', 'ap-northeast-1', 'ap-northeast-2', 'ap-northeast-3', 'ap-south-1', 'ap-southeast-1',
+  'ap-southeast-2', 'ap-southeast-3', 'ca-central-1', 'eu-central-1', 'eu-north-1', 'eu-south-1', 'eu-west-1', 'eu-west-2',
+  'eu-west-3', 'me-south-1', 'sa-east-1', 'us-east-1', 'us-east-2', 'us-west-1', 'us-west-2'] as const
+type AWSRegionType = typeof awsRegions[number]
+
 interface AWSProfile {
   displayName: string,
   accessKey: string,
   secretKey: string,
+  region: AWSRegionType,
+  isDefault: boolean
   sessionKey?: string,
   endpoint?: string,
-  region?: string,
 }
 
 const awsProfiles: AWSProfile[] = [
-  {displayName: "first profile", accessKey: "1", secretKey: "2"},
-  {displayName: "second profile", accessKey: "1", secretKey: "2"},
-  {displayName: "third profile", accessKey: "1", secretKey: "2"},
+  //{displayName: "first profile", accessKey: "1", secretKey: "2", region: "ap-southeast-1", isDefault: true},
+  //{displayName: "second profile", accessKey: "1", secretKey: "2", region: "ap-southeast-1", isDefault: false},
+  //{displayName: "third profile", accessKey: "1", secretKey: "2", region: "ap-southeast-1", isDefault: false},
 ]
 
 const addProfileForm: FormSchema = {
@@ -74,6 +80,13 @@ const addProfileForm: FormSchema = {
       errorMsg: "Secret Key is required.",
       placeholder: ""
     },
+    region: {
+      name: "region",
+      label: "Region",
+      type: "text",
+      errorMsg: "Invalid AWS Region",
+      placeholder: ""
+    },
     sessionKey: {
       name: "sessionKey",
       label: "Session Key",
@@ -87,29 +100,47 @@ const addProfileForm: FormSchema = {
       type: "text",
       errorMsg: "Endpoint is required.",
       placeholder: "Endpoint (Optional)"
+    },
+    isDefault: {
+      name: "isDefault",
+      label: "Make this default?",
+      type: "text",
+      errorMsg: "Default option can only be true/false",
+      placeholder: ""
     }
   }
 };
 
-const {formFields: {accessKey, secretKey, sessionKey, endpoint}} = addProfileForm;
+const {formFields: {accessKey, secretKey, sessionKey, endpoint, region, isDefault}} = addProfileForm;
 
 const initialValues: ValuesSchema = {
   [accessKey.name]: "",
   [secretKey.name]: "",
   [sessionKey.name]: "",
-  [endpoint.name]: ""
+  [endpoint.name]: "",
+  [region.name]: awsRegions[0],
+  [isDefault.name]: "false"
 };
 
 const addProfileFormValidation = Yup.object().shape({
   [accessKey.name]: Yup.string().trim().required(accessKey.errorMsg),
-  [secretKey.name]: Yup.string().trim().required(secretKey.errorMsg)
+  [secretKey.name]: Yup.string().trim().required(secretKey.errorMsg),
+  [region.name]: Yup.string().trim().required(region.errorMsg).oneOf([...awsRegions], region.errorMsg),
+  [isDefault.name]: Yup.string().trim().required(isDefault.errorMsg).oneOf(["true", "false"], isDefault.errorMsg)
 });
 
 function AddAwsProfileForm(formData: FormDataSchema): JSX.Element {
 
   const {formFields, values, errors, touched} = formData;
-  const {accessKey, secretKey, sessionKey, endpoint} = formFields;
-  const {accessKey: accessKeyV, secretKey: secretKeyV, sessionKey: sessionKeyV, endpoint: endpointV} = values;
+  const {accessKey, secretKey, sessionKey, endpoint, region, isDefault} = formFields;
+  const {
+    accessKey: accessKeyV,
+    secretKey: secretKeyV,
+    sessionKey: sessionKeyV,
+    endpoint: endpointV,
+    region: regionV,
+    isDefault: isDefaultV
+  } = values;
 
   return (
     <MDBox>
@@ -141,6 +172,24 @@ function AddAwsProfileForm(formData: FormDataSchema): JSX.Element {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
+            {regionV}
+            <Autocomplete
+              defaultValue={awsRegions[0]}
+              options={awsRegions}
+              renderInput={(params) => (
+                <FormField
+                  {...params}
+                  type={region.type}
+                  label={region.label}
+                  name={region.name}
+                  placeholder={region.placeholder}
+                  error={errors.region && touched.region}
+                  success={!errors.region}
+                />
+              )}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
             <FormField
               type={sessionKey.type}
               label={sessionKey.label}
@@ -159,7 +208,18 @@ function AddAwsProfileForm(formData: FormDataSchema): JSX.Element {
               value={endpointV}
               placeholder={endpoint.placeholder}
               error={errors.endpoint && touched.endpoint}
-              success={secretKeyV.length > 0 && !errors.endpoint}
+              success={endpointV.length > 0 && !errors.endpoint}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <FormSwitch
+              type={isDefault.type}
+              label={isDefault.label}
+              name={isDefault.name}
+              checked={isDefaultV === 'true'}
+              placeholder={isDefault.placeholder}
+              error={errors.isDefault && touched.isDefault}
+              success={secretKeyV.length > 0 && !errors.isDefault}
             />
           </Grid>
         </Grid>
@@ -168,17 +228,31 @@ function AddAwsProfileForm(formData: FormDataSchema): JSX.Element {
   );
 }
 
+const dummyAWSProfile: AWSProfile = {
+  displayName: "No Profiles Available",
+  accessKey: "",
+  secretKey: "",
+  region: "ap-southeast-1",
+  isDefault: false
+};
+
+function getDefaultAWSProfile(): AWSProfile {
+  const defaultProfile = awsProfiles.find(awsProfile => awsProfile.isDefault)
+  return defaultProfile ? defaultProfile : dummyAWSProfile
+}
+
 function AwsDashboardLayout({children}: { children: ReactNode }): JSX.Element {
 
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [showError, setShowError] = useState<boolean>(false);
-  const [activeAwsProfile, setActiveAwsProfile] = useState<AWSProfile>(awsProfiles[0]);
+  const [activeAwsProfile, setActiveAwsProfile] = useState<AWSProfile>(getDefaultAWSProfile());
 
   const closeError = () => setShowError(false);
   const handleAddNewProfile = () => setModalOpen(true);
   const handleCloseModal = () => setModalOpen(false);
-  const handleProfileChange = (event: SyntheticEvent) => {
-    console.log(event.target)
+  const handleProfileChange = (displayName: string) => {
+    const selectedProfile = awsProfiles.find(awsProfile => awsProfile.displayName === displayName)
+    setActiveAwsProfile(selectedProfile)
   };
 
   const sleep = (ms: any) => new Promise((resolve) => {
@@ -248,11 +322,9 @@ function AwsDashboardLayout({children}: { children: ReactNode }): JSX.Element {
         </Grid>
         <Grid item xs={12} md={5} sx={{textAlign: "right"}} display="flex" justifyContent="right">
           <Autocomplete
-            sx={{mr: 2, width: 200}}
-            onChange={(event, value) => {
-              console.log(value)
-            }}
-            defaultValue={activeAwsProfile.displayName}
+            sx={{mr: 2, width: 200, boxShadow: 2, borderRadius: 3}}
+            onChange={(event, value) => handleProfileChange(value as string)}
+            inputValue={activeAwsProfile.displayName}
             options={awsProfiles.map(profile => profile.displayName)}
             renderInput={(params) => (
               <TextField {...params} variant="outlined" label="Active Profile" fullWidth/>

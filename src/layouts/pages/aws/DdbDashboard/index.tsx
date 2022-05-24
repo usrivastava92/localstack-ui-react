@@ -2,14 +2,14 @@ import {useState} from "react";
 import {DynamoDB} from "@aws-sdk/client-dynamodb";
 import AwsDashboardLayout from "../AwsDashboardLayout";
 
-function DDBDashboard(): JSX.Element {
+function DdbDashboard(): JSX.Element {
 
   const client = new DynamoDB({
     region: "ap-south-1",
     credentials: {
       accessKeyId: "local-access-key-id",
       secretAccessKey: "local-secret-access-key"
-    }
+    },
   });
 
   const [tables, setTables] = useState([]);
@@ -25,4 +25,4 @@ function DDBDashboard(): JSX.Element {
   );
 }
 
-export default DDBDashboard;
+export default DdbDashboard;
