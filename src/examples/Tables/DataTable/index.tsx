@@ -1,3 +1,4 @@
+import * as React from "react";
 import { useEffect, useMemo, useState } from "react";
 
 // react-table components
@@ -39,6 +40,8 @@ interface Props {
   };
   isSorted?: boolean;
   noEndBorder?: boolean;
+  maxHeight?: number;
+  stickyHeader?: boolean;
 }
 
 function DataTable({
@@ -48,7 +51,9 @@ function DataTable({
                      table,
                      pagination,
                      isSorted,
-                     noEndBorder
+                     noEndBorder,
+                     maxHeight,
+                     stickyHeader
                    }: Props): JSX.Element {
   let defaultValue: any;
   let entries: any[];
@@ -152,7 +157,7 @@ function DataTable({
   }
 
   return (
-    <TableContainer sx={{ boxShadow: "none" }}>
+    <TableContainer sx={{ boxShadow: "none", maxHeight: maxHeight ? maxHeight : undefined }}>
       {entriesPerPage || canSearch ? (
         <MDBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
           {entriesPerPage && (
@@ -189,7 +194,7 @@ function DataTable({
           )}
         </MDBox>
       ) : null}
-      <Table {...getTableProps()}>
+      <Table {...getTableProps()} stickyHeader={stickyHeader ? stickyHeader : false}>
         <MDBox component="thead">
           {headerGroups.map((headerGroup: any) => (
             <TableRow {...headerGroup.getHeaderGroupProps()}>

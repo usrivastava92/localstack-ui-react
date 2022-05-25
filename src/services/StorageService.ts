@@ -1,17 +1,17 @@
-import { AWSProfile } from "../layouts/pages/aws/AwsDashboardLayout";
+import { AWSProfile } from "../layouts/pages/aws/types/awsTypes";
 
 export interface StorageService {
   loadFromLocalStorage: () => any,
   saveToLocalStorage: (state: any) => void
 }
 
-export interface AWSProfileStorageService extends StorageService{
+export interface AWSProfileStorageService extends StorageService {
   loadFromLocalStorage: () => AWSProfile[],
   saveToLocalStorage: (state: AWSProfile[]) => void
 }
 
 export class AWSProfileStorageServiceImpl implements AWSProfileStorageService {
-  readonly storageKey: string
+  readonly storageKey: string;
 
   constructor(storageKey: string) {
     this.storageKey = storageKey;
@@ -25,7 +25,7 @@ export class AWSProfileStorageServiceImpl implements AWSProfileStorageService {
       console.error(e);
       return [];
     }
-  }
+  };
 
   saveToLocalStorage = (state: AWSProfile[]): void => {
     try {
@@ -33,7 +33,7 @@ export class AWSProfileStorageServiceImpl implements AWSProfileStorageService {
     } catch (e) {
       console.error(e);
     }
-  }
+  };
 }
 
 export const awsProfileStorageService: AWSProfileStorageService = new AWSProfileStorageServiceImpl("profiles");

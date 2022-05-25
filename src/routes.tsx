@@ -26,17 +26,14 @@ import SignInIllustration from "layouts/authentication/sign-in/illustration";
 import SignUpCover from "layouts/authentication/sign-up/cover";
 import ResetCover from "layouts/authentication/reset-password/cover";
 
-import MDAvatar from "components/MDAvatar";
-
 // @mui icons
 import Icon from "@mui/material/Icon";
 
 // Images
-import profilePicture from "assets/images/team-3.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAws } from "@fortawesome/free-brands-svg-icons";
 import AwsHome from "./layouts/pages/aws/AwsHome";
-import DdbDashboard from "./layouts/pages/aws/DdbDashboard";
+import DDBDashboard from "./layouts/pages/aws/DDBDashboard";
 import SQSDashboard from "./layouts/pages/aws/SQSDashboard";
 
 const routes = [
@@ -50,7 +47,7 @@ const routes = [
         name: "Dynamo DB",
         key: "DDBDashboard",
         route: "/pages/aws/dynamodb",
-        component: <DdbDashboard />
+        component: <DDBDashboard />
       },
       {
         name: "SQS",

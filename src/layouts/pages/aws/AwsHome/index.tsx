@@ -16,9 +16,9 @@ import Tooltip from "@mui/material/Tooltip";
 import MDTypography from "../../../../components/MDTypography";
 import Icon from "@mui/material/Icon";
 import MDButton from "../../../../components/MDButton";
-import {useState} from "react";
-import {Modal} from "@mui/material";
-import {Form, Formik, FormikErrors, FormikTouched, FormikValues} from "formik";
+import { useState } from "react";
+import { Modal } from "@mui/material";
+import { Form, Formik, FormikErrors, FormikTouched, FormikValues } from "formik";
 import Card from "@mui/material/Card";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
@@ -34,7 +34,7 @@ function getStepContent(stepIndex: number, formData: FormDataSchema): JSX.Elemen
   switch (stepIndex) {
     case 0:
       return <AddAwsProfile formFields={formData.formFields} errors={formData.errors} touched={formData.touched}
-                            values={formData.values}/>;
+                            values={formData.values} />;
     default:
       return null;
   }
@@ -81,7 +81,7 @@ const addProfileForm: FormSchema = {
   }
 };
 
-const {formFields: {accessKey, secretKey}} = addProfileForm;
+const { formFields: { accessKey, secretKey } } = addProfileForm;
 
 const initialValues = {
   [accessKey.name]: "",
@@ -97,8 +97,8 @@ const validations = [
 
 
 function AddAwsProfile(formData: FormDataSchema): JSX.Element {
-  const {formFields, values, errors, touched} = formData;
-  const {accessKey, secretKey} = formFields;
+  const { formFields, values, errors, touched } = formData;
+  const { accessKey, secretKey } = formFields;
   const {
     accessKey: accessKeyV,
     secretKey: secretKeyV
@@ -141,7 +141,7 @@ function AddAwsProfile(formData: FormDataSchema): JSX.Element {
 
 function AwsHome(): JSX.Element {
 
-  const {sales, tasks} = reportsLineChartData;
+  const { sales, tasks } = reportsLineChartData;
 
   const [activeStep, setActiveStep] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
@@ -154,13 +154,13 @@ function AwsHome(): JSX.Element {
           variant="body1"
           color="primary"
           lineHeight={1}
-          sx={{cursor: "pointer", mx: 3}}
+          sx={{ cursor: "pointer", mx: 3 }}
         >
           <Icon color="inherit">refresh</Icon>
         </MDTypography>
       </Tooltip>
       <Tooltip title="Edit" placement="bottom">
-        <MDTypography variant="body1" color="info" lineHeight={1} sx={{cursor: "pointer", mx: 3}}>
+        <MDTypography variant="body1" color="info" lineHeight={1} sx={{ cursor: "pointer", mx: 3 }}>
           <Icon color="inherit">edit</Icon>
         </MDTypography>
       </Tooltip>
@@ -176,7 +176,7 @@ function AwsHome(): JSX.Element {
   };
 
   const steps = getSteps();
-  const {formId, formFields} = addProfileForm;
+  const { formId, formFields } = addProfileForm;
   const currentValidation = validations[activeStep];
   const isLastStep = activeStep === steps.length - 1;
 
@@ -216,16 +216,16 @@ function AwsHome(): JSX.Element {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <MDBox py={3} mb={20} height="65vh">
-          <Grid container justifyContent="center" alignItems="center" sx={{height: "100%", mt: 8}}>
+          <Grid container justifyContent="center" alignItems="center" sx={{ height: "100%", mt: 8 }}>
             <Grid item xs={12} lg={8}>
               <Formik
                 initialValues={initialValues}
                 validationSchema={currentValidation}
                 onSubmit={handleSubmit}
               >
-                {({values, errors, touched, isSubmitting}) => (
+                {({ values, errors, touched, isSubmitting }) => (
                   <Form id={formId} autoComplete="off">
-                    <Card sx={{height: "100%"}}>
+                    <Card sx={{ height: "100%" }}>
                       <MDBox mx={2} mt={-3}>
                         <Stepper activeStep={activeStep} alternativeLabel>
                           {steps.map((label) => (
@@ -245,7 +245,7 @@ function AwsHome(): JSX.Element {
                           })}
                           <MDBox mt={2} width="100%" display="flex" justifyContent="space-between">
                             {activeStep === 0 ? (
-                              <MDBox/>
+                              <MDBox />
                             ) : (
                               <MDButton variant="gradient" color="light" onClick={handleBack}>
                                 back
@@ -281,7 +281,7 @@ function AwsHome(): JSX.Element {
             </MDTypography>
           </MDBox>
         </Grid>
-        <Grid item xs={12} md={5} sx={{textAlign: "right"}}>
+        <Grid item xs={12} md={5} sx={{ textAlign: "right" }}>
           <MDButton variant="gradient" color="info" onClick={handleAddNewProfile}>
             <Icon>add</Icon>&nbsp; Add New
           </MDButton>
@@ -289,7 +289,7 @@ function AwsHome(): JSX.Element {
       </Grid>
       <MDBox py={3}>
         <Grid container>
-          <SalesByCountry/>
+          <SalesByCountry />
         </Grid>
         <MDBox mt={6}>
           <Grid container spacing={3}>
@@ -436,7 +436,7 @@ function AwsHome(): JSX.Element {
           </Grid>
         </MDBox>
       </MDBox>
-      <Footer/>
+      <Footer />
     </DashboardLayout>
   );
 }
