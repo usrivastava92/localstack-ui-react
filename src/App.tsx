@@ -1,14 +1,4 @@
-import {
-  JSXElementConstructor,
-  Key,
-  ReactElement,
-  useEffect,
-  useState,
-  createContext,
-  useReducer,
-  ReactChild,
-  useContext
-} from "react";
+import { JSXElementConstructor, Key, ReactElement, useEffect, useState } from "react";
 
 // react-router components
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
@@ -34,45 +24,16 @@ import { setMiniSidenav, setOpenConfigurator, useMaterialUIController } from "co
 // Images
 import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
-
-const defaultGlobalState = {
-  num: 0,
-  text: "foo",
-  bool: false
-};
-const globalStateContext = createContext(defaultGlobalState);
-const dispatchStateContext = createContext(undefined);
-
-// @ts-ignore
-const GlobalStateProvider = ({children}) => {
-  const [state, dispatch] = useReducer(
-    (state:any , newValue: any) => ({ ...state, ...newValue }),
-    defaultGlobalState
-  );
-  return (
-    <globalStateContext.Provider value={state}>
-      <dispatchStateContext.Provider value={dispatch}>
-        {children}
-      </dispatchStateContext.Provider>
-    </globalStateContext.Provider>
-  );
-};
-
-const useGlobalState = () => [
-  useContext(globalStateContext),
-  useContext(dispatchStateContext)
-];
-
-const Counter = () => {
-  const [state, dispatch] = useGlobalState();
-  return (
-    <button onClick={() => dispatch({ num: state.num + 1 })}>
-      {state.num}
-    </button>
-  );
-};
+import { loadFromLocalStorage, saveToLocalStorage } from "./services/storageService";
 
 export default function App() {
+  let a = loadFromLocalStorage()
+  console.log("T1")
+  console.log(a)
+  saveToLocalStorage({test: ["a", "b"]});
+  a = loadFromLocalStorage()
+  console.log("T2")
+  console.log(a)
   const [controller, dispatch] = useMaterialUIController();
   const {
     miniSidenav,
@@ -162,30 +123,27 @@ export default function App() {
   );
 
   return (
-    <GlobalStateProvider>
-      <Counter/>
-      <ThemeProvider theme={darkMode ? themeDark : theme}>
-        <CssBaseline />
-        {layout === "dashboard" && (
-          <>
-            <Sidenav
-              color={sidenavColor}
-              brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
-              brandName="Localstack UI"
-              routes={routes}
-              onMouseEnter={handleOnMouseEnter}
-              onMouseLeave={handleOnMouseLeave}
-            />
-            <Configurator />
-            {configsButton}
-          </>
-        )}
-        {layout === "vr" && <Configurator />}
-        <Routes>
-          {getRoutes(routes)}
-          <Route path="*" element={<Navigate to="/dashboards/analytics" />} />
-        </Routes>
-      </ThemeProvider>
-    </GlobalStateProvider>
+    <ThemeProvider theme={darkMode ? themeDark : theme}>
+      <CssBaseline />
+      {layout === "dashboard" && (
+        <>
+          <Sidenav
+            color={sidenavColor}
+            brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
+            brandName="Localstack UI"
+            routes={routes}
+            onMouseEnter={handleOnMouseEnter}
+            onMouseLeave={handleOnMouseLeave}
+          />
+          <Configurator />
+          {configsButton}
+        </>
+      )}
+      {layout === "vr" && <Configurator />}
+      <Routes>
+        {getRoutes(routes)}
+        <Route path="*" element={<Navigate to="/dashboards/analytics" />} />
+      </Routes>
+    </ThemeProvider>
   );
 }
