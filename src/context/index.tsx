@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { createContext, ReactNode, useContext, useMemo, useReducer } from "react";
-import {AWSProfile, nullAwsProfile} from "../layouts/pages/aws/types/awsTypes";
+import { AWSProfile, nullAwsProfile } from "../layouts/pages/aws/types/awsTypes";
 
 const MaterialUI = createContext<any>(null);
 
