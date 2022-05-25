@@ -14,7 +14,7 @@ import * as Yup from "yup";
 import {FormikHelpers} from "formik/dist/types";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import { profileStorageService } from "../../../../services/storageService";
+import { awsProfileStorageService } from "../../../../services/storageService";
 
 interface FormFieldSchema {
   placeholder?: string;
@@ -49,7 +49,7 @@ const awsRegions = ['af-south-1', 'ap-east-1', 'ap-northeast-1', 'ap-northeast-2
   'eu-west-3', 'me-south-1', 'sa-east-1', 'us-east-1', 'us-east-2', 'us-west-1', 'us-west-2'] as const
 type AWSRegionType = typeof awsRegions[number]
 
-interface AWSProfile {
+export interface AWSProfile {
   displayName: string,
   accessKey: string,
   secretKey: string,
@@ -59,11 +59,15 @@ interface AWSProfile {
   endpoint?: string,
 }
 
-const awsProfiles: AWSProfile[] = profileStorageService.loadFromLocalStorage();
-
 const addProfileForm: FormSchema = {
   formId: "add-aws-profile",
   formFields: {
+    displayName: {
+      name: "displayName",
+      label: "Display Name *",
+      type: "text",
+      errorMsg: "Display Name is required."
+    },
     accessKey: {
       name: "accessKey",
       label: "Access Key *",
@@ -108,9 +112,10 @@ const addProfileForm: FormSchema = {
   }
 };
 
-const {formFields: {accessKey, secretKey, sessionKey, endpoint, region, isDefault}} = addProfileForm;
+const {formFields: {displayName, accessKey, secretKey, sessionKey, endpoint, region, isDefault}} = addProfileForm;
 
 const initialValues: ValuesSchema = {
+  [displayName.name]: "",
   [accessKey.name]: "",
   [secretKey.name]: "",
   [sessionKey.name]: "",
@@ -121,6 +126,7 @@ const initialValues: ValuesSchema = {
 
 const mutableListAwsRegions = [...awsRegions]
 const addProfileFormValidation = Yup.object().shape({
+  [displayName.name]: Yup.string().trim().required(displayName.errorMsg),
   [accessKey.name]: Yup.string().trim().required(accessKey.errorMsg),
   [secretKey.name]: Yup.string().trim().required(secretKey.errorMsg),
   [region.name]: Yup.string().trim().required(region.errorMsg).oneOf(mutableListAwsRegions, region.errorMsg),
@@ -130,8 +136,9 @@ const addProfileFormValidation = Yup.object().shape({
 function AddAwsProfileForm(formData: FormDataSchema): JSX.Element {
 
   const {formFields, values, errors, touched} = formData;
-  const {accessKey, secretKey, sessionKey, endpoint, region, isDefault} = formFields;
+  const {displayName, accessKey, secretKey, sessionKey, endpoint, region, isDefault} = formFields;
   const {
+    displayName: displayNameV,
     accessKey: accessKeyV,
     secretKey: secretKeyV,
     sessionKey: sessionKeyV,
@@ -148,6 +155,17 @@ function AddAwsProfileForm(formData: FormDataSchema): JSX.Element {
       </MDBox>
       <MDBox mt={1.625}>
         <Grid container spacing={3}>
+          <Grid item xs={12} sm={6}>
+            <FormField
+              type={displayName.type}
+              label={displayName.label}
+              name={displayName.name}
+              value={displayNameV}
+              placeholder={displayName.placeholder}
+              error={errors.displayName && touched.displayName}
+              success={displayNameV.length > 0 && !errors.displayName}
+            />
+          </Grid>
           <Grid item xs={12} sm={6}>
             <FormField
               type={accessKey.type}
@@ -192,7 +210,7 @@ function AddAwsProfileForm(formData: FormDataSchema): JSX.Element {
               success={sessionKeyV.length > 0 && !errors.sessionKey}
             />
           </Grid>
-          <Grid item xs={12} sm={12}>
+          <Grid item xs={12} sm={6}>
             <FormField
               type={endpoint.type}
               label={endpoint.label}
@@ -217,7 +235,7 @@ const dummyAWSProfile: AWSProfile = {
   isDefault: false
 };
 
-function getDefaultAWSProfile(): AWSProfile {
+function getDefaultAWSProfile(awsProfiles: AWSProfile[]): AWSProfile {
   const defaultProfile = awsProfiles.find(awsProfile => awsProfile.isDefault)
   return defaultProfile ? defaultProfile : dummyAWSProfile
 }
@@ -226,7 +244,8 @@ function AwsDashboardLayout({children}: { children: ReactNode }): JSX.Element {
 
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [showError, setShowError] = useState<boolean>(false);
-  const [activeAwsProfile, setActiveAwsProfile] = useState<AWSProfile>(getDefaultAWSProfile());
+  const [awsProfiles, setAwsProfiles] = useState<AWSProfile[]>(awsProfileStorageService.loadFromLocalStorage());
+  const [activeAwsProfile, setActiveAwsProfile] = useState<AWSProfile>(getDefaultAWSProfile(awsProfiles));
 
   const closeError = () => setShowError(false);
   const handleAddNewProfile = () => setModalOpen(true);
@@ -240,15 +259,15 @@ function AwsDashboardLayout({children}: { children: ReactNode }): JSX.Element {
     setTimeout(resolve, ms);
   });
 
-  const submitForm = async (values: any, actions: any) => {
-    await sleep(1000);
-    awsProfiles.push(values);
-    profileStorageService.saveToLocalStorage(awsProfiles);
+  const submitForm = async (values: AWSProfile, actions: any) => {
+    const newAwsProfiles = [...awsProfiles, values];
+    awsProfileStorageService.saveToLocalStorage(newAwsProfiles);
+    setAwsProfiles(newAwsProfiles);
     actions.setSubmitting(false);
     actions.resetForm();
   };
 
-  const handleSubmit = (values: ValuesSchema, actions: FormikHelpers<ValuesSchema>) => submitForm(values, actions);
+  const handleSubmit = (values: ValuesSchema, actions: FormikHelpers<ValuesSchema>) => submitForm(values as AWSProfile, actions);
 
   return (
     <DashboardLayout>
