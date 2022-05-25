@@ -1,8 +1,8 @@
-import { useContext, useEffect, useState } from "react";
-import { DynamoDB, ScanCommandOutput } from "@aws-sdk/client-dynamodb";
+import {useContext, useEffect, useState} from "react";
+import {DynamoDB, ScanCommandOutput} from "@aws-sdk/client-dynamodb";
 import AwsDashboardLayout from "../AwsDashboardLayout";
-import { AWSProfile, nullAwsProfile } from "../types/awsTypes";
-import { AWSProfileContext } from "context";
+import {AWSProfile, nullAwsProfile} from "../types/awsTypes";
+import {AWSProfileContext} from "context";
 // Data
 import MDTypography from "../../../../components/MDTypography";
 import MDBox from "../../../../components/MDBox";
@@ -11,15 +11,10 @@ import DataTable from "../../../../examples/Tables/DataTable";
 import Autocomplete from "@mui/material/Autocomplete";
 import MDInput from "../../../../components/MDInput";
 import DefaultCell from "../../../ecommerce/orders/order-list/components/DefaultCell";
-import { AttributeValue } from "@aws-sdk/client-dynamodb/dist-types/models/models_0";
-import { unmarshall } from "@aws-sdk/util-dynamodb";
-import { getClientConfig } from "../utils/awsUtils";
-
-interface ColumnDefinition {
-  Header: string,
-  accessor: string,
-  Cell: ({ value }: { value: any }) => JSX.Element
-}
+import {AttributeValue} from "@aws-sdk/client-dynamodb/dist-types/models/models_0";
+import {unmarshall} from "@aws-sdk/util-dynamodb";
+import {getClientConfig} from "../utils/awsUtils";
+import {ColumnDefinition, TableData} from "../types/tableTypes";
 
 function getStringAttributeValue(value: any): string {
   if (!value) {
@@ -57,11 +52,6 @@ function getRows(items: { [key: string]: AttributeValue; }[]): any[] {
   return items.map(item => unmarshall(item));
 }
 
-interface TableData {
-  columns: ColumnDefinition[],
-  rows: any[]
-}
-
 function getTableData(scanOutput: ScanCommandOutput): TableData {
   if (!scanOutput) {
     return { columns: [], rows: [] };
@@ -83,9 +73,12 @@ function Content(): JSX.Element {
 
   useEffect(() => {
     if (awsProfile !== nullAwsProfile) {
-      client.listTables({ Limit: 10 })
-        .then(output => setTables(output?.TableNames))
-        .catch(error => console.log(error));
+      client.listTables({Limit: 10})
+        .then(output => {
+          if (output && output.TableNames && output.TableNames.length > 0) {
+            setTables(output.TableNames)
+          }
+        }).catch(error => console.error(error));
     }
   }, []);
 
@@ -93,7 +86,7 @@ function Content(): JSX.Element {
     setSelectedTable(tableName);
     client.scan({ TableName: tableName })
       .then(output => setTableData(getTableData(output)))
-      .catch(error => console.log(error));
+      .catch(error => console.error(error));
   }
 
   return (
@@ -138,8 +131,8 @@ function Content(): JSX.Element {
 
 function DDBDashboard(): JSX.Element {
   return (
-    <AwsDashboardLayout>
-      <Content />
+    <AwsDashboardLayout title="Dynamo DB" subTitle="Create/Choose a profile and then select a table to view your data">
+      <Content/>
     </AwsDashboardLayout>
   );
 }

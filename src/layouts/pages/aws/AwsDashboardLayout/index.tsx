@@ -5,17 +5,17 @@ import DashboardLayout from "../../../../examples/LayoutContainers/DashboardLayo
 import MDTypography from "../../../../components/MDTypography";
 import Icon from "@mui/material/Icon";
 import MDButton from "../../../../components/MDButton";
-import { ReactNode, useState } from "react";
-import { Modal } from "@mui/material";
-import { Form, Formik, FormikErrors, FormikTouched, FormikValues } from "formik";
+import {ReactNode, useState} from "react";
+import {Modal} from "@mui/material";
+import {Form, Formik, FormikErrors, FormikTouched, FormikValues} from "formik";
 import Card from "@mui/material/Card";
-import FormField, { FormSelect, FormSwitch } from "../../users/new-user/components/FormField";
+import FormField, {FormSelect, FormSwitch} from "../../users/new-user/components/FormField";
 import * as Yup from "yup";
-import { FormikHelpers } from "formik/dist/types";
+import {FormikHelpers} from "formik/dist/types";
 import Autocomplete from "@mui/material/Autocomplete";
-import { awsProfileStorageService } from "../../../../services/StorageService";
-import { AWSProfile, awsRegions, nullAwsProfile } from "../types/awsTypes";
-import { AWSProfileContext } from "context";
+import {awsProfileStorageService} from "../../../../services/StorageService";
+import {AWSProfile, awsRegions, nullAwsProfile} from "../types/awsTypes";
+import {AWSProfileContext} from "context";
 import MDInput from "../../../../components/MDInput";
 
 interface FormFieldSchema {
@@ -217,7 +217,13 @@ function getDefaultAWSProfile(awsProfiles: AWSProfile[]): AWSProfile {
   return defaultProfile ? defaultProfile : nullAwsProfile;
 }
 
-function AwsDashboardLayout({ children }: { children: ReactNode }): JSX.Element {
+interface AwsDashboardProps {
+  children: ReactNode,
+  title?: string,
+  subTitle?: string
+}
+
+function AwsDashboardLayout({children, title, subTitle}: AwsDashboardProps): JSX.Element {
 
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [showError, setShowError] = useState<boolean>(false);
@@ -292,11 +298,11 @@ function AwsDashboardLayout({ children }: { children: ReactNode }): JSX.Element 
         <Grid container alignItems="center">
           <Grid item xs={12} md={7}>
             <MDBox mb={1}>
-              <MDTypography variant="h5">Dynamo DB</MDTypography>
+              <MDTypography variant="h5">{title}</MDTypography>
             </MDBox>
             <MDBox mb={2}>
               <MDTypography variant="body2" color="text">
-                Create/Choose a profile and then select a table to view your data
+                {subTitle}
               </MDTypography>
             </MDBox>
           </Grid>
