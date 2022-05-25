@@ -49,7 +49,7 @@ const awsRegions = ['af-south-1', 'ap-east-1', 'ap-northeast-1', 'ap-northeast-2
   'eu-west-3', 'me-south-1', 'sa-east-1', 'us-east-1', 'us-east-2', 'us-west-1', 'us-west-2'] as const
 type AWSRegionType = typeof awsRegions[number]
 
-export interface AWSProfile {
+interface AWSProfile {
   displayName: string,
   accessKey: string,
   secretKey: string,

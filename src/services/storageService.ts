@@ -30,5 +30,3 @@ export class LocalStorageService implements StorageService {
 }
 
 export let profileStorageService: LocalStorageService = new LocalStorageService("profiles");
-
-
