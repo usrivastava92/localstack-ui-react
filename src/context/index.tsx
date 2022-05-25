@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { createContext, ReactNode, useContext, useMemo, useReducer } from "react";
+import {AWSProfile, nullAwsProfile} from "../layouts/pages/aws/types/awsTypes";
 
 const MaterialUI = createContext<any>(null);
 
@@ -153,6 +154,8 @@ const setDarkMode = (
   value: boolean
 ) => dispatch({ type: "DARKMODE", value });
 
+const AWSProfileContext = createContext<AWSProfile>(nullAwsProfile);
+
 export {
   MaterialUIControllerProvider,
   useMaterialUIController,
@@ -164,5 +167,6 @@ export {
   setFixedNavbar,
   setOpenConfigurator,
   setLayout,
-  setDarkMode
+  setDarkMode,
+  AWSProfileContext
 };

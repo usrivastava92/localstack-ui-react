@@ -5,17 +5,18 @@ import DashboardLayout from "../../../../examples/LayoutContainers/DashboardLayo
 import MDTypography from "../../../../components/MDTypography";
 import Icon from "@mui/material/Icon";
 import MDButton from "../../../../components/MDButton";
-import { ReactNode, useState } from "react";
-import { Modal } from "@mui/material";
-import { Form, Formik, FormikErrors, FormikTouched, FormikValues } from "formik";
+import {ReactNode, useState} from "react";
+import {Modal} from "@mui/material";
+import {Form, Formik, FormikErrors, FormikTouched, FormikValues} from "formik";
 import Card from "@mui/material/Card";
-import FormField, { FormSelect, FormSwitch } from "../../users/new-user/components/FormField";
+import FormField, {FormSelect, FormSwitch} from "../../users/new-user/components/FormField";
 import * as Yup from "yup";
-import { FormikHelpers } from "formik/dist/types";
+import {FormikHelpers} from "formik/dist/types";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import { AWSProfile, awsRegions, nullAwsProfile } from "../types/awsTypes";
-import AWSProfileContext from "../context";
+import {AWSProfile, awsRegions, nullAwsProfile} from "../types/awsTypes";
+import {AWSProfileContext} from "context";
+import MDInput from "../../../../components/MDInput";
 
 interface FormFieldSchema {
   placeholder?: string;
@@ -47,15 +48,15 @@ interface ValuesSchema {
 
 const awsProfiles: AWSProfile[] = [
   {
-    displayName: "localstack",
-    accessKey: "a",
-    secretKey: "a",
+    displayName: "Localstack",
+    accessKey: "local-access-key-id",
+    secretKey: "local-secret-access-key",
     region: "ap-southeast-1",
     endpoint: "http://localhost:4566",
     isDefault: true
   },
-  { displayName: "second profile", accessKey: "1", secretKey: "2", region: "ap-southeast-2", isDefault: false },
-  { displayName: "third profile", accessKey: "1", secretKey: "2", region: "ap-southeast-3", isDefault: false }
+  {displayName: "second profile", accessKey: "1", secretKey: "2", region: "ap-southeast-2", isDefault: false},
+  {displayName: "third profile", accessKey: "1", secretKey: "2", region: "ap-southeast-3", isDefault: false}
 ];
 
 const addProfileForm: FormSchema = {
@@ -105,7 +106,7 @@ const addProfileForm: FormSchema = {
   }
 };
 
-const { formFields: { accessKey, secretKey, sessionToken, endpoint, region, isDefault } } = addProfileForm;
+const {formFields: {accessKey, secretKey, sessionToken, endpoint, region, isDefault}} = addProfileForm;
 
 const initialValues: ValuesSchema = {
   [accessKey.name]: "",
@@ -126,8 +127,8 @@ const addProfileFormValidation = Yup.object().shape({
 
 function AddAwsProfileForm(formData: FormDataSchema): JSX.Element {
 
-  const { formFields, values, errors, touched } = formData;
-  const { accessKey, secretKey, sessionToken, endpoint, region } = formFields;
+  const {formFields, values, errors, touched} = formData;
+  const {accessKey, secretKey, sessionToken, endpoint, region} = formFields;
   const {
     accessKey: accessKeyV,
     secretKey: secretKeyV,
@@ -209,7 +210,7 @@ function getDefaultAWSProfile(): AWSProfile {
   return defaultProfile ? defaultProfile : nullAwsProfile;
 }
 
-function AwsDashboardLayout({ children }: { children: ReactNode }): JSX.Element {
+function AwsDashboardLayout({children}: { children: ReactNode }): JSX.Element {
 
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [showError, setShowError] = useState<boolean>(false);
@@ -220,7 +221,7 @@ function AwsDashboardLayout({ children }: { children: ReactNode }): JSX.Element 
   const handleCloseModal = () => setModalOpen(false);
   const handleProfileChange = (displayName: string) => {
     const selectedProfile = awsProfiles.find(awsProfile => awsProfile.displayName === displayName);
-    setActiveAwsProfile(selectedProfile ? { ...selectedProfile } : nullAwsProfile);
+    setActiveAwsProfile(selectedProfile ? {...selectedProfile} : nullAwsProfile);
   };
 
   const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
@@ -244,20 +245,20 @@ function AwsDashboardLayout({ children }: { children: ReactNode }): JSX.Element 
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description">
           <MDBox py={3} mb={20} height="65vh">
-            <Grid container justifyContent="center" alignItems="center" sx={{ height: "100%", mt: 8 }}>
+            <Grid container justifyContent="center" alignItems="center" sx={{height: "100%", mt: 8}}>
               <Grid item xs={12} lg={8}>
                 <Formik initialValues={initialValues} validationSchema={addProfileFormValidation}
                         onSubmit={handleSubmit}>
-                  {({ values, errors, touched, isSubmitting }) => (
+                  {({values, errors, touched, isSubmitting}) => (
                     <Form id={addProfileForm.formId} autoComplete="off">
-                      <Card sx={{ height: "100%" }}>
+                      <Card sx={{height: "100%"}}>
                         <MDBox p={3}>
                           <MDBox>
                             <AddAwsProfileForm
                               formFields={addProfileForm.formFields}
                               errors={errors}
                               touched={touched}
-                              values={values} />
+                              values={values}/>
                             <MDBox mt={2} width="100%" display="flex" justifyContent="space-between">
                               <FormSwitch
                                 type={isDefault.type}
@@ -285,23 +286,22 @@ function AwsDashboardLayout({ children }: { children: ReactNode }): JSX.Element 
         <Grid container alignItems="center">
           <Grid item xs={12} md={7}>
             <MDBox mb={1}>
-              <MDTypography variant="h5">AWS Profile</MDTypography>
+              <MDTypography variant="h5">Dynamo DB</MDTypography>
             </MDBox>
             <MDBox mb={2}>
               <MDTypography variant="body2" color="text">
-                Create a new profile / Choose an existing one
+                Create/Choose a profile and then select a table to view your data
               </MDTypography>
             </MDBox>
           </Grid>
-          <Grid item xs={12} md={5} sx={{ textAlign: "right" }} display="flex" justifyContent="right">
+          <Grid item xs={12} md={5} sx={{textAlign: "right"}} display="flex" justifyContent="right">
             <Autocomplete
-              sx={{ mr: 2, width: 200, boxShadow: 2, borderRadius: 3 }}
+              disableClearable
+              sx={{mr: 2, width: '12rem', boxShadow: 1, borderRadius: 3}}
               value={activeAwsProfile.displayName}
               onChange={(event, value) => handleProfileChange(value as string)}
               options={awsProfiles.map(profile => profile.displayName)}
-              renderInput={(params) => (
-                <TextField {...params} variant="outlined" label="Active Profile" fullWidth />
-              )}
+              renderInput={(params) => <MDInput {...params} label="Active Profile" fullWidth/>}
             />
             <MDButton variant="gradient" color="info" onClick={handleAddNewProfile}>
               <Icon>add</Icon>&nbsp; Add New
@@ -322,7 +322,7 @@ function AwsDashboardLayout({ children }: { children: ReactNode }): JSX.Element 
         close={closeError}
         bgWhite
       />*/}
-        <Footer />
+        <Footer/>
       </DashboardLayout>
     </AWSProfileContext.Provider>
   );
