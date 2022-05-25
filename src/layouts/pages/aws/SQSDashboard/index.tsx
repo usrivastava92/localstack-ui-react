@@ -13,18 +13,29 @@ import {AWSProfileContext} from "../../../../context";
 import {getClientConfig} from "../utils/awsUtils";
 
 
+function getQueueName(queueUrl: string): string {
+  if (!queueUrl) {
+    return "";
+  }
+  const startIndex = queueUrl.lastIndexOf('/')
+  return queueUrl.substring(startIndex + 1);
+}
+
 function Content(): JSX.Element {
   const awsProfile = useContext<AWSProfile>(AWSProfileContext);
 
   const client = new SQSClient(getClientConfig(awsProfile));
 
-  const [queues, setQueues] = useState([]);
+  const [queues, setQueues] = useState<string[]>([]);
 
   useEffect(() => {
     if (awsProfile !== nullAwsProfile) {
       client.send(new ListQueuesCommand({}))
-        .then(output => setQueues(output?.QueueUrls))
-        .catch(error => console.log(error));
+        .then(output => {
+          if (output && output.QueueUrls && output.QueueUrls.length > 0) {
+            setQueues(output.QueueUrls.map(queueUrl => getQueueName(queueUrl)))
+          }
+        }).catch(error => console.log(error));
     }
   }, []);
 
