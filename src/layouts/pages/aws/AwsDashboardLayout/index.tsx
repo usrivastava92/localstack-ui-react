@@ -13,7 +13,7 @@ import FormField, {FormSelect, FormSwitch} from "../../users/new-user/components
 import * as Yup from "yup";
 import {FormikHelpers} from "formik/dist/types";
 import Autocomplete from "@mui/material/Autocomplete";
-import {awsProfileStorageService} from "../../../../services/storageService";
+import {awsProfileStorageService} from "../../../../services/StorageService";
 import {AWSProfile, awsRegions, nullAwsProfile} from "../types/awsTypes";
 import {AWSProfileContext} from "context";
 import MDInput from "../../../../components/MDInput";
@@ -99,7 +99,7 @@ const addProfileForm: FormSchema = {
   }
 };
 
-const {formFields: {displayName, accessKey, secretKey, sessionKey, endpoint, region, isDefault}} = addProfileForm;
+const {formFields: {displayName, accessKey, secretKey, sessionToken, endpoint, region, isDefault}} = addProfileForm;
 
 const initialValues: ValuesSchema = {
   [displayName.name]: "",
@@ -123,7 +123,7 @@ const addProfileFormValidation = Yup.object().shape({
 function AddAwsProfileForm(formData: FormDataSchema): JSX.Element {
 
   const {formFields, values, errors, touched} = formData;
-  const {displayName, accessKey, secretKey, sessionKey, endpoint, region, isDefault} = formFields;
+  const {displayName, accessKey, secretKey, sessionToken, endpoint, region, isDefault} = formFields;
   const {
     displayName: displayNameV,
     accessKey: accessKeyV,
@@ -231,8 +231,6 @@ function AwsDashboardLayout({children}: { children: ReactNode }): JSX.Element {
     const selectedProfile = awsProfiles.find(awsProfile => awsProfile.displayName === displayName);
     setActiveAwsProfile(selectedProfile ? {...selectedProfile} : nullAwsProfile);
   };
-
-  const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
   const submitForm = async (values: AWSProfile, actions: any) => {
     const newAwsProfiles = [...awsProfiles, values];

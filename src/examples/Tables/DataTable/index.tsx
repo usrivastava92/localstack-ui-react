@@ -1,8 +1,8 @@
 import * as React from "react";
-import { useEffect, useMemo, useState } from "react";
+import {useEffect, useMemo, useState} from "react";
 
 // react-table components
-import { useAsyncDebounce, useGlobalFilter, usePagination, useSortBy, useTable } from "react-table";
+import {useAsyncDebounce, useGlobalFilter, usePagination, useSortBy, useTable} from "react-table";
 
 // @mui material components
 import Table from "@mui/material/Table";
@@ -41,6 +41,7 @@ interface Props {
   isSorted?: boolean;
   noEndBorder?: boolean;
   maxHeight?: number;
+  stickyHeader?: boolean;
 }
 
 function DataTable({
@@ -51,7 +52,8 @@ function DataTable({
                      pagination,
                      isSorted,
                      noEndBorder,
-                     maxHeight
+                     maxHeight,
+                     stickyHeader
                    }: Props): JSX.Element {
   let defaultValue: any;
   let entries: any[];
@@ -68,7 +70,7 @@ function DataTable({
     { columns, data, initialState: { pageIndex: 0 } },
     useGlobalFilter,
     useSortBy,
-    usePagination
+    usePagination,
   );
 
   const {
@@ -192,7 +194,7 @@ function DataTable({
           )}
         </MDBox>
       ) : null}
-      <Table {...getTableProps()}>
+      <Table {...getTableProps()} stickyHeader={stickyHeader ? stickyHeader : false}>
         <MDBox component="thead">
           {headerGroups.map((headerGroup: any) => (
             <TableRow {...headerGroup.getHeaderGroupProps()}>

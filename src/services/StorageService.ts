@@ -1,4 +1,4 @@
-import { AWSProfile } from "../layouts/pages/aws/AwsDashboardLayout";
+import {AWSProfile} from "../layouts/pages/aws/types/awsTypes";
 
 export interface StorageService {
   loadFromLocalStorage: () => any,
