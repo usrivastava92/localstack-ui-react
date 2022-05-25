@@ -23,7 +23,7 @@ export class AWSProfileStorageServiceImpl implements AWSProfileStorageService {
       return stateStr ? JSON.parse(stateStr) : [];
     } catch (e) {
       console.error(e);
-      return undefined;
+      return [];
     }
   }
 
