@@ -1,22 +1,34 @@
+export interface StorageService {
+  loadFromLocalStorage: () => any,
+  saveToLocalStorage: (state: any) => void
+}
 
+export class LocalStorageService implements StorageService {
+  storageKey: string
 
-export const loadFromLocalStorage = () => {
-  try {
-    const stateStr = localStorage.getItem('state');
-    return stateStr ? JSON.parse(stateStr) : undefined;
-  } catch (e) {
-    console.error(e);
-    return undefined;
+  constructor(storageKey: string) {
+    this.storageKey = storageKey;
   }
-};
 
-
-export const saveToLocalStorage = (state: any) => {
-  try {
-    localStorage.setItem('state', JSON.stringify(state));
-  } catch (e) {
-    console.error(e);
+  loadFromLocalStorage = (): any => {
+    try {
+      const stateStr = localStorage.getItem(this.storageKey);
+      return stateStr ? JSON.parse(stateStr) : [];
+    } catch (e) {
+      console.error(e);
+      return undefined;
+    }
   }
-};
+
+  saveToLocalStorage = (state: any): void => {
+    try {
+      localStorage.setItem(this.storageKey, JSON.stringify(state));
+    } catch (e) {
+      console.error(e);
+    }
+  }
+}
+
+export let profileStorageService: LocalStorageService = new LocalStorageService("profiles");
 
 

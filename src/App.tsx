@@ -24,16 +24,8 @@ import { setMiniSidenav, setOpenConfigurator, useMaterialUIController } from "co
 // Images
 import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
-import { loadFromLocalStorage, saveToLocalStorage } from "./services/storageService";
 
 export default function App() {
-  let a = loadFromLocalStorage()
-  console.log("T1")
-  console.log(a)
-  saveToLocalStorage({test: ["a", "b"]});
-  a = loadFromLocalStorage()
-  console.log("T2")
-  console.log(a)
   const [controller, dispatch] = useMaterialUIController();
   const {
     miniSidenav,

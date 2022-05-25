@@ -14,6 +14,7 @@ import * as Yup from "yup";
 import {FormikHelpers} from "formik/dist/types";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
+import { profileStorageService } from "../../../../services/storageService";
 
 interface FormFieldSchema {
   placeholder?: string;
@@ -48,7 +49,7 @@ const awsRegions = ['af-south-1', 'ap-east-1', 'ap-northeast-1', 'ap-northeast-2
   'eu-west-3', 'me-south-1', 'sa-east-1', 'us-east-1', 'us-east-2', 'us-west-1', 'us-west-2'] as const
 type AWSRegionType = typeof awsRegions[number]
 
-interface AWSProfile {
+export interface AWSProfile {
   displayName: string,
   accessKey: string,
   secretKey: string,
@@ -58,11 +59,7 @@ interface AWSProfile {
   endpoint?: string,
 }
 
-const awsProfiles: AWSProfile[] = [
-  //{displayName: "first profile", accessKey: "1", secretKey: "2", region: "ap-southeast-1", isDefault: true},
-  //{displayName: "second profile", accessKey: "1", secretKey: "2", region: "ap-southeast-1", isDefault: false},
-  //{displayName: "third profile", accessKey: "1", secretKey: "2", region: "ap-southeast-1", isDefault: false},
-]
+const awsProfiles: AWSProfile[] = profileStorageService.loadFromLocalStorage();
 
 const addProfileForm: FormSchema = {
   formId: "add-aws-profile",
@@ -245,8 +242,8 @@ function AwsDashboardLayout({children}: { children: ReactNode }): JSX.Element {
 
   const submitForm = async (values: any, actions: any) => {
     await sleep(1000);
-    // eslint-disable-next-line no-alert
-    alert(JSON.stringify(values, null, 2));
+    awsProfiles.push(values);
+    profileStorageService.saveToLocalStorage(awsProfiles);
     actions.setSubmitting(false);
     actions.resetForm();
   };
