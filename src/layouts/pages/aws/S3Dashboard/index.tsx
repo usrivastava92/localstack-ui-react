@@ -144,12 +144,12 @@ function Content(): JSX.Element {
   );
 }
 
-function DDBDashboard(): JSX.Element {
+function S3Dashboard(): JSX.Element {
   return (
-    <AwsDashboardLayout title="Dynamo DB" subTitle="Create/Choose a profile and then select a table to view your data">
-      <Content />
+    <AwsDashboardLayout title="S3" subTitle="Create/Choose a profile">
+      Coming Soon....
     </AwsDashboardLayout>
   );
 }
 
-export default DDBDashboard;
+export default S3Dashboard;

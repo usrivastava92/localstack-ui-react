@@ -1,21 +1,18 @@
-// @mui material components
-// Settings page components
-
-import { useContext, useEffect, useState } from "react";
+import {useContext, useEffect, useState} from "react";
 import AwsDashboardLayout from "../AwsDashboardLayout";
-import { Card } from "@mui/material";
+import {Card} from "@mui/material";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
-import { AWSProfile, nullAwsProfile } from "../types/awsTypes";
-import { AWSProfileContext } from "../../../../context";
-import { getClientConfig } from "../utils/awsUtils";
+import {AWSProfile, nullAwsProfile} from "../types/awsTypes";
+import {AWSProfileContext} from "../../../../context";
+import {getClientConfig} from "../utils/awsUtils";
 import {
   DescribeElasticsearchDomainCommand,
   ElasticsearchDomainStatus,
   ElasticsearchServiceClient,
   ListDomainNamesCommand
 } from "@aws-sdk/client-elasticsearch-service";
-import { ColumnDefinition, TableData } from "../types/tableTypes";
+import {ColumnDefinition, TableData} from "../types/tableTypes";
 import DefaultCell from "../../../ecommerce/orders/order-list/components/DefaultCell";
 import Autocomplete from "@mui/material/Autocomplete";
 import MDInput from "../../../../components/MDInput";
@@ -25,15 +22,18 @@ import {
   ElasticSearchClient,
   ElasticSearchClientImpl
 } from "../../../../services/ElasticSearchClient";
+import MDButton from "../../../../components/MDButton";
+import Icon from "@mui/material/Icon";
+import Tooltip from "@mui/material/Tooltip";
 
-const columnDefinitions: ColumnDefinition[] = [
-  { Header: "Index", accessor: "index", Cell: ({ value }: { value: string }) => <DefaultCell value={value} /> },
-  { Header: "Health", accessor: "health", Cell: ({ value }: { value: string }) => <DefaultCell value={value} /> },
-  { Header: "Status", accessor: "status", Cell: ({ value }: { value: string }) => <DefaultCell value={value} /> },
+const esColumnDefinitions: ColumnDefinition[] = [
+  {Header: "Index", accessor: "index", Cell: ({value}: { value: string }) => <DefaultCell value={value}/>},
+  {Header: "Health", accessor: "health", Cell: ({value}: { value: string }) => <DefaultCell value={value}/>},
+  {Header: "Status", accessor: "status", Cell: ({value}: { value: string }) => <DefaultCell value={value}/>},
   {
     Header: "Docs Count",
     accessor: "docsCount",
-    Cell: ({ value }: { value: string }) => <DefaultCell value={value} />
+    Cell: ({value}: { value: string }) => <DefaultCell value={value}/>
   },
   {
     Header: "Docs Deleted",
@@ -42,7 +42,7 @@ const columnDefinitions: ColumnDefinition[] = [
   }
 ];
 
-interface RowDefinitions {
+interface EsRowDefinitions {
   index: string,
   health: string,
   status: string,
@@ -50,7 +50,7 @@ interface RowDefinitions {
   docsDeleted: string
 }
 
-function getRows(catIndicesResponse: CatIndicesResponse): RowDefinitions[] {
+function getRows(catIndicesResponse: CatIndicesResponse): EsRowDefinitions[] {
   if (!catIndicesResponse) {
     return [];
   }
@@ -66,12 +66,11 @@ function getRows(catIndicesResponse: CatIndicesResponse): RowDefinitions[] {
 }
 
 function getTableData(response: CatIndicesResponse): TableData {
-  console.log("CatIndicesResponse : " + JSON.stringify(response));
   if (!response) {
-    return { columns: [], rows: [] };
+    return {columns: esColumnDefinitions, rows: []};
   }
   return {
-    columns: columnDefinitions,
+    columns: esColumnDefinitions,
     rows: getRows(response)
   };
 }
@@ -91,7 +90,7 @@ function Content(): JSX.Element {
   const [esClient, setEsClient] = useState<ElasticSearchClient>();
   const [tableData, setTableData] = useState<TableData>(getTableData(undefined));
 
-  useEffect(() => {
+  function listDomains(): void {
     if (awsProfile !== nullAwsProfile) {
       client.send(new ListDomainNamesCommand({}))
         .then(output => {
@@ -100,10 +99,12 @@ function Content(): JSX.Element {
           }
         }).catch(error => console.error(error));
     }
-  }, []);
+  }
+
+  useEffect(listDomains, []);
 
   function listIndexes(domainName: string) {
-    client.send(new DescribeElasticsearchDomainCommand({ DomainName: domainName }))
+    client.send(new DescribeElasticsearchDomainCommand({DomainName: domainName}))
       .then(output => {
         if (output && output.DomainStatus && output.DomainStatus.Endpoint) {
           if (domainName !== selectedDomain) {
@@ -145,16 +146,26 @@ function Content(): JSX.Element {
                 } domain
               </MDTypography>
             </MDBox>
-            <Autocomplete
-              disableClearable
-              sx={{ width: "12rem", borderRadius: 3 }}
-              value={selectedDomain ? selectedDomain : "No Domain Selected"}
-              options={domains}
-              onChange={(e, v) => listIndexes(v as string)}
-              renderInput={(params) => <MDInput {...params} label="Domain" fullWidth />}
-            />
+            <MDBox display="flex" justifyContent="space-between">
+              <Tooltip title="Reload Data" placement="left">
+                <MDButton sx={{mr: 3}} variant="gradient" color="info" onClick={() => {
+                  listDomains();
+                  listIndexes(selectedDomain);
+                }}>
+                  <Icon fontSize={"large"}>cached</Icon>
+                </MDButton>
+              </Tooltip>
+              <Autocomplete
+                disableClearable
+                sx={{width: "12rem", borderRadius: 3}}
+                value={selectedDomain ? selectedDomain : "No Domain Selected"}
+                options={domains}
+                onChange={(e, v) => listIndexes(v as string)}
+                renderInput={(params) => <MDInput {...params} label="Domain" fullWidth/>}
+              />
+            </MDBox>
           </MDBox>
-          <DataTable table={tableData} canSearch={true} stickyHeader={true} />
+          <DataTable table={tableData} canSearch={true} stickyHeader={true}/>
         </Card>
       </MDBox>
     </div>

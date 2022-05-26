@@ -1,3 +1,4 @@
+/*
 import Analytics from "layouts/dashboards/analytics";
 import Sales from "layouts/dashboards/sales";
 import ProfileOverview from "layouts/pages/profile/profile-overview";
@@ -28,6 +29,7 @@ import ResetCover from "layouts/authentication/reset-password/cover";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
+*/
 
 // Images
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -36,6 +38,7 @@ import AwsHome from "./layouts/pages/aws/AwsHome";
 import DDBDashboard from "./layouts/pages/aws/DDBDashboard";
 import SQSDashboard from "./layouts/pages/aws/SQSDashboard";
 import ElasticSearchDashboard from "./layouts/pages/aws/ElasticSearchDashboard";
+import S3Dashboard from "./layouts/pages/aws/S3Dashboard";
 
 const routes = [
   {
@@ -66,11 +69,12 @@ const routes = [
         name: "S3",
         key: "s3",
         route: "/pages/aws/s3",
-        component: <AwsHome />
+
+        component: <S3Dashboard />
       }
     ]
   },
-  { type: "divider", key: "divider-0" },
+  { type: "divider", key: "divider-0" }/*,
   {
     type: "collapse",
     name: "Dashboards",
@@ -485,7 +489,7 @@ const routes = [
     href: "https://github.com/creativetimofficial/ct-material-dashboard-pro-react/blob/main/CHANGELOG.md",
     icon: <Icon fontSize="medium">receipt_long</Icon>,
     noCollapse: true
-  }
+  }*/
 ];
 
 export default routes;
