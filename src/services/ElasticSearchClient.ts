@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 export interface ElasticSearchClient {
   cat: Cat;
@@ -13,11 +13,12 @@ class CatImpl implements Cat {
   readonly endpoint: string;
 
   constructor(baseUrl: string) {
-    this.endpoint = `${baseUrl}/_cat/indices`;
+    this.endpoint = `${baseUrl}/_cat/indices?format=json`;
   }
 
   indices(): Promise<CatIndicesResponse> {
-    return axios.get<any, CatIndicesResponse>(this.endpoint);
+    return axios.get<void, AxiosResponse<CatIndicesResponse>>(this.endpoint)
+      .then(response => response.data);
   }
 
 }
@@ -25,14 +26,17 @@ class CatImpl implements Cat {
 export type CatIndicesResponse = CatIndicesIndicesRecord[]
 
 export interface CatIndicesIndicesRecord {
-  status: string;
-  bulkAvgSizeInBytes: string;
-  docsCount: string;
-  index: string;
-}
-
-export interface Index {
-
+  index: string,
+  status: string,
+  health: string,
+  bulkAvgSizeInBytes: string,
+  "docs.count": string,
+  "docs.deleted": string,
+  "store.size": string,
+  "pri.store.size": string,
+  pri: string,
+  rep: string
+  "pri.store": string
 }
 
 export interface Document {

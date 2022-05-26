@@ -21,40 +21,52 @@ import Autocomplete from "@mui/material/Autocomplete";
 import MDInput from "../../../../components/MDInput";
 import DataTable from "../../../../examples/Tables/DataTable";
 import {
-  CatIndicesIndicesRecord,
   CatIndicesResponse,
   ElasticSearchClient,
   ElasticSearchClientImpl
 } from "../../../../services/ElasticSearchClient";
 
 const columnDefinitions: ColumnDefinition[] = [
-  { Header: "Index Name", accessor: "name", Cell: ({ value }: { value: string }) => <DefaultCell value={value} /> }
+  { Header: "Index", accessor: "index", Cell: ({ value }: { value: string }) => <DefaultCell value={value} /> },
+  { Header: "Health", accessor: "health", Cell: ({ value }: { value: string }) => <DefaultCell value={value} /> },
+  { Header: "Status", accessor: "status", Cell: ({ value }: { value: string }) => <DefaultCell value={value} /> },
+  {
+    Header: "Docs Count",
+    accessor: "docsCount",
+    Cell: ({ value }: { value: string }) => <DefaultCell value={value} />
+  },
+  {
+    Header: "Docs Deleted",
+    accessor: "docsDeleted",
+    Cell: ({ value }: { value: string }) => <DefaultCell value={value} />
+  }
 ];
 
-interface RowDefinition {
-  name: string,
-  docsCount: string,
-  bulkAvgSizeInBytes: string,
+interface RowDefinitions {
+  index: string,
+  health: string,
   status: string,
+  docsCount: string,
+  docsDeleted: string
 }
 
-function getRows(indices: CatIndicesIndicesRecord[]): RowDefinition[] {
-  const rows: RowDefinition[] = [];
-  if (!indices || indices.length <= 0) {
-    return rows;
+function getRows(catIndicesResponse: CatIndicesResponse): RowDefinitions[] {
+  if (!catIndicesResponse) {
+    return [];
   }
-  return indices.map<RowDefinition>(index => {
+  return catIndicesResponse.map((index) => {
     return {
-      name: index.index,
-      docsCount: index.docsCount,
-      bulkAvgSizeInBytes: index.bulkAvgSizeInBytes,
-      status: index.status
+      index: index.index,
+      health: index.health,
+      status: index.status,
+      docsCount: index["docs.count"],
+      docsDeleted: index["docs.deleted"]
     };
   });
 }
 
 function getTableData(response: CatIndicesResponse): TableData {
-  console.log(response);
+  console.log("CatIndicesResponse : " + JSON.stringify(response));
   if (!response) {
     return { columns: [], rows: [] };
   }
@@ -102,13 +114,11 @@ function Content(): JSX.Element {
             setEsClient(newEsClient);
             newEsClient.cat.indices()
               .then(response => setTableData(getTableData(response)))
-              .catch(error => console.error(error))
-              .finally(() => console.log("done"));
+              .catch(error => console.error(error));
           }
         }
       })
       .catch(error => console.error(error));
-    console.log("scanning index");
   }
 
   return (
