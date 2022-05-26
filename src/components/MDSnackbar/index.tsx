@@ -19,7 +19,7 @@ import MDSnackbarIconRoot from "components/MDSnackbar/MDSnackbarIconRoot";
 import { useMaterialUIController } from "context";
 
 // Declaring props types for MDSnackbar
-interface Props extends SnackbarProps {
+export interface SBProps extends SnackbarProps {
   color?: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "dark" | "light";
   icon: ReactNode;
   title: string;
@@ -40,7 +40,7 @@ function MDSnackbar({
                       close,
                       bgWhite,
                       ...rest
-                    }: Props): JSX.Element {
+                    }: SBProps): JSX.Element {
   const [controller] = useMaterialUIController();
   const { darkMode } = controller;
 

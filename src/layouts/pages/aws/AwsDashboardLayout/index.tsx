@@ -5,99 +5,22 @@ import DashboardLayout from "../../../../examples/LayoutContainers/DashboardLayo
 import MDTypography from "../../../../components/MDTypography";
 import Icon from "@mui/material/Icon";
 import MDButton from "../../../../components/MDButton";
-import {ReactNode, useState} from "react";
-import {Modal} from "@mui/material";
-import {Form, Formik, FormikErrors, FormikTouched, FormikValues} from "formik";
+import { ReactNode, useState } from "react";
+import { Modal } from "@mui/material";
+import { Form, Formik } from "formik";
 import Card from "@mui/material/Card";
-import FormField, {FormSelect, FormSwitch} from "../../users/new-user/components/FormField";
-import * as Yup from "yup";
-import {FormikHelpers} from "formik/dist/types";
+import FormField, { FormSelect, FormSwitch } from "../../users/new-user/components/FormField";
+import { FormikHelpers } from "formik/dist/types";
 import Autocomplete from "@mui/material/Autocomplete";
-import {awsProfileStorageService} from "../../../../services/StorageService";
-import {AWSProfile, awsRegions, nullAwsProfile} from "../types/awsTypes";
-import {AWSProfileContext} from "context";
+import { awsProfileStorageService } from "../../../../services/StorageService";
+import { AWSProfile, awsRegions, nullAwsProfile } from "../types/awsTypes";
+import { AWSProfileContext } from "context";
 import MDInput from "../../../../components/MDInput";
-
-interface FormFieldSchema {
-  placeholder?: string;
-  name: string,
-  label: string,
-  type: string,
-  errorMsg: string
-}
-
-interface FormSchema {
-  formId: string,
-  formFields: {
-    [key: string]: FormFieldSchema
-  }
-}
-
-interface FormDataSchema {
-  values: FormikValues
-  touched: FormikTouched<FormikValues>,
-  formFields: {
-    [key: string]: FormFieldSchema
-  },
-  errors: FormikErrors<FormikValues>
-}
-
-interface ValuesSchema {
-  [key: string]: any;
-}
-
-const addProfileForm: FormSchema = {
-  formId: "add-aws-profile",
-  formFields: {
-    displayName: {
-      name: "displayName",
-      label: "Display Name *",
-      type: "text",
-      errorMsg: "Display Name is required."
-    },
-    accessKey: {
-      name: "accessKey",
-      label: "Access Key *",
-      type: "text",
-      errorMsg: "Access Key is required."
-    },
-    secretKey: {
-      name: "secretKey",
-      label: "Secret Key *",
-      type: "text",
-      errorMsg: "Secret Key is required.",
-      placeholder: ""
-    },
-    region: {
-      name: "region",
-      label: "Region *",
-      type: "text",
-      errorMsg: "Invalid AWS Region",
-      placeholder: ""
-    },
-    sessionToken: {
-      name: "sessionToken",
-      label: "Session Token",
-      type: "text",
-      errorMsg: "",
-      placeholder: "Session Token (Optional)"
-    },
-    endpoint: {
-      name: "endpoint",
-      label: "Endpoint",
-      type: "text",
-      errorMsg: "",
-      placeholder: "Endpoint (Optional)"
-    },
-    isDefault: {
-      name: "isDefault",
-      label: "Use this as default ",
-      type: "text",
-      errorMsg: "Default option can only be true/false",
-      placeholder: ""
-    }
-  }
-};
+import MDSnackbar, { SBProps } from "../../../../components/MDSnackbar";
+import { defaultSBProps, getSuccessSBProps } from "../utils/notificationUtils";
+import { FormDataSchema, ValuesSchema } from "../types/formTypes";
+import { addProfileForm } from "./forms";
+import { addProfileFormValidation } from "./formValidations";
 
 const { formFields: { displayName, accessKey, secretKey, sessionToken, endpoint, region, isDefault } } = addProfileForm;
 
@@ -112,15 +35,8 @@ const initialValues: ValuesSchema = {
 };
 
 const mutableListAwsRegions = [...awsRegions];
-const addProfileFormValidation = Yup.object().shape({
-  [displayName.name]: Yup.string().trim().required(displayName.errorMsg),
-  [accessKey.name]: Yup.string().trim().required(accessKey.errorMsg),
-  [secretKey.name]: Yup.string().trim().required(secretKey.errorMsg),
-  [region.name]: Yup.string().trim().required(region.errorMsg).oneOf(mutableListAwsRegions, region.errorMsg),
-  [isDefault.name]: Yup.string().trim().required(isDefault.errorMsg).oneOf(["true", "false"], isDefault.errorMsg)
-});
 
-function AddAwsProfileForm(formData: FormDataSchema): JSX.Element {
+function AddAwsProfileForm({ formData }: { formData: FormDataSchema }): JSX.Element {
 
   const { formFields, values, errors, touched } = formData;
   const { displayName, accessKey, secretKey, sessionToken, endpoint, region, isDefault } = formFields;
@@ -226,11 +142,10 @@ interface AwsDashboardProps {
 function AwsDashboardLayout({ children, title, subTitle }: AwsDashboardProps): JSX.Element {
 
   const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const [showError, setShowError] = useState<boolean>(false);
   const [awsProfiles, setAwsProfiles] = useState<AWSProfile[]>(awsProfileStorageService.loadFromLocalStorage());
   const [activeAwsProfile, setActiveAwsProfile] = useState<AWSProfile>(getDefaultAWSProfile(awsProfiles));
+  const [sbProps, setSBProps] = useState<SBProps>(defaultSBProps);
 
-  const closeError = () => setShowError(false);
   const handleAddNewProfile = () => setModalOpen(true);
   const handleCloseModal = () => setModalOpen(false);
   const handleProfileChange = (displayName: string) => {
@@ -242,6 +157,13 @@ function AwsDashboardLayout({ children, title, subTitle }: AwsDashboardProps): J
     const newAwsProfiles = [...awsProfiles, values];
     awsProfileStorageService.saveToLocalStorage(newAwsProfiles);
     setAwsProfiles(newAwsProfiles);
+    setSBProps(getSuccessSBProps({
+      title: "AWS Dashboard",
+      content: "Successfully created profile",
+      open: true,
+      onClose: () => setSBProps(defaultSBProps),
+      close: () => setSBProps(defaultSBProps)
+    }));
     actions.setSubmitting(false);
     actions.resetForm();
   };
@@ -267,10 +189,13 @@ function AwsDashboardLayout({ children, title, subTitle }: AwsDashboardProps): J
                         <MDBox p={3}>
                           <MDBox>
                             <AddAwsProfileForm
-                              formFields={addProfileForm.formFields}
-                              errors={errors}
-                              touched={touched}
-                              values={values} />
+                              formData={{
+                                formFields: addProfileForm.formFields,
+                                errors: errors,
+                                touched: touched,
+                                values: values
+                              }}
+                            />
                             <MDBox mt={2} width="100%" display="flex" justifyContent="space-between">
                               <FormSwitch
                                 type={isDefault.type}
@@ -306,14 +231,14 @@ function AwsDashboardLayout({ children, title, subTitle }: AwsDashboardProps): J
               </MDTypography>
             </MDBox>
           </Grid>
-          <Grid item xs={12} md={5} sx={{textAlign: "right"}} display="flex" justifyContent="right">
+          <Grid item xs={12} md={5} sx={{ textAlign: "right" }} display="flex" justifyContent="right">
             <Autocomplete
               disableClearable
-              sx={{mr: 2, width: "12rem", boxShadow: 1, borderRadius: 3}}
+              sx={{ mr: 2, width: "12rem", boxShadow: 1, borderRadius: 3 }}
               value={activeAwsProfile.displayName}
               onChange={(event, value) => handleProfileChange(value as string)}
               options={awsProfiles.map(profile => profile.displayName)}
-              renderInput={(params) => <MDInput {...params} label="Active Profile" fullWidth/>}
+              renderInput={(params) => <MDInput {...params} label="Active Profile" fullWidth />}
             />
             <MDButton variant="gradient" color="info" onClick={handleAddNewProfile}>
               <Icon>add</Icon>&nbsp; Add New
@@ -323,17 +248,17 @@ function AwsDashboardLayout({ children, title, subTitle }: AwsDashboardProps): J
 
         {children}
 
-        {/*<MDSnackbar
-        color="error"
-        icon="warning"
-        title="AWS Error"
-        content="Unable to list table"
-        dateTime="11 mins ago"
-        open={showError}
-        onClose={closeError}
-        close={closeError}
-        bgWhite
-      />*/}
+        <MDSnackbar
+          color={sbProps.color}
+          icon={sbProps.icon}
+          title={sbProps.title}
+          content={sbProps.content}
+          dateTime={sbProps.dateTime}
+          open={sbProps.open}
+          onClose={sbProps.onClose}
+          close={sbProps.close}
+          bgWhite
+        />
         <Footer />
       </DashboardLayout>
     </AWSProfileContext.Provider>

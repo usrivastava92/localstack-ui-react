@@ -34,7 +34,6 @@ import Icon from "@mui/material/Icon";
 // Images
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAws } from "@fortawesome/free-brands-svg-icons";
-import AwsHome from "./layouts/pages/aws/AwsHome";
 import DDBDashboard from "./layouts/pages/aws/DDBDashboard";
 import SQSDashboard from "./layouts/pages/aws/SQSDashboard";
 import ElasticSearchDashboard from "./layouts/pages/aws/ElasticSearchDashboard";
@@ -102,7 +101,7 @@ const routes = [
     key: "pages",
     icon: <Icon fontSize="medium">image</Icon>,
     collapse: [
-      {
+      /*{
         name: "Profile",
         key: "profile",
         collapse: [
