@@ -7,10 +7,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 
-import MDTypography from "components/MDTypography";
-import MDBox from "components/MDBox";
+import MDTypography from "@/components/MDTypography";
+import MDBox from "@/components/MDBox";
 
-import SalesTableCell from "examples/Tables/SalesTable/SalesTableCell";
+import SalesTableCell from "@/examples/Tables/SalesTable/SalesTableCell";
 
 // Declaring props types for SalesTable
 interface Props {

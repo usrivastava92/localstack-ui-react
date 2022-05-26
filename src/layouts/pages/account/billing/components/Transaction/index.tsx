@@ -3,9 +3,9 @@ import { ReactNode } from "react";
 // @mui material components
 import Icon from "@mui/material/Icon";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDButton from "components/MDButton";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
+import MDButton from "@/components/MDButton";
 
 // Declaring props types for Transaction
 interface Props {

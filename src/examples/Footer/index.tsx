@@ -1,10 +1,10 @@
 // @mui material components
 import Link from "@mui/material/Link";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
-import typography from "assets/theme/base/typography";
+import typography from "@/assets/theme/base/typography";
 
 // Declaring props types for Footer
 interface Props {

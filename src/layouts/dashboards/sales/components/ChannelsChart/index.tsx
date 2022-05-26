@@ -4,16 +4,16 @@ import Tooltip from "@mui/material/Tooltip";
 import Icon from "@mui/material/Icon";
 import Grid from "@mui/material/Grid";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDButton from "components/MDButton";
-import MDBadgeDot from "components/MDBadgeDot";
-import PieChart from "examples/Charts/PieChart";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
+import MDButton from "@/components/MDButton";
+import MDBadgeDot from "@/components/MDBadgeDot";
+import PieChart from "@/examples/Charts/PieChart";
 
 // Data
-import channelChartData from "layouts/dashboards/sales/components/ChannelsChart/data";
+import channelChartData from "@/layouts/dashboards/sales/components/ChannelsChart/data";
 
-import { useMaterialUIController } from "context";
+import { useMaterialUIController } from "@/context";
 
 function ChannelsChart(): JSX.Element {
   const [controller] = useMaterialUIController();

@@ -7,12 +7,12 @@ import { Line } from "react-chartjs-2";
 import Card from "@mui/material/Card";
 import Icon from "@mui/material/Icon";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDProgress from "components/MDProgress";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
+import MDProgress from "@/components/MDProgress";
 
 // ProgressLineChart configurations
-import configs from "examples/Charts/LineCharts/ProgressLineChart/config";
+import configs from "@/examples/Charts/LineCharts/ProgressLineChart/config";
 
 // Declaring props types for GradientLineChart
 interface Props {

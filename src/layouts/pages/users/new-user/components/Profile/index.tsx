@@ -1,11 +1,11 @@
 // @mui material components
 import Grid from "@mui/material/Grid";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
 // NewUser page components
-import FormField from "layouts/pages/users/new-user/components/FormField";
+import FormField from "@/layouts/pages/users/new-user/components/FormField";
 
 function Profile({ formData }: any): JSX.Element {
   const { formField, values } = formData;

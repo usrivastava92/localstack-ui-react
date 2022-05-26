@@ -12,12 +12,12 @@ import { Theme } from "@mui/material/styles";
 
 // @mui icons
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDButton from "components/MDButton";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
+import MDButton from "@/components/MDButton";
 
 // Custom styles for the Configurator
-import ConfiguratorRoot from "examples/Configurator/ConfiguratorRoot";
+import ConfiguratorRoot from "@/examples/Configurator/ConfiguratorRoot";
 
 import {
   setDarkMode,
@@ -28,7 +28,7 @@ import {
   setTransparentSidenav,
   setWhiteSidenav,
   useMaterialUIController
-} from "context";
+} from "@/context";
 
 function Configurator(): JSX.Element {
   const [controller, dispatch] = useMaterialUIController();

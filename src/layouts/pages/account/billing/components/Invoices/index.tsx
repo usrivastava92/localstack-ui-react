@@ -1,12 +1,12 @@
 // @mui material components
 import Card from "@mui/material/Card";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDButton from "components/MDButton";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
+import MDButton from "@/components/MDButton";
 
 // Billing page components
-import Invoice from "layouts/pages/account/billing/components/Invoice";
+import Invoice from "@/layouts/pages/account/billing/components/Invoice";
 
 function Invoices(): JSX.Element {
   return (

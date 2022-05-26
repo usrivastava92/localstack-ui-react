@@ -1,9 +1,9 @@
 // @mui material components
 import Card from "@mui/material/Card";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDBadge from "components/MDBadge";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
+import MDBadge from "@/components/MDBadge";
 
 function FullBody(): JSX.Element {
   return (

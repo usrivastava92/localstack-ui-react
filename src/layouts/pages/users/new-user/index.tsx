@@ -10,23 +10,23 @@ import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 
-import MDBox from "components/MDBox";
-import MDButton from "components/MDButton";
+import MDBox from "@/components/MDBox";
+import MDButton from "@/components/MDButton";
 
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import Footer from "examples/Footer";
+import DashboardLayout from "@/examples/LayoutContainers/DashboardLayout";
+import DashboardNavbar from "@/examples/Navbars/DashboardNavbar";
+import Footer from "@/examples/Footer";
 
 // NewUser page components
-import UserInfo from "layouts/pages/users/new-user/components/UserInfo";
-import Address from "layouts/pages/users/new-user/components/Address";
-import Socials from "layouts/pages/users/new-user/components/Socials";
-import Profile from "layouts/pages/users/new-user/components/Profile";
+import UserInfo from "@/layouts/pages/users/new-user/components/UserInfo";
+import Address from "@/layouts/pages/users/new-user/components/Address";
+import Socials from "@/layouts/pages/users/new-user/components/Socials";
+import Profile from "@/layouts/pages/users/new-user/components/Profile";
 
 // NewUser layout schemas for form and form feilds
-import validations from "layouts/pages/users/new-user/schemas/validations";
-import form from "layouts/pages/users/new-user/schemas/form";
-import initialValues from "layouts/pages/users/new-user/schemas/initialValues";
+import validations from "@/layouts/pages/users/new-user/schemas/validations";
+import form from "@/layouts/pages/users/new-user/schemas/form";
+import initialValues from "@/layouts/pages/users/new-user/schemas/initialValues";
 
 function getSteps(): string[] {
   return ["User Info", "Address", "Social", "Profile"];

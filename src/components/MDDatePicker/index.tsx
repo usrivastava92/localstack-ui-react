@@ -4,7 +4,7 @@ import Flatpickr from "react-flatpickr";
 // react-flatpickr styles
 import "flatpickr/dist/flatpickr.css";
 
-import MDInput from "components/MDInput";
+import MDInput from "@/components/MDInput";
 
 // types
 interface Props {

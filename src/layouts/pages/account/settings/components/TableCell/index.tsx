@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
 // Declaring props types for TableCell
 interface Props {

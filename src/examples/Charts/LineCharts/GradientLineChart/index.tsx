@@ -7,15 +7,15 @@ import { Line } from "react-chartjs-2";
 import Card from "@mui/material/Card";
 import Icon from "@mui/material/Icon";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
-import gradientChartLine from "assets/theme/functions/gradientChartLine";
+import gradientChartLine from "@/assets/theme/functions/gradientChartLine";
 
 // GradientLineChart configurations
-import configs from "examples/Charts/LineCharts/GradientLineChart/configs";
+import configs from "@/examples/Charts/LineCharts/GradientLineChart/configs";
 
-import colors from "assets/theme/base/colors";
+import colors from "@/assets/theme/base/colors";
 
 // Declaring props types for GradientLineChart
 interface Props {

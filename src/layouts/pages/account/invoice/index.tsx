@@ -6,18 +6,18 @@ import TableRow from "@mui/material/TableRow";
 import TableBody from "@mui/material/TableBody";
 import { Theme } from "@mui/material/styles";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDButton from "components/MDButton";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
+import MDButton from "@/components/MDButton";
 
 // Invoice page components
-import BaseLayout from "layouts/pages/account/components/BaseLayout";
+import BaseLayout from "@/layouts/pages/account/components/BaseLayout";
 
 // Images
-import logoCT from "assets/images/logo-ct.png";
-import logoCTDark from "assets/images/logo-ct-dark.png";
+import logoCT from "@/assets/images/logo-ct.png";
+import logoCTDark from "@/assets/images/logo-ct-dark.png";
 
-import { useMaterialUIController } from "context";
+import { useMaterialUIController } from "@/context";
 
 function Invoice(): JSX.Element {
   const [controller] = useMaterialUIController();

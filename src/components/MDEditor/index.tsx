@@ -5,9 +5,9 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 // Custom styles for the MDEditor
-import MDEditorRoot from "components/MDEditor/MDEditorRoot";
+import MDEditorRoot from "@/components/MDEditor/MDEditorRoot";
 
-import { useMaterialUIController } from "context";
+import { useMaterialUIController } from "@/context";
 
 // declaring types for the MDEditor
 interface Props {

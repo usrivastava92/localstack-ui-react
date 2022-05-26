@@ -1,16 +1,16 @@
-import MDBox from "components/MDBox";
-import MDProgress from "components/MDProgress";
+import MDBox from "@/components/MDBox";
+import MDProgress from "@/components/MDProgress";
 
 // ProductPage page components
-import ProductCell from "layouts/ecommerce/products/product-page/components/ProductCell";
-import ReviewCell from "layouts/ecommerce/products/product-page/components/ReviewCell";
-import DefaultCell from "layouts/ecommerce/products/product-page/components/DefaultCell";
+import ProductCell from "@/layouts/ecommerce/products/product-page/components/ProductCell";
+import ReviewCell from "@/layouts/ecommerce/products/product-page/components/ReviewCell";
+import DefaultCell from "@/layouts/ecommerce/products/product-page/components/DefaultCell";
 
 // Images
-import blackChair from "assets/images/ecommerce/black-chair.jpeg";
-import chairPink from "assets/images/ecommerce/chair-pink.jpeg";
-import chairSteel from "assets/images/ecommerce/chair-steel.jpeg";
-import chairWood from "assets/images/ecommerce/chair-wood.jpeg";
+import blackChair from "@/assets/images/ecommerce/black-chair.jpeg";
+import chairPink from "@/assets/images/ecommerce/chair-pink.jpeg";
+import chairSteel from "@/assets/images/ecommerce/chair-steel.jpeg";
+import chairWood from "@/assets/images/ecommerce/chair-wood.jpeg";
 
 const dataTableData = {
   columns: [

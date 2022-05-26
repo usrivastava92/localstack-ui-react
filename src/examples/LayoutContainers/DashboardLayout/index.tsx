@@ -3,9 +3,9 @@ import { ReactNode, useEffect } from "react";
 // react-router-dom components
 import { useLocation } from "react-router-dom";
 
-import MDBox from "components/MDBox";
+import MDBox from "@/components/MDBox";
 
-import { setLayout, useMaterialUIController } from "context";
+import { setLayout, useMaterialUIController } from "@/context";
 
 function DashboardLayout({ children }: { children: ReactNode }): JSX.Element {
   const [controller, dispatch] = useMaterialUIController();

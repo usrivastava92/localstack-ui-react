@@ -6,12 +6,12 @@ import Dropzone from "dropzone";
 // Dropzone styles
 import "dropzone/dist/dropzone.css";
 
-import MDBox from "components/MDBox";
+import MDBox from "@/components/MDBox";
 
 // Custom styles for the MDDropzone
-import MDDropzoneRoot from "components/MDDropzone/MDDropzoneRoot";
+import MDDropzoneRoot from "@/components/MDDropzone/MDDropzoneRoot";
 
-import { useMaterialUIController } from "context";
+import { useMaterialUIController } from "@/context";
 
 // Declaring props types for MDDropzone
 interface Props {

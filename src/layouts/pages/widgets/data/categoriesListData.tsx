@@ -1,4 +1,4 @@
-import MDTypography from "components/MDTypography";
+import MDTypography from "@/components/MDTypography";
 
 // types
 type Types = any;

@@ -2,14 +2,14 @@
 import Icon from "@mui/material/Icon";
 import Tooltip from "@mui/material/Tooltip";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDButton from "components/MDButton";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
+import MDButton from "@/components/MDButton";
 
-import borders from "assets/theme/base/borders";
+import borders from "@/assets/theme/base/borders";
 
 // Images
-import masterCardLogo from "assets/images/logos/mastercard.png";
+import masterCardLogo from "@/assets/images/logos/mastercard.png";
 
 function PaymentDetails(): JSX.Element {
   const { borderWidth, borderColor } = borders;

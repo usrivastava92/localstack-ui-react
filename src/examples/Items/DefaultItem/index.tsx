@@ -3,11 +3,11 @@ import { FC, forwardRef, ReactNode } from "react";
 // @mui material components
 import Icon from "@mui/material/Icon";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
 // custom styles for the DefaultItem
-import defaultItemIconBox from "examples/Items/DefaultItem/styles";
+import defaultItemIconBox from "@/examples/Items/DefaultItem/styles";
 
 // Declaring props types for DefaultItem
 interface Props {

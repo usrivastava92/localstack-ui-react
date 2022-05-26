@@ -4,15 +4,15 @@ import { useState } from "react";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDAlert from "components/MDAlert";
-import MDButton from "components/MDButton";
-import MDSnackbar from "components/MDSnackbar";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
+import MDAlert from "@/components/MDAlert";
+import MDButton from "@/components/MDButton";
+import MDSnackbar from "@/components/MDSnackbar";
 
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import Footer from "examples/Footer";
+import DashboardLayout from "@/examples/LayoutContainers/DashboardLayout";
+import DashboardNavbar from "@/examples/Navbars/DashboardNavbar";
+import Footer from "@/examples/Footer";
 
 function Notifications(): JSX.Element {
   const [successSB, setSuccessSB] = useState<boolean>(false);

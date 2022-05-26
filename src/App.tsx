@@ -8,22 +8,22 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Icon from "@mui/material/Icon";
 
-import MDBox from "components/MDBox";
+import MDBox from "@/components/MDBox";
 
-import Sidenav from "examples/Sidenav";
-import Configurator from "examples/Configurator";
+import Sidenav from "@/examples/Sidenav";
+import Configurator from "@/examples/Configurator";
 
-import theme from "assets/theme";
+import theme from "@/assets/theme";
 
-import themeDark from "assets/theme-dark";
+import themeDark from "@/assets/theme-dark";
 
-import routes from "routes";
+import routes from "@/routes";
 
-import { setMiniSidenav, setOpenConfigurator, useMaterialUIController } from "context";
+import { setMiniSidenav, setOpenConfigurator, useMaterialUIController } from "@/context";
 
 // Images
-import brandWhite from "assets/images/logo-ct.png";
-import brandDark from "assets/images/logo-ct-dark.png";
+import brandWhite from "@/assets/images/logo-ct.png";
+import brandDark from "@/assets/images/logo-ct-dark.png";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();

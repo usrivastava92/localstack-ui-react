@@ -1,9 +1,9 @@
 // @mui material components
 import Container from "@mui/material/Container";
 
-import MDBox from "components/MDBox";
+import MDBox from "@/components/MDBox";
 
-import typography from "assets/theme/base/typography";
+import typography from "@/assets/theme/base/typography";
 
 function Footer({ light }: { light?: boolean }): JSX.Element {
   const { size } = typography;

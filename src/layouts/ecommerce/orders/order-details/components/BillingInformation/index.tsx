@@ -1,7 +1,7 @@
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
-import { useMaterialUIController } from "context";
+import { useMaterialUIController } from "@/context";
 
 function BillingInformation(): JSX.Element {
   const [controller] = useMaterialUIController();

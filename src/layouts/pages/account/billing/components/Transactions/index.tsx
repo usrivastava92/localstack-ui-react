@@ -3,11 +3,11 @@ import Card from "@mui/material/Card";
 // import Divider from "@mui/material/Divider";
 import Icon from "@mui/material/Icon";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
 // Billing page components
-import Transaction from "layouts/pages/account/billing/components/Transaction";
+import Transaction from "@/layouts/pages/account/billing/components/Transaction";
 
 function Transactions(): JSX.Element {
   return (

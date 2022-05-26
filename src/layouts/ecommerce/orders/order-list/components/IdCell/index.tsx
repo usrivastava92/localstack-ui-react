@@ -1,8 +1,8 @@
 // @mui material components
 import Checkbox from "@mui/material/Checkbox";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
 // Declaring props types for IdCell
 interface Props {

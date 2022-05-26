@@ -10,12 +10,12 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import Icon from "@mui/material/Icon";
 
-import MDBox from "components/MDBox";
-import MDInput from "components/MDInput";
-import MDBadge from "components/MDBadge";
+import MDBox from "@/components/MDBox";
+import MDInput from "@/components/MDInput";
+import MDBadge from "@/components/MDBadge";
 
-import Breadcrumbs from "examples/Breadcrumbs";
-import NotificationItem from "examples/Items/NotificationItem";
+import Breadcrumbs from "@/examples/Breadcrumbs";
+import NotificationItem from "@/examples/Items/NotificationItem";
 
 // Custom styles for DashboardNavbar
 import {
@@ -25,9 +25,9 @@ import {
   navbarIconButton,
   navbarMobileMenu,
   navbarRow
-} from "examples/Navbars/DashboardNavbar/styles";
+} from "@/examples/Navbars/DashboardNavbar/styles";
 
-import { setMiniSidenav, setOpenConfigurator, setTransparentNavbar, useMaterialUIController } from "context";
+import { setMiniSidenav, setOpenConfigurator, setTransparentNavbar, useMaterialUIController } from "@/context";
 
 // Declaring prop types for DashboardNavbar
 interface Props {

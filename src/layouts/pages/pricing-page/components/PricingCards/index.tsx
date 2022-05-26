@@ -1,11 +1,11 @@
 // @mui material components
 import Grid from "@mui/material/Grid";
 
-import MDBox from "components/MDBox";
+import MDBox from "@/components/MDBox";
 
-import DefaultPricingCard from "examples/Cards/PricingCards/DefaultPricingCard";
+import DefaultPricingCard from "@/examples/Cards/PricingCards/DefaultPricingCard";
 
-import { useMaterialUIController } from "context";
+import { useMaterialUIController } from "@/context";
 
 function PricingCards({ prices }: { prices: string[] }): JSX.Element {
   const [controller] = useMaterialUIController();

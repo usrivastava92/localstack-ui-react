@@ -7,9 +7,9 @@ import Card from "@mui/material/Card";
 import Divider from "@mui/material/Divider";
 import Icon from "@mui/material/Icon";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDAvatar from "components/MDAvatar";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
+import MDAvatar from "@/components/MDAvatar";
 
 // Declaring prop types for the ComplexProjectCard
 interface Props {

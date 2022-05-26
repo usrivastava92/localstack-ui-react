@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 import Card from "@mui/material/Card";
 import MuiLink from "@mui/material/Link";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDButton from "components/MDButton";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
+import MDButton from "@/components/MDButton";
 
 // Declaring props types for SimpleBlogCard
 interface Props {

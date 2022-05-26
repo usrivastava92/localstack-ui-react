@@ -1,8 +1,8 @@
 // @mui material components
 import Icon from "@mui/material/Icon";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
 // Declaring props types for Invoice
 interface Props {

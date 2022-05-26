@@ -1,7 +1,7 @@
-import colors from "assets/theme/base/colors";
+import colors from "@/assets/theme/base/colors";
 
-import rgba from "assets/theme/functions/rgba";
-import pxToRem from "assets/theme/functions/pxToRem";
+import rgba from "@/assets/theme/functions/rgba";
+import pxToRem from "@/assets/theme/functions/pxToRem";
 
 const { dark, transparent, white } = colors;
 

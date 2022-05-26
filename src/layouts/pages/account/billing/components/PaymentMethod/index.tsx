@@ -4,15 +4,15 @@ import Grid from "@mui/material/Grid";
 import Icon from "@mui/material/Icon";
 import Tooltip from "@mui/material/Tooltip";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDButton from "components/MDButton";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
+import MDButton from "@/components/MDButton";
 
 // Images
-import masterCardLogo from "assets/images/logos/mastercard.png";
-import visaLogo from "assets/images/logos/visa.png";
+import masterCardLogo from "@/assets/images/logos/mastercard.png";
+import visaLogo from "@/assets/images/logos/visa.png";
 
-import { useMaterialUIController } from "context";
+import { useMaterialUIController } from "@/context";
 
 function PaymentMethod(): JSX.Element {
   const [controller] = useMaterialUIController();

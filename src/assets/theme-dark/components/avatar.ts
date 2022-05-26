@@ -1,4 +1,4 @@
-import borders from "assets/theme-dark/base/borders";
+import borders from "@/assets/theme-dark/base/borders";
 
 const { borderRadius } = borders;
 

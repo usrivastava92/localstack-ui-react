@@ -4,9 +4,9 @@ import { ReactNode } from "react";
 import Icon from "@mui/material/Icon";
 import { Theme } from "@mui/material/styles";
 
-import MDBox from "components/MDBox";
+import MDBox from "@/components/MDBox";
 
-import { useMaterialUIController } from "context";
+import { useMaterialUIController } from "@/context";
 
 // Declaring props types for DataTableHeadCell
 interface Props {

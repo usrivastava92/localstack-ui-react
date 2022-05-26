@@ -4,10 +4,10 @@ import { ReactNode } from "react";
 import Card from "@mui/material/Card";
 import Switch from "@mui/material/Switch";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
-import { useMaterialUIController } from "context";
+import { useMaterialUIController } from "@/context";
 
 // Declaring props types for ControllerCard
 interface Props {

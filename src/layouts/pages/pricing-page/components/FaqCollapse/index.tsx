@@ -4,10 +4,10 @@ import { ReactNode } from "react";
 import Icon from "@mui/material/Icon";
 import Collapse from "@mui/material/Collapse";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
-import borders from "assets/theme/base/borders";
+import borders from "@/assets/theme/base/borders";
 
 // Declaring props types for FaqCollapse
 interface Props {

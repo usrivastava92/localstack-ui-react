@@ -4,8 +4,8 @@ import { ReactNode } from "react";
 import Card from "@mui/material/Card";
 import Icon from "@mui/material/Icon";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
 interface Props {
   color?: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "dark";

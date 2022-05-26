@@ -1,7 +1,7 @@
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
-import TimelineItem from "examples/Timeline/TimelineItem";
+import TimelineItem from "@/examples/Timeline/TimelineItem";
 
 function OrdersOverview(): JSX.Element {
   return (

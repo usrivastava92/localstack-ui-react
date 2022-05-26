@@ -15,16 +15,16 @@ import MuiLink from "@mui/material/Link";
 import Container from "@mui/material/Container";
 import { Theme } from "@mui/material/styles";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDButton from "components/MDButton";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
+import MDButton from "@/components/MDButton";
 
-import DefaultNavbarDropdown from "examples/Navbars/DefaultNavbar/DefaultNavbarDropdown";
-import DefaultNavbarMobile from "examples/Navbars/DefaultNavbar/DefaultNavbarMobile";
+import DefaultNavbarDropdown from "@/examples/Navbars/DefaultNavbar/DefaultNavbarDropdown";
+import DefaultNavbarMobile from "@/examples/Navbars/DefaultNavbar/DefaultNavbarMobile";
 
-import breakpoints from "assets/theme/base/breakpoints";
+import breakpoints from "@/assets/theme/base/breakpoints";
 
-import { useMaterialUIController } from "context";
+import { useMaterialUIController } from "@/context";
 
 // Declaring props types for DefaultNavbar
 interface Props {

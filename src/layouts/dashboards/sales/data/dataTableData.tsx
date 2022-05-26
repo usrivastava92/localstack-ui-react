@@ -1,14 +1,14 @@
 // Sales dashboard components
-import ProductCell from "layouts/dashboards/sales/components/ProductCell";
-import RefundsCell from "layouts/dashboards/sales/components/RefundsCell";
-import DefaultCell from "layouts/dashboards/sales/components/DefaultCell";
+import ProductCell from "@/layouts/dashboards/sales/components/ProductCell";
+import RefundsCell from "@/layouts/dashboards/sales/components/RefundsCell";
+import DefaultCell from "@/layouts/dashboards/sales/components/DefaultCell";
 
 // Images
-import nikeV22 from "assets/images/ecommerce/blue-shoe.jpeg";
-import businessKit from "assets/images/ecommerce/black-mug.jpeg";
-import blackChair from "assets/images/ecommerce/black-chair.jpeg";
-import wirelessCharger from "assets/images/ecommerce/bang-sound.jpeg";
-import tripKit from "assets/images/ecommerce/photo-tools.jpeg";
+import nikeV22 from "@/assets/images/ecommerce/blue-shoe.jpeg";
+import businessKit from "@/assets/images/ecommerce/black-mug.jpeg";
+import blackChair from "@/assets/images/ecommerce/black-chair.jpeg";
+import wirelessCharger from "@/assets/images/ecommerce/bang-sound.jpeg";
+import tripKit from "@/assets/images/ecommerce/photo-tools.jpeg";
 
 const dataTableData = {
   columns: [

@@ -7,13 +7,13 @@ import { Bubble } from "react-chartjs-2";
 import Card from "@mui/material/Card";
 import Icon from "@mui/material/Icon";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
 // BubbleChart configurations
-import configs from "examples/Charts/BubbleChart/configs";
+import configs from "@/examples/Charts/BubbleChart/configs";
 
-import colors from "assets/theme/base/colors";
+import colors from "@/assets/theme/base/colors";
 
 // Declaring props types for BubbleChart
 interface Props {

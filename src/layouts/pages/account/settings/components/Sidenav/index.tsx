@@ -3,10 +3,10 @@ import Card from "@mui/material/Card";
 import Icon from "@mui/material/Icon";
 import { Theme } from "@mui/material/styles";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
-import { useMaterialUIController } from "context";
+import { useMaterialUIController } from "@/context";
 
 function Sidenav(): JSX.Element {
   const [controller] = useMaterialUIController();

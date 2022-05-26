@@ -9,18 +9,18 @@ import Divider from "@mui/material/Divider";
 import Link from "@mui/material/Link";
 import Icon from "@mui/material/Icon";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
-import SidenavCollapse from "examples/Sidenav/SidenavCollapse";
-import SidenavList from "examples/Sidenav/SidenavList";
-import SidenavItem from "examples/Sidenav/SidenavItem";
+import SidenavCollapse from "@/examples/Sidenav/SidenavCollapse";
+import SidenavList from "@/examples/Sidenav/SidenavList";
+import SidenavItem from "@/examples/Sidenav/SidenavItem";
 
 // Custom styles for the Sidenav
-import SidenavRoot from "examples/Sidenav/SidenavRoot";
-import sidenavLogoLabel from "examples/Sidenav/styles/sidenav";
+import SidenavRoot from "@/examples/Sidenav/SidenavRoot";
+import sidenavLogoLabel from "@/examples/Sidenav/styles/sidenav";
 
-import { setMiniSidenav, setTransparentSidenav, setWhiteSidenav, useMaterialUIController } from "context";
+import { setMiniSidenav, setTransparentSidenav, setWhiteSidenav, useMaterialUIController } from "@/context";
 
 // Declaring props types for Sidenav
 interface Props {

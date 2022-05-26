@@ -7,11 +7,11 @@ import Divider from "@mui/material/Divider";
 import Tooltip from "@mui/material/Tooltip";
 import Icon from "@mui/material/Icon";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 
-import colors from "assets/theme/base/colors";
-import typography from "assets/theme/base/typography";
+import colors from "@/assets/theme/base/colors";
+import typography from "@/assets/theme/base/typography";
 
 // Declaring props types for ProfileInfoCard
 interface Props {

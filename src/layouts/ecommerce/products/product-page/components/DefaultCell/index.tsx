@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-import MDTypography from "components/MDTypography";
+import MDTypography from "@/components/MDTypography";
 
 function DefaultCell({ children }: { children: ReactNode }): JSX.Element {
   return (

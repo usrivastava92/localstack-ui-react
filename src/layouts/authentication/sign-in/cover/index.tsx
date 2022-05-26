@@ -7,16 +7,16 @@ import { Link } from "react-router-dom";
 import Card from "@mui/material/Card";
 import Switch from "@mui/material/Switch";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDInput from "components/MDInput";
-import MDButton from "components/MDButton";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
+import MDInput from "@/components/MDInput";
+import MDButton from "@/components/MDButton";
 
 // Authentication layout components
-import CoverLayout from "layouts/authentication/components/CoverLayout";
+import CoverLayout from "@/layouts/authentication/components/CoverLayout";
 
 // Images
-import bgImage from "assets/images/bg-sign-in-cover.jpeg";
+import bgImage from "@/assets/images/bg-sign-in-cover.jpeg";
 
 function Cover(): JSX.Element {
   const [rememberMe, setRememberMe] = useState<boolean>(true);

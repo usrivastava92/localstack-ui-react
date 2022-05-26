@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDDropzone from "components/MDDropzone";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
+import MDDropzone from "@/components/MDDropzone";
 
 function Media(): JSX.Element {
   return (

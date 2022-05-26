@@ -1,4 +1,4 @@
-import MDTypography from "components/MDTypography";
+import MDTypography from "@/components/MDTypography";
 
 // Declaring props types for DefaultCell
 interface Props {

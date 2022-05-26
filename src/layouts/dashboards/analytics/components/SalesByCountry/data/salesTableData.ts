@@ -1,8 +1,8 @@
 // Countries flags
-import US from "assets/images/icons/flags/US.png";
-import DE from "assets/images/icons/flags/DE.png";
-import GB from "assets/images/icons/flags/GB.png";
-import BR from "assets/images/icons/flags/BR.png";
+import US from "@/assets/images/icons/flags/US.png";
+import DE from "@/assets/images/icons/flags/DE.png";
+import GB from "@/assets/images/icons/flags/GB.png";
+import BR from "@/assets/images/icons/flags/BR.png";
 
 const salesTableData = [
   {
