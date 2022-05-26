@@ -104,22 +104,24 @@ function Content(): JSX.Element {
   useEffect(listDomains, []);
 
   function listIndexes(domainName: string) {
-    client.send(new DescribeElasticsearchDomainCommand({DomainName: domainName}))
-      .then(output => {
-        if (output && output.DomainStatus && output.DomainStatus.Endpoint) {
-          if (domainName !== selectedDomain) {
-            setSelectedDomain(domainName);
-            const newEsClient = new ElasticSearchClientImpl({
-              endpoint: createEndpoint(output.DomainStatus)
-            });
-            setEsClient(newEsClient);
-            newEsClient.cat.indices()
-              .then(response => setTableData(getTableData(response)))
-              .catch(error => console.error(error));
+    if (domainName) {
+      client.send(new DescribeElasticsearchDomainCommand({DomainName: domainName}))
+        .then(output => {
+          if (output && output.DomainStatus && output.DomainStatus.Endpoint) {
+            if (domainName !== selectedDomain) {
+              setSelectedDomain(domainName);
+              const newEsClient = new ElasticSearchClientImpl({
+                endpoint: createEndpoint(output.DomainStatus)
+              });
+              setEsClient(newEsClient);
+              newEsClient.cat.indices()
+                .then(response => setTableData(getTableData(response)))
+                .catch(error => console.error(error));
+            }
           }
-        }
-      })
-      .catch(error => console.error(error));
+        })
+        .catch(error => console.error(error));
+    }
   }
 
   return (

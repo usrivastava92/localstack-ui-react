@@ -131,7 +131,7 @@ function Content(): JSX.Element {
   useEffect(listQueues, []);
 
   function getQueueAttributes(queue: string) {
-    if (queue && queue !== selectedQueue) {
+    if (queue) {
       setSelectedQueue(queue)
       client.send(new GetQueueAttributesCommand({QueueUrl: queueMap.get(queue), AttributeNames: attributesToFetch}))
         .then(output => setTableData(getTableData(output)))

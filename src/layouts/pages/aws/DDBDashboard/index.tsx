@@ -88,10 +88,12 @@ function Content(): JSX.Element {
   useEffect(listTables, []);
 
   function scanTable(tableName: string) {
-    setSelectedTable(tableName);
-    client.scan({TableName: tableName})
-      .then(output => setTableData(getTableData(output)))
-      .catch(error => console.error(error));
+    if (tableName) {
+      setSelectedTable(tableName);
+      client.scan({TableName: tableName})
+        .then(output => setTableData(getTableData(output)))
+        .catch(error => console.error(error));
+    }
   }
 
   return (
