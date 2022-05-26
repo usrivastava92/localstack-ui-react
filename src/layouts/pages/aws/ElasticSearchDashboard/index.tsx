@@ -1,18 +1,18 @@
-import {useContext, useEffect, useState} from "react";
+import { useContext, useEffect, useState } from "react";
 import AwsDashboardLayout from "../AwsDashboardLayout";
-import {Card} from "@mui/material";
+import { Card } from "@mui/material";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
-import {AWSProfile, nullAwsProfile} from "../types/awsTypes";
-import {AWSProfileContext} from "../../../../context";
-import {getClientConfig} from "../utils/awsUtils";
+import { AWSProfile, nullAwsProfile } from "../types/awsTypes";
+import { AWSProfileContext } from "../../../../context";
+import { getClientConfig } from "../utils/awsUtils";
 import {
   DescribeElasticsearchDomainCommand,
   ElasticsearchDomainStatus,
   ElasticsearchServiceClient,
   ListDomainNamesCommand
 } from "@aws-sdk/client-elasticsearch-service";
-import {ColumnDefinition, TableData} from "../types/tableTypes";
+import { ColumnDefinition, TableData } from "../types/tableTypes";
 import DefaultCell from "../../../ecommerce/orders/order-list/components/DefaultCell";
 import Autocomplete from "@mui/material/Autocomplete";
 import MDInput from "../../../../components/MDInput";
@@ -25,15 +25,17 @@ import {
 import MDButton from "../../../../components/MDButton";
 import Icon from "@mui/material/Icon";
 import Tooltip from "@mui/material/Tooltip";
+import { defaultSBProps, getErrorSBProps } from "../utils/notificationUtils";
+import MDSnackbar, { SBProps } from "../../../../components/MDSnackbar";
 
 const esColumnDefinitions: ColumnDefinition[] = [
-  {Header: "Index", accessor: "index", Cell: ({value}: { value: string }) => <DefaultCell value={value}/>},
-  {Header: "Health", accessor: "health", Cell: ({value}: { value: string }) => <DefaultCell value={value}/>},
-  {Header: "Status", accessor: "status", Cell: ({value}: { value: string }) => <DefaultCell value={value}/>},
+  { Header: "Index", accessor: "index", Cell: ({ value }: { value: string }) => <DefaultCell value={value} /> },
+  { Header: "Health", accessor: "health", Cell: ({ value }: { value: string }) => <DefaultCell value={value} /> },
+  { Header: "Status", accessor: "status", Cell: ({ value }: { value: string }) => <DefaultCell value={value} /> },
   {
     Header: "Docs Count",
     accessor: "docsCount",
-    Cell: ({value}: { value: string }) => <DefaultCell value={value}/>
+    Cell: ({ value }: { value: string }) => <DefaultCell value={value} />
   },
   {
     Header: "Docs Deleted",
@@ -67,7 +69,7 @@ function getRows(catIndicesResponse: CatIndicesResponse): EsRowDefinitions[] {
 
 function getTableData(response: CatIndicesResponse): TableData {
   if (!response) {
-    return {columns: esColumnDefinitions, rows: []};
+    return { columns: esColumnDefinitions, rows: [] };
   }
   return {
     columns: esColumnDefinitions,
@@ -87,6 +89,7 @@ function Content(): JSX.Element {
 
   const [domains, setDomains] = useState<string[]>([]);
   const [selectedDomain, setSelectedDomain] = useState<string>();
+  const [sbProps, setSBProps] = useState<SBProps>(defaultSBProps);
   const [esClient, setEsClient] = useState<ElasticSearchClient>();
   const [tableData, setTableData] = useState<TableData>(getTableData(undefined));
 
@@ -97,7 +100,16 @@ function Content(): JSX.Element {
           if (output && output.DomainNames && output.DomainNames.length > 0) {
             setDomains(output.DomainNames.map<string>(domainInfo => domainInfo.DomainName));
           }
-        }).catch(error => console.error(error));
+        }).catch(error => {
+        console.error(error);
+        setSBProps(getErrorSBProps({
+          title: "AWS Error",
+          content: String(error),
+          open: true,
+          onClose: () => setSBProps(defaultSBProps),
+          close: () => setSBProps(defaultSBProps)
+        }));
+      });
     }
   }
 
@@ -105,7 +117,7 @@ function Content(): JSX.Element {
 
   function listIndexes(domainName: string) {
     if (domainName) {
-      client.send(new DescribeElasticsearchDomainCommand({DomainName: domainName}))
+      client.send(new DescribeElasticsearchDomainCommand({ DomainName: domainName }))
         .then(output => {
           if (output && output.DomainStatus && output.DomainStatus.Endpoint) {
             if (domainName !== selectedDomain) {
@@ -120,7 +132,16 @@ function Content(): JSX.Element {
             }
           }
         })
-        .catch(error => console.error(error));
+        .catch(error => {
+          console.error(error);
+          setSBProps(getErrorSBProps({
+            title: "AWS Error",
+            content: String(error),
+            open: true,
+            onClose: () => setSBProps(defaultSBProps),
+            close: () => setSBProps(defaultSBProps)
+          }));
+        });
     }
   }
 
@@ -150,7 +171,7 @@ function Content(): JSX.Element {
             </MDBox>
             <MDBox display="flex" justifyContent="space-between">
               <Tooltip title="Reload Data" placement="left">
-                <MDButton sx={{mr: 3}} variant="gradient" color="info" onClick={() => {
+                <MDButton sx={{ mr: 3 }} variant="gradient" color="info" onClick={() => {
                   listDomains();
                   listIndexes(selectedDomain);
                 }}>
@@ -159,17 +180,28 @@ function Content(): JSX.Element {
               </Tooltip>
               <Autocomplete
                 disableClearable
-                sx={{width: "12rem", borderRadius: 3}}
+                sx={{ width: "12rem", borderRadius: 3 }}
                 value={selectedDomain ? selectedDomain : "No Domain Selected"}
                 options={domains}
                 onChange={(e, v) => listIndexes(v as string)}
-                renderInput={(params) => <MDInput {...params} label="Domain" fullWidth/>}
+                renderInput={(params) => <MDInput {...params} label="Domain" fullWidth />}
               />
             </MDBox>
           </MDBox>
-          <DataTable table={tableData} canSearch={true} stickyHeader={true}/>
+          <DataTable table={tableData} canSearch={true} stickyHeader={true} />
         </Card>
       </MDBox>
+      <MDSnackbar
+        color={sbProps.color}
+        icon={sbProps.icon}
+        title={sbProps.title}
+        content={sbProps.content}
+        dateTime={sbProps.dateTime}
+        open={sbProps.open}
+        onClose={sbProps.onClose}
+        close={sbProps.close}
+        bgWhite
+      />
     </div>
   );
 }
