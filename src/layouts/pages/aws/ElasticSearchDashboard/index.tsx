@@ -11,6 +11,7 @@ import { AWSProfileContext } from "../../../../context";
 import { getClientConfig } from "../utils/awsUtils";
 import {
   DescribeElasticsearchDomainCommand,
+  ElasticsearchDomainStatus,
   ElasticsearchServiceClient,
   ListDomainNamesCommand
 } from "@aws-sdk/client-elasticsearch-service";
@@ -63,6 +64,11 @@ function getTableData(response: CatIndicesResponse): TableData {
   };
 }
 
+function createEndpoint(esDomainStatus: ElasticsearchDomainStatus): string {
+  const endpointScheme = esDomainStatus.DomainEndpointOptions.EnforceHTTPS ? "https://" : "http://";
+  return `${endpointScheme}${esDomainStatus.Endpoint}`;
+}
+
 function Content(): JSX.Element {
   const awsProfile = useContext<AWSProfile>(AWSProfileContext);
 
@@ -90,10 +96,11 @@ function Content(): JSX.Element {
         if (output && output.DomainStatus && output.DomainStatus.Endpoint) {
           if (domainName !== selectedDomain) {
             setSelectedDomain(domainName);
-            setEsClient(new ElasticSearchClientImpl({
-              endpoint: output.DomainStatus.Endpoint
-            }));
-            esClient.cat.indices()
+            const newEsClient = new ElasticSearchClientImpl({
+              endpoint: createEndpoint(output.DomainStatus)
+            });
+            setEsClient(newEsClient);
+            newEsClient.cat.indices()
               .then(response => setTableData(getTableData(response)))
               .catch(error => console.error(error))
               .finally(() => console.log("done"));
