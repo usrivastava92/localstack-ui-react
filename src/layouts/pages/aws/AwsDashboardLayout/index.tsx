@@ -217,7 +217,13 @@ function getDefaultAWSProfile(awsProfiles: AWSProfile[]): AWSProfile {
   return defaultProfile ? defaultProfile : nullAwsProfile;
 }
 
-function AwsDashboardLayout({ children }: { children: ReactNode }): JSX.Element {
+interface AwsDashboardProps {
+  children: ReactNode,
+  title?: string,
+  subTitle?: string
+}
+
+function AwsDashboardLayout({ children, title, subTitle }: AwsDashboardProps): JSX.Element {
 
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [showError, setShowError] = useState<boolean>(false);
@@ -292,11 +298,11 @@ function AwsDashboardLayout({ children }: { children: ReactNode }): JSX.Element 
         <Grid container alignItems="center">
           <Grid item xs={12} md={7}>
             <MDBox mb={1}>
-              <MDTypography variant="h5">Dynamo DB</MDTypography>
+              <MDTypography variant="h5">{title}</MDTypography>
             </MDBox>
             <MDBox mb={2}>
               <MDTypography variant="body2" color="text">
-                Create/Choose a profile and then select a table to view your data
+                {subTitle}
               </MDTypography>
             </MDBox>
           </Grid>

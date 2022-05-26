@@ -35,6 +35,7 @@ import { faAws } from "@fortawesome/free-brands-svg-icons";
 import AwsHome from "./layouts/pages/aws/AwsHome";
 import DDBDashboard from "./layouts/pages/aws/DDBDashboard";
 import SQSDashboard from "./layouts/pages/aws/SQSDashboard";
+import ElasticSearchDashboard from "./layouts/pages/aws/ElasticSearchDashboard";
 
 const routes = [
   {
@@ -48,6 +49,12 @@ const routes = [
         key: "DDBDashboard",
         route: "/pages/aws/dynamodb",
         component: <DDBDashboard />
+      },
+      {
+        name: "Elastic Search",
+        key: "es",
+        route: "/pages/aws/es",
+        component: <ElasticSearchDashboard />
       },
       {
         name: "SQS",
