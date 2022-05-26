@@ -7,10 +7,9 @@ import Icon from "@mui/material/Icon";
 import MDButton from "../../../../components/MDButton";
 import { ReactNode, useState } from "react";
 import { Modal } from "@mui/material";
-import { Form, Formik, FormikErrors, FormikTouched, FormikValues } from "formik";
+import { Form, Formik } from "formik";
 import Card from "@mui/material/Card";
 import FormField, { FormSelect, FormSwitch } from "../../users/new-user/components/FormField";
-import * as Yup from "yup";
 import { FormikHelpers } from "formik/dist/types";
 import Autocomplete from "@mui/material/Autocomplete";
 import { awsProfileStorageService } from "../../../../services/StorageService";
@@ -19,87 +18,9 @@ import { AWSProfileContext } from "context";
 import MDInput from "../../../../components/MDInput";
 import MDSnackbar, { SBProps } from "../../../../components/MDSnackbar";
 import { defaultSBProps, getSuccessSBProps } from "../utils/notificationUtils";
-
-interface FormFieldSchema {
-  placeholder?: string;
-  name: string,
-  label: string,
-  type: string,
-  errorMsg: string
-}
-
-interface FormSchema {
-  formId: string,
-  formFields: {
-    [key: string]: FormFieldSchema
-  }
-}
-
-interface FormDataSchema {
-  values: FormikValues
-  touched: FormikTouched<FormikValues>,
-  formFields: {
-    [key: string]: FormFieldSchema
-  },
-  errors: FormikErrors<FormikValues>
-}
-
-interface ValuesSchema {
-  [key: string]: any;
-}
-
-const addProfileForm: FormSchema = {
-  formId: "add-aws-profile",
-  formFields: {
-    displayName: {
-      name: "displayName",
-      label: "Display Name *",
-      type: "text",
-      errorMsg: "Display Name is required."
-    },
-    accessKey: {
-      name: "accessKey",
-      label: "Access Key *",
-      type: "text",
-      errorMsg: "Access Key is required."
-    },
-    secretKey: {
-      name: "secretKey",
-      label: "Secret Key *",
-      type: "text",
-      errorMsg: "Secret Key is required.",
-      placeholder: ""
-    },
-    region: {
-      name: "region",
-      label: "Region *",
-      type: "text",
-      errorMsg: "Invalid AWS Region",
-      placeholder: ""
-    },
-    sessionToken: {
-      name: "sessionToken",
-      label: "Session Token",
-      type: "text",
-      errorMsg: "",
-      placeholder: "Session Token (Optional)"
-    },
-    endpoint: {
-      name: "endpoint",
-      label: "Endpoint",
-      type: "text",
-      errorMsg: "",
-      placeholder: "Endpoint (Optional)"
-    },
-    isDefault: {
-      name: "isDefault",
-      label: "Use this as default ",
-      type: "text",
-      errorMsg: "Default option can only be true/false",
-      placeholder: ""
-    }
-  }
-};
+import { FormDataSchema, ValuesSchema } from "../types/formTypes";
+import { addProfileForm } from "./forms";
+import { addProfileFormValidation } from "./formValidations";
 
 const { formFields: { displayName, accessKey, secretKey, sessionToken, endpoint, region, isDefault } } = addProfileForm;
 
@@ -114,15 +35,8 @@ const initialValues: ValuesSchema = {
 };
 
 const mutableListAwsRegions = [...awsRegions];
-const addProfileFormValidation = Yup.object().shape({
-  [displayName.name]: Yup.string().trim().required(displayName.errorMsg),
-  [accessKey.name]: Yup.string().trim().required(accessKey.errorMsg),
-  [secretKey.name]: Yup.string().trim().required(secretKey.errorMsg),
-  [region.name]: Yup.string().trim().required(region.errorMsg).oneOf(mutableListAwsRegions, region.errorMsg),
-  [isDefault.name]: Yup.string().trim().required(isDefault.errorMsg).oneOf(["true", "false"], isDefault.errorMsg)
-});
 
-function AddAwsProfileForm(formData: FormDataSchema): JSX.Element {
+function AddAwsProfileForm({ formData }: { formData: FormDataSchema }): JSX.Element {
 
   const { formFields, values, errors, touched } = formData;
   const { displayName, accessKey, secretKey, sessionToken, endpoint, region, isDefault } = formFields;
@@ -275,10 +189,13 @@ function AwsDashboardLayout({ children, title, subTitle }: AwsDashboardProps): J
                         <MDBox p={3}>
                           <MDBox>
                             <AddAwsProfileForm
-                              formFields={addProfileForm.formFields}
-                              errors={errors}
-                              touched={touched}
-                              values={values} />
+                              formData={{
+                                formFields: addProfileForm.formFields,
+                                errors: errors,
+                                touched: touched,
+                                values: values
+                              }}
+                            />
                             <MDBox mt={2} width="100%" display="flex" justifyContent="space-between">
                               <FormSwitch
                                 type={isDefault.type}

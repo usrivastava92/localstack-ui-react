@@ -11,9 +11,8 @@ import Timeline from "layouts/pages/projects/timeline";
 import PricingPage from "layouts/pages/pricing-page";
 import Widgets from "layouts/pages/widgets";
 import Charts from "layouts/pages/charts";
-*/
 import Notifications from "layouts/pages/notifications";
-/*import Kanban from "layouts/applications/kanban";
+import Kanban from "layouts/applications/kanban";
 import Wizard from "layouts/applications/wizard";
 import DataTables from "layouts/applications/data-tables";
 import Calendar from "layouts/applications/calendar";
@@ -97,7 +96,7 @@ const routes = [
       }
     ]
   },
-  { type: "title", title: "Pages", key: "title-pages" }*/,
+  { type: "title", title: "Pages", key: "title-pages" },
   {
     type: "collapse",
     name: "Pages",
@@ -178,14 +177,14 @@ const routes = [
       },
       { name: "Widgets", key: "widgets", route: "/pages/widgets", component: <Widgets /> },
       { name: "Charts", key: "charts", route: "/pages/charts", component: <Charts /> },
-      */{
+      {
         name: "Notfications",
         key: "notifications",
         route: "/pages/notifications",
         component: <Notifications />
       }
     ]
-  }/*,
+  },
   {
     type: "collapse",
     name: "Applications",
