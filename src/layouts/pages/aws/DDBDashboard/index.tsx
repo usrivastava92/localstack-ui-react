@@ -1,8 +1,8 @@
-import { useContext, useEffect, useState } from "react";
-import { DynamoDB, ScanCommandOutput } from "@aws-sdk/client-dynamodb";
+import {useContext, useEffect, useState} from "react";
+import {DynamoDB, ScanCommandOutput} from "@aws-sdk/client-dynamodb";
 import AwsDashboardLayout from "../AwsDashboardLayout";
-import { AWSProfile, nullAwsProfile } from "../types/awsTypes";
-import { AWSProfileContext } from "context";
+import {AWSProfile, nullAwsProfile} from "../types/awsTypes";
+import {AWSProfileContext} from "context";
 // Data
 import MDTypography from "../../../../components/MDTypography";
 import MDBox from "../../../../components/MDBox";
@@ -11,10 +11,13 @@ import DataTable from "../../../../examples/Tables/DataTable";
 import Autocomplete from "@mui/material/Autocomplete";
 import MDInput from "../../../../components/MDInput";
 import DefaultCell from "../../../ecommerce/orders/order-list/components/DefaultCell";
-import { AttributeValue } from "@aws-sdk/client-dynamodb/dist-types/models/models_0";
-import { unmarshall } from "@aws-sdk/util-dynamodb";
-import { getClientConfig } from "../utils/awsUtils";
-import { ColumnDefinition, TableData } from "../types/tableTypes";
+import {AttributeValue} from "@aws-sdk/client-dynamodb/dist-types/models/models_0";
+import {unmarshall} from "@aws-sdk/util-dynamodb";
+import {getClientConfig} from "../utils/awsUtils";
+import {ColumnDefinition, TableData} from "../types/tableTypes";
+import MDButton from "../../../../components/MDButton";
+import Icon from "@mui/material/Icon";
+import Tooltip from "@mui/material/Tooltip";
 
 function getStringAttributeValue(value: any): string {
   if (!value) {
@@ -71,20 +74,22 @@ function Content(): JSX.Element {
   const [selectedTable, setSelectedTable] = useState<string>();
   const [tableData, setTableData] = useState<TableData>(getTableData(undefined));
 
-  useEffect(() => {
+  function listTables() : void {
     if (awsProfile !== nullAwsProfile) {
-      client.listTables({ Limit: 10 })
+      client.listTables({Limit: 10})
         .then(output => {
           if (output && output.TableNames && output.TableNames.length > 0) {
             setTables(output.TableNames);
           }
         }).catch(error => console.error(error));
     }
-  }, []);
+  }
+
+  useEffect(listTables, []);
 
   function scanTable(tableName: string) {
     setSelectedTable(tableName);
-    client.scan({ TableName: tableName })
+    client.scan({TableName: tableName})
       .then(output => setTableData(getTableData(output)))
       .catch(error => console.error(error));
   }
@@ -113,16 +118,26 @@ function Content(): JSX.Element {
                 }
               </MDTypography>
             </MDBox>
-            <Autocomplete
-              disableClearable
-              sx={{ width: "12rem", borderRadius: 3 }}
-              value={selectedTable ? selectedTable : "No table Selected"}
-              options={tables}
-              onChange={(e, v) => scanTable(v as string)}
-              renderInput={(params) => <MDInput {...params} label="Table" fullWidth />}
-            />
+            <MDBox display="flex" justifyContent="space-between">
+              <Tooltip title="Reload Data" placement="left">
+                <MDButton sx={{mr: 3}} variant="gradient" color="info" onClick={() => {
+                  listTables();
+                  scanTable(selectedTable);
+                }}>
+                  <Icon fontSize={"large"}>cached</Icon>
+                </MDButton>
+              </Tooltip>
+              <Autocomplete
+                disableClearable
+                sx={{width: "12rem", borderRadius: 3}}
+                value={selectedTable ? selectedTable : "No table Selected"}
+                options={tables}
+                onChange={(e, v) => scanTable(v as string)}
+                renderInput={(params) => <MDInput {...params} label="Table" fullWidth/>}
+              />
+            </MDBox>
           </MDBox>
-          <DataTable table={tableData} canSearch={true} stickyHeader={true} />
+          <DataTable table={tableData} canSearch={true} stickyHeader={true}/>
         </Card>
       </MDBox>
     </div>

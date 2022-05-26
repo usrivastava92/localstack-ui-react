@@ -19,6 +19,10 @@ import MDBox from "../../../../components/MDBox";
 import MDTypography from "../../../../components/MDTypography";
 import Autocomplete from "@mui/material/Autocomplete";
 import MDInput from "../../../../components/MDInput";
+import Grid from "@mui/material/Grid";
+import MDButton from "../../../../components/MDButton";
+import Icon from "@mui/material/Icon";
+import Tooltip from "@mui/material/Tooltip";
 
 const sqsColumnDefinitions: ColumnDefinition[] = [
   {accessor: "name", Header: "Queue Name", Cell: ({value}) => <DefaultCell value={value}/>},
@@ -110,7 +114,7 @@ function Content(): JSX.Element {
   const [selectedQueue, setSelectedQueue] = useState<string>();
   const [tableData, setTableData] = useState<TableData>(getTableData(undefined));
 
-  useEffect(() => {
+  function listQueues() : void {
     if (awsProfile !== nullAwsProfile) {
       client.send(new ListQueuesCommand({}))
         .then(output => {
@@ -122,7 +126,9 @@ function Content(): JSX.Element {
         })
         .catch(error => console.error(error));
     }
-  }, []);
+  }
+
+  useEffect(listQueues, []);
 
   function getQueueAttributes(queue: string) {
     if (queue && queue !== selectedQueue) {
@@ -157,16 +163,56 @@ function Content(): JSX.Element {
                 } queue
               </MDTypography>
             </MDBox>
-            <Autocomplete
-              disableClearable
-              sx={{width: "12rem", borderRadius: 3}}
-              value={selectedQueue ? selectedQueue : "No Queue Selected"}
-              options={Array.from(queueMap.keys())}
-              onChange={(e, v) => getQueueAttributes(v as string)}
-              renderInput={(params) => <MDInput {...params} label="Queue" fullWidth/>}
-            />
+            <MDBox display="flex" justifyContent="space-between">
+              <Tooltip title="Reload Data" placement="left">
+                <MDButton sx={{mr: 3}} variant="gradient" color="info" onClick={() => {
+                  listQueues();
+                  getQueueAttributes(selectedQueue);
+                }}>
+                  <Icon fontSize={"large"}>cached</Icon>
+                </MDButton>
+              </Tooltip>
+              <Autocomplete
+                disableClearable
+                sx={{width: "12rem", borderRadius: 3}}
+                value={selectedQueue ? selectedQueue : "No Queue Selected"}
+                options={Array.from(queueMap.keys())}
+                onChange={(e, v) => getQueueAttributes(v as string)}
+                renderInput={(params) => <MDInput {...params} label="Queue" fullWidth/>}
+              />
+            </MDBox>
           </MDBox>
           <DataTable table={tableData} canSearch={true} stickyHeader={true}/>
+          <MDBox p={3} lineHeight={0}>
+            <MDTypography variant="h5">Message Operations</MDTypography>
+            <MDTypography variant="button" color="text">
+              You can perform CRUD operations on the queue using below actions
+            </MDTypography>
+          </MDBox>
+          <MDBox p={3}>
+            <Grid container spacing={3}>
+              <Grid item md={3}/>
+              <Grid item xs={12} md={2}>
+                <MDButton variant="gradient" color="success" onClick={() => {
+                }} fullWidth disabled>
+                  Receive <br/>(Dev in-progress)
+                </MDButton>
+              </Grid>
+              <Grid item xs={12} md={2}>
+                <MDButton variant="gradient" color="info" onClick={() => {
+                }} fullWidth disabled>
+                  Send <br/>(Dev in-progress)
+                </MDButton>
+              </Grid>
+              <Grid item xs={12} md={2}>
+                <MDButton variant="gradient" color="error" onClick={() => {
+                }} fullWidth disabled>
+                  Delete <br/>(Dev in-progress)
+                </MDButton>
+              </Grid>
+              <Grid item md={3}/>
+            </Grid>
+          </MDBox>
         </Card>
       </MDBox>
     </div>

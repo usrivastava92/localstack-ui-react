@@ -5,17 +5,17 @@ import DashboardLayout from "../../../../examples/LayoutContainers/DashboardLayo
 import MDTypography from "../../../../components/MDTypography";
 import Icon from "@mui/material/Icon";
 import MDButton from "../../../../components/MDButton";
-import { ReactNode, useState } from "react";
-import { Modal } from "@mui/material";
-import { Form, Formik, FormikErrors, FormikTouched, FormikValues } from "formik";
+import {ReactNode, useState} from "react";
+import {Modal} from "@mui/material";
+import {Form, Formik, FormikErrors, FormikTouched, FormikValues} from "formik";
 import Card from "@mui/material/Card";
-import FormField, { FormSelect, FormSwitch } from "../../users/new-user/components/FormField";
+import FormField, {FormSelect, FormSwitch} from "../../users/new-user/components/FormField";
 import * as Yup from "yup";
-import { FormikHelpers } from "formik/dist/types";
+import {FormikHelpers} from "formik/dist/types";
 import Autocomplete from "@mui/material/Autocomplete";
-import { awsProfileStorageService } from "../../../../services/StorageService";
-import { AWSProfile, awsRegions, nullAwsProfile } from "../types/awsTypes";
-import { AWSProfileContext } from "context";
+import {awsProfileStorageService} from "../../../../services/StorageService";
+import {AWSProfile, awsRegions, nullAwsProfile} from "../types/awsTypes";
+import {AWSProfileContext} from "context";
 import MDInput from "../../../../components/MDInput";
 
 interface FormFieldSchema {
@@ -306,14 +306,14 @@ function AwsDashboardLayout({ children, title, subTitle }: AwsDashboardProps): J
               </MDTypography>
             </MDBox>
           </Grid>
-          <Grid item xs={12} md={5} sx={{ textAlign: "right" }} display="flex" justifyContent="right">
+          <Grid item xs={12} md={5} sx={{textAlign: "right"}} display="flex" justifyContent="right">
             <Autocomplete
               disableClearable
-              sx={{ mr: 2, width: "12rem", boxShadow: 1, borderRadius: 3 }}
+              sx={{mr: 2, width: "12rem", boxShadow: 1, borderRadius: 3}}
               value={activeAwsProfile.displayName}
               onChange={(event, value) => handleProfileChange(value as string)}
               options={awsProfiles.map(profile => profile.displayName)}
-              renderInput={(params) => <MDInput {...params} label="Active Profile" fullWidth />}
+              renderInput={(params) => <MDInput {...params} label="Active Profile" fullWidth/>}
             />
             <MDButton variant="gradient" color="info" onClick={handleAddNewProfile}>
               <Icon>add</Icon>&nbsp; Add New
