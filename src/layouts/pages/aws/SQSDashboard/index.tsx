@@ -193,7 +193,7 @@ function Content(): JSX.Element {
             <Grid container spacing={3}>
               <Grid item md={3}/>
               <Grid item xs={12} md={2}>
-                <MDButton variant="gradient" color="light" onClick={() => {
+                <MDButton variant="gradient" color="secondary" onClick={() => {
                 }} fullWidth disabled>
                   Receive <br/>(Dev in-progress)
                 </MDButton>
