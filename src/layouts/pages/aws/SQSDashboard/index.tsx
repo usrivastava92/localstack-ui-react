@@ -148,7 +148,7 @@ function Content(): JSX.Element {
 
             // setTableData(getTableData(rows));
           }
-        }).catch(error => console.log(error));
+        }).catch(error => console.error(error));
     }
   }, []);
 
@@ -161,7 +161,7 @@ function Content(): JSX.Element {
 
 function SQSDashboard(): JSX.Element {
   return (
-    <AwsDashboardLayout>
+    <AwsDashboardLayout title="SQS Dashboard" subTitle="Create/Choose a profile">
       <Content />
     </AwsDashboardLayout>
   );

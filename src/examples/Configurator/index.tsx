@@ -11,7 +11,6 @@ import Icon from "@mui/material/Icon";
 import { Theme } from "@mui/material/styles";
 
 // @mui icons
-
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDButton from "components/MDButton";
