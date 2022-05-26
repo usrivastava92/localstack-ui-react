@@ -1,35 +1,46 @@
 // @mui material components
 // Settings page components
 
-import {useContext, useEffect, useState} from "react";
+import { useContext, useEffect, useState } from "react";
 
-import {ListQueuesCommand, SQSClient} from "@aws-sdk/client-sqs";
+import { ListQueuesCommand, SQSClient } from "@aws-sdk/client-sqs";
 import AwsDashboardLayout from "../AwsDashboardLayout";
-import {Card, Grid, Icon, Link, TableBody, TableCell, TableRow} from "@mui/material";
+import { Card, Grid, Icon, Link, TableBody, TableCell, TableRow } from "@mui/material";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
-import {AWSProfile, nullAwsProfile} from "../types/awsTypes";
-import {AWSProfileContext} from "../../../../context";
-import {getClientConfig} from "../utils/awsUtils";
+import { AWSProfile, nullAwsProfile } from "../types/awsTypes";
+import { AWSProfileContext } from "../../../../context";
+import { getClientConfig } from "../utils/awsUtils";
 
+
+function getQueueName(queueUrl: string): string {
+  if (!queueUrl) {
+    return "";
+  }
+  const startIndex = queueUrl.lastIndexOf("/");
+  return queueUrl.substring(startIndex + 1);
+}
 
 function Content(): JSX.Element {
   const awsProfile = useContext<AWSProfile>(AWSProfileContext);
 
   const client = new SQSClient(getClientConfig(awsProfile));
 
-  const [queues, setQueues] = useState([]);
+  const [queues, setQueues] = useState<string[]>([]);
 
   useEffect(() => {
     if (awsProfile !== nullAwsProfile) {
       client.send(new ListQueuesCommand({}))
-        .then(output => setQueues(output?.QueueUrls))
-        .catch(error => console.log(error));
+        .then(output => {
+          if (output && output.QueueUrls && output.QueueUrls.length > 0) {
+            setQueues(output.QueueUrls.map(queueUrl => getQueueName(queueUrl)));
+          }
+        }).catch(error => console.log(error));
     }
   }, []);
 
   return (
-    <Card sx={{width: "100%"}}>
+    <Card sx={{ width: "100%" }}>
       <MDBox display="flex">
         <MDBox
           display="flex"
@@ -49,7 +60,7 @@ function Content(): JSX.Element {
             queue
           </Icon>
         </MDBox>
-        <MDTypography variant="h6" sx={{mt: 2, mb: 1, ml: 2}}>
+        <MDTypography variant="h6" sx={{ mt: 2, mb: 1, ml: 2 }}>
           SQS
         </MDTypography>
       </MDBox>
@@ -60,7 +71,7 @@ function Content(): JSX.Element {
               {queues.map((name) => (
                 <TableRow
                   key={name}
-                  sx={{'&:last-child td, &:last-child th': {border: 0}}}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
                     <Link href="#">{name}</Link>
@@ -78,7 +89,7 @@ function Content(): JSX.Element {
 function SQSDashboard(): JSX.Element {
   return (
     <AwsDashboardLayout>
-      <Content/>
+      <Content />
     </AwsDashboardLayout>
   );
 }

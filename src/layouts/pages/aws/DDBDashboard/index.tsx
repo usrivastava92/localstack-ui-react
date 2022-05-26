@@ -1,8 +1,8 @@
-import {useContext, useEffect, useState} from "react";
-import {DynamoDB, ScanCommandOutput} from "@aws-sdk/client-dynamodb";
+import { useContext, useEffect, useState } from "react";
+import { DynamoDB, ScanCommandOutput } from "@aws-sdk/client-dynamodb";
 import AwsDashboardLayout from "../AwsDashboardLayout";
-import {AWSProfile, nullAwsProfile} from "../types/awsTypes";
-import {AWSProfileContext} from "context";
+import { AWSProfile, nullAwsProfile } from "../types/awsTypes";
+import { AWSProfileContext } from "context";
 // Data
 import MDTypography from "../../../../components/MDTypography";
 import MDBox from "../../../../components/MDBox";
@@ -11,27 +11,27 @@ import DataTable from "../../../../examples/Tables/DataTable";
 import Autocomplete from "@mui/material/Autocomplete";
 import MDInput from "../../../../components/MDInput";
 import DefaultCell from "../../../ecommerce/orders/order-list/components/DefaultCell";
-import {AttributeValue} from "@aws-sdk/client-dynamodb/dist-types/models/models_0";
-import {unmarshall} from "@aws-sdk/util-dynamodb";
-import {getClientConfig} from "../utils/awsUtils";
+import { AttributeValue } from "@aws-sdk/client-dynamodb/dist-types/models/models_0";
+import { unmarshall } from "@aws-sdk/util-dynamodb";
+import { getClientConfig } from "../utils/awsUtils";
 
 interface ColumnDefinition {
   Header: string,
   accessor: string,
-  Cell: ({value}: { value: any }) => JSX.Element
+  Cell: ({ value }: { value: any }) => JSX.Element
 }
 
 function getStringAttributeValue(value: any): string {
   if (!value) {
-    return ""
+    return "";
   }
-  return JSON.stringify(value)
+  return JSON.stringify(value);
 }
 
 function getColumnDefinitions(items: { [key: string]: AttributeValue; }[]): ColumnDefinition[] {
   const columnDefinitions: ColumnDefinition[] = [];
   if (!items || items.length <= 0) {
-    return columnDefinitions
+    return columnDefinitions;
   }
   const columnsDefsAlreadyAdded = new Set<string>();
   items.forEach(item => {
@@ -40,19 +40,19 @@ function getColumnDefinitions(items: { [key: string]: AttributeValue; }[]): Colu
         columnDefinitions.push({
           Header: key,
           accessor: key,
-          Cell: (value) => <DefaultCell value={getStringAttributeValue(value.value)}/>
-        })
-        columnsDefsAlreadyAdded.add(key)
+          Cell: (value) => <DefaultCell value={getStringAttributeValue(value.value)} />
+        });
+        columnsDefsAlreadyAdded.add(key);
       }
-    })
-  })
+    });
+  });
   return columnDefinitions.sort((one, two) => (one.Header < two.Header ? -1 : 1));
 }
 
 function getRows(items: { [key: string]: AttributeValue; }[]): any[] {
   const rows: any[] = [];
   if (!items || items.length <= 0) {
-    return rows
+    return rows;
   }
   return items.map(item => unmarshall(item));
 }
@@ -64,12 +64,12 @@ interface TableData {
 
 function getTableData(scanOutput: ScanCommandOutput): TableData {
   if (!scanOutput) {
-    return {columns: [], rows: []}
+    return { columns: [], rows: [] };
   }
   return {
     columns: getColumnDefinitions(scanOutput.Items),
     rows: getRows(scanOutput.Items)
-  }
+  };
 }
 
 function Content(): JSX.Element {
@@ -83,22 +83,22 @@ function Content(): JSX.Element {
 
   useEffect(() => {
     if (awsProfile !== nullAwsProfile) {
-      client.listTables({Limit: 10})
+      client.listTables({ Limit: 10 })
         .then(output => setTables(output?.TableNames))
         .catch(error => console.log(error));
     }
   }, []);
 
   function scanTable(tableName: string) {
-    setSelectedTable(tableName)
-    client.scan({TableName: tableName})
+    setSelectedTable(tableName);
+    client.scan({ TableName: tableName })
       .then(output => setTableData(getTableData(output)))
       .catch(error => console.log(error));
   }
 
   return (
     <div>
-      <MDBox my={3} sx={{maxHeight: '50%'}}>
+      <MDBox my={3} sx={{ maxHeight: "50%" }}>
         <Card>
           <MDBox p={3} lineHeight={1} display="flex" justifyContent="space-between">
             <MDBox>
@@ -122,14 +122,14 @@ function Content(): JSX.Element {
             </MDBox>
             <Autocomplete
               disableClearable
-              sx={{width: '12rem', borderRadius: 3}}
+              sx={{ width: "12rem", borderRadius: 3 }}
               value={selectedTable ? selectedTable : "No table Selected"}
               options={tables}
               onChange={(e, v) => scanTable(v as string)}
-              renderInput={(params) => <MDInput {...params} label="Table" fullWidth/>}
+              renderInput={(params) => <MDInput {...params} label="Table" fullWidth />}
             />
           </MDBox>
-          <DataTable table={tableData} canSearch={true} stickyHeader={true}/>
+          <DataTable table={tableData} canSearch={true} stickyHeader={true} />
         </Card>
       </MDBox>
     </div>
@@ -139,7 +139,7 @@ function Content(): JSX.Element {
 function DDBDashboard(): JSX.Element {
   return (
     <AwsDashboardLayout>
-      <Content/>
+      <Content />
     </AwsDashboardLayout>
   );
 }

@@ -1,5 +1,5 @@
-import {AWSProfile} from "../types/awsTypes";
-import {DynamoDBClientConfig} from "@aws-sdk/client-dynamodb";
+import { AWSProfile } from "../types/awsTypes";
+import { DynamoDBClientConfig } from "@aws-sdk/client-dynamodb";
 
 export function getClientConfig(awsProfile: AWSProfile): DynamoDBClientConfig {
   return {
