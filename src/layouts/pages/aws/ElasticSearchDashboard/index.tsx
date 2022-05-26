@@ -1,21 +1,18 @@
-// @mui material components
-// Settings page components
-
-import { useContext, useEffect, useState } from "react";
+import {useContext, useEffect, useState} from "react";
 import AwsDashboardLayout from "../AwsDashboardLayout";
-import { Card } from "@mui/material";
+import {Card} from "@mui/material";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
-import { AWSProfile, nullAwsProfile } from "../types/awsTypes";
-import { AWSProfileContext } from "../../../../context";
-import { getClientConfig } from "../utils/awsUtils";
+import {AWSProfile, nullAwsProfile} from "../types/awsTypes";
+import {AWSProfileContext} from "../../../../context";
+import {getClientConfig} from "../utils/awsUtils";
 import {
   DescribeElasticsearchDomainCommand,
   ElasticsearchDomainStatus,
   ElasticsearchServiceClient,
   ListDomainNamesCommand
 } from "@aws-sdk/client-elasticsearch-service";
-import { ColumnDefinition, TableData } from "../types/tableTypes";
+import {ColumnDefinition, TableData} from "../types/tableTypes";
 import DefaultCell from "../../../ecommerce/orders/order-list/components/DefaultCell";
 import Autocomplete from "@mui/material/Autocomplete";
 import MDInput from "../../../../components/MDInput";
@@ -26,14 +23,14 @@ import {
   ElasticSearchClientImpl
 } from "../../../../services/ElasticSearchClient";
 
-const columnDefinitions: ColumnDefinition[] = [
-  { Header: "Index", accessor: "index", Cell: ({ value }: { value: string }) => <DefaultCell value={value} /> },
-  { Header: "Health", accessor: "health", Cell: ({ value }: { value: string }) => <DefaultCell value={value} /> },
-  { Header: "Status", accessor: "status", Cell: ({ value }: { value: string }) => <DefaultCell value={value} /> },
+const esColumnDefinitions: ColumnDefinition[] = [
+  {Header: "Index", accessor: "index", Cell: ({value}: { value: string }) => <DefaultCell value={value}/>},
+  {Header: "Health", accessor: "health", Cell: ({value}: { value: string }) => <DefaultCell value={value}/>},
+  {Header: "Status", accessor: "status", Cell: ({value}: { value: string }) => <DefaultCell value={value}/>},
   {
     Header: "Docs Count",
     accessor: "docsCount",
-    Cell: ({ value }: { value: string }) => <DefaultCell value={value} />
+    Cell: ({value}: { value: string }) => <DefaultCell value={value}/>
   },
   {
     Header: "Docs Deleted",
@@ -42,7 +39,7 @@ const columnDefinitions: ColumnDefinition[] = [
   }
 ];
 
-interface RowDefinitions {
+interface EsRowDefinitions {
   index: string,
   health: string,
   status: string,
@@ -50,7 +47,7 @@ interface RowDefinitions {
   docsDeleted: string
 }
 
-function getRows(catIndicesResponse: CatIndicesResponse): RowDefinitions[] {
+function getRows(catIndicesResponse: CatIndicesResponse): EsRowDefinitions[] {
   if (!catIndicesResponse) {
     return [];
   }
@@ -68,10 +65,10 @@ function getRows(catIndicesResponse: CatIndicesResponse): RowDefinitions[] {
 function getTableData(response: CatIndicesResponse): TableData {
   console.log("CatIndicesResponse : " + JSON.stringify(response));
   if (!response) {
-    return { columns: [], rows: [] };
+    return {columns: esColumnDefinitions, rows: []};
   }
   return {
-    columns: columnDefinitions,
+    columns: esColumnDefinitions,
     rows: getRows(response)
   };
 }

@@ -1,21 +1,50 @@
-// @mui material components
-// Settings page components
-
-import { useContext, useEffect, useState } from "react";
+import {useContext, useEffect, useState} from "react";
 
 import {
   GetQueueAttributesCommand,
+  GetQueueAttributesCommandOutput,
   ListQueuesCommand,
   SQSClient
 } from "@aws-sdk/client-sqs";
 import AwsDashboardLayout from "../AwsDashboardLayout";
-import { Card } from "@mui/material";
-import { AWSProfile, nullAwsProfile } from "../types/awsTypes";
-import { AWSProfileContext } from "../../../../context";
-import { getClientConfig } from "../utils/awsUtils";
+import {Card} from "@mui/material";
+import {AWSProfile, nullAwsProfile} from "../types/awsTypes";
+import {AWSProfileContext} from "../../../../context";
+import {getClientConfig} from "../utils/awsUtils";
 import DefaultCell from "../../../ecommerce/orders/order-list/components/DefaultCell";
 import DataTable from "../../../../examples/Tables/DataTable";
+import {ColumnDefinition, TableData} from "../types/tableTypes";
+import MDBox from "../../../../components/MDBox";
+import MDTypography from "../../../../components/MDTypography";
 
+const sqsColumnDefinitions: ColumnDefinition[] = [
+  {accessor: "name", Header: "Queue Name", Cell: ({value}) => <DefaultCell value={value}/>},
+  {
+    accessor: "ApproximateNumberOfMessages",
+    Header: "Total Messages",
+    Cell: ({value}) => <DefaultCell value={value}/>
+  },
+  {
+    accessor: "ApproximateNumberOfMessagesDelayed",
+    Header: "ApproximateNumberOfMessagesDelayed",
+    Cell: ({value}) => <DefaultCell value={value}/>
+  },
+  {
+    accessor: "ApproximateNumberOfMessagesNotVisible",
+    Header: "ApproximateNumberOfMessagesNotVisible",
+    Cell: ({value}) => <DefaultCell value={value}/>
+  },
+  {accessor: "RedrivePolicy", Header: "RedrivePolicy", Cell: ({value}) => <DefaultCell value={value}/>},
+  {accessor: "VisibilityTimeout", Header: "VisibilityTimeout", Cell: ({value}) => <DefaultCell value={value}/>}
+]
+
+const attributesToFetch = [
+  'ApproximateNumberOfMessages',
+  'ApproximateNumberOfMessagesDelayed',
+  'ApproximateNumberOfMessagesNotVisible',
+  'RedrivePolicy',
+  'VisibilityTimeout'
+];
 
 function getQueueName(queueUrl: string): string {
   if (!queueUrl) {
@@ -25,72 +54,32 @@ function getQueueName(queueUrl: string): string {
   return queueUrl.substring(startIndex + 1);
 }
 
-interface ColumnDefinition {
-  Header: string,
-  accessor: string,
-  Cell: ({ value }: { value: any }) => JSX.Element
-}
-
-function getColumnDefinitions(): ColumnDefinition[] {
-  const columnDefinitions: ColumnDefinition[] = [
-    { accessor: "name", Header: "Queue Name", Cell: ({ value }) => <DefaultCell value={value} /> },
-    {
-      accessor: "ApproximateNumberOfMessages",
-      Header: "Total Messages",
-      Cell: ({ value }) => <DefaultCell value={value} />
-    },
-    {
-      accessor: "ApproximateNumberOfMessagesDelayed",
-      Header: "ApproximateNumberOfMessagesDelayed",
-      Cell: ({ value }) => <DefaultCell value={value} />
-    },
-    {
-      accessor: "ApproximateNumberOfMessagesNotVisible",
-      Header: "ApproximateNumberOfMessagesNotVisible",
-      Cell: ({ value }) => <DefaultCell value={value} />
-    },
-    { accessor: "RedrivePolicy", Header: "RedrivePolicy", Cell: ({ value }) => <DefaultCell value={value} /> },
-    { accessor: "VisibilityTimeout", Header: "VisibilityTimeout", Cell: ({ value }) => <DefaultCell value={value} /> }
-  ]
-  return columnDefinitions;
-}
-
-function getRows(items: tableRow[]): any[] {
+function getRows(queueDetails: SQSRowDefinitions[]): SQSRowDefinitions[] {
   const rows: any[] = [];
-  if (!items || items.length <= 0) {
+  if (!queueDetails || queueDetails.length <= 0) {
     return rows;
   }
-  return items.map(item => {
-    return item;
-  });
+  return queueDetails.map(item => item);
 }
 
-interface TableData {
-  columns: ColumnDefinition[],
-  rows: any[]
-}
-
-function getTableData(scanOutput: tableRow[]): TableData {
-  if (!scanOutput) {
-    return { columns: getColumnDefinitions(), rows: [] };
+function getTableData(getQueueAttributesCommandOutput: GetQueueAttributesCommandOutput): TableData {
+  if (!getQueueAttributesCommandOutput) {
+    return {columns: sqsColumnDefinitions, rows: []};
   }
   return {
-    columns: getColumnDefinitions(),
-    rows: getRows(scanOutput) // List of attribute object
+    columns: sqsColumnDefinitions,
+    rows: getRows(getQueueAttributesCommandOutput)
   };
 }
 
-interface tableRow {
+interface SQSRowDefinitions {
   name: string,
-  ApproximateNumberOfMessages: number,
-  ApproximateNumberOfMessagesDelayed: number,
-  ApproximateNumberOfMessagesNotVisible: number,
+  ApproximateNumberOfMessages: string,
+  ApproximateNumberOfMessagesDelayed: string,
+  ApproximateNumberOfMessagesNotVisible: string,
   RedrivePolicy: string,
-  VisibilityTimeout: number
+  VisibilityTimeout: string
 }
-
-
-
 
 function Content(): JSX.Element {
   const awsProfile = useContext<AWSProfile>(AWSProfileContext);
@@ -101,29 +90,11 @@ function Content(): JSX.Element {
   const [tableData, setTableData] = useState<TableData>(getTableData(undefined));
 
   const getTableRows = (client: SQSClient, queues: string[]) => {
-    const rows: tableRow[] = [];
-    console.log("queues");
-    console.log(queues);
+    const rows: SQSRowDefinitions[] = [];
     queues.forEach(value => {
-      client.send(new GetQueueAttributesCommand({
-        QueueUrl: value, AttributeNames: ['ApproximateNumberOfMessages',
-          'ApproximateNumberOfMessagesDelayed',
-          'ApproximateNumberOfMessagesNotVisible',
-          'RedrivePolicy',
-          'VisibilityTimeout']}))
-        .then(output => {
-          const data: tableRow = {
-            name: getQueueName(value),
-            ApproximateNumberOfMessages: Number(output.Attributes["ApproximateNumberOfMessages"]),
-            ApproximateNumberOfMessagesDelayed:Number(output.Attributes["ApproximateNumberOfMessagesDelayed"]),
-            ApproximateNumberOfMessagesNotVisible: Number(output.Attributes["ApproximateNumberOfMessagesNotVisible"]),
-            RedrivePolicy: output.Attributes["RedrivePolicy"],
-            VisibilityTimeout: Number(output.Attributes["VisibilityTimeout"])
-          };
-          console.log("data");
-          console.log(data);
-          tableData.rows.push(data);
-        });
+      client.send(new GetQueueAttributesCommand({QueueUrl: value, AttributeNames: attributesToFetch}))
+        .then(output => setTableData(getTableData(output)))
+        .catch(error => console.error(error));
     });
   }
 
@@ -132,30 +103,38 @@ function Content(): JSX.Element {
       client.send(new ListQueuesCommand({}))
         .then(output => {
           if (output && output.QueueUrls && output.QueueUrls.length > 0) {
-            // call set table data
-            // console.log("Q " + queues);
             getTableRows(client, output.QueueUrls);
-            // const rows: tableRow[] = [
-            //   {
-            //     ApproximateNumberOfMessages: 0,
-            //     ApproximateNumberOfMessagesDelayed: 0,
-            //     ApproximateNumberOfMessagesNotVisible: 0,
-            //     RedrivePolicy: undefined,
-            //     VisibilityTimeout: 30,
-            //     name: "data-kcl-error-dead"
-            //   }
-            // ]
-
-            // setTableData(getTableData(rows));
           }
         }).catch(error => console.error(error));
     }
   }, []);
 
   return (
-    <Card sx={{ width: "100%" }}>
-      <DataTable table={tableData} stickyHeader={true} />
-    </Card>
+    <div>
+      <MDBox my={3} sx={{maxHeight: "50%"}}>
+        <Card>
+          <MDBox p={3} lineHeight={1} display="flex" justifyContent="space-between">
+            <MDBox>
+              <MDTypography variant="h5" fontWeight="medium">
+                Data View
+              </MDTypography>
+              <MDTypography variant="button" color="text">
+                Here is the list of queues in
+                <MDTypography
+                  display="inline"
+                  fontWeight="bold"
+                  variant="button"
+                  color="text">
+                  &nbsp;{awsProfile.displayName}
+                </MDTypography>
+                profile
+              </MDTypography>
+            </MDBox>
+          </MDBox>
+          <DataTable table={tableData} canSearch={true} stickyHeader={true}/>
+        </Card>
+      </MDBox>
+    </div>
   );
 }
 
@@ -168,4 +147,3 @@ function SQSDashboard(): JSX.Element {
 }
 
 export default SQSDashboard;
-//  docker run -e EXTRA_CORS_ALLOWED_ORIGINS="http://localhost:3000" --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack
