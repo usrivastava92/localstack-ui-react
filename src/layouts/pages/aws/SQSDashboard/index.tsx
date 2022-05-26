@@ -1,6 +1,3 @@
-// @mui material components
-// Settings page components
-
 import { useContext, useEffect, useState } from "react";
 
 import { ListQueuesCommand, SQSClient } from "@aws-sdk/client-sqs";
@@ -9,7 +6,7 @@ import { Card, Grid, Icon, Link, TableBody, TableCell, TableRow } from "@mui/mat
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import { AWSProfile, nullAwsProfile } from "../types/awsTypes";
-import { AWSProfileContext } from "../../../../context";
+import { AWSProfileContext } from "@/context";
 import { getClientConfig } from "../utils/awsUtils";
 
 

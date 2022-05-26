@@ -13,7 +13,7 @@ import FormField, { FormSelect, FormSwitch } from "../../users/new-user/componen
 import * as Yup from "yup";
 import { FormikHelpers } from "formik/dist/types";
 import Autocomplete from "@mui/material/Autocomplete";
-import { awsProfileStorageService } from "../../../../services/StorageService";
+import { awsProfileStorageService } from "@/services/StorageService";
 import { AWSProfile, awsRegions, nullAwsProfile } from "../types/awsTypes";
 import { AWSProfileContext } from "context";
 import MDInput from "../../../../components/MDInput";
