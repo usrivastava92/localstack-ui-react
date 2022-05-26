@@ -8,6 +8,6 @@ export const deleteMessageForm: FormSchema = {
       label: "Receipt Handle",
       type: "text",
       errorMsg: "Receipt Handle is required."
-    },
+    }
   }
 };

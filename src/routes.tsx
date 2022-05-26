@@ -34,12 +34,10 @@ import Icon from "@mui/material/Icon";
 // Images
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAws } from "@fortawesome/free-brands-svg-icons";
-import AwsHome from "./layouts/pages/aws/AwsHome";
 import DDBDashboard from "./layouts/pages/aws/DDBDashboard";
 import SQSDashboard from "./layouts/pages/aws/SQSDashboard";
 import ElasticSearchDashboard from "./layouts/pages/aws/ElasticSearchDashboard";
 import S3Dashboard from "./layouts/pages/aws/S3Dashboard";
-import { Icon } from "@mui/material";
 
 const routes = [
   {

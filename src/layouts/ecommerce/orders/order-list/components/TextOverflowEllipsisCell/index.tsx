@@ -14,15 +14,15 @@ function TextOverflowEllipsisCell({ value, suffix }: Props): JSX.Element {
   const [copied, setCopied] = useState<boolean>(false);
 
   const handleCopy = () => {
-    setCopied(true)
-    navigator.clipboard.writeText(value)
-  }
+    setCopied(true);
+    navigator.clipboard.writeText(value);
+  };
 
   return (
     <div style={{ overflow: "hidden", textOverflow: "ellipsis", width: "11rem" }}>
       <MDTypography noWrap variant="caption" fontWeight="medium" color="text">
-        <Tooltip title={copied ? "Copied" : "Copy"} placement="top" >
-          <Icon fontSize={"small"} sx={{mr: 1}} onClick={handleCopy} onMouseLeave={() => setCopied(false)}>copy</Icon>
+        <Tooltip title={copied ? "Copied" : "Copy"} placement="top">
+          <Icon fontSize={"small"} sx={{ mr: 1 }} onClick={handleCopy} onMouseLeave={() => setCopied(false)}>copy</Icon>
         </Tooltip>
         {value}
         {suffix && (
