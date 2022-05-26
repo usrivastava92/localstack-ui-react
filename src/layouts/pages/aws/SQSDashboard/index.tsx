@@ -32,7 +32,7 @@ function Content(): JSX.Element {
           if (output && output.QueueUrls && output.QueueUrls.length > 0) {
             setQueues(output.QueueUrls.map(queueUrl => getQueueName(queueUrl)));
           }
-        }).catch(error => console.log(error));
+        }).catch(error => console.error(error));
     }
   }, []);
 
@@ -85,7 +85,7 @@ function Content(): JSX.Element {
 
 function SQSDashboard(): JSX.Element {
   return (
-    <AwsDashboardLayout>
+    <AwsDashboardLayout title="SQS Dashboard" subTitle="Create/Choose a profile">
       <Content />
     </AwsDashboardLayout>
   );
