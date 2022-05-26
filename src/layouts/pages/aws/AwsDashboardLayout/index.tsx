@@ -5,17 +5,17 @@ import DashboardLayout from "../../../../examples/LayoutContainers/DashboardLayo
 import MDTypography from "../../../../components/MDTypography";
 import Icon from "@mui/material/Icon";
 import MDButton from "../../../../components/MDButton";
-import {ReactNode, useState} from "react";
-import {Modal} from "@mui/material";
-import {Form, Formik, FormikErrors, FormikTouched, FormikValues} from "formik";
+import { ReactNode, useState } from "react";
+import { Modal } from "@mui/material";
+import { Form, Formik, FormikErrors, FormikTouched, FormikValues } from "formik";
 import Card from "@mui/material/Card";
-import FormField, {FormSelect, FormSwitch} from "../../users/new-user/components/FormField";
+import FormField, { FormSelect, FormSwitch } from "../../users/new-user/components/FormField";
 import * as Yup from "yup";
-import {FormikHelpers} from "formik/dist/types";
+import { FormikHelpers } from "formik/dist/types";
 import Autocomplete from "@mui/material/Autocomplete";
-import {awsProfileStorageService} from "../../../../services/StorageService";
-import {AWSProfile, awsRegions, nullAwsProfile} from "../types/awsTypes";
-import {AWSProfileContext} from "context";
+import { awsProfileStorageService } from "../../../../services/StorageService";
+import { AWSProfile, awsRegions, nullAwsProfile } from "../types/awsTypes";
+import { AWSProfileContext } from "context";
 import MDInput from "../../../../components/MDInput";
 
 interface FormFieldSchema {
@@ -223,7 +223,7 @@ interface AwsDashboardProps {
   subTitle?: string
 }
 
-function AwsDashboardLayout({children, title, subTitle}: AwsDashboardProps): JSX.Element {
+function AwsDashboardLayout({ children, title, subTitle }: AwsDashboardProps): JSX.Element {
 
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [showError, setShowError] = useState<boolean>(false);

@@ -1,8 +1,8 @@
-import {useContext, useEffect, useState} from "react";
-import {DynamoDB, ScanCommandOutput} from "@aws-sdk/client-dynamodb";
+import { useContext, useEffect, useState } from "react";
+import { DynamoDB, ScanCommandOutput } from "@aws-sdk/client-dynamodb";
 import AwsDashboardLayout from "../AwsDashboardLayout";
-import {AWSProfile, nullAwsProfile} from "../types/awsTypes";
-import {AWSProfileContext} from "context";
+import { AWSProfile, nullAwsProfile } from "../types/awsTypes";
+import { AWSProfileContext } from "context";
 // Data
 import MDTypography from "../../../../components/MDTypography";
 import MDBox from "../../../../components/MDBox";
@@ -11,10 +11,10 @@ import DataTable from "../../../../examples/Tables/DataTable";
 import Autocomplete from "@mui/material/Autocomplete";
 import MDInput from "../../../../components/MDInput";
 import DefaultCell from "../../../ecommerce/orders/order-list/components/DefaultCell";
-import {AttributeValue} from "@aws-sdk/client-dynamodb/dist-types/models/models_0";
-import {unmarshall} from "@aws-sdk/util-dynamodb";
-import {getClientConfig} from "../utils/awsUtils";
-import {ColumnDefinition, TableData} from "../types/tableTypes";
+import { AttributeValue } from "@aws-sdk/client-dynamodb/dist-types/models/models_0";
+import { unmarshall } from "@aws-sdk/util-dynamodb";
+import { getClientConfig } from "../utils/awsUtils";
+import { ColumnDefinition, TableData } from "../types/tableTypes";
 
 function getStringAttributeValue(value: any): string {
   if (!value) {
@@ -73,10 +73,10 @@ function Content(): JSX.Element {
 
   useEffect(() => {
     if (awsProfile !== nullAwsProfile) {
-      client.listTables({Limit: 10})
+      client.listTables({ Limit: 10 })
         .then(output => {
           if (output && output.TableNames && output.TableNames.length > 0) {
-            setTables(output.TableNames)
+            setTables(output.TableNames);
           }
         }).catch(error => console.error(error));
     }
@@ -132,7 +132,7 @@ function Content(): JSX.Element {
 function DDBDashboard(): JSX.Element {
   return (
     <AwsDashboardLayout title="Dynamo DB" subTitle="Create/Choose a profile and then select a table to view your data">
-      <Content/>
+      <Content />
     </AwsDashboardLayout>
   );
 }

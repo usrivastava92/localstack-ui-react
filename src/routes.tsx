@@ -67,7 +67,7 @@ const routes = [
         key: "s3",
         route: "/pages/aws/s3",
         component: <AwsHome />
-      },
+      }
     ]
   },
   { type: "divider", key: "divider-0" },
