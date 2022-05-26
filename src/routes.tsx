@@ -36,6 +36,7 @@ import AwsHome from "./layouts/pages/aws/AwsHome";
 import DDBDashboard from "./layouts/pages/aws/DDBDashboard";
 import SQSDashboard from "./layouts/pages/aws/SQSDashboard";
 import ElasticSearchDashboard from "./layouts/pages/aws/ElasticSearchDashboard";
+import S3Dashboard from "./layouts/pages/aws/S3Dashboard";
 
 const routes = [
   {
@@ -66,7 +67,8 @@ const routes = [
         name: "S3",
         key: "s3",
         route: "/pages/aws/s3",
-        component: <AwsHome />
+
+        component: <S3Dashboard />
       }
     ]
   },
