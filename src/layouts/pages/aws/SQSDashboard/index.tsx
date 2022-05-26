@@ -15,7 +15,7 @@ import AwsDashboardLayout from "../AwsDashboardLayout";
 import { Card, Modal } from "@mui/material";
 import { AWSProfile, nullAwsProfile } from "../types/awsTypes";
 import { AWSProfileContext } from "../../../../context";
-import { getClientConfig } from "../utils/awsUtils";
+import { getClientConfig, getQueueNameFromArn, getQueueNameFromUrl } from "../utils/awsUtils";
 import DefaultCell from "../../../ecommerce/orders/order-list/components/DefaultCell";
 import DataTable from "../../../../examples/Tables/DataTable";
 import { ColumnDefinition, TableData } from "../types/tableTypes";
@@ -82,22 +82,6 @@ const attributesToFetch: QueueAttributeName[] = [
   "QueueArn"
 ];
 
-function getQueueNameFromUrl(queueUrl: string): string {
-  if (!queueUrl) {
-    return "";
-  }
-  const startIndex = queueUrl.lastIndexOf("/");
-  return queueUrl.substring(startIndex + 1);
-}
-
-function getQueueNameFromArn(queueArn: string): string {
-  if (!queueArn) {
-    return "";
-  }
-  const startIndex = queueArn.lastIndexOf(":");
-  return queueArn.substring(startIndex + 1);
-}
-
 function getRows(queueDetails: GetQueueAttributesCommandOutput): SQSRowDefinitions[] {
   const rows: any[] = [];
   if (!queueDetails) {
@@ -132,13 +116,6 @@ interface SQSRowDefinitions {
   ApproximateNumberOfMessagesNotVisible: string,
   RedrivePolicy: string,
   VisibilityTimeout: string
-}
-
-interface MessageRowDefinitions {
-  MessageId: string,
-  ReceiptHandle: string,
-  MD5OfBody: string,
-  Body: string
 }
 
 const emptyMessageTableData: TableData = { columns: sqsColumnDefinitions, rows: [] };
@@ -272,12 +249,8 @@ function Content(): JSX.Element {
     receiveMessages();
   };
 
-  const handleOpenDeleteModal = () => {
-    setOpenDeleteModal(true);
-  };
-  const handleCloseDeleteModal = () => {
-    setOpenDeleteModal(false);
-  };
+  const handleOpenDeleteModal = () => setOpenDeleteModal(true);
+  const handleCloseDeleteModal = () => setOpenDeleteModal(false);
 
   function listQueues(): void {
     if (awsProfile !== nullAwsProfile) {
