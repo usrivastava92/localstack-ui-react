@@ -15,7 +15,7 @@ import { FormikHelpers } from "formik/dist/types";
 import Autocomplete from "@mui/material/Autocomplete";
 import { awsProfileStorageService } from "@/services/StorageService";
 import { AWSProfile, awsRegions, nullAwsProfile } from "../types/awsTypes";
-import { AWSProfileContext } from "context";
+import { AWSProfileContext } from "@/context";
 import MDInput from "../../../../components/MDInput";
 
 interface FormFieldSchema {

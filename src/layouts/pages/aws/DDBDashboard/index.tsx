@@ -2,14 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import { DynamoDB, ScanCommandOutput } from "@aws-sdk/client-dynamodb";
 import AwsDashboardLayout from "../AwsDashboardLayout";
 import { AWSProfile, nullAwsProfile } from "../types/awsTypes";
-import { AWSProfileContext } from "context";
-// Data
-import MDTypography from "../../../../components/MDTypography";
-import MDBox from "../../../../components/MDBox";
+import { AWSProfileContext } from "@/context";
+import MDTypography from "@/components/MDTypography";
+import MDBox from "@/components/MDBox";
 import Card from "@mui/material/Card";
 import DataTable from "../../../../examples/Tables/DataTable";
 import Autocomplete from "@mui/material/Autocomplete";
-import MDInput from "../../../../components/MDInput";
+import MDInput from "@/components/MDInput";
 import DefaultCell from "../../../ecommerce/orders/order-list/components/DefaultCell";
 import { AttributeValue } from "@aws-sdk/client-dynamodb/dist-types/models/models_0";
 import { unmarshall } from "@aws-sdk/util-dynamodb";
