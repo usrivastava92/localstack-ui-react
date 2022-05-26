@@ -4,6 +4,7 @@ import {
   GetQueueAttributesCommand,
   GetQueueAttributesCommandOutput,
   ListQueuesCommand,
+  QueueAttributeName,
   SQSClient
 } from "@aws-sdk/client-sqs";
 import AwsDashboardLayout from "../AwsDashboardLayout";
@@ -16,6 +17,8 @@ import DataTable from "../../../../examples/Tables/DataTable";
 import {ColumnDefinition, TableData} from "../types/tableTypes";
 import MDBox from "../../../../components/MDBox";
 import MDTypography from "../../../../components/MDTypography";
+import Autocomplete from "@mui/material/Autocomplete";
+import MDInput from "../../../../components/MDInput";
 
 const sqsColumnDefinitions: ColumnDefinition[] = [
   {accessor: "name", Header: "Queue Name", Cell: ({value}) => <DefaultCell value={value}/>},
@@ -38,15 +41,16 @@ const sqsColumnDefinitions: ColumnDefinition[] = [
   {accessor: "VisibilityTimeout", Header: "VisibilityTimeout", Cell: ({value}) => <DefaultCell value={value}/>}
 ]
 
-const attributesToFetch = [
+const attributesToFetch: QueueAttributeName[] = [
   'ApproximateNumberOfMessages',
   'ApproximateNumberOfMessagesDelayed',
   'ApproximateNumberOfMessagesNotVisible',
   'RedrivePolicy',
-  'VisibilityTimeout'
+  'VisibilityTimeout',
+  'QueueArn'
 ];
 
-function getQueueName(queueUrl: string): string {
+function getQueueNameFromUrl(queueUrl: string): string {
   if (!queueUrl) {
     return "";
   }
@@ -54,12 +58,27 @@ function getQueueName(queueUrl: string): string {
   return queueUrl.substring(startIndex + 1);
 }
 
-function getRows(queueDetails: SQSRowDefinitions[]): SQSRowDefinitions[] {
+function getQueueNameFromArn(queueArn: string): string {
+  if (!queueArn) {
+    return "";
+  }
+  const startIndex = queueArn.lastIndexOf(":");
+  return queueArn.substring(startIndex + 1);
+}
+
+function getRows(queueDetails: GetQueueAttributesCommandOutput): SQSRowDefinitions[] {
   const rows: any[] = [];
-  if (!queueDetails || queueDetails.length <= 0) {
+  if (!queueDetails) {
     return rows;
   }
-  return queueDetails.map(item => item);
+  return [{
+    name: getQueueNameFromArn(queueDetails.Attributes['QueueArn']),
+    ApproximateNumberOfMessages: queueDetails.Attributes['ApproximateNumberOfMessages'],
+    ApproximateNumberOfMessagesDelayed: queueDetails.Attributes['ApproximateNumberOfMessagesDelayed'],
+    ApproximateNumberOfMessagesNotVisible: queueDetails.Attributes['ApproximateNumberOfMessagesNotVisible'],
+    RedrivePolicy: queueDetails.Attributes['RedrivePolicy'],
+    VisibilityTimeout: queueDetails.Attributes['VisibilityTimeout'],
+  }];
 }
 
 function getTableData(getQueueAttributesCommandOutput: GetQueueAttributesCommandOutput): TableData {
@@ -69,7 +88,7 @@ function getTableData(getQueueAttributesCommandOutput: GetQueueAttributesCommand
   return {
     columns: sqsColumnDefinitions,
     rows: getRows(getQueueAttributesCommandOutput)
-  };
+  }
 }
 
 interface SQSRowDefinitions {
@@ -81,33 +100,38 @@ interface SQSRowDefinitions {
   VisibilityTimeout: string
 }
 
+
 function Content(): JSX.Element {
   const awsProfile = useContext<AWSProfile>(AWSProfileContext);
 
   const client = new SQSClient(getClientConfig(awsProfile));
 
-  const [queues, setQueues] = useState<string[]>([]);
+  const [queueMap, setQueueMap] = useState<Map<string, string>>(new Map());
+  const [selectedQueue, setSelectedQueue] = useState<string>();
   const [tableData, setTableData] = useState<TableData>(getTableData(undefined));
-
-  const getTableRows = (client: SQSClient, queues: string[]) => {
-    const rows: SQSRowDefinitions[] = [];
-    queues.forEach(value => {
-      client.send(new GetQueueAttributesCommand({QueueUrl: value, AttributeNames: attributesToFetch}))
-        .then(output => setTableData(getTableData(output)))
-        .catch(error => console.error(error));
-    });
-  }
 
   useEffect(() => {
     if (awsProfile !== nullAwsProfile) {
       client.send(new ListQueuesCommand({}))
         .then(output => {
           if (output && output.QueueUrls && output.QueueUrls.length > 0) {
-            getTableRows(client, output.QueueUrls);
+            const newQueueMap = new Map<string, string>();
+            output.QueueUrls.forEach(queueUrl => newQueueMap.set(getQueueNameFromUrl(queueUrl), queueUrl))
+            setQueueMap(newQueueMap)
           }
-        }).catch(error => console.error(error));
+        })
+        .catch(error => console.error(error));
     }
   }, []);
+
+  function getQueueAttributes(queue: string) {
+    if (queue && queue !== selectedQueue) {
+      setSelectedQueue(queue)
+      client.send(new GetQueueAttributesCommand({QueueUrl: queueMap.get(queue), AttributeNames: attributesToFetch}))
+        .then(output => setTableData(getTableData(output)))
+        .catch(error => console.error(error));
+    }
+  }
 
   return (
     <div>
@@ -116,20 +140,31 @@ function Content(): JSX.Element {
           <MDBox p={3} lineHeight={1} display="flex" justifyContent="space-between">
             <MDBox>
               <MDTypography variant="h5" fontWeight="medium">
-                Data View
+                Queue Details
               </MDTypography>
               <MDTypography variant="button" color="text">
-                Here is the list of queues in
-                <MDTypography
-                  display="inline"
-                  fontWeight="bold"
-                  variant="button"
-                  color="text">
-                  &nbsp;{awsProfile.displayName}
-                </MDTypography>
-                profile
+                Here are details of the
+                {
+                  selectedQueue ?
+                    <MDTypography
+                      display="inline"
+                      fontWeight="bold"
+                      variant="button"
+                      color="text">
+                      &nbsp;{selectedQueue}
+                    </MDTypography>
+                    : " selected"
+                } queue
               </MDTypography>
             </MDBox>
+            <Autocomplete
+              disableClearable
+              sx={{width: "12rem", borderRadius: 3}}
+              value={selectedQueue ? selectedQueue : "No Queue Selected"}
+              options={Array.from(queueMap.keys())}
+              onChange={(e, v) => getQueueAttributes(v as string)}
+              renderInput={(params) => <MDInput {...params} label="Queue" fullWidth/>}
+            />
           </MDBox>
           <DataTable table={tableData} canSearch={true} stickyHeader={true}/>
         </Card>

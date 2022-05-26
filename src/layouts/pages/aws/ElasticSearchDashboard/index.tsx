@@ -63,7 +63,6 @@ function getRows(catIndicesResponse: CatIndicesResponse): EsRowDefinitions[] {
 }
 
 function getTableData(response: CatIndicesResponse): TableData {
-  console.log("CatIndicesResponse : " + JSON.stringify(response));
   if (!response) {
     return {columns: esColumnDefinitions, rows: []};
   }
