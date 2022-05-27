@@ -25,6 +25,7 @@ import { setMiniSidenav, setOpenConfigurator, useMaterialUIController } from "@/
 import brandWhite from "@/assets/images/logo-ct.png";
 import brandDark from "@/assets/images/logo-ct-dark.png";
 import AwsHome from "./layouts/pages/aws/AwsHome";
+import { useMediaQuery } from "@mui/material";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -115,8 +116,14 @@ export default function App() {
     </MDBox>
   );
 
+  let finalDarkMode: boolean = darkMode;
+  const systemMode: boolean = true;
+  if (systemMode) {
+    finalDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+  }
+
   return (
-    <ThemeProvider theme={darkMode ? themeDark : theme}>
+    <ThemeProvider theme={finalDarkMode ? themeDark : theme}>
       <CssBaseline />
       {layout === "dashboard" && (
         <>
