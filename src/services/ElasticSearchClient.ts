@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosResponse } from 'axios';
 
 export interface ElasticSearchClient {
   cat: Cat;
@@ -9,7 +9,6 @@ interface Cat {
 }
 
 class CatImpl implements Cat {
-
   readonly endpoint: string;
 
   constructor(baseUrl: string) {
@@ -17,38 +16,35 @@ class CatImpl implements Cat {
   }
 
   indices(): Promise<CatIndicesResponse> {
-    return axios.get<void, AxiosResponse<CatIndicesResponse>>(this.endpoint)
-      .then(response => response.data);
+    return axios
+      .get<void, AxiosResponse<CatIndicesResponse>>(this.endpoint)
+      .then((response) => response.data);
   }
-
 }
 
-export type CatIndicesResponse = CatIndicesIndicesRecord[]
+export type CatIndicesResponse = CatIndicesIndicesRecord[];
 
 export interface CatIndicesIndicesRecord {
-  index: string,
-  status: string,
-  health: string,
-  bulkAvgSizeInBytes: string,
-  "docs.count": string,
-  "docs.deleted": string,
-  "store.size": string,
-  "pri.store.size": string,
-  pri: string,
-  rep: string
-  "pri.store": string
+  index: string;
+  status: string;
+  health: string;
+  bulkAvgSizeInBytes: string;
+  'docs.count': string;
+  'docs.deleted': string;
+  'store.size': string;
+  'pri.store.size': string;
+  pri: string;
+  rep: string;
+  'pri.store': string;
 }
 
-export interface Document {
-
-}
+export interface Document {}
 
 interface ClientOptions {
   endpoint: string;
 }
 
 export class ElasticSearchClientImpl implements ElasticSearchClient {
-
   readonly endpoint: string;
   cat: Cat;
 
@@ -56,5 +52,4 @@ export class ElasticSearchClientImpl implements ElasticSearchClient {
     this.endpoint = endpoint;
     this.cat = new CatImpl(endpoint);
   }
-
 }

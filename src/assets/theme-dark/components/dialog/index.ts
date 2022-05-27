@@ -1,5 +1,5 @@
-import borders from "assets/theme-dark/base/borders";
-import boxShadows from "assets/theme-dark/base/boxShadows";
+import borders from 'assets/theme-dark/base/borders';
+import boxShadows from 'assets/theme-dark/base/boxShadows';
 
 const { borderRadius } = borders;
 const { xxl } = boxShadows;

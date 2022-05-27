@@ -1,13 +1,13 @@
-import { AWSProfile } from "../layouts/pages/aws/types/awsTypes";
+import { AWSProfile } from '../layouts/pages/aws/types/awsTypes';
 
 export interface StorageService {
-  loadFromLocalStorage: () => any,
-  saveToLocalStorage: (state: any) => void
+  loadFromLocalStorage: () => any;
+  saveToLocalStorage: (state: any) => void;
 }
 
 export interface AWSProfileStorageService extends StorageService {
-  loadFromLocalStorage: () => AWSProfile[],
-  saveToLocalStorage: (state: AWSProfile[]) => void
+  loadFromLocalStorage: () => AWSProfile[];
+  saveToLocalStorage: (state: AWSProfile[]) => void;
 }
 
 export class AWSProfileStorageServiceImpl implements AWSProfileStorageService {
@@ -36,4 +36,5 @@ export class AWSProfileStorageServiceImpl implements AWSProfileStorageService {
   };
 }
 
-export const awsProfileStorageService: AWSProfileStorageService = new AWSProfileStorageServiceImpl("profiles");
+export const awsProfileStorageService: AWSProfileStorageService =
+  new AWSProfileStorageServiceImpl('profiles');

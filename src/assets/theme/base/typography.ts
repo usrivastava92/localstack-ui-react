@@ -1,6 +1,6 @@
-import colors from "assets/theme/base/colors";
+import colors from 'assets/theme/base/colors';
 
-import pxToRem from "assets/theme/functions/pxToRem";
+import pxToRem from 'assets/theme/functions/pxToRem';
 
 const { dark } = colors;
 
@@ -115,8 +115,8 @@ interface Types {
     md: string;
     lg: string;
     xl: string;
-    "2xl": string;
-    "3xl": string;
+    '2xl': string;
+    '3xl': string;
   };
   lineHeight: {
     sm: number;
@@ -126,7 +126,7 @@ interface Types {
 }
 
 const baseProperties = {
-  fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
+  fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
   fontWeightLighter: 100,
   fontWeightLight: 300,
   fontWeightRegular: 400,
@@ -232,7 +232,7 @@ const typography: Types = {
     fontSize: baseProperties.fontSizeSM,
     fontWeight: baseProperties.fontWeightLight,
     lineHeight: 1.5,
-    textTransform: "uppercase"
+    textTransform: 'uppercase'
   },
 
   caption: {
@@ -283,8 +283,8 @@ const typography: Types = {
     md: baseProperties.fontSizeMD,
     lg: baseProperties.fontSizeLG,
     xl: baseProperties.fontSizeXL,
-    "2xl": baseProperties.fontSize2XL,
-    "3xl": baseProperties.fontSize3XL
+    '2xl': baseProperties.fontSize2XL,
+    '3xl': baseProperties.fontSize3XL
   },
 
   lineHeight: {

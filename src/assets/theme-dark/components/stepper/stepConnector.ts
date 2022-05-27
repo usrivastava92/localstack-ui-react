@@ -1,5 +1,5 @@
-import borders from "assets/theme-dark/base/borders";
-import colors from "assets/theme-dark/base/colors";
+import borders from 'assets/theme-dark/base/borders';
+import colors from 'assets/theme-dark/base/colors';
 
 const { white } = colors;
 const { borderWidth } = borders;
@@ -10,27 +10,27 @@ type Types = any;
 const stepConnector: Types = {
   styleOverrides: {
     root: {
-      color: "#9fc9ff",
-      transition: "all 200ms linear",
+      color: '#9fc9ff',
+      transition: 'all 200ms linear',
 
-      "&.Mui-active": {
+      '&.Mui-active': {
         color: white.main
       },
 
-      "&.Mui-completed": {
+      '&.Mui-completed': {
         color: white.main
       }
     },
 
     alternativeLabel: {
-      top: "14%",
-      left: "-50%",
-      right: "50%"
+      top: '14%',
+      left: '-50%',
+      right: '50%'
     },
 
     line: {
       borderWidth: `${borderWidth[2]} !important`,
-      borderColor: "currentColor",
+      borderColor: 'currentColor',
       opacity: 0.5
     }
   }

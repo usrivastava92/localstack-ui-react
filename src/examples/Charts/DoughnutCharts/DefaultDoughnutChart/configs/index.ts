@@ -1,6 +1,6 @@
 /* eslint-disable no-dupe-keys */
 
-import colors from "assets/theme/base/colors";
+import colors from 'assets/theme/base/colors';
 
 const { gradients, dark } = colors;
 
@@ -10,7 +10,7 @@ function configs(labels: any, datasets: any, cutout: number = 60) {
   if (datasets.backgroundColors) {
     datasets.backgroundColors.forEach((color: string) => {
       if (gradients[color]) {
-        if (color === "info") {
+        if (color === 'info') {
           backgroundColors.push(gradients.info.main);
         } else {
           backgroundColors.push(gradients[color].state);
@@ -50,7 +50,7 @@ function configs(labels: any, datasets: any, cutout: number = 60) {
       },
       interaction: {
         intersect: false,
-        mode: "index"
+        mode: 'index'
       },
       scales: {
         y: {

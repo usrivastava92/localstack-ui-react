@@ -5,7 +5,13 @@
   "main": "public/electron.js",
   "homepage": "./",
   "description": "Localstack UI",
+  "pnpm": {
+    "peerDependencyRules": {
+      "auto-install-peers": true
+    }
+  },
   "scripts": {
+    "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

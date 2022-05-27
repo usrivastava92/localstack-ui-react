@@ -1,7 +1,7 @@
-import root from "assets/theme-dark/components/button/root";
-import contained from "assets/theme-dark/components/button/contained";
-import outlined from "assets/theme-dark/components/button/outlined";
-import buttonText from "assets/theme-dark/components/button/text";
+import root from 'assets/theme-dark/components/button/root';
+import contained from 'assets/theme-dark/components/button/contained';
+import outlined from 'assets/theme-dark/components/button/outlined';
+import buttonText from 'assets/theme-dark/components/button/text';
 
 // types
 type Types = any;

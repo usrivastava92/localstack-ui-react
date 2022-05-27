@@ -1,4 +1,4 @@
-import borders from "assets/theme-dark/base/borders";
+import borders from 'assets/theme-dark/base/borders';
 
 const { borderRadius } = borders;
 
@@ -8,7 +8,7 @@ type Types = any;
 const avatar: Types = {
   styleOverrides: {
     root: {
-      transition: "all 200ms ease-in-out"
+      transition: 'all 200ms ease-in-out'
     },
 
     rounded: {
@@ -16,7 +16,7 @@ const avatar: Types = {
     },
 
     img: {
-      height: "auto"
+      height: 'auto'
     }
   }
 };
