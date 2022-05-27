@@ -13,12 +13,12 @@ import DefaultCell from "../../../ecommerce/orders/order-list/components/Default
 import { AttributeValue } from "@aws-sdk/client-dynamodb/dist-types/models/models_0";
 import { unmarshall } from "@aws-sdk/util-dynamodb";
 import { getClientConfig } from "../utils/awsUtils";
-
-interface ColumnDefinition {
-  Header: string,
-  accessor: string,
-  Cell: ({ value }: { value: any }) => JSX.Element
-}
+import { ColumnDefinition, TableData } from "../types/tableTypes";
+import MDButton from "../../../../components/MDButton";
+import Icon from "@mui/material/Icon";
+import Tooltip from "@mui/material/Tooltip";
+import MDSnackbar, { SBProps } from "../../../../components/MDSnackbar";
+import { defaultSBProps, getErrorSBProps } from "../utils/notificationUtils";
 
 function getStringAttributeValue(value: any): string {
   if (!value) {
@@ -56,11 +56,6 @@ function getRows(items: { [key: string]: AttributeValue; }[]): any[] {
   return items.map(item => unmarshall(item));
 }
 
-interface TableData {
-  columns: ColumnDefinition[],
-  rows: any[]
-}
-
 function getTableData(scanOutput: ScanCommandOutput): TableData {
   if (!scanOutput) {
     return { columns: [], rows: [] };
@@ -77,22 +72,48 @@ function Content(): JSX.Element {
   const client = new DynamoDB(getClientConfig(awsProfile));
 
   const [tables, setTables] = useState<string[]>([]);
+  const [sbProps, setSBProps] = useState<SBProps>(defaultSBProps);
   const [selectedTable, setSelectedTable] = useState<string>();
   const [tableData, setTableData] = useState<TableData>(getTableData(undefined));
 
-  useEffect(() => {
+  function listTables(): void {
     if (awsProfile !== nullAwsProfile) {
       client.listTables({ Limit: 10 })
-        .then(output => setTables(output?.TableNames))
-        .catch(error => console.log(error));
+        .then(output => {
+          if (output && output.TableNames && output.TableNames.length > 0) {
+            setTables(output.TableNames);
+          }
+        }).catch(error => {
+        console.error(error);
+        setSBProps(getErrorSBProps({
+          title: "AWS Error",
+          content: String(error),
+          open: true,
+          onClose: () => setSBProps(defaultSBProps),
+          close: () => setSBProps(defaultSBProps)
+        }));
+      });
     }
-  }, []);
+  }
+
+  useEffect(listTables, []);
 
   function scanTable(tableName: string) {
-    setSelectedTable(tableName);
-    client.scan({ TableName: tableName })
-      .then(output => setTableData(getTableData(output)))
-      .catch(error => console.log(error));
+    if (tableName) {
+      setSelectedTable(tableName);
+      client.scan({ TableName: tableName })
+        .then(output => setTableData(getTableData(output)))
+        .catch(error => {
+          console.error(error);
+          setSBProps(getErrorSBProps({
+            title: "AWS Error",
+            content: String(error),
+            open: true,
+            onClose: () => setSBProps(defaultSBProps),
+            close: () => setSBProps(defaultSBProps)
+          }));
+        });
+    }
   }
 
   return (
@@ -119,25 +140,46 @@ function Content(): JSX.Element {
                 }
               </MDTypography>
             </MDBox>
-            <Autocomplete
-              disableClearable
-              sx={{ width: "12rem", borderRadius: 3 }}
-              value={selectedTable ? selectedTable : "No table Selected"}
-              options={tables}
-              onChange={(e, v) => scanTable(v as string)}
-              renderInput={(params) => <MDInput {...params} label="Table" fullWidth />}
-            />
+            <MDBox display="flex" justifyContent="space-between">
+              <Tooltip title="Reload Data" placement="left">
+                <MDButton sx={{ mr: 3 }} variant="gradient" color="info" onClick={() => {
+                  listTables();
+                  scanTable(selectedTable);
+                }}>
+                  <Icon fontSize={"large"}>cached</Icon>
+                </MDButton>
+              </Tooltip>
+              <Autocomplete
+                disableClearable
+                sx={{ width: "12rem", borderRadius: 3 }}
+                value={selectedTable ? selectedTable : "No table Selected"}
+                options={tables}
+                onChange={(e, v) => scanTable(v as string)}
+                renderInput={(params) => <MDInput {...params} label="Table" fullWidth />}
+              />
+            </MDBox>
           </MDBox>
           <DataTable table={tableData} canSearch={true} stickyHeader={true} />
         </Card>
       </MDBox>
+      <MDSnackbar
+        color={sbProps.color}
+        icon={sbProps.icon}
+        title={sbProps.title}
+        content={sbProps.content}
+        dateTime={sbProps.dateTime}
+        open={sbProps.open}
+        onClose={sbProps.onClose}
+        close={sbProps.close}
+        bgWhite
+      />
     </div>
   );
 }
 
 function DDBDashboard(): JSX.Element {
   return (
-    <AwsDashboardLayout>
+    <AwsDashboardLayout title="Dynamo DB" subTitle="Create/Choose a profile and then select a table to view your data">
       <Content />
     </AwsDashboardLayout>
   );
