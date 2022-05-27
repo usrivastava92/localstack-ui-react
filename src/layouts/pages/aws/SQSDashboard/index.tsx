@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import {useContext, useEffect, useState} from "react";
 
 import {
   DeleteMessageCommand,
@@ -12,13 +12,13 @@ import {
   SQSClient
 } from "@aws-sdk/client-sqs";
 import AwsDashboardLayout from "../AwsDashboardLayout";
-import { Card, Modal } from "@mui/material";
-import { AWSProfile, nullAwsProfile } from "../types/awsTypes";
-import { AWSProfileContext } from "../../../../context";
-import { getClientConfig, getQueueNameFromArn, getQueueNameFromUrl } from "../utils/awsUtils";
+import {Card, Modal} from "@mui/material";
+import {AWSProfile, nullAwsProfile} from "../types/awsTypes";
+import {AWSProfileContext} from "../../../../context";
+import {getClientConfig, getQueueNameFromArn, getQueueNameFromUrl} from "../utils/awsUtils";
 import DefaultCell from "../../../ecommerce/orders/order-list/components/DefaultCell";
 import DataTable from "../../../../examples/Tables/DataTable";
-import { ColumnDefinition, TableData } from "../types/tableTypes";
+import {ColumnDefinition, TableData} from "../types/tableTypes";
 import MDBox from "../../../../components/MDBox";
 import MDTypography from "../../../../components/MDTypography";
 import Autocomplete from "@mui/material/Autocomplete";
@@ -27,22 +27,22 @@ import Grid from "@mui/material/Grid";
 import MDButton from "../../../../components/MDButton";
 import Icon from "@mui/material/Icon";
 import Tooltip from "@mui/material/Tooltip";
-import { defaultSBProps, getErrorSBProps, getSuccessSBProps } from "../utils/notificationUtils";
-import MDSnackbar, { SBProps } from "../../../../components/MDSnackbar";
+import {defaultSBProps, getErrorSBProps, getSuccessSBProps} from "../utils/notificationUtils";
+import MDSnackbar, {SBProps} from "../../../../components/MDSnackbar";
 import TextOverflowEllipsisCell from "../../../ecommerce/orders/order-list/components/TextOverflowEllipsisCell";
-import { Form, Formik } from "formik";
+import {Form, Formik} from "formik";
 import FormField from "../../users/new-user/components/FormField";
-import { ValuesSchema } from "../types/formTypes";
-import { deleteMessageForm } from "./forms";
-import { deleteMessageFormValidation } from "./formValidations";
-import { FormikHelpers } from "formik/dist/types";
+import {ValuesSchema} from "../types/formTypes";
+import {deleteMessageForm} from "./forms";
+import {deleteMessageFormValidation} from "./formValidations";
+import {FormikHelpers} from "formik/dist/types";
 
 const sqsColumnDefinitions: ColumnDefinition[] = [
-  { accessor: "name", Header: "Queue Name", Cell: ({ value }) => <DefaultCell value={value} /> },
+  {accessor: "name", Header: "Queue Name", Cell: ({value}) => <DefaultCell value={value}/>},
   {
     accessor: "ApproximateNumberOfMessages",
     Header: "Total Messages",
-    Cell: ({ value }) => <DefaultCell value={value} />
+    Cell: ({value}) => <DefaultCell value={value}/>
   },
   {
     accessor: "ApproximateNumberOfMessagesDelayed",
@@ -121,7 +121,7 @@ interface SQSRowDefinitions {
 const emptyMessageTableData: TableData = { columns: sqsColumnDefinitions, rows: [] };
 
 function getMessageTableData(output: ReceiveMessageCommandOutput): TableData {
-  if (!output) {
+  if (!output || !output.Messages || output.Messages.length <= 0) {
     return emptyMessageTableData;
   }
   return {
