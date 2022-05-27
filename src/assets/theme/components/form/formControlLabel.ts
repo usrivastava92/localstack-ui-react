@@ -1,7 +1,7 @@
-import colors from "@/assets/theme/base/colors";
-import typography from "@/assets/theme/base/typography";
+import colors from '@/assets/theme/base/colors';
+import typography from '@/assets/theme/base/typography';
 
-import pxToRem from "@/assets/theme/functions/pxToRem";
+import pxToRem from '@/assets/theme/functions/pxToRem';
 
 const { dark } = colors;
 const { size, fontWeightBold } = typography;
@@ -12,13 +12,13 @@ type Types = any;
 const formControlLabel: Types = {
   styleOverrides: {
     root: {
-      display: "block",
+      display: 'block',
       minHeight: pxToRem(24),
       marginBottom: pxToRem(2)
     },
 
     label: {
-      display: "inline-block",
+      display: 'inline-block',
       fontSize: size.sm,
       fontWeight: fontWeightBold,
       color: dark.main,
@@ -26,7 +26,7 @@ const formControlLabel: Types = {
       transform: `translateY(${pxToRem(1)})`,
       marginLeft: pxToRem(4),
 
-      "&.Mui-disabled": {
+      '&.Mui-disabled': {
         color: dark.main
       }
     }

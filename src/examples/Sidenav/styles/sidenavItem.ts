@@ -1,11 +1,12 @@
 /* eslint-disable prefer-destructuring */
 
 // @mui material components
-import { Theme } from "@mui/material/styles";
+import { Theme } from '@mui/material/styles';
 
 function item(theme: Theme | any, ownerState: any) {
   const { palette, borders, functions, transitions } = theme;
-  const { active, color, transparentSidenav, whiteSidenav, darkMode } = ownerState;
+  const { active, color, transparentSidenav, whiteSidenav, darkMode } =
+    ownerState;
 
   const { transparent, white, grey } = palette;
   const { borderRadius } = borders;
@@ -15,20 +16,20 @@ function item(theme: Theme | any, ownerState: any) {
     pl: 3,
     mt: 0.375,
     mb: 0.3,
-    width: "100%",
+    width: '100%',
     borderRadius: borderRadius.md,
-    cursor: "pointer",
+    cursor: 'pointer',
     backgroundColor: () => {
       let backgroundValue = transparent.main;
 
       if (
-        (active === "isParent" && !transparentSidenav && !whiteSidenav) ||
-        (active === "isParent" && transparentSidenav && darkMode)
+        (active === 'isParent' && !transparentSidenav && !whiteSidenav) ||
+        (active === 'isParent' && transparentSidenav && darkMode)
       ) {
         backgroundValue = rgba(white.main, 0.2);
-      } else if (active === "isParent" && transparentSidenav) {
+      } else if (active === 'isParent' && transparentSidenav) {
         backgroundValue = grey[300];
-      } else if (active === "isParent" && whiteSidenav) {
+      } else if (active === 'isParent' && whiteSidenav) {
         backgroundValue = grey[200];
       } else if (active) {
         backgroundValue = palette[color].main;
@@ -36,66 +37,80 @@ function item(theme: Theme | any, ownerState: any) {
 
       return backgroundValue;
     },
-    transition: transitions.create("background-color", {
+    transition: transitions.create('background-color', {
       easing: transitions.easing.easeInOut,
       duration: transitions.duration.shorter
     }),
 
-    "&:hover, &:focus": {
+    '&:hover, &:focus': {
       backgroundColor:
         !active &&
-        rgba((transparentSidenav && !darkMode) || whiteSidenav ? grey[400] : white.main, 0.2)
+        rgba(
+          (transparentSidenav && !darkMode) || whiteSidenav
+            ? grey[400]
+            : white.main,
+          0.2
+        )
     }
   };
 }
 
 function itemContent(theme: Theme, ownerState: any) {
   const { palette, typography, transitions, functions } = theme;
-  const { miniSidenav, name, active, transparentSidenav, whiteSidenav, darkMode } = ownerState;
+  const {
+    miniSidenav,
+    name,
+    active,
+    transparentSidenav,
+    whiteSidenav,
+    darkMode
+  } = ownerState;
 
   const { white, dark } = palette;
   const { size, fontWeightRegular, fontWeightLight } = typography;
   const { pxToRem } = functions;
 
   return {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    width: "100%",
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
     padding: `${pxToRem(12)} ${pxToRem(16)}`,
     marginLeft: pxToRem(18),
-    userSelect: "none",
-    position: "relative",
+    userSelect: 'none',
+    position: 'relative',
 
-    "& span": {
+    '& span': {
       color:
-        ((transparentSidenav && !darkMode) || whiteSidenav) && (active === "isParent" || !active)
+        ((transparentSidenav && !darkMode) || whiteSidenav) &&
+        (active === 'isParent' || !active)
           ? dark.main
           : white.main,
       fontWeight: active ? fontWeightRegular : fontWeightLight,
       fontSize: size.sm,
       opacity: miniSidenav ? 0 : 1,
-      transition: transitions.create(["opacity", "color"], {
+      transition: transitions.create(['opacity', 'color'], {
         easing: transitions.easing.easeInOut,
         duration: transitions.duration.standard
       })
     },
 
-    "&::before": {
+    '&::before': {
       content: `"${name[0]}"`,
       color:
-        ((transparentSidenav && !darkMode) || whiteSidenav) && (active === "isParent" || !active)
+        ((transparentSidenav && !darkMode) || whiteSidenav) &&
+        (active === 'isParent' || !active)
           ? dark.main
           : white.main,
       fontWeight: fontWeightRegular,
-      display: "flex",
-      alignItems: "center",
-      position: "absolute",
-      top: "50%",
-      transform: "translateY(-50%)",
+      display: 'flex',
+      alignItems: 'center',
+      position: 'absolute',
+      top: '50%',
+      transform: 'translateY(-50%)',
       left: pxToRem(-15),
       opacity: 1,
-      borderRadius: "50%",
+      borderRadius: '50%',
       fontSize: size.sm
     }
   };
@@ -103,8 +118,15 @@ function itemContent(theme: Theme, ownerState: any) {
 
 function itemArrow(theme: Theme, ownerState: any) {
   const { palette, typography, transitions, breakpoints, functions } = theme;
-  const { noCollapse, transparentSidenav, whiteSidenav, miniSidenav, open, active, darkMode } =
-    ownerState;
+  const {
+    noCollapse,
+    transparentSidenav,
+    whiteSidenav,
+    miniSidenav,
+    open,
+    active,
+    darkMode
+  } = ownerState;
 
   const { white, dark } = palette;
   const { size } = typography;
@@ -114,7 +136,7 @@ function itemArrow(theme: Theme, ownerState: any) {
     fontSize: `${size.lg} !important`,
     fontWeight: 700,
     marginBottom: pxToRem(-1),
-    transform: open ? "rotate(0)" : "rotate(-180deg)",
+    transform: open ? 'rotate(0)' : 'rotate(-180deg)',
     color: () => {
       let colorValue;
 
@@ -128,16 +150,16 @@ function itemArrow(theme: Theme, ownerState: any) {
 
       return colorValue;
     },
-    transition: transitions.create(["color", "transform", "opacity"], {
+    transition: transitions.create(['color', 'transform', 'opacity'], {
       easing: transitions.easing.easeInOut,
       duration: transitions.duration.shorter
     }),
 
-    [breakpoints.up("xl")]: {
+    [breakpoints.up('xl')]: {
       display:
         noCollapse || (transparentSidenav && miniSidenav) || miniSidenav
-          ? "none !important"
-          : "block !important"
+          ? 'none !important'
+          : 'block !important'
     }
   };
 }

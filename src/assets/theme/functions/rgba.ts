@@ -3,7 +3,7 @@
  to convert the hex code into rgb for using it inside the rgba color format.
  */
 
-import hexToRgb from "@/assets/theme/functions/hexToRgb";
+import hexToRgb from '@/assets/theme/functions/hexToRgb';
 
 function rgba(color: string, opacity: number): string {
   return `rgba(${hexToRgb(color)}, ${opacity})`;

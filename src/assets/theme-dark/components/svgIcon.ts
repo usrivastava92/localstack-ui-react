@@ -1,16 +1,16 @@
-import pxToRem from "@/assets/theme-dark/functions/pxToRem";
+import pxToRem from '@/assets/theme-dark/functions/pxToRem';
 
 // types
 type Types = any;
 
 const svgIcon: Types = {
   defaultProps: {
-    fontSize: "inherit"
+    fontSize: 'inherit'
   },
 
   styleOverrides: {
     fontSizeInherit: {
-      fontSize: "inherit !important"
+      fontSize: 'inherit !important'
     },
 
     fontSizeSmall: {

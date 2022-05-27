@@ -1,9 +1,9 @@
-import colors from "@/assets/theme/base/colors";
-import borders from "@/assets/theme/base/borders";
-import typography from "@/assets/theme/base/typography";
+import colors from '@/assets/theme/base/colors';
+import borders from '@/assets/theme/base/borders';
+import typography from '@/assets/theme/base/typography';
 
 //
-import pxToRem from "@/assets/theme/functions/pxToRem";
+import pxToRem from '@/assets/theme/functions/pxToRem';
 
 const { inputBorderColor, info, grey, transparent } = colors;
 const { borderRadius } = borders;
@@ -19,12 +19,12 @@ const inputOutlined: Types = {
       fontSize: size.sm,
       borderRadius: borderRadius.md,
 
-      "&:hover .MuiOutlinedInput-notchedOutline": {
+      '&:hover .MuiOutlinedInput-notchedOutline': {
         borderColor: inputBorderColor
       },
 
-      "&.Mui-focused": {
-        "& .MuiOutlinedInput-notchedOutline": {
+      '&.Mui-focused': {
+        '& .MuiOutlinedInput-notchedOutline': {
           borderColor: info.main
         }
       }

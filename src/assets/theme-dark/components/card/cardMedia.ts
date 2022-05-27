@@ -1,6 +1,6 @@
-import borders from "@/assets/theme-dark/base/borders";
+import borders from '@/assets/theme-dark/base/borders';
 
-import pxToRem from "@/assets/theme-dark/functions/pxToRem";
+import pxToRem from '@/assets/theme-dark/functions/pxToRem';
 
 const { borderRadius } = borders;
 
@@ -15,7 +15,7 @@ const cardMedia: Types = {
     },
 
     media: {
-      width: "auto"
+      width: 'auto'
     }
   }
 };

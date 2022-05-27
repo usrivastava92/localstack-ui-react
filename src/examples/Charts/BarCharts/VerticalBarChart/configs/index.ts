@@ -1,4 +1,4 @@
-import typography from "@/assets/theme/base/typography";
+import typography from '@/assets/theme/base/typography';
 
 function configs(labels: any, datasets: any) {
   return {
@@ -26,11 +26,11 @@ function configs(labels: any, datasets: any) {
           ticks: {
             display: true,
             padding: 10,
-            color: "#9ca2b7",
+            color: '#9ca2b7',
             font: {
               size: 11,
               family: typography.fontFamily,
-              style: "normal",
+              style: 'normal',
               lineHeight: 2
             }
           }
@@ -44,12 +44,12 @@ function configs(labels: any, datasets: any) {
           },
           ticks: {
             display: true,
-            color: "#9ca2b7",
+            color: '#9ca2b7',
             padding: 10,
             font: {
               size: 11,
               family: typography.fontFamily,
-              style: "normal",
+              style: 'normal',
               lineHeight: 2
             }
           }

@@ -1,6 +1,6 @@
-import colors from "@/assets/theme-dark/base/colors";
+import colors from '@/assets/theme-dark/base/colors';
 
-import boxShadow from "@/assets/theme-dark/functions/boxShadow";
+import boxShadow from '@/assets/theme-dark/functions/boxShadow';
 
 const { black, dark, tabs, coloredShadows } = colors;
 
@@ -15,15 +15,15 @@ interface Types {
   inset: string;
   colored:
     | {
-    primary: string;
-    secondary: string;
-    info: string;
-    success: string;
-    warning: string;
-    error: string;
-    light: string;
-    dark: string;
-  }
+        primary: string;
+        secondary: string;
+        info: string;
+        success: string;
+        warning: string;
+        error: string;
+        light: string;
+        dark: string;
+      }
     | any;
   navbarBoxShadow: string;
   sliderBoxShadow: {
@@ -56,7 +56,7 @@ const boxShadows: Types = {
     0.04
   )}`,
   xxl: boxShadow([0, 20], [27, 0], black.main, 0.05),
-  inset: boxShadow([0, 1], [2, 0], black.main, 0.075, "inset"),
+  inset: boxShadow([0, 1], [2, 0], black.main, 0.075, 'inset'),
   colored: {
     primary: `${boxShadow([0, 4], [20, 0], black.main, 0.14)}, ${boxShadow(
       [0, 7],
@@ -108,12 +108,13 @@ const boxShadows: Types = {
     )}`
   },
 
-  navbarBoxShadow: `${boxShadow([0, 0], [1, 1], dark.main, 0.9, "inset")}, ${boxShadow(
-    [0, 20],
-    [27, 0],
-    black.main,
-    0.05
-  )}`,
+  navbarBoxShadow: `${boxShadow(
+    [0, 0],
+    [1, 1],
+    dark.main,
+    0.9,
+    'inset'
+  )}, ${boxShadow([0, 20], [27, 0], black.main, 0.05)}`,
   sliderBoxShadow: {
     thumb: boxShadow([0, 1], [13, 0], black.main, 0.2)
   },

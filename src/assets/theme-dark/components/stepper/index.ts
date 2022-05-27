@@ -1,9 +1,9 @@
-import colors from "@/assets/theme-dark/base/colors";
-import borders from "@/assets/theme-dark/base/borders";
-import boxShadows from "@/assets/theme-dark/base/boxShadows";
+import colors from '@/assets/theme-dark/base/colors';
+import borders from '@/assets/theme-dark/base/borders';
+import boxShadows from '@/assets/theme-dark/base/boxShadows';
 
-import pxToRem from "@/assets/theme-dark/functions/pxToRem";
-import linearGradient from "@/assets/theme-dark/functions/linearGradient";
+import pxToRem from '@/assets/theme-dark/functions/pxToRem';
+import linearGradient from '@/assets/theme-dark/functions/linearGradient';
 
 const { transparent, gradients } = colors;
 const { borderRadius } = borders;
@@ -20,7 +20,7 @@ const stepper: Types = {
       borderRadius: borderRadius.lg,
       boxShadow: colored.info,
 
-      "&.MuiPaper-root": {
+      '&.MuiPaper-root': {
         backgroundColor: transparent.main
       }
     }

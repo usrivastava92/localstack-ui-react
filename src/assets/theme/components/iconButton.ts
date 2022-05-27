@@ -1,4 +1,4 @@
-import colors from "@/assets/theme/base/colors";
+import colors from '@/assets/theme/base/colors';
 
 const { transparent } = colors;
 
@@ -8,7 +8,7 @@ type Types = any;
 const iconButton: Types = {
   styleOverrides: {
     root: {
-      "&:hover": {
+      '&:hover': {
         backgroundColor: transparent.main
       }
     }

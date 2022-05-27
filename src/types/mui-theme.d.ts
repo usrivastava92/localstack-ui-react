@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Theme } from "@mui/material";
+import { Theme } from '@mui/material';
 
 // This is being used as export
 const theme = Theme;
@@ -32,7 +32,7 @@ interface DisplayTypes {
   fontSize: string;
 }
 
-declare module "@mui/material/styles" {
+declare module '@mui/material/styles' {
   interface Theme {
     boxShadows: {
       xs: string;
@@ -114,37 +114,37 @@ declare module "@mui/material/styles" {
   interface Palette {
     background:
       | {
-      default: string;
-      sidenav: string;
-      card: string;
-    }
+          default: string;
+          sidenav: string;
+          card: string;
+        }
       | any;
     white:
       | {
-      main: string;
-      focus: string;
-    }
+          main: string;
+          focus: string;
+        }
       | any;
     text:
       | {
-      main: string;
-      focus: string;
-      primary?: string;
-      secondary?: string;
-      disabled?: string;
-    }
+          main: string;
+          focus: string;
+          primary?: string;
+          secondary?: string;
+          disabled?: string;
+        }
       | any;
     transparent:
       | {
-      main: string;
-    }
+          main: string;
+        }
       | any;
     black:
       | {
-      light: string;
-      main: string;
-      focus: string;
-    }
+          light: string;
+          main: string;
+          focus: string;
+        }
       | any;
     primary: ColorsTypes | any;
     secondary: ColorsTypes | any;
@@ -156,100 +156,100 @@ declare module "@mui/material/styles" {
     dark: ColorsTypes | any;
     grey:
       | {
-      [key: string | number]: string;
-    }
+          [key: string | number]: string;
+        }
       | any;
     gradients:
       | {
-      primary: GradientsTypes;
-      secondary: GradientsTypes;
-      info: GradientsTypes;
-      success: GradientsTypes;
-      warning: GradientsTypes;
-      error: GradientsTypes;
-      light: GradientsTypes;
-      dark: GradientsTypes;
-    }
+          primary: GradientsTypes;
+          secondary: GradientsTypes;
+          info: GradientsTypes;
+          success: GradientsTypes;
+          warning: GradientsTypes;
+          error: GradientsTypes;
+          light: GradientsTypes;
+          dark: GradientsTypes;
+        }
       | any;
     socialMediaColors:
       | {
-      facebook: SocialMediaColorsTypes;
-      twitter: SocialMediaColorsTypes;
-      instagram: SocialMediaColorsTypes;
-      linkedin: SocialMediaColorsTypes;
-      pinterest: SocialMediaColorsTypes;
-      youtube: SocialMediaColorsTypes;
-      vimeo: SocialMediaColorsTypes;
-      slack: SocialMediaColorsTypes;
-      dribbble: SocialMediaColorsTypes;
-      github: SocialMediaColorsTypes;
-      reddit: SocialMediaColorsTypes;
-      tumblr: SocialMediaColorsTypes;
-    }
+          facebook: SocialMediaColorsTypes;
+          twitter: SocialMediaColorsTypes;
+          instagram: SocialMediaColorsTypes;
+          linkedin: SocialMediaColorsTypes;
+          pinterest: SocialMediaColorsTypes;
+          youtube: SocialMediaColorsTypes;
+          vimeo: SocialMediaColorsTypes;
+          slack: SocialMediaColorsTypes;
+          dribbble: SocialMediaColorsTypes;
+          github: SocialMediaColorsTypes;
+          reddit: SocialMediaColorsTypes;
+          tumblr: SocialMediaColorsTypes;
+        }
       | any;
     badgeColors:
       | {
-      primary: BadgeColorsTypes;
-      secondary: BadgeColorsTypes;
-      info: BadgeColorsTypes;
-      success: BadgeColorsTypes;
-      warning: BadgeColorsTypes;
-      error: BadgeColorsTypes;
-      light: BadgeColorsTypes;
-      dark: BadgeColorsTypes;
-    }
+          primary: BadgeColorsTypes;
+          secondary: BadgeColorsTypes;
+          info: BadgeColorsTypes;
+          success: BadgeColorsTypes;
+          warning: BadgeColorsTypes;
+          error: BadgeColorsTypes;
+          light: BadgeColorsTypes;
+          dark: BadgeColorsTypes;
+        }
       | any;
     coloredShadows:
       | {
-      [key: string]: string;
-    }
+          [key: string]: string;
+        }
       | any;
     inputBorderColor: string;
     tabs:
       | {
-      indicator:
-        | {
-        boxShadow: string;
-      }
-        | any;
-    }
+          indicator:
+            | {
+                boxShadow: string;
+              }
+            | any;
+        }
       | any;
   }
 
   interface PaletteOptions {
     background:
       | {
-      default: string;
-      sidenav?: string;
-      card?: string;
-    }
+          default: string;
+          sidenav?: string;
+          card?: string;
+        }
       | any;
     white:
       | {
-      main: string;
-      focus: string;
-    }
+          main: string;
+          focus: string;
+        }
       | any;
     text:
       | {
-      main: string;
-      focus: string;
-      primary?: string;
-      secondary?: string;
-      disabled?: string;
-    }
+          main: string;
+          focus: string;
+          primary?: string;
+          secondary?: string;
+          disabled?: string;
+        }
       | any;
     transparent:
       | {
-      main: string;
-    }
+          main: string;
+        }
       | any;
     black:
       | {
-      light: string;
-      main: string;
-      focus: string;
-    }
+          light: string;
+          main: string;
+          focus: string;
+        }
       | any;
     primary: ColorsTypes | any;
     secondary: ColorsTypes | any;
@@ -261,63 +261,63 @@ declare module "@mui/material/styles" {
     dark: ColorsTypes | any;
     grey:
       | {
-      [key: string | number]: string;
-    }
+          [key: string | number]: string;
+        }
       | any;
     gradients:
       | {
-      primary: GradientsTypes;
-      secondary: GradientsTypes;
-      info: GradientsTypes;
-      success: GradientsTypes;
-      warning: GradientsTypes;
-      error: GradientsTypes;
-      light: GradientsTypes;
-      dark: GradientsTypes;
-    }
+          primary: GradientsTypes;
+          secondary: GradientsTypes;
+          info: GradientsTypes;
+          success: GradientsTypes;
+          warning: GradientsTypes;
+          error: GradientsTypes;
+          light: GradientsTypes;
+          dark: GradientsTypes;
+        }
       | any;
     socialMediaColors:
       | {
-      facebook: SocialMediaColorsTypes;
-      twitter: SocialMediaColorsTypes;
-      instagram: SocialMediaColorsTypes;
-      linkedin: SocialMediaColorsTypes;
-      pinterest: SocialMediaColorsTypes;
-      youtube: SocialMediaColorsTypes;
-      vimeo: SocialMediaColorsTypes;
-      slack: SocialMediaColorsTypes;
-      dribbble: SocialMediaColorsTypes;
-      github: SocialMediaColorsTypes;
-      reddit: SocialMediaColorsTypes;
-      tumblr: SocialMediaColorsTypes;
-    }
+          facebook: SocialMediaColorsTypes;
+          twitter: SocialMediaColorsTypes;
+          instagram: SocialMediaColorsTypes;
+          linkedin: SocialMediaColorsTypes;
+          pinterest: SocialMediaColorsTypes;
+          youtube: SocialMediaColorsTypes;
+          vimeo: SocialMediaColorsTypes;
+          slack: SocialMediaColorsTypes;
+          dribbble: SocialMediaColorsTypes;
+          github: SocialMediaColorsTypes;
+          reddit: SocialMediaColorsTypes;
+          tumblr: SocialMediaColorsTypes;
+        }
       | any;
     badgeColors:
       | {
-      primary: BadgeColorsTypes;
-      secondary: BadgeColorsTypes;
-      info: BadgeColorsTypes;
-      success: BadgeColorsTypes;
-      warning: BadgeColorsTypes;
-      error: BadgeColorsTypes;
-      light: BadgeColorsTypes;
-      dark: BadgeColorsTypes;
-    }
+          primary: BadgeColorsTypes;
+          secondary: BadgeColorsTypes;
+          info: BadgeColorsTypes;
+          success: BadgeColorsTypes;
+          warning: BadgeColorsTypes;
+          error: BadgeColorsTypes;
+          light: BadgeColorsTypes;
+          dark: BadgeColorsTypes;
+        }
       | any;
     coloredShadows:
       | {
-      [key: string]: string;
-    }
+          [key: string]: string;
+        }
       | any;
     inputBorderColor: string;
     tabs:
       | {
-      indicator:
-        | {
-        boxShadow: string;
-      }
-        | any;
-    }
+          indicator:
+            | {
+                boxShadow: string;
+              }
+            | any;
+        }
       | any;
   }
 
@@ -423,8 +423,8 @@ declare module "@mui/material/styles" {
       md: string;
       lg: string;
       xl: string;
-      "2xl": string;
-      "3xl": string;
+      '2xl': string;
+      '3xl': string;
     };
     lineHeight: {
       sm: number;

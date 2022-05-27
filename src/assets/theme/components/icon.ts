@@ -1,17 +1,17 @@
-import pxToRem from "@/assets/theme/functions/pxToRem";
+import pxToRem from '@/assets/theme/functions/pxToRem';
 
 // types
 type Types = any;
 
 const icon: Types = {
   defaultProps: {
-    baseClassName: "material-icons-round",
-    fontSize: "inherit"
+    baseClassName: 'material-icons-round',
+    fontSize: 'inherit'
   },
 
   styleOverrides: {
     fontSizeInherit: {
-      fontSize: "inherit !important"
+      fontSize: 'inherit !important'
     },
 
     fontSizeSmall: {

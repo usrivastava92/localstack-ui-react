@@ -1,8 +1,8 @@
-import borders from "@/assets/theme/base/borders";
-import colors from "@/assets/theme/base/colors";
+import borders from '@/assets/theme/base/borders';
+import colors from '@/assets/theme/base/colors';
 
-import pxToRem from "@/assets/theme/functions/pxToRem";
-import linearGradient from "@/assets/theme/functions/linearGradient";
+import pxToRem from '@/assets/theme/functions/pxToRem';
+import linearGradient from '@/assets/theme/functions/linearGradient';
 
 const { borderWidth, borderColor } = borders;
 const { transparent, info } = colors;
@@ -13,10 +13,10 @@ type Types = any;
 const checkbox: Types = {
   styleOverrides: {
     root: {
-      "& .MuiSvgIcon-root": {
-        backgroundPosition: "center",
-        backgroundSize: "contain",
-        backgroundRepeat: "no-repeat",
+      '& .MuiSvgIcon-root': {
+        backgroundPosition: 'center',
+        backgroundSize: 'contain',
+        backgroundRepeat: 'no-repeat',
         width: pxToRem(20),
         height: pxToRem(20),
         color: transparent.main,
@@ -24,11 +24,11 @@ const checkbox: Types = {
         borderRadius: pxToRem(5.6)
       },
 
-      "&:hover": {
+      '&:hover': {
         backgroundColor: transparent.main
       },
 
-      "&.Mui-focusVisible": {
+      '&.Mui-focusVisible': {
         border: `${borderWidth[2]} solid ${info.main} !important`
       }
     },
@@ -36,10 +36,10 @@ const checkbox: Types = {
     colorPrimary: {
       color: borderColor,
 
-      "&.Mui-checked": {
+      '&.Mui-checked': {
         color: info.main,
 
-        "& .MuiSvgIcon-root": {
+        '& .MuiSvgIcon-root': {
           backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -1 22 22'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M6 10l3 3l6-6'/%3e%3c/svg%3e"), ${linearGradient(
             info.main,
             info.main
@@ -52,9 +52,9 @@ const checkbox: Types = {
     colorSecondary: {
       color: borderColor,
 
-      "& .MuiSvgIcon-root": {
+      '& .MuiSvgIcon-root': {
         color: info.main,
-        "&.Mui-checked": {
+        '&.Mui-checked': {
           backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -1 22 22'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M6 10l3 3l6-6'/%3e%3c/svg%3e"), ${linearGradient(
             info.main,
             info.main
