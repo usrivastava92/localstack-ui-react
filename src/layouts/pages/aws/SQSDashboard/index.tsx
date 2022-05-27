@@ -12,9 +12,8 @@ import {
   SQSClient
 } from "@aws-sdk/client-sqs";
 import AwsDashboardLayout from "../AwsDashboardLayout";
-import { Card, Modal } from "@mui/material";
+import { Card, Grid, Icon, Modal } from "@mui/material";
 import { AWSProfile, nullAwsProfile } from "../types/awsTypes";
-import { AWSProfileContext } from "../../../../context";
 import { getClientConfig, getQueueNameFromArn, getQueueNameFromUrl } from "../utils/awsUtils";
 import DefaultCell from "../../../ecommerce/orders/order-list/components/DefaultCell";
 import DataTable from "../../../../examples/Tables/DataTable";
@@ -23,9 +22,7 @@ import MDBox from "@/components/MDBox";
 import MDTypography from "@/components/MDTypography";
 import Autocomplete from "@mui/material/Autocomplete";
 import MDInput from "@/components/MDInput";
-import Grid from "@mui/material/Grid";
 import MDButton from "@/components/MDButton";
-import Icon from "@mui/material/Icon";
 import Tooltip from "@mui/material/Tooltip";
 import { defaultSBProps, getErrorSBProps, getSuccessSBProps } from "../utils/notificationUtils";
 import MDSnackbar, { SBProps } from "@/components/MDSnackbar";
@@ -36,6 +33,7 @@ import { ValuesSchema } from "../types/formTypes";
 import { deleteMessageForm } from "./forms";
 import { deleteMessageFormValidation } from "./formValidations";
 import { FormikHelpers } from "formik/dist/types";
+import { AWSProfileContext } from "@/context";
 
 const sqsColumnDefinitions: ColumnDefinition[] = [
   { accessor: "name", Header: "Queue Name", Cell: ({ value }) => <DefaultCell value={value} /> },
@@ -117,13 +115,6 @@ interface SQSRowDefinitions {
   RedrivePolicy: string,
   VisibilityTimeout: string
 }
-
-import { Card, Grid, Icon, Link, TableBody, TableCell, TableRow } from "@mui/material";
-import MDBox from "@/components/MDBox";
-import MDTypography from "@/components/MDTypography";
-import { AWSProfile, nullAwsProfile } from "../types/awsTypes";
-import { AWSProfileContext } from "@/context";
-import { getClientConfig } from "../utils/awsUtils";
 
 const emptyMessageTableData: TableData = { columns: sqsColumnDefinitions, rows: [] };
 

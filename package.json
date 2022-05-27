@@ -5,6 +5,11 @@
   "main": "public/electron.js",
   "homepage": "./",
   "description": "Localstack UI",
+  "pnpm": {
+    "peerDependencyRules": {
+      "auto-install-peers": true
+    }
+  },
   "scripts": {
     "start": "vite",
     "build": "vite build",

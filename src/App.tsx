@@ -1,10 +1,10 @@
-import {JSXElementConstructor, Key, ReactElement, useEffect, useState} from "react";
+import { JSXElementConstructor, Key, ReactElement, useEffect, useState } from "react";
 
 // react-router components
-import {Navigate, Route, Routes, useLocation} from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 
 // @mui material components
-import {ThemeProvider} from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Icon from "@mui/material/Icon";
 
@@ -25,7 +25,6 @@ import { setMiniSidenav, setOpenConfigurator, useMaterialUIController } from "@/
 import brandWhite from "@/assets/images/logo-ct.png";
 import brandDark from "@/assets/images/logo-ct-dark.png";
 import AwsHome from "./layouts/pages/aws/AwsHome";
-import Widgets from "./layouts/pages/widgets";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -136,8 +135,8 @@ export default function App() {
       {layout === "vr" && <Configurator />}
       <Routes>
         {getRoutes(routes)}
-        <Route path="/pages/aws/home" element={<AwsHome/>} key="awsHome"/>
-        <Route path="*" element={<Navigate to="/pages/aws/home"/>}/>
+        <Route path="/pages/aws/home" element={<AwsHome />} key="awsHome" />
+        <Route path="*" element={<Navigate to="/pages/aws/home" />} />
       </Routes>
     </ThemeProvider>
   );

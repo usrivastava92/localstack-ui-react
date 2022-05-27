@@ -1,4 +1,4 @@
-import MDTypography from "components/MDTypography";
+import MDTypography from "@/components/MDTypography";
 import { useState } from "react";
 import { Icon } from "@mui/material";
 import Tooltip from "@mui/material/Tooltip";

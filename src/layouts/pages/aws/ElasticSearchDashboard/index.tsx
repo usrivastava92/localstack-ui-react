@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import AwsDashboardLayout from "../AwsDashboardLayout";
 import { Card } from "@mui/material";
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "@/components/MDBox";
+import MDTypography from "@/components/MDTypography";
 import { AWSProfile, nullAwsProfile } from "../types/awsTypes";
-import { AWSProfileContext } from "../../../../context";
+import { AWSProfileContext } from "@/context";
 import { getClientConfig } from "../utils/awsUtils";
 import {
   DescribeElasticsearchDomainCommand,
@@ -15,8 +15,8 @@ import {
 import { ColumnDefinition, TableData } from "../types/tableTypes";
 import DefaultCell from "../../../ecommerce/orders/order-list/components/DefaultCell";
 import Autocomplete from "@mui/material/Autocomplete";
-import MDInput from "../../../../components/MDInput";
-import DataTable from "../../../../examples/Tables/DataTable";
+import MDInput from "@/components/MDInput";
+import DataTable from "@/examples/Tables/DataTable";
 import {
   CatIndicesResponse,
   ElasticSearchClient,

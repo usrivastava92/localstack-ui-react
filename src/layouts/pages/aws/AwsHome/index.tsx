@@ -2,7 +2,7 @@ import Grid from "@mui/material/Grid";
 import Footer from "../../../../examples/Footer";
 import DashboardLayout from "../../../../examples/LayoutContainers/DashboardLayout";
 import MiniInfoCard from "../../../../examples/Cards/InfoCards/MiniInfoCard";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 function AwsHome(): JSX.Element {
 
@@ -11,7 +11,7 @@ function AwsHome(): JSX.Element {
   return (
     <DashboardLayout>
       <Grid container alignItems="center" spacing={3} py={3}>
-        <Grid item xs={12} md={6} lg={3} onClick={() => navigate('/pages/aws/dynamoDb')} style={{cursor:'pointer'}}>
+        <Grid item xs={12} md={6} lg={3} onClick={() => navigate("/pages/aws/dynamoDb")} style={{ cursor: "pointer" }}>
           <MiniInfoCard
             color="dark"
             icon="shortcut"
@@ -24,7 +24,7 @@ function AwsHome(): JSX.Element {
             description="Go to Dynamo DB Dashboard"
           />
         </Grid>
-        <Grid item xs={12} md={6} lg={3} onClick={() => navigate('/pages/aws/sqs')} style={{cursor:'pointer'}}>
+        <Grid item xs={12} md={6} lg={3} onClick={() => navigate("/pages/aws/sqs")} style={{ cursor: "pointer" }}>
           <MiniInfoCard
             color="info"
             icon="shortcut"
@@ -37,7 +37,7 @@ function AwsHome(): JSX.Element {
             description="Go to SQS Dashboard"
           />
         </Grid>
-        <Grid item xs={12} md={6} lg={3} onClick={() => navigate('/pages/aws/es')} style={{cursor:'pointer'}}>
+        <Grid item xs={12} md={6} lg={3} onClick={() => navigate("/pages/aws/es")} style={{ cursor: "pointer" }}>
           <MiniInfoCard
             color="success"
             icon="shortcut"
@@ -50,7 +50,7 @@ function AwsHome(): JSX.Element {
             description="Go to Elastic Search Dashboard"
           />
         </Grid>
-        <Grid item xs={12} md={6} lg={3} style={{cursor:'pointer'}}>
+        <Grid item xs={12} md={6} lg={3} style={{ cursor: "pointer" }}>
           <MiniInfoCard
             color="warning"
             icon="shortcut"
@@ -64,7 +64,7 @@ function AwsHome(): JSX.Element {
           />
         </Grid>
       </Grid>
-      <Footer/>
+      <Footer />
     </DashboardLayout>
   );
 }
