@@ -1,3 +1,6 @@
+import { GridEnrichedColDef } from '@mui/x-data-grid/models/colDef/gridColDef';
+import { GridRowModel } from '@mui/x-data-grid/models/gridRows';
+
 export interface ColumnDefinition {
   Header: string;
   accessor: string;
@@ -5,6 +8,6 @@ export interface ColumnDefinition {
 }
 
 export interface TableData {
-  columns: ColumnDefinition[];
-  rows: any[];
+  columns: GridEnrichedColDef[];
+  rows: GridRowModel<any>[];
 }

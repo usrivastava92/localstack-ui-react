@@ -6,19 +6,21 @@ import { AWSProfileContext } from "@/context";
 import MDTypography from "@/components/MDTypography";
 import MDBox from "@/components/MDBox";
 import Card from "@mui/material/Card";
-import DataTable from "../../../../examples/Tables/DataTable";
 import Autocomplete from "@mui/material/Autocomplete";
 import MDInput from "@/components/MDInput";
-import DefaultCell from "../../../ecommerce/orders/order-list/components/DefaultCell";
 import { AttributeValue } from "@aws-sdk/client-dynamodb/dist-types/models/models_0";
 import { unmarshall } from "@aws-sdk/util-dynamodb";
 import { getClientConfig } from "../utils/awsUtils";
-import { ColumnDefinition, TableData } from "../types/tableTypes";
+import { TableData } from "../types/tableTypes";
 import MDButton from "../../../../components/MDButton";
 import Icon from "@mui/material/Icon";
 import Tooltip from "@mui/material/Tooltip";
 import MDSnackbar, { SBProps } from "../../../../components/MDSnackbar";
 import { defaultSBProps, getErrorSBProps } from "../utils/notificationUtils";
+import { DataGrid } from "@mui/x-data-grid";
+import { GridEnrichedColDef } from "@mui/x-data-grid/models/colDef/gridColDef";
+import { GridRowModel } from "@mui/x-data-grid/models/gridRows";
+import Box from "@mui/material/Box";
 
 function getStringAttributeValue(value: any): string {
   if (!value) {
@@ -27,8 +29,8 @@ function getStringAttributeValue(value: any): string {
   return JSON.stringify(value);
 }
 
-function getColumnDefinitions(items: { [key: string]: AttributeValue; }[]): ColumnDefinition[] {
-  const columnDefinitions: ColumnDefinition[] = [];
+function getColumnDefinitions(items: { [key: string]: AttributeValue; }[]): GridEnrichedColDef[] {
+  const columnDefinitions: GridEnrichedColDef[] = [];
   if (!items || items.length <= 0) {
     return columnDefinitions;
   }
@@ -37,23 +39,24 @@ function getColumnDefinitions(items: { [key: string]: AttributeValue; }[]): Colu
     Object.keys(item).forEach((key) => {
       if (!columnsDefsAlreadyAdded.has(key)) {
         columnDefinitions.push({
-          Header: key,
-          accessor: key,
-          Cell: (value) => <DefaultCell value={getStringAttributeValue(value.value)} />
+          field: key,
+          headerName: key
         });
         columnsDefsAlreadyAdded.add(key);
       }
     });
   });
-  return columnDefinitions.sort((one, two) => (one.Header < two.Header ? -1 : 1));
+  return columnDefinitions;
 }
 
-function getRows(items: { [key: string]: AttributeValue; }[]): any[] {
+function getRows(items: { [key: string]: AttributeValue; }[]): GridRowModel[] {
   const rows: any[] = [];
   if (!items || items.length <= 0) {
     return rows;
   }
-  return items.map(item => unmarshall(item));
+  return items.map((item, index) => {
+    return { ...unmarshall(item), id: index };
+  });
 }
 
 function getTableData(scanOutput: ScanCommandOutput): TableData {
@@ -74,6 +77,7 @@ function Content(): JSX.Element {
   const [tables, setTables] = useState<string[]>([]);
   const [sbProps, setSBProps] = useState<SBProps>(defaultSBProps);
   const [selectedTable, setSelectedTable] = useState<string>();
+  const [isTableLoading, setIsTableLoading] = useState<boolean>(true);
   const [tableData, setTableData] = useState<TableData>(getTableData(undefined));
 
   function listTables(): void {
@@ -100,6 +104,7 @@ function Content(): JSX.Element {
 
   function scanTable(tableName: string) {
     if (tableName) {
+      setIsTableLoading(true);
       setSelectedTable(tableName);
       client.scan({ TableName: tableName })
         .then(output => setTableData(getTableData(output)))
@@ -113,12 +118,13 @@ function Content(): JSX.Element {
             close: () => setSBProps(defaultSBProps)
           }));
         });
+      setIsTableLoading(false);
     }
   }
 
   return (
-    <div>
-      <MDBox my={3} sx={{ maxHeight: "50%" }}>
+    <Box border={1}>
+      <MDBox my={3}>
         <Card>
           <MDBox p={3} lineHeight={1} display="flex" justifyContent="space-between">
             <MDBox>
@@ -159,7 +165,14 @@ function Content(): JSX.Element {
               />
             </MDBox>
           </MDBox>
-          <DataTable table={tableData} canSearch={true} stickyHeader={true} />
+          <DataGrid
+            sx={{ p: 2, m: 2 }}
+            loading={isTableLoading}
+            columns={tableData.columns}
+            rows={tableData.rows}
+            pageSize={10}
+            autoPageSize
+          />
         </Card>
       </MDBox>
       <MDSnackbar
@@ -173,7 +186,7 @@ function Content(): JSX.Element {
         close={sbProps.close}
         bgWhite
       />
-    </div>
+    </Box>
   );
 }
 
