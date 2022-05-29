@@ -1,22 +1,29 @@
-import { ReactNode, useMemo } from "react";
+import { ReactNode, useMemo } from 'react';
 
 // react-chartjs-2 components
-import { Line } from "react-chartjs-2";
+import { Line } from 'react-chartjs-2';
 
 // @mui material components
-import Card from "@mui/material/Card";
-import Divider from "@mui/material/Divider";
-import Icon from "@mui/material/Icon";
+import Card from '@mui/material/Card';
+import Divider from '@mui/material/Divider';
+import Icon from '@mui/material/Icon';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
 // ReportsLineChart configurations
-import configs from "examples/Charts/LineCharts/ReportsLineChart/configs";
+import configs from 'examples/Charts/LineCharts/ReportsLineChart/configs';
 
 // Declaring props types for ReportsLineChart
 interface Props {
-  color?: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "dark";
+  color?:
+    | 'primary'
+    | 'secondary'
+    | 'info'
+    | 'success'
+    | 'warning'
+    | 'error'
+    | 'dark';
   title: string;
   description?: string | ReactNode;
   date: string;
@@ -31,11 +38,17 @@ interface Props {
   [key: string]: any;
 }
 
-function ReportsLineChart({ color, title, description, date, chart }: Props): JSX.Element {
+function ReportsLineChart({
+  color,
+  title,
+  description,
+  date,
+  chart
+}: Props): JSX.Element {
   const { data, options } = configs(chart.labels || [], chart.datasets || {});
 
   return (
-    <Card sx={{ height: "100%" }}>
+    <Card sx={{ height: '100%' }}>
       <MDBox padding="1rem">
         {useMemo(
           () => (
@@ -58,12 +71,22 @@ function ReportsLineChart({ color, title, description, date, chart }: Props): JS
           <MDTypography variant="h6" textTransform="capitalize">
             {title}
           </MDTypography>
-          <MDTypography component="div" variant="button" color="text" fontWeight="light">
+          <MDTypography
+            component="div"
+            variant="button"
+            color="text"
+            fontWeight="light"
+          >
             {description}
           </MDTypography>
           <Divider />
           <MDBox display="flex" alignItems="center">
-            <MDTypography variant="button" color="text" lineHeight={1} sx={{ mt: 0.15, mr: 0.5 }}>
+            <MDTypography
+              variant="button"
+              color="text"
+              lineHeight={1}
+              sx={{ mt: 0.15, mr: 0.5 }}
+            >
               <Icon>schedule</Icon>
             </MDTypography>
             <MDTypography variant="button" color="text" fontWeight="light">
@@ -78,8 +101,8 @@ function ReportsLineChart({ color, title, description, date, chart }: Props): JS
 
 // Declaring default props for ReportsLineChart
 ReportsLineChart.defaultProps = {
-  color: "dark",
-  description: ""
+  color: 'dark',
+  description: ''
 };
 
 export default ReportsLineChart;

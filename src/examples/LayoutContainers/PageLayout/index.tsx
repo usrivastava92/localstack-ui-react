@@ -1,15 +1,15 @@
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect } from 'react';
 
 // react-router-dom components
-import { useLocation } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 
-import MDBox from "components/MDBox";
+import MDBox from 'components/MDBox';
 
-import { setLayout, useMaterialUIController } from "context";
+import { setLayout, useMaterialUIController } from 'context';
 
 // Declaring props types for PageLayout
 interface Props {
-  background?: "white" | "light" | "default";
+  background?: 'white' | 'light' | 'default';
   children: ReactNode;
 }
 
@@ -18,7 +18,7 @@ function PageLayout({ background, children }: Props): JSX.Element {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    setLayout(dispatch, "page");
+    setLayout(dispatch, 'page');
   }, [pathname]);
 
   return (
@@ -27,7 +27,7 @@ function PageLayout({ background, children }: Props): JSX.Element {
       height="100%"
       minHeight="100vh"
       bgColor={background}
-      sx={{ overflowX: "hidden" }}
+      sx={{ overflowX: 'hidden' }}
     >
       {children}
     </MDBox>
@@ -36,7 +36,7 @@ function PageLayout({ background, children }: Props): JSX.Element {
 
 // Declaring default props for PageLayout
 PageLayout.defaultProps = {
-  background: "default"
+  background: 'default'
 };
 
 export default PageLayout;

@@ -1,21 +1,21 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 // @mui material components
-import Switch from "@mui/material/Switch";
+import Switch from '@mui/material/Switch';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDInput from "components/MDInput";
-import MDButton from "components/MDButton";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
+import MDInput from 'components/MDInput';
+import MDButton from 'components/MDButton';
 
 // Authentication layout components
-import IllustrationLayout from "layouts/authentication/components/IllustrationLayout";
+import IllustrationLayout from 'layouts/authentication/components/IllustrationLayout';
 
 // Image
-import bgImage from "assets/images/illustrations/illustration-reset.jpg";
+import bgImage from 'assets/images/illustrations/illustration-reset.jpg';
 
 function Illustration(): JSX.Element {
   const [rememberMe, setRememberMe] = useState<boolean>(false);
@@ -42,7 +42,7 @@ function Illustration(): JSX.Element {
             fontWeight="regular"
             color="text"
             onClick={handleSetRememberMe}
-            sx={{ cursor: "pointer", userSelect: "none", ml: -1 }}
+            sx={{ cursor: 'pointer', userSelect: 'none', ml: -1 }}
           >
             &nbsp;&nbsp;Remember me
           </MDTypography>
@@ -54,7 +54,7 @@ function Illustration(): JSX.Element {
         </MDBox>
         <MDBox mt={3} textAlign="center">
           <MDTypography variant="button" color="text">
-            Don&apos;t have an account?{" "}
+            Don&apos;t have an account?{' '}
             <MDTypography
               component={Link}
               to="/authentication/sign-up/cover"

@@ -1,49 +1,72 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 // @mui material components
-import Card from "@mui/material/Card";
-import Grid from "@mui/material/Grid";
-import Icon from "@mui/material/Icon";
+import Card from '@mui/material/Card';
+import Grid from '@mui/material/Grid';
+import Icon from '@mui/material/Icon';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
-import { useMaterialUIController } from "context";
+import { useMaterialUIController } from 'context';
 
 // Decalaring props types for MiniStatisticsCard
 interface Props {
-  bgColor?: "white" | "primary" | "secondary" | "info" | "success" | "warning" | "error" | "dark";
+  bgColor?:
+    | 'white'
+    | 'primary'
+    | 'secondary'
+    | 'info'
+    | 'success'
+    | 'warning'
+    | 'error'
+    | 'dark';
   title?: {
-    fontWeight?: "light" | "regular" | "medium" | "bold";
+    fontWeight?: 'light' | 'regular' | 'medium' | 'bold';
     text?: string;
   };
   count: string | number;
   percentage?: {
-    color: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "dark" | "white";
+    color:
+      | 'primary'
+      | 'secondary'
+      | 'info'
+      | 'success'
+      | 'warning'
+      | 'error'
+      | 'dark'
+      | 'white';
     text: string | number;
   };
   icon: {
-    color: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "dark";
+    color:
+      | 'primary'
+      | 'secondary'
+      | 'info'
+      | 'success'
+      | 'warning'
+      | 'error'
+      | 'dark';
     component: ReactNode;
   };
-  direction?: "right" | "left";
+  direction?: 'right' | 'left';
 
   [key: string]: any;
 }
 
 function MiniStatisticsCard({
-                              bgColor,
-                              title,
-                              count,
-                              percentage,
-                              icon,
-                              direction
-                            }: Props): JSX.Element {
+  bgColor,
+  title,
+  count,
+  percentage,
+  icon,
+  direction
+}: Props): JSX.Element {
   const [controller] = useMaterialUIController();
   const { darkMode } = controller;
 
   return (
-    <Card sx={{ overflow: "hidden" }}>
+    <Card sx={{ overflow: 'hidden' }}>
       <MDBox
         bgColor={bgColor}
         variant="gradient"
@@ -53,12 +76,12 @@ function MiniStatisticsCard({
       >
         <MDBox p={2}>
           <Grid container alignItems="center">
-            {direction === "left" ? (
+            {direction === 'left' ? (
               <Grid item xs={4}>
                 <MDBox
                   variant="gradient"
-                  bgColor={bgColor === "white" ? icon.color : "white"}
-                  color={bgColor === "white" ? "white" : "dark"}
+                  bgColor={bgColor === 'white' ? icon.color : 'white'}
+                  color={bgColor === 'white' ? 'white' : 'dark'}
                   width="4rem"
                   height="4rem"
                   borderRadius="md"
@@ -75,14 +98,14 @@ function MiniStatisticsCard({
             ) : null}
             <Grid item xs={8}>
               <MDBox
-                ml={direction === "left" ? 2 : 0}
+                ml={direction === 'left' ? 2 : 0}
                 lineHeight={1}
-                textAlign={direction === "left" ? "right" : "left"}
+                textAlign={direction === 'left' ? 'right' : 'left'}
               >
                 <MDTypography
                   variant="button"
-                  color={bgColor === "white" ? "text" : "white"}
-                  opacity={bgColor === "white" ? 1 : 0.7}
+                  color={bgColor === 'white' ? 'text' : 'white'}
+                  opacity={bgColor === 'white' ? 1 : 0.7}
                   textTransform="capitalize"
                   fontWeight={title.fontWeight}
                 >
@@ -91,21 +114,25 @@ function MiniStatisticsCard({
                 <MDTypography
                   variant="h5"
                   fontWeight="bold"
-                  color={bgColor === "white" ? "dark" : "white"}
+                  color={bgColor === 'white' ? 'dark' : 'white'}
                 >
-                  {count}{" "}
-                  <MDTypography variant="button" color={percentage.color} fontWeight="bold">
+                  {count}{' '}
+                  <MDTypography
+                    variant="button"
+                    color={percentage.color}
+                    fontWeight="bold"
+                  >
                     {percentage.text}
                   </MDTypography>
                 </MDTypography>
               </MDBox>
             </Grid>
-            {direction === "right" ? (
+            {direction === 'right' ? (
               <Grid item xs={4}>
                 <MDBox
                   variant="gradient"
-                  bgColor={bgColor === "white" ? icon.color : "white"}
-                  color={bgColor === "white" ? "white" : "dark"}
+                  bgColor={bgColor === 'white' ? icon.color : 'white'}
+                  color={bgColor === 'white' ? 'white' : 'dark'}
                   width="4rem"
                   height="4rem"
                   marginLeft="auto"
@@ -130,16 +157,16 @@ function MiniStatisticsCard({
 
 // Declaring default props for MiniStatisticsCard
 MiniStatisticsCard.defaultProps = {
-  bgColor: "white",
+  bgColor: 'white',
   title: {
-    fontWeight: "light",
-    text: ""
+    fontWeight: 'light',
+    text: ''
   },
   percentage: {
-    color: "success",
-    text: ""
+    color: 'success',
+    text: ''
   },
-  direction: "right"
+  direction: 'right'
 };
 
 export default MiniStatisticsCard;

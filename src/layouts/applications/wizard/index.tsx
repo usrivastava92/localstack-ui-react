@@ -1,27 +1,27 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 // @mui material components
-import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDButton from "components/MDButton";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
+import MDButton from 'components/MDButton';
 
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import Footer from "examples/Footer";
+import DashboardLayout from 'examples/LayoutContainers/DashboardLayout';
+import DashboardNavbar from 'examples/Navbars/DashboardNavbar';
+import Footer from 'examples/Footer';
 
 // Wizard page components
-import About from "layouts/applications/wizard/components/About";
-import Account from "layouts/applications/wizard/components/Account";
-import Address from "layouts/applications/wizard/components/Address";
+import About from 'layouts/applications/wizard/components/About';
+import Account from 'layouts/applications/wizard/components/Account';
+import Address from 'layouts/applications/wizard/components/Address';
 
 function getSteps(): string[] {
-  return ["About", "Account", "Address"];
+  return ['About', 'Account', 'Address'];
 }
 
 function getStepContent(stepIndex: number): JSX.Element {
@@ -74,11 +74,20 @@ function Wizard(): JSX.Element {
               <MDBox p={2}>
                 <MDBox>
                   {getStepContent(activeStep)}
-                  <MDBox mt={3} width="100%" display="flex" justifyContent="space-between">
+                  <MDBox
+                    mt={3}
+                    width="100%"
+                    display="flex"
+                    justifyContent="space-between"
+                  >
                     {activeStep === 0 ? (
                       <MDBox />
                     ) : (
-                      <MDButton variant="outlined" color="dark" onClick={handleBack}>
+                      <MDButton
+                        variant="outlined"
+                        color="dark"
+                        onClick={handleBack}
+                      >
                         back
                       </MDButton>
                     )}
@@ -87,7 +96,7 @@ function Wizard(): JSX.Element {
                       color="dark"
                       onClick={!isLastStep ? handleNext : undefined}
                     >
-                      {isLastStep ? "send" : "next"}
+                      {isLastStep ? 'send' : 'next'}
                     </MDButton>
                   </MDBox>
                 </MDBox>

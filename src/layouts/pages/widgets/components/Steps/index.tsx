@@ -1,9 +1,9 @@
 // @mui material components
-import Card from "@mui/material/Card";
+import Card from '@mui/material/Card';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDBadge from "components/MDBadge";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
+import MDBadge from 'components/MDBadge';
 
 function Steps(): JSX.Element {
   return (
@@ -17,7 +17,12 @@ function Steps(): JSX.Element {
             11.4K
           </MDTypography>
         </MDBox>
-        <MDBadge variant="contained" color="success" badgeContent="+4.3%" container />
+        <MDBadge
+          variant="contained"
+          color="success"
+          badgeContent="+4.3%"
+          container
+        />
       </MDBox>
     </Card>
   );

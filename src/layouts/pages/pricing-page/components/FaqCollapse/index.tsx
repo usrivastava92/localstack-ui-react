@@ -1,13 +1,13 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 // @mui material components
-import Icon from "@mui/material/Icon";
-import Collapse from "@mui/material/Collapse";
+import Icon from '@mui/material/Icon';
+import Collapse from '@mui/material/Collapse';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
-import borders from "assets/theme/base/borders";
+import borders from 'assets/theme/base/borders';
 
 // Declaring props types for FaqCollapse
 interface Props {
@@ -30,20 +30,29 @@ function FaqCollapse({ title, open, children, ...rest }: Props): JSX.Element {
         alignItems="center"
         p={2}
         borderBottom={`${borderWidth[1]} solid ${borderColor}`}
-        sx={{ cursor: "pointer" }}
+        sx={{ cursor: 'pointer' }}
       >
-        <MDTypography variant="h5" color={open ? "dark" : "text"} sx={{ userSelect: "none" }}>
+        <MDTypography
+          variant="h5"
+          color={open ? 'dark' : 'text'}
+          sx={{ userSelect: 'none' }}
+        >
           {title}
         </MDTypography>
-        <MDBox color={open ? "dark" : "text"}>
-          <Icon sx={{ fontWeight: "bold" }} fontSize="small">
-            {open ? "remove" : "add"}
+        <MDBox color={open ? 'dark' : 'text'}>
+          <Icon sx={{ fontWeight: 'bold' }} fontSize="small">
+            {open ? 'remove' : 'add'}
           </Icon>
         </MDBox>
       </MDBox>
       <Collapse timeout={400} in={open}>
         <MDBox p={2} lineHeight={1}>
-          <MDTypography variant="button" color="text" opacity={0.8} fontWeight="regular">
+          <MDTypography
+            variant="button"
+            color="text"
+            opacity={0.8}
+            fontWeight="regular"
+          >
             {children}
           </MDTypography>
         </MDBox>

@@ -1,15 +1,15 @@
 // @mui material components
-import Grid from "@mui/material/Grid";
+import Grid from '@mui/material/Grid';
 
 // @mui icons
-import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import PinterestIcon from "@mui/icons-material/Pinterest";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import PinterestIcon from '@mui/icons-material/Pinterest';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
 function Footer(): JSX.Element {
   return (
@@ -104,7 +104,7 @@ function Footer(): JSX.Element {
             </MDBox>
           </MDBox>
         </Grid>
-        <Grid item xs={12} lg={8} sx={{ textAlign: "center" }}>
+        <Grid item xs={12} lg={8} sx={{ textAlign: 'center' }}>
           <MDTypography variant="body2" color="secondary">
             Copyright &copy; 2021
           </MDTypography>

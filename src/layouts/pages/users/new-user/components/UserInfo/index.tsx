@@ -1,15 +1,16 @@
 // @mui material components
-import Grid from "@mui/material/Grid";
+import Grid from '@mui/material/Grid';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
 // NewUser page components
-import FormField from "layouts/pages/users/new-user/components/FormField";
+import FormField from 'layouts/pages/users/new-user/components/FormField';
 
 function UserInfo({ formData }: any): JSX.Element {
   const { formField, values, errors, touched } = formData;
-  const { firstName, lastName, company, email, password, repeatPassword } = formField;
+  const { firstName, lastName, company, email, password, repeatPassword } =
+    formField;
   const {
     firstName: firstNameV,
     lastName: lastNameV,
@@ -84,7 +85,7 @@ function UserInfo({ formData }: any): JSX.Element {
               placeholder={password.placeholder}
               error={errors.password && touched.password}
               success={passwordV.length > 0 && !errors.password}
-              inputProps={{ autoComplete: "" }}
+              inputProps={{ autoComplete: '' }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -96,7 +97,7 @@ function UserInfo({ formData }: any): JSX.Element {
               placeholder={repeatPassword.placeholder}
               error={errors.repeatPassword && touched.repeatPassword}
               success={repeatPasswordV.length > 0 && !errors.repeatPassword}
-              inputProps={{ autoComplete: "" }}
+              inputProps={{ autoComplete: '' }}
             />
           </Grid>
         </Grid>

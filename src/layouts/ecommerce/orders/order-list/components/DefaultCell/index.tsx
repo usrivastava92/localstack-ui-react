@@ -1,4 +1,4 @@
-import MDTypography from "components/MDTypography";
+import MDTypography from 'components/MDTypography';
 
 // Declaring props types for DefaultCell
 interface Props {
@@ -21,7 +21,7 @@ function DefaultCell({ value, suffix }: Props): JSX.Element {
 
 // Declaring default props for DefaultCell
 DefaultCell.defaultProps = {
-  suffix: ""
+  suffix: ''
 };
 
 export default DefaultCell;

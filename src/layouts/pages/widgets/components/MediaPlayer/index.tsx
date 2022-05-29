@@ -1,14 +1,14 @@
 // @mui material components
-import Card from "@mui/material/Card";
-import Icon from "@mui/material/Icon";
-import { Theme } from "@mui/material/styles";
+import Card from '@mui/material/Card';
+import Icon from '@mui/material/Icon';
+import { Theme } from '@mui/material/styles';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDButton from "components/MDButton";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
+import MDButton from 'components/MDButton';
 
 // Images
-import bgImage from "assets/images/bg-player.jpeg";
+import bgImage from 'assets/images/bg-player.jpeg';
 
 function MediaPlayer(): JSX.Element {
   const mediaPlayerButtonStyles = ({ functions: { pxToRem } }: Theme) => ({
@@ -21,13 +21,16 @@ function MediaPlayer(): JSX.Element {
 
   return (
     <Card
-      sx={({ functions: { linearGradient, rgba }, palette: { gradients } }) => ({
+      sx={({
+        functions: { linearGradient, rgba },
+        palette: { gradients }
+      }) => ({
         backgroundImage: `${linearGradient(
           rgba(gradients.dark.main, 0.85),
           rgba(gradients.dark.state, 0.85)
         )}, url(${bgImage})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center"
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
       })}
     >
       <MDBox p={3} position="relative" lineHeight={0}>

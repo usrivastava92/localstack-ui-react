@@ -1,4 +1,4 @@
-import AwsDashboardLayout from "../AwsDashboardLayout";
+import AwsDashboardLayout from '../AwsDashboardLayout';
 
 function S3Dashboard(): JSX.Element {
   return (

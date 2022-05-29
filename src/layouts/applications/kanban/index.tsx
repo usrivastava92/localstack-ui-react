@@ -1,46 +1,51 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 // @asseinfo/react-kanban components
-import Board from "@asseinfo/react-kanban";
+import Board from '@asseinfo/react-kanban';
 
 // html-react-parser
-import parse from "html-react-parser";
+import parse from 'html-react-parser';
 
 // uuid is a library for generating unique id
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from 'uuid';
 
 // @mui material components
-import Icon from "@mui/material/Icon";
-import { Theme } from "@mui/material/styles";
+import Icon from '@mui/material/Icon';
+import { Theme } from '@mui/material/styles';
 
-import MDBox from "components/MDBox";
-import MDButton from "components/MDButton";
-import MDTypography from "components/MDTypography";
-import MDInput from "components/MDInput";
+import MDBox from 'components/MDBox';
+import MDButton from 'components/MDButton';
+import MDTypography from 'components/MDTypography';
+import MDInput from 'components/MDInput';
 
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import Footer from "examples/Footer";
+import DashboardLayout from 'examples/LayoutContainers/DashboardLayout';
+import DashboardNavbar from 'examples/Navbars/DashboardNavbar';
+import Footer from 'examples/Footer';
 
 // Kanban application components
-import Header from "layouts/applications/kanban/components/Header";
+import Header from 'layouts/applications/kanban/components/Header';
 
 // Data
-import boards from "layouts/applications/kanban/data";
+import boards from 'layouts/applications/kanban/data';
 
-import { useMaterialUIController } from "context";
+import { useMaterialUIController } from 'context';
 
 function Kanban(): JSX.Element {
   const [controller] = useMaterialUIController();
   const { darkMode } = controller;
 
-  const [newCardForm, setNewCardForm] = useState<string | number | boolean>(false);
-  const [formValue, setFormValue] = useState<string>("");
+  const [newCardForm, setNewCardForm] = useState<string | number | boolean>(
+    false
+  );
+  const [formValue, setFormValue] = useState<string>('');
 
-  const openNewCardForm = (event: HTMLButtonElement | any, id: string | number) =>
-    setNewCardForm(id);
+  const openNewCardForm = (
+    event: HTMLButtonElement | any,
+    id: string | number
+  ) => setNewCardForm(id);
   const closeNewCardForm = () => setNewCardForm(false);
-  const handeSetFormValue = ({ currentTarget }: any) => setFormValue(currentTarget.value);
+  const handeSetFormValue = ({ currentTarget }: any) =>
+    setFormValue(currentTarget.value);
 
   return (
     <DashboardLayout>
@@ -53,11 +58,11 @@ function Kanban(): JSX.Element {
           position="relative"
           my={4}
           sx={({
-                 palette: { light, background },
-                 functions: { pxToRem },
-                 borders: { borderRadius }
-               }: Theme | any) => ({
-            "& .react-kanban-column": {
+            palette: { light, background },
+            functions: { pxToRem },
+            borders: { borderRadius }
+          }: Theme | any) => ({
+            '& .react-kanban-column': {
               backgroundColor: darkMode ? background.card : light.main,
               width: pxToRem(450),
               margin: `0 ${pxToRem(10)}`,
@@ -72,12 +77,21 @@ function Kanban(): JSX.Element {
             allowAddColumn
             renderColumnHeader={({ id, title }: any, { addCard }: any) => (
               <>
-                <MDBox display="flex" justifyContent="space-between" alignItems="center" mb={3}>
+                <MDBox
+                  display="flex"
+                  justifyContent="space-between"
+                  alignItems="center"
+                  mb={3}
+                >
                   <MDTypography variant="h6">{title}</MDTypography>
-                  <MDButton size="small" iconOnly onClick={(event) => openNewCardForm(event, id)}>
+                  <MDButton
+                    size="small"
+                    iconOnly
+                    onClick={(event) => openNewCardForm(event, id)}
+                  >
                     <Icon
                       sx={{
-                        fontWeight: "bold",
+                        fontWeight: 'bold',
                         color: ({ palette: { dark } }) => dark.main
                       }}
                     >
@@ -101,7 +115,7 @@ function Kanban(): JSX.Element {
                         size="small"
                         onClick={() => {
                           addCard({ id: uuidv4(), template: formValue });
-                          setFormValue("");
+                          setFormValue('');
                         }}
                       >
                         add
@@ -127,7 +141,7 @@ function Kanban(): JSX.Element {
                 dragging={dragging.toString() || undefined}
                 display="block"
                 width="calc(450px - 40px)"
-                bgColor={darkMode ? "transparent" : "white"}
+                bgColor={darkMode ? 'transparent' : 'white'}
                 color="text"
                 borderRadius="xl"
                 mt={2.5}
@@ -135,12 +149,15 @@ function Kanban(): JSX.Element {
                 px={1.875}
                 lineHeight={1.5}
                 sx={{
-                  border: ({ borders: { borderWidth }, palette: { white } }: any) =>
+                  border: ({
+                    borders: { borderWidth },
+                    palette: { white }
+                  }: any) =>
                     darkMode ? `${borderWidth[1]} solid ${white.main}` : 0,
                   fontSize: ({ typography: { size } }: any) => size.md
                 }}
               >
-                {typeof template === "string" ? parse(template) : template}
+                {typeof template === 'string' ? parse(template) : template}
               </MDBox>
             )}
             onCardNew={(): any => null}

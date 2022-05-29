@@ -1,30 +1,30 @@
 // @mui material components
-import Divider from "@mui/material/Divider";
-import Icon from "@mui/material/Icon";
-import { Theme } from "@mui/material/styles";
+import Divider from '@mui/material/Divider';
+import Icon from '@mui/material/Icon';
+import { Theme } from '@mui/material/styles';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDAvatar from "components/MDAvatar";
-import MDButton from "components/MDButton";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
+import MDAvatar from 'components/MDAvatar';
+import MDButton from 'components/MDButton';
 
 // Image
-import team1 from "assets/images/team-1.jpg";
-import team2 from "assets/images/team-2.jpg";
-import team3 from "assets/images/team-3.jpg";
-import team4 from "assets/images/team-4.jpg";
-import team5 from "assets/images/team-5.jpg";
+import team1 from 'assets/images/team-1.jpg';
+import team2 from 'assets/images/team-2.jpg';
+import team3 from 'assets/images/team-3.jpg';
+import team4 from 'assets/images/team-4.jpg';
+import team5 from 'assets/images/team-5.jpg';
 
 function Header(): JSX.Element {
   const avatarStyles: { [key: string]: any } = {
     border: ({ borders: { borderWidth }, palette: { white } }: Theme) =>
       `${borderWidth[2]} solid ${white.main}`,
-    cursor: "pointer",
-    position: "relative",
+    cursor: 'pointer',
+    position: 'relative',
     ml: -1.5,
 
-    "&:hover, &:focus": {
-      zIndex: "10"
+    '&:hover, &:focus': {
+      zIndex: '10'
     }
   };
 
@@ -49,7 +49,7 @@ function Header(): JSX.Element {
       </MDBox>
       <MDBox pl={1}>
         <MDButton variant="gradient" color="info" iconOnly>
-          <Icon sx={{ fontWeight: "bold" }}>add</Icon>
+          <Icon sx={{ fontWeight: 'bold' }}>add</Icon>
         </MDButton>
       </MDBox>
     </MDBox>

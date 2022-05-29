@@ -1,14 +1,14 @@
 // @mui material components
-import Grid from "@mui/material/Grid";
+import Grid from '@mui/material/Grid';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDButton from "components/MDButton";
-import MDAvatar from "components/MDAvatar";
-import MDBadge from "components/MDBadge";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
+import MDButton from 'components/MDButton';
+import MDAvatar from 'components/MDAvatar';
+import MDBadge from 'components/MDBadge';
 
 // Images
-import orderImage from "assets/images/product-12.jpg";
+import orderImage from 'assets/images/product-12.jpg';
 
 function OrderInfo(): JSX.Element {
   return (
@@ -37,14 +37,20 @@ function OrderInfo(): JSX.Element {
           </MDBox>
         </MDBox>
       </Grid>
-      <Grid item xs={12} md={6} sx={{ textAlign: "right" }}>
+      <Grid item xs={12} md={6} sx={{ textAlign: 'right' }}>
         <MDButton variant="gradient" color="dark" size="small">
           contact us
         </MDButton>
         <MDBox mt={0.5}>
           <MDTypography variant="button" color="text">
-            Do you like the product? Leave us a review{" "}
-            <MDTypography component="a" href="#" variant="button" color="text" fontWeight="regular">
+            Do you like the product? Leave us a review{' '}
+            <MDTypography
+              component="a"
+              href="#"
+              variant="button"
+              color="text"
+              fontWeight="regular"
+            >
               here
             </MDTypography>
             .

@@ -1,22 +1,22 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 // react-github-btn
-import GitHubButton from "react-github-btn";
+import GitHubButton from 'react-github-btn';
 
 // @mui material components
-import Divider from "@mui/material/Divider";
-import Switch from "@mui/material/Switch";
-import IconButton from "@mui/material/IconButton";
-import Icon from "@mui/material/Icon";
-import { Theme } from "@mui/material/styles";
+import Divider from '@mui/material/Divider';
+import Switch from '@mui/material/Switch';
+import IconButton from '@mui/material/IconButton';
+import Icon from '@mui/material/Icon';
+import { Theme } from '@mui/material/styles';
 
 // @mui icons
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDButton from "components/MDButton";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
+import MDButton from 'components/MDButton';
 
 // Custom styles for the Configurator
-import ConfiguratorRoot from "examples/Configurator/ConfiguratorRoot";
+import ConfiguratorRoot from 'examples/Configurator/ConfiguratorRoot';
 
 import {
   setDarkMode,
@@ -27,7 +27,7 @@ import {
   setTransparentSidenav,
   setWhiteSidenav,
   useMaterialUIController
-} from "context";
+} from 'context';
 
 function Configurator(): JSX.Element {
   const [controller, dispatch] = useMaterialUIController();
@@ -42,15 +42,15 @@ function Configurator(): JSX.Element {
   } = controller;
   const [disabled, setDisabled] = useState<boolean>(false);
   const sidenavColors: (
-    | "primary"
-    | "secondary"
-    | "info"
-    | "success"
-    | "warning"
-    | "error"
-    | "light"
-    | "dark"
-    )[] = ["primary", "dark", "info", "success", "warning", "error"];
+    | 'primary'
+    | 'secondary'
+    | 'info'
+    | 'success'
+    | 'warning'
+    | 'error'
+    | 'light'
+    | 'dark'
+  )[] = ['primary', 'dark', 'info', 'success', 'warning', 'error'];
 
   // Use the useEffect hook to change the button state for the sidenav type based on window size.
   useEffect(() => {
@@ -60,13 +60,13 @@ function Configurator(): JSX.Element {
     }
 
     // The event listener that's calling the handleDisabled function when resizing the window.
-    window.addEventListener("resize", handleDisabled);
+    window.addEventListener('resize', handleDisabled);
 
     // Call the handleDisabled function to set the state with the initial value.
     handleDisabled();
 
     // Remove event listener on cleanup
-    return () => window.removeEventListener("resize", handleDisabled);
+    return () => window.removeEventListener('resize', handleDisabled);
   }, []);
 
   const handleCloseConfigurator = () => setOpenConfigurator(dispatch, false);
@@ -88,16 +88,16 @@ function Configurator(): JSX.Element {
 
   // sidenav type buttons styles
   const sidenavTypeButtonsStyles = ({
-                                      functions: { pxToRem },
-                                      palette: { white, dark, background },
-                                      borders: { borderWidth }
-                                    }: Theme | any) => ({
+    functions: { pxToRem },
+    palette: { white, dark, background },
+    borders: { borderWidth }
+  }: Theme | any) => ({
     height: pxToRem(39),
     background: darkMode ? background.sidenav : white.main,
     color: darkMode ? white.main : dark.main,
     border: `${borderWidth[1]} solid ${darkMode ? white.main : dark.main}`,
 
-    "&:hover, &:focus, &:focus:not(:hover)": {
+    '&:hover, &:focus, &:focus:not(:hover)': {
       background: darkMode ? background.sidenav : white.main,
       color: darkMode ? white.main : dark.main,
       border: `${borderWidth[1]} solid ${darkMode ? white.main : dark.main}`
@@ -106,15 +106,19 @@ function Configurator(): JSX.Element {
 
   // sidenav type active button styles
   const sidenavTypeActiveButtonStyles = ({
-                                           functions: { pxToRem, linearGradient },
-                                           palette: { white, gradients, background }
-                                         }: Theme | any) => ({
+    functions: { pxToRem, linearGradient },
+    palette: { white, gradients, background }
+  }: Theme | any) => ({
     height: pxToRem(39),
-    background: darkMode ? white.main : linearGradient(gradients.dark.main, gradients.dark.state),
+    background: darkMode
+      ? white.main
+      : linearGradient(gradients.dark.main, gradients.dark.state),
     color: darkMode ? background.sidenav : white.main,
 
-    "&:hover, &:focus, &:focus:not(:hover)": {
-      background: darkMode ? white.main : linearGradient(gradients.dark.main, gradients.dark.state),
+    '&:hover, &:focus, &:focus:not(:hover)': {
+      background: darkMode
+        ? white.main
+        : linearGradient(gradients.dark.main, gradients.dark.state),
       color: darkMode ? background.sidenav : white.main
     }
   });
@@ -140,10 +144,10 @@ function Configurator(): JSX.Element {
           sx={({ typography: { size }, palette: { dark, white } }) => ({
             fontSize: `${size.lg} !important`,
             color: darkMode ? white.main : dark.main,
-            stroke: "currentColor",
-            strokeWidth: "2px",
-            cursor: "pointer",
-            transform: "translateY(5px)"
+            stroke: 'currentColor',
+            strokeWidth: '2px',
+            cursor: 'pointer',
+            transform: 'translateY(5px)'
           })}
           onClick={handleCloseConfigurator}
         >
@@ -162,14 +166,16 @@ function Configurator(): JSX.Element {
               <IconButton
                 key={color}
                 sx={({
-                       borders: { borderWidth },
-                       palette: { white, dark, background },
-                       transitions
-                     }: Theme | any) => ({
-                  width: "24px",
-                  height: "24px",
+                  borders: { borderWidth },
+                  palette: { white, dark, background },
+                  transitions
+                }: Theme | any) => ({
+                  width: '24px',
+                  height: '24px',
                   padding: 0,
-                  border: `${borderWidth[1]} solid ${darkMode ? background.sidenav : white.main}`,
+                  border: `${borderWidth[1]} solid ${
+                    darkMode ? background.sidenav : white.main
+                  }`,
                   borderColor: () => {
                     let borderColorValue = sidenavColor === color && dark.main;
 
@@ -179,18 +185,24 @@ function Configurator(): JSX.Element {
 
                     return borderColorValue;
                   },
-                  transition: transitions.create("border-color", {
+                  transition: transitions.create('border-color', {
                     easing: transitions.easing.sharp,
                     duration: transitions.duration.shorter
                   }),
-                  backgroundImage: ({ functions: { linearGradient }, palette: { gradients } }) =>
-                    linearGradient(gradients[color].main, gradients[color].state),
+                  backgroundImage: ({
+                    functions: { linearGradient },
+                    palette: { gradients }
+                  }) =>
+                    linearGradient(
+                      gradients[color].main,
+                      gradients[color].state
+                    ),
 
-                  "&:not(:last-child)": {
+                  '&:not(:last-child)': {
                     mr: 1
                   },
 
-                  "&:hover, &:focus, &:active": {
+                  '&:hover, &:focus, &:active': {
                     borderColor: darkMode ? white.main : dark.main
                   }
                 })}
@@ -208,7 +220,7 @@ function Configurator(): JSX.Element {
 
           <MDBox
             sx={{
-              display: "flex",
+              display: 'flex',
               mt: 2,
               mr: 1
             }}
@@ -227,7 +239,7 @@ function Configurator(): JSX.Element {
             >
               Dark
             </MDButton>
-            <MDBox sx={{ mx: 1, width: "8rem", minWidth: "8rem" }}>
+            <MDBox sx={{ mx: 1, width: '8rem', minWidth: '8rem' }}>
               <MDButton
                 color="dark"
                 variant="gradient"
@@ -271,13 +283,23 @@ function Configurator(): JSX.Element {
           <Switch checked={fixedNavbar} onChange={handleFixedNavbar} />
         </MDBox>
         <Divider />
-        <MDBox display="flex" justifyContent="space-between" alignItems="center" lineHeight={1}>
+        <MDBox
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+          lineHeight={1}
+        >
           <MDTypography variant="h6">Sidenav Mini</MDTypography>
 
           <Switch checked={miniSidenav} onChange={handleMiniSidenav} />
         </MDBox>
         <Divider />
-        <MDBox display="flex" justifyContent="space-between" alignItems="center" lineHeight={1}>
+        <MDBox
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+          lineHeight={1}
+        >
           <MDTypography variant="h6">Light / Dark</MDTypography>
 
           <Switch checked={darkMode} onChange={handleDarkMode} />

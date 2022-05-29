@@ -1,8 +1,8 @@
 // @mui material components
-import TableCell from "@mui/material/TableCell";
+import TableCell from '@mui/material/TableCell';
 
-import MDTypography from "components/MDTypography";
-import MDBox from "components/MDBox";
+import MDTypography from 'components/MDTypography';
+import MDBox from 'components/MDBox';
 
 // Declaring prop types for SalesTableCell
 interface Props {
@@ -14,12 +14,23 @@ interface Props {
   [key: string]: any;
 }
 
-function SalesTableCell({ title, content, image, noBorder, ...rest }: Props): JSX.Element {
+function SalesTableCell({
+  title,
+  content,
+  image,
+  noBorder,
+  ...rest
+}: Props): JSX.Element {
   let template;
 
   if (image) {
     template = (
-      <TableCell {...rest} align="left" width="30%" sx={{ border: noBorder && 0 }}>
+      <TableCell
+        {...rest}
+        align="left"
+        width="30%"
+        sx={{ border: noBorder && 0 }}
+      >
         <MDBox display="flex" alignItems="center" width="max-content">
           <MDBox
             component="img"
@@ -27,7 +38,7 @@ function SalesTableCell({ title, content, image, noBorder, ...rest }: Props): JS
             alt={content.toString()}
             width="1.5rem"
             height="auto"
-          />{" "}
+          />{' '}
           <MDBox display="flex" flexDirection="column" ml={3}>
             <MDTypography
               variant="caption"
@@ -37,7 +48,11 @@ function SalesTableCell({ title, content, image, noBorder, ...rest }: Props): JS
             >
               {title}:
             </MDTypography>
-            <MDTypography variant="button" fontWeight="regular" textTransform="capitalize">
+            <MDTypography
+              variant="button"
+              fontWeight="regular"
+              textTransform="capitalize"
+            >
               {content}
             </MDTypography>
           </MDBox>
@@ -56,7 +71,11 @@ function SalesTableCell({ title, content, image, noBorder, ...rest }: Props): JS
           >
             {title}:
           </MDTypography>
-          <MDTypography variant="button" fontWeight="regular" textTransform="capitalize">
+          <MDTypography
+            variant="button"
+            fontWeight="regular"
+            textTransform="capitalize"
+          >
             {content}
           </MDTypography>
         </MDBox>
@@ -69,7 +88,7 @@ function SalesTableCell({ title, content, image, noBorder, ...rest }: Props): JS
 
 // Declaring default props for SalesTableCell
 SalesTableCell.defaultProps = {
-  image: "",
+  image: '',
   noBorder: false
 };
 

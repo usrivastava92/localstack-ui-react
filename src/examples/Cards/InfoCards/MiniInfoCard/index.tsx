@@ -1,14 +1,21 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 // @mui material components
-import Card from "@mui/material/Card";
-import Icon from "@mui/material/Icon";
+import Card from '@mui/material/Card';
+import Icon from '@mui/material/Icon';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
 interface Props {
-  color?: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "dark";
+  color?:
+    | 'primary'
+    | 'secondary'
+    | 'info'
+    | 'success'
+    | 'warning'
+    | 'error'
+    | 'dark';
   icon: ReactNode;
   title: ReactNode;
   description: string;
@@ -35,7 +42,11 @@ function MiniInfoCard({ color, icon, title, description }: Props): JSX.Element {
           <Icon>{icon}</Icon>
         </MDBox>
         <MDBox mt={2.625}>
-          <MDTypography variant="h5" fontWeight="medium" textTransform="capitalize">
+          <MDTypography
+            variant="h5"
+            fontWeight="medium"
+            textTransform="capitalize"
+          >
             {title}
           </MDTypography>
           <MDTypography variant="body2" color="text" fontWeight="regular">
@@ -49,7 +60,7 @@ function MiniInfoCard({ color, icon, title, description }: Props): JSX.Element {
 
 // Declaring default props for MiniInfoCard
 MiniInfoCard.defaultProps = {
-  color: "info"
+  color: 'info'
 };
 
 export default MiniInfoCard;

@@ -1,14 +1,14 @@
-import { FC, forwardRef } from "react";
+import { FC, forwardRef } from 'react';
 
 // @mui material components
-import { BoxProps } from "@mui/material";
+import { BoxProps } from '@mui/material';
 
 // Custom styles for MDBox
-import MDBoxRoot from "components/MDBox/MDBoxRoot";
+import MDBoxRoot from 'components/MDBox/MDBoxRoot';
 
 // declaring props types for MDBox
 interface Props extends BoxProps {
-  variant?: "contained" | "gradient";
+  variant?: 'contained' | 'gradient';
   bgColor?: string;
   color?: string;
   opacity?: number;
@@ -20,24 +20,44 @@ interface Props extends BoxProps {
 }
 
 const MDBox: FC<Props> = forwardRef(
-  ({ variant, bgColor, color, opacity, borderRadius, shadow, coloredShadow, ...rest }, ref) => (
+  (
+    {
+      variant,
+      bgColor,
+      color,
+      opacity,
+      borderRadius,
+      shadow,
+      coloredShadow,
+      ...rest
+    },
+    ref
+  ) => (
     <MDBoxRoot
       {...rest}
       ref={ref}
-      ownerState={{ variant, bgColor, color, opacity, borderRadius, shadow, coloredShadow }}
+      ownerState={{
+        variant,
+        bgColor,
+        color,
+        opacity,
+        borderRadius,
+        shadow,
+        coloredShadow
+      }}
     />
   )
 );
 
 // Declaring default props for MDBox
 MDBox.defaultProps = {
-  variant: "contained",
-  bgColor: "transparent",
-  color: "dark",
+  variant: 'contained',
+  bgColor: 'transparent',
+  color: 'dark',
   opacity: 1,
-  borderRadius: "none",
-  shadow: "none",
-  coloredShadow: "none"
+  borderRadius: 'none',
+  shadow: 'none',
+  coloredShadow: 'none'
 };
 
 export default MDBox;

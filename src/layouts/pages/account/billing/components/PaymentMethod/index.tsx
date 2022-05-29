@@ -1,18 +1,18 @@
 // @mui material components
-import Card from "@mui/material/Card";
-import Grid from "@mui/material/Grid";
-import Icon from "@mui/material/Icon";
-import Tooltip from "@mui/material/Tooltip";
+import Card from '@mui/material/Card';
+import Grid from '@mui/material/Grid';
+import Icon from '@mui/material/Icon';
+import Tooltip from '@mui/material/Tooltip';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDButton from "components/MDButton";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
+import MDButton from 'components/MDButton';
 
 // Images
-import masterCardLogo from "assets/images/logos/mastercard.png";
-import visaLogo from "assets/images/logos/visa.png";
+import masterCardLogo from 'assets/images/logos/mastercard.png';
+import visaLogo from 'assets/images/logos/visa.png';
 
-import { useMaterialUIController } from "context";
+import { useMaterialUIController } from 'context';
 
 function PaymentMethod(): JSX.Element {
   const [controller] = useMaterialUIController();
@@ -20,12 +20,18 @@ function PaymentMethod(): JSX.Element {
 
   return (
     <Card id="delete-account">
-      <MDBox pt={2} px={2} display="flex" justifyContent="space-between" alignItems="center">
+      <MDBox
+        pt={2}
+        px={2}
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+      >
         <MDTypography variant="h6" fontWeight="medium">
           Payment Method
         </MDTypography>
         <MDButton variant="gradient" color="dark">
-          <Icon sx={{ fontWeight: "bold" }}>add</Icon>
+          <Icon sx={{ fontWeight: 'bold' }}>add</Icon>
           &nbsp;add new card
         </MDButton>
       </MDBox>
@@ -43,13 +49,23 @@ function PaymentMethod(): JSX.Element {
                   `${borderWidth[1]} solid ${borderColor}`
               }}
             >
-              <MDBox component="img" src={masterCardLogo} alt="master card" width="10%" mr={2} />
+              <MDBox
+                component="img"
+                src={masterCardLogo}
+                alt="master card"
+                width="10%"
+                mr={2}
+              />
               <MDTypography variant="h6" fontWeight="medium">
                 ****&nbsp;&nbsp;****&nbsp;&nbsp;****&nbsp;&nbsp;7852
               </MDTypography>
-              <MDBox ml="auto" lineHeight={0} color={darkMode ? "white" : "dark"}>
+              <MDBox
+                ml="auto"
+                lineHeight={0}
+                color={darkMode ? 'white' : 'dark'}
+              >
                 <Tooltip title="Edit Card" placement="top">
-                  <Icon sx={{ cursor: "pointer" }} fontSize="small">
+                  <Icon sx={{ cursor: 'pointer' }} fontSize="small">
                     edit
                   </Icon>
                 </Tooltip>
@@ -68,13 +84,23 @@ function PaymentMethod(): JSX.Element {
                   `${borderWidth[1]} solid ${borderColor}`
               }}
             >
-              <MDBox component="img" src={visaLogo} alt="master card" width="10%" mr={2} />
+              <MDBox
+                component="img"
+                src={visaLogo}
+                alt="master card"
+                width="10%"
+                mr={2}
+              />
               <MDTypography variant="h6" fontWeight="medium">
                 ****&nbsp;&nbsp;****&nbsp;&nbsp;****&nbsp;&nbsp;5248
               </MDTypography>
-              <MDBox ml="auto" lineHeight={0} color={darkMode ? "white" : "dark"}>
+              <MDBox
+                ml="auto"
+                lineHeight={0}
+                color={darkMode ? 'white' : 'dark'}
+              >
                 <Tooltip title="Edit Card" placement="top">
-                  <Icon sx={{ cursor: "pointer" }} fontSize="small">
+                  <Icon sx={{ cursor: 'pointer' }} fontSize="small">
                     edit
                   </Icon>
                 </Tooltip>

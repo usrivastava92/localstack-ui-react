@@ -32,48 +32,48 @@ import Icon from "@mui/material/Icon";
 */
 
 // Images
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAws } from "@fortawesome/free-brands-svg-icons";
-import DDBDashboard from "./layouts/pages/aws/DDBDashboard";
-import SQSDashboard from "./layouts/pages/aws/SQSDashboard";
-import ElasticSearchDashboard from "./layouts/pages/aws/ElasticSearchDashboard";
-import S3Dashboard from "./layouts/pages/aws/S3Dashboard";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAws } from '@fortawesome/free-brands-svg-icons';
+import DDBDashboard from './layouts/pages/aws/DDBDashboard';
+import SQSDashboard from './layouts/pages/aws/SQSDashboard';
+import ElasticSearchDashboard from './layouts/pages/aws/ElasticSearchDashboard';
+import S3Dashboard from './layouts/pages/aws/S3Dashboard';
 
 const routes = [
   {
-    type: "collapse",
-    name: "AWS",
-    key: "aws",
+    type: 'collapse',
+    name: 'AWS',
+    key: 'aws',
     icon: <FontAwesomeIcon icon={faAws} />,
     collapse: [
       {
-        name: "Dynamo DB",
-        key: "DDBDashboard",
-        route: "/pages/aws/dynamodb",
+        name: 'Dynamo DB',
+        key: 'DDBDashboard',
+        route: '/pages/aws/dynamodb',
         component: <DDBDashboard />
       },
       {
-        name: "Elastic Search",
-        key: "es",
-        route: "/pages/aws/es",
+        name: 'Elastic Search',
+        key: 'es',
+        route: '/pages/aws/es',
         component: <ElasticSearchDashboard />
       },
       {
-        name: "SQS",
-        key: "sqs",
-        route: "/pages/aws/sqs",
+        name: 'SQS',
+        key: 'sqs',
+        route: '/pages/aws/sqs',
         component: <SQSDashboard />
       },
       {
-        name: "S3",
-        key: "s3",
-        route: "/pages/aws/s3",
+        name: 'S3',
+        key: 's3',
+        route: '/pages/aws/s3',
 
         component: <S3Dashboard />
       }
     ]
   },
-  { type: "divider", key: "divider-0" }/*,
+  { type: 'divider', key: 'divider-0' } /*,
   {
     type: "collapse",
     name: "Dashboards",

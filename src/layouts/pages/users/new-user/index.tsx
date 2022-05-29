@@ -1,35 +1,35 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 // formik components
-import { Form, Formik } from "formik";
+import { Form, Formik } from 'formik';
 
 // @mui material components
-import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
 
-import MDBox from "components/MDBox";
-import MDButton from "components/MDButton";
+import MDBox from 'components/MDBox';
+import MDButton from 'components/MDButton';
 
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import Footer from "examples/Footer";
+import DashboardLayout from 'examples/LayoutContainers/DashboardLayout';
+import DashboardNavbar from 'examples/Navbars/DashboardNavbar';
+import Footer from 'examples/Footer';
 
 // NewUser page components
-import UserInfo from "layouts/pages/users/new-user/components/UserInfo";
-import Address from "layouts/pages/users/new-user/components/Address";
-import Socials from "layouts/pages/users/new-user/components/Socials";
-import Profile from "layouts/pages/users/new-user/components/Profile";
+import UserInfo from 'layouts/pages/users/new-user/components/UserInfo';
+import Address from 'layouts/pages/users/new-user/components/Address';
+import Socials from 'layouts/pages/users/new-user/components/Socials';
+import Profile from 'layouts/pages/users/new-user/components/Profile';
 
 // NewUser layout schemas for form and form feilds
-import validations from "layouts/pages/users/new-user/schemas/validations";
-import form from "layouts/pages/users/new-user/schemas/form";
-import initialValues from "layouts/pages/users/new-user/schemas/initialValues";
+import validations from 'layouts/pages/users/new-user/schemas/validations';
+import form from 'layouts/pages/users/new-user/schemas/form';
+import initialValues from 'layouts/pages/users/new-user/schemas/initialValues';
 
 function getSteps(): string[] {
-  return ["User Info", "Address", "Social", "Profile"];
+  return ['User Info', 'Address', 'Social', 'Profile'];
 }
 
 function getStepContent(stepIndex: number, formData: any): JSX.Element {
@@ -86,7 +86,12 @@ function NewUser(): JSX.Element {
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox py={3} mb={20} height="65vh">
-        <Grid container justifyContent="center" alignItems="center" sx={{ height: "100%", mt: 8 }}>
+        <Grid
+          container
+          justifyContent="center"
+          alignItems="center"
+          sx={{ height: '100%', mt: 8 }}
+        >
           <Grid item xs={12} lg={8}>
             <Formik
               initialValues={initialValues}
@@ -95,7 +100,7 @@ function NewUser(): JSX.Element {
             >
               {({ values, errors, touched, isSubmitting }) => (
                 <Form id={formId} autoComplete="off">
-                  <Card sx={{ height: "100%" }}>
+                  <Card sx={{ height: '100%' }}>
                     <MDBox mx={2} mt={-3}>
                       <Stepper activeStep={activeStep} alternativeLabel>
                         {steps.map((label) => (
@@ -113,11 +118,20 @@ function NewUser(): JSX.Element {
                           formField,
                           errors
                         })}
-                        <MDBox mt={2} width="100%" display="flex" justifyContent="space-between">
+                        <MDBox
+                          mt={2}
+                          width="100%"
+                          display="flex"
+                          justifyContent="space-between"
+                        >
                           {activeStep === 0 ? (
                             <MDBox />
                           ) : (
-                            <MDButton variant="gradient" color="light" onClick={handleBack}>
+                            <MDButton
+                              variant="gradient"
+                              color="light"
+                              onClick={handleBack}
+                            >
                               back
                             </MDButton>
                           )}
@@ -127,7 +141,7 @@ function NewUser(): JSX.Element {
                             variant="gradient"
                             color="dark"
                           >
-                            {isLastStep ? "send" : "next"}
+                            {isLastStep ? 'send' : 'next'}
                           </MDButton>
                         </MDBox>
                       </MDBox>

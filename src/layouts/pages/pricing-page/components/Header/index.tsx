@@ -1,23 +1,23 @@
 /* eslint-disable no-unused-vars */
 
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 // @mui material components
-import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
-import AppBar from "@mui/material/AppBar";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import AppBar from '@mui/material/AppBar';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
-import DefaultNavbar from "examples/Navbars/DefaultNavbar";
+import DefaultNavbar from 'examples/Navbars/DefaultNavbar';
 
-import pageRoutes from "page.routes";
+import pageRoutes from 'page.routes';
 
 // Images
-import bgImage from "assets/images/bg-pricing.jpg";
+import bgImage from 'assets/images/bg-pricing.jpg';
 
 // Declaring props types for Header
 interface Props {
@@ -32,10 +32,10 @@ function Header({ tabValue, tabHandler, children }: Props): JSX.Element {
       <DefaultNavbar
         routes={pageRoutes}
         action={{
-          type: "external",
-          route: "https://creative-tim.com/product/localstack-ui",
-          label: "buy now",
-          color: "light"
+          type: 'external',
+          route: 'https://creative-tim.com/product/localstack-ui',
+          label: 'buy now',
+          color: 'light'
         }}
         transparent
         light
@@ -48,17 +48,23 @@ function Header({ tabValue, tabHandler, children }: Props): JSX.Element {
         m={2}
         pt={2}
         sx={{
-          backgroundImage: ({ functions: { linearGradient, rgba }, palette: { black } }) =>
-            `${linearGradient(rgba(black.main, 0.25), rgba(black.main, 0.25))}, url(${bgImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center"
+          backgroundImage: ({
+            functions: { linearGradient, rgba },
+            palette: { black }
+          }) =>
+            `${linearGradient(
+              rgba(black.main, 0.25),
+              rgba(black.main, 0.25)
+            )}, url(${bgImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
         }}
       >
         <Grid
           container
           spacing={3}
           justifyContent="center"
-          sx={{ position: "relative", py: 22, textAlign: "center" }}
+          sx={{ position: 'relative', py: 22, textAlign: 'center' }}
         >
           <Grid item xs={11} lg={5}>
             <MDBox mb={1}>
@@ -68,7 +74,8 @@ function Header({ tabValue, tabHandler, children }: Props): JSX.Element {
             </MDBox>
             <MDBox mb={2}>
               <MDTypography variant="body2" color="white" fontWeight="light">
-                You have Free Unlimited Updates and Premium Support on each package.
+                You have Free Unlimited Updates and Premium Support on each
+                package.
               </MDTypography>
             </MDBox>
           </Grid>
@@ -77,7 +84,7 @@ function Header({ tabValue, tabHandler, children }: Props): JSX.Element {
       <Grid container sx={{ px: 6, my: 8 }}>
         <Grid item xs={12}>
           <Card sx={{ mt: -16 }}>
-            <MDBox minWidth={{ xs: "22rem", md: "25rem" }} mx="auto" mt={6}>
+            <MDBox minWidth={{ xs: '22rem', md: '25rem' }} mx="auto" mt={6}>
               <AppBar position="static">
                 <Tabs value={tabValue} onChange={tabHandler}>
                   <Tab

@@ -1,11 +1,11 @@
 // @mui material components
-import Grid from "@mui/material/Grid";
+import Grid from '@mui/material/Grid';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
 // Wizard application components
-import FormField from "layouts/applications/wizard/components/FormField";
+import FormField from 'layouts/applications/wizard/components/FormField';
 
 function Address(): JSX.Element {
   return (
@@ -17,23 +17,39 @@ function Address(): JSX.Element {
           </MDTypography>
         </MDBox>
         <MDTypography variant="body2" color="text">
-          One thing I love about the later sunsets is the chance to go for a walk through the
-          neighborhood woods before dinner
+          One thing I love about the later sunsets is the chance to go for a
+          walk through the neighborhood woods before dinner
         </MDTypography>
       </MDBox>
       <MDBox mt={2}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={8}>
-            <FormField type="text" label="Street Name" InputLabelProps={{ shrink: true }} />
+            <FormField
+              type="text"
+              label="Street Name"
+              InputLabelProps={{ shrink: true }}
+            />
           </Grid>
           <Grid item xs={12} md={4}>
-            <FormField type="number" label="Street Number" InputLabelProps={{ shrink: true }} />
+            <FormField
+              type="number"
+              label="Street Number"
+              InputLabelProps={{ shrink: true }}
+            />
           </Grid>
           <Grid item xs={12} md={7}>
-            <FormField type="text" label="City" InputLabelProps={{ shrink: true }} />
+            <FormField
+              type="text"
+              label="City"
+              InputLabelProps={{ shrink: true }}
+            />
           </Grid>
           <Grid item xs={12} md={5}>
-            <FormField type="text" label="Country" InputLabelProps={{ shrink: true }} />
+            <FormField
+              type="text"
+              label="Country"
+              InputLabelProps={{ shrink: true }}
+            />
           </Grid>
         </Grid>
       </MDBox>

@@ -1,22 +1,29 @@
-import { ReactNode, useMemo } from "react";
+import { ReactNode, useMemo } from 'react';
 
 // react-chartjs-2 components
-import { Line } from "react-chartjs-2";
+import { Line } from 'react-chartjs-2';
 
 // @mui material components
-import Card from "@mui/material/Card";
-import Icon from "@mui/material/Icon";
+import Card from '@mui/material/Card';
+import Icon from '@mui/material/Icon';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDProgress from "components/MDProgress";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
+import MDProgress from 'components/MDProgress';
 
 // ProgressLineChart configurations
-import configs from "examples/Charts/LineCharts/ProgressLineChart/config";
+import configs from 'examples/Charts/LineCharts/ProgressLineChart/config';
 
 // Declaring props types for GradientLineChart
 interface Props {
-  color?: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "dark";
+  color?:
+    | 'primary'
+    | 'secondary'
+    | 'info'
+    | 'success'
+    | 'warning'
+    | 'error'
+    | 'dark';
   icon: ReactNode;
   title: string;
   count?: string | number;
@@ -31,15 +38,20 @@ interface Props {
 }
 
 function ProgressLineChart({
-                             color,
-                             icon,
-                             title,
-                             count,
-                             progress,
-                             height,
-                             chart
-                           }: Props): JSX.Element {
-  const { data, options } = configs(color, chart.labels || [], title, chart.data || []);
+  color,
+  icon,
+  title,
+  count,
+  progress,
+  height,
+  chart
+}: Props): JSX.Element {
+  const { data, options } = configs(
+    color,
+    chart.labels || [],
+    title,
+    chart.data || []
+  );
 
   return (
     <Card>
@@ -74,7 +86,12 @@ function ProgressLineChart({
           ) : null}
         </MDBox>
         <MDBox width="25%" ml="auto">
-          <MDTypography display="block" variant="caption" fontWeight="medium" color="text">
+          <MDTypography
+            display="block"
+            variant="caption"
+            fontWeight="medium"
+            color="text"
+          >
             {progress}%
           </MDTypography>
           <MDBox mt={0.25}>
@@ -96,9 +113,9 @@ function ProgressLineChart({
 
 // Declaring default props for ProgressLineChart
 ProgressLineChart.defaultProps = {
-  color: "info",
+  color: 'info',
   count: 0,
-  height: "6.25rem"
+  height: '6.25rem'
 };
 
 export default ProgressLineChart;

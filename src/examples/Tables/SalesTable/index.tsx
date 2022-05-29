@@ -1,16 +1,16 @@
-import { useMemo } from "react";
+import { useMemo } from 'react';
 
 // @mui material components
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 
-import MDTypography from "components/MDTypography";
-import MDBox from "components/MDBox";
+import MDTypography from 'components/MDTypography';
+import MDBox from 'components/MDBox';
 
-import SalesTableCell from "examples/Tables/SalesTable/SalesTableCell";
+import SalesTableCell from 'examples/Tables/SalesTable/SalesTableCell';
 
 // Declaring props types for SalesTable
 interface Props {
@@ -23,29 +23,32 @@ interface Props {
 
 function SalesTable({ title, rows, shadow }: Props): JSX.Element {
   const renderTableCells = rows.map(
-    (row: { [key: string]: string | number | (string | number)[] }, key: any) => {
+    (
+      row: { [key: string]: string | number | (string | number)[] },
+      key: any
+    ) => {
       const tableRows: any = [];
       const rowKey = `row-${key}`;
 
       Object.entries(row).map(([cellTitle, cellContent]: any) =>
         Array.isArray(cellContent)
           ? tableRows.push(
-            <SalesTableCell
-              key={cellContent[1]}
-              title={cellTitle}
-              content={cellContent[1]}
-              image={cellContent[0]}
-              noBorder={key === rows.length - 1}
-            />
-          )
+              <SalesTableCell
+                key={cellContent[1]}
+                title={cellTitle}
+                content={cellContent[1]}
+                image={cellContent[0]}
+                noBorder={key === rows.length - 1}
+              />
+            )
           : tableRows.push(
-            <SalesTableCell
-              key={cellContent}
-              title={cellTitle}
-              content={cellContent}
-              noBorder={key === rows.length - 1}
-            />
-          )
+              <SalesTableCell
+                key={cellContent}
+                title={cellTitle}
+                content={cellContent}
+                noBorder={key === rows.length - 1}
+              />
+            )
       );
 
       return <TableRow key={rowKey}>{tableRows}</TableRow>;
@@ -53,7 +56,7 @@ function SalesTable({ title, rows, shadow }: Props): JSX.Element {
   );
 
   return (
-    <TableContainer sx={{ height: "100%", boxShadow: !shadow && "none" }}>
+    <TableContainer sx={{ height: '100%', boxShadow: !shadow && 'none' }}>
       <Table>
         {title ? (
           <TableHead>
@@ -72,7 +75,7 @@ function SalesTable({ title, rows, shadow }: Props): JSX.Element {
 
 // Declaring default props for SalesTable
 SalesTable.defaultProps = {
-  title: "",
+  title: '',
   rows: [{}],
   shadow: true
 };

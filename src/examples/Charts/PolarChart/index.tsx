@@ -1,22 +1,30 @@
-import { ReactNode, useMemo } from "react";
+import { ReactNode, useMemo } from 'react';
 
 // react-chartjs-2 components
-import { PolarArea } from "react-chartjs-2";
+import { PolarArea } from 'react-chartjs-2';
 
 // @mui material components
-import Card from "@mui/material/Card";
-import Icon from "@mui/material/Icon";
+import Card from '@mui/material/Card';
+import Icon from '@mui/material/Icon';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
 // PolarChart configurations
-import configs from "examples/Charts/PolarChart/configs";
+import configs from 'examples/Charts/PolarChart/configs';
 
 // Declaring props types for PolarChart
 interface Props {
   icon?: {
-    color?: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "light" | "dark";
+    color?:
+      | 'primary'
+      | 'secondary'
+      | 'info'
+      | 'success'
+      | 'warning'
+      | 'error'
+      | 'light'
+      | 'dark';
     component: ReactNode;
   };
   title?: string;
@@ -44,9 +52,9 @@ function PolarChart({ icon, title, description, chart }: Props): JSX.Element {
             <MDBox
               width="4rem"
               height="4rem"
-              bgColor={icon.color || "info"}
+              bgColor={icon.color || 'info'}
               variant="gradient"
-              coloredShadow={icon.color || "info"}
+              coloredShadow={icon.color || 'info'}
               borderRadius="xl"
               display="flex"
               justifyContent="center"
@@ -84,9 +92,9 @@ function PolarChart({ icon, title, description, chart }: Props): JSX.Element {
 
 // Declaring default props for PolarChart
 PolarChart.defaultProps = {
-  icon: { color: "info", component: "" },
-  title: "",
-  description: ""
+  icon: { color: 'info', component: '' },
+  title: '',
+  description: ''
 };
 
 export default PolarChart;

@@ -1,22 +1,33 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 // @mui material components
-import Collapse from "@mui/material/Collapse";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import Icon from "@mui/material/Icon";
-import { Theme } from "@mui/material/styles";
+import Collapse from '@mui/material/Collapse';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import Icon from '@mui/material/Icon';
+import { Theme } from '@mui/material/styles';
 
-import MDBox from "components/MDBox";
+import MDBox from 'components/MDBox';
 
 // Custom styles for the SidenavItem
-import { item, itemArrow, itemContent } from "examples/Sidenav/styles/sidenavItem";
+import {
+  item,
+  itemArrow,
+  itemContent
+} from 'examples/Sidenav/styles/sidenavItem';
 
-import { useMaterialUIController } from "context";
+import { useMaterialUIController } from 'context';
 
 // Declaring props types for SidenavCollapse
 interface Props {
-  color?: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "dark";
+  color?:
+    | 'primary'
+    | 'secondary'
+    | 'info'
+    | 'success'
+    | 'warning'
+    | 'error'
+    | 'dark';
   name: string;
   active?: boolean | string;
   nested?: boolean;
@@ -26,16 +37,33 @@ interface Props {
   [key: string]: any;
 }
 
-function SidenavItem({ color, name, active, nested, children, open, ...rest }: Props): JSX.Element {
+function SidenavItem({
+  color,
+  name,
+  active,
+  nested,
+  children,
+  open,
+  ...rest
+}: Props): JSX.Element {
   const [controller] = useMaterialUIController();
-  const { miniSidenav, transparentSidenav, whiteSidenav, darkMode } = controller;
+  const { miniSidenav, transparentSidenav, whiteSidenav, darkMode } =
+    controller;
 
   return (
     <>
       <ListItem
         {...rest}
         component="li"
-        sx={(theme) => item(theme, { active, color, transparentSidenav, whiteSidenav, darkMode })}
+        sx={(theme) =>
+          item(theme, {
+            active,
+            color,
+            transparentSidenav,
+            whiteSidenav,
+            darkMode
+          })
+        }
       >
         <MDBox
           sx={(theme: Theme): any =>
@@ -56,7 +84,13 @@ function SidenavItem({ color, name, active, nested, children, open, ...rest }: P
             <Icon
               component="i"
               sx={(theme) =>
-                itemArrow(theme, { open, miniSidenav, transparentSidenav, whiteSidenav, darkMode })
+                itemArrow(theme, {
+                  open,
+                  miniSidenav,
+                  transparentSidenav,
+                  whiteSidenav,
+                  darkMode
+                })
               }
             >
               expand_less
@@ -75,7 +109,7 @@ function SidenavItem({ color, name, active, nested, children, open, ...rest }: P
 
 // Declaring default props for SidenavItem
 SidenavItem.defaultProps = {
-  color: "info",
+  color: 'info',
   active: false,
   nested: false,
   children: false,

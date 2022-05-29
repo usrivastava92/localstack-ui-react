@@ -1,28 +1,36 @@
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 // @mui material components
-import Card from "@mui/material/Card";
-import Icon from "@mui/material/Icon";
+import Card from '@mui/material/Card';
+import Icon from '@mui/material/Icon';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDButton from "components/MDButton";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
+import MDButton from 'components/MDButton';
 
 // Declaring props types for DefaultPricingCard
 interface Props {
   color?:
-    | "primary"
-    | "secondary"
-    | "info"
-    | "success"
-    | "warning"
-    | "error"
-    | "light"
-    | "dark"
-    | "white";
+    | 'primary'
+    | 'secondary'
+    | 'info'
+    | 'success'
+    | 'warning'
+    | 'error'
+    | 'light'
+    | 'dark'
+    | 'white';
   badge: {
-    color: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "light" | "dark";
+    color:
+      | 'primary'
+      | 'secondary'
+      | 'info'
+      | 'success'
+      | 'warning'
+      | 'error'
+      | 'light'
+      | 'dark';
     label: string;
   };
   price: {
@@ -35,10 +43,18 @@ interface Props {
     includes?: boolean;
   }[];
   action: {
-    type: "external" | "internal";
+    type: 'external' | 'internal';
     route: string;
     label: string;
-    color: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "light" | "dark";
+    color:
+      | 'primary'
+      | 'secondary'
+      | 'info'
+      | 'success'
+      | 'warning'
+      | 'error'
+      | 'light'
+      | 'dark';
   };
   shadow?: boolean;
 
@@ -46,13 +62,13 @@ interface Props {
 }
 
 function DefaultPricingCard({
-                              color,
-                              badge,
-                              price,
-                              specifications,
-                              action,
-                              shadow
-                            }: Props): JSX.Element {
+  color,
+  badge,
+  price,
+  specifications,
+  action,
+  shadow
+}: Props): JSX.Element {
   const renderSpecifications = specifications.map(({ label, includes }) => (
     <MDBox key={label} display="flex" alignItems="center" p={1}>
       <MDBox
@@ -66,15 +82,15 @@ function DefaultPricingCard({
       >
         <MDTypography
           variant="body1"
-          color={color === "white" ? "text" : "white"}
+          color={color === 'white' ? 'text' : 'white'}
           sx={{ lineHeight: 0 }}
         >
-          <Icon>{includes ? "done" : "remove"}</Icon>
+          <Icon>{includes ? 'done' : 'remove'}</Icon>
         </MDTypography>
       </MDBox>
       <MDTypography
         variant="body2"
-        color={color === "white" ? "text" : "white"}
+        color={color === 'white' ? 'text' : 'white'}
         fontWeight="regular"
       >
         {label}
@@ -83,10 +99,12 @@ function DefaultPricingCard({
   ));
 
   return (
-    <Card sx={{ boxShadow: ({ boxShadows: { lg } }) => (shadow ? lg : "none") }}>
+    <Card
+      sx={{ boxShadow: ({ boxShadows: { lg } }) => (shadow ? lg : 'none') }}
+    >
       <MDBox
         bgColor={color}
-        variant={color === "white" ? "contained" : "gradient"}
+        variant={color === 'white' ? 'contained' : 'gradient'}
         borderRadius="xl"
       >
         <MDBox
@@ -104,14 +122,17 @@ function DefaultPricingCard({
             variant="caption"
             textTransform="uppercase"
             fontWeight="medium"
-            color={badge.color === "light" ? "dark" : "white"}
+            color={badge.color === 'light' ? 'dark' : 'white'}
           >
             {badge.label}
           </MDTypography>
         </MDBox>
         <MDBox pt={3} pb={2} px={2} textAlign="center">
           <MDBox my={1}>
-            <MDTypography variant="h1" color={color === "white" ? "dark" : "white"}>
+            <MDTypography
+              variant="h1"
+              color={color === 'white' ? 'dark' : 'white'}
+            >
               <MDTypography
                 display="inline"
                 component="small"
@@ -122,7 +143,12 @@ function DefaultPricingCard({
                 {price.currency}
               </MDTypography>
               {price.value}
-              <MDTypography display="inline" component="small" variant="h5" color="inherit">
+              <MDTypography
+                display="inline"
+                component="small"
+                variant="h5"
+                color="inherit"
+              >
                 /{price.type}
               </MDTypography>
             </MDTypography>
@@ -130,7 +156,7 @@ function DefaultPricingCard({
         </MDBox>
         <MDBox pb={3} px={3}>
           {renderSpecifications}
-          {action.type === "internal" ? (
+          {action.type === 'internal' ? (
             <MDBox mt={3}>
               <MDButton
                 component={Link}
@@ -140,7 +166,7 @@ function DefaultPricingCard({
                 fullWidth
               >
                 {action.label}&nbsp;
-                <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
+                <Icon sx={{ fontWeight: 'bold' }}>arrow_forward</Icon>
               </MDButton>
             </MDBox>
           ) : (
@@ -155,7 +181,7 @@ function DefaultPricingCard({
                 fullWidth
               >
                 {action.label}&nbsp;
-                <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
+                <Icon sx={{ fontWeight: 'bold' }}>arrow_forward</Icon>
               </MDButton>
             </MDBox>
           )}
@@ -167,7 +193,7 @@ function DefaultPricingCard({
 
 // Declaring default props for DefaultPricingCard
 DefaultPricingCard.defaultProps = {
-  color: "white",
+  color: 'white',
   shadow: true
 };
 

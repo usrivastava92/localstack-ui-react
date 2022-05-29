@@ -1,34 +1,49 @@
-import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 
 // react-chartjs-2 components
-import { Line } from "react-chartjs-2";
+import { Line } from 'react-chartjs-2';
 
 // @mui material components
-import Card from "@mui/material/Card";
+import Card from '@mui/material/Card';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
-import gradientChartLine from "assets/theme/functions/gradientChartLine";
+import gradientChartLine from 'assets/theme/functions/gradientChartLine';
 
 // Chart configurations
-import configs from "layouts/pages/widgets/components/Chart/configs";
+import configs from 'layouts/pages/widgets/components/Chart/configs';
 
-import colors from "assets/theme/base/colors";
+import colors from 'assets/theme/base/colors';
 
 // Declaring props types for Chart
 interface Props {
   title: string;
   count: number | ReactNode;
   percentage: {
-    color: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "dark";
+    color:
+      | 'primary'
+      | 'secondary'
+      | 'info'
+      | 'success'
+      | 'warning'
+      | 'error'
+      | 'dark';
     label: string | ReactNode;
   };
   chart: {
     labels: string[];
     datasets: {
       label: string;
-      color: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "light" | "dark";
+      color:
+        | 'primary'
+        | 'secondary'
+        | 'info'
+        | 'success'
+        | 'warning'
+        | 'error'
+        | 'light'
+        | 'dark';
       data: number[];
     }[];
   };
@@ -61,19 +76,28 @@ function Chart({ title, count, percentage, chart }: Props): JSX.Element {
   return (
     <Card>
       <MDBox p={2} lineHeight={1}>
-        <MDTypography variant="button" textTransform="capitalize" fontWeight="medium" color="text">
+        <MDTypography
+          variant="button"
+          textTransform="capitalize"
+          fontWeight="medium"
+          color="text"
+        >
           {title}
         </MDTypography>
         <MDTypography variant="h5" fontWeight="bold" color="dark">
           {count}&nbsp;
-          <MDTypography variant="button" fontWeight="bold" color={percentage.color}>
+          <MDTypography
+            variant="button"
+            fontWeight="bold"
+            color={percentage.color}
+          >
             {percentage.label}
           </MDTypography>
         </MDTypography>
       </MDBox>
       {useMemo(
         () => (
-          <MDBox ref={chartRef} sx={{ height: "5.375rem" }}>
+          <MDBox ref={chartRef} sx={{ height: '5.375rem' }}>
             <Line data={data} options={options} />
           </MDBox>
         ),

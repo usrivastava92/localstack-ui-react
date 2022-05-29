@@ -1,14 +1,14 @@
 // @mui material components
-import Icon from "@mui/material/Icon";
+import Icon from '@mui/material/Icon';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
 // Declaring props types for RefundsCell
 interface Props {
   value: string | number;
   icon: {
-    color: "info" | "success" | "warning" | "error";
+    color: 'info' | 'success' | 'warning' | 'error';
     name: string;
   };
 }
@@ -20,7 +20,7 @@ function RefundsCell({ value, icon }: Props): JSX.Element {
         {value}
       </MDTypography>
       <MDBox color={icon.color} lineHeight={0}>
-        <Icon sx={{ fontWeight: "bold" }} fontSize="small">
+        <Icon sx={{ fontWeight: 'bold' }} fontSize="small">
           {icon.name}
         </Icon>
       </MDBox>

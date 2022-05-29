@@ -1,27 +1,40 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useState } from 'react';
 
 // @mui material components
-import Fade from "@mui/material/Fade";
+import Fade from '@mui/material/Fade';
 
-import MDBox from "components/MDBox";
+import MDBox from 'components/MDBox';
 
 // Custom styles for the MDAlert
-import MDAlertRoot from "components/MDAlert/MDAlertRoot";
-import MDAlertCloseIcon from "components/MDAlert/MDAlertCloseIcon";
+import MDAlertRoot from 'components/MDAlert/MDAlertRoot';
+import MDAlertCloseIcon from 'components/MDAlert/MDAlertCloseIcon';
 
 // Declaring props types for MDAlert
 interface Props {
-  color?: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "light" | "dark";
+  color?:
+    | 'primary'
+    | 'secondary'
+    | 'info'
+    | 'success'
+    | 'warning'
+    | 'error'
+    | 'light'
+    | 'dark';
   dismissible?: boolean;
   children: ReactNode;
 
   [key: string]: any;
 }
 
-function MDAlert({ color, dismissible, children, ...rest }: Props): JSX.Element | null {
-  const [alertStatus, setAlertStatus] = useState("mount");
+function MDAlert({
+  color,
+  dismissible,
+  children,
+  ...rest
+}: Props): JSX.Element | null {
+  const [alertStatus, setAlertStatus] = useState('mount');
 
-  const handleAlertStatus = () => setAlertStatus("fadeOut");
+  const handleAlertStatus = () => setAlertStatus('fadeOut');
 
   // The base template for the alert
   const alertTemplate: any = (mount: boolean = true) => (
@@ -40,10 +53,10 @@ function MDAlert({ color, dismissible, children, ...rest }: Props): JSX.Element 
   );
 
   switch (true) {
-    case alertStatus === "mount":
+    case alertStatus === 'mount':
       return alertTemplate();
-    case alertStatus === "fadeOut":
-      setTimeout(() => setAlertStatus("unmount"), 400);
+    case alertStatus === 'fadeOut':
+      setTimeout(() => setAlertStatus('unmount'), 400);
       return alertTemplate(false);
     default:
       alertTemplate();
@@ -55,7 +68,7 @@ function MDAlert({ color, dismissible, children, ...rest }: Props): JSX.Element 
 
 // Declaring default props for MDAlert
 MDAlert.defaultProps = {
-  color: "info",
+  color: 'info',
   dismissible: false
 };
 

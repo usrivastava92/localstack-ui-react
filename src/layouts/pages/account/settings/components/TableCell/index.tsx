@@ -1,7 +1,7 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
 // Declaring props types for TableCell
 interface Props {
@@ -12,7 +12,13 @@ interface Props {
   noBorder?: boolean;
 }
 
-function TableCell({ width, align, padding, noBorder, children }: Props): JSX.Element {
+function TableCell({
+  width,
+  align,
+  padding,
+  noBorder,
+  children
+}: Props): JSX.Element {
   return (
     <MDBox
       component="th"
@@ -36,8 +42,8 @@ function TableCell({ width, align, padding, noBorder, children }: Props): JSX.El
 
 // Declaring default props for TableCell
 TableCell.defaultProps = {
-  width: "auto",
-  align: "left",
+  width: 'auto',
+  align: 'left',
   padding: [],
   noBorder: false
 };

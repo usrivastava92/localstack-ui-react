@@ -1,25 +1,25 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 // @mui material components
-import Card from "@mui/material/Card";
-import Icon from "@mui/material/Icon";
-import Switch from "@mui/material/Switch";
-import Tooltip from "@mui/material/Tooltip";
-import Divider from "@mui/material/Divider";
+import Card from '@mui/material/Card';
+import Icon from '@mui/material/Icon';
+import Switch from '@mui/material/Switch';
+import Tooltip from '@mui/material/Tooltip';
+import Divider from '@mui/material/Divider';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDAvatar from "components/MDAvatar";
-import MDInput from "components/MDInput";
-import MDButton from "components/MDButton";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
+import MDAvatar from 'components/MDAvatar';
+import MDInput from 'components/MDInput';
+import MDButton from 'components/MDButton';
 
 // Images
-import logoSlack from "assets/images/small-logos/logo-slack.svg";
-import logoSpotify from "assets/images/small-logos/logo-spotify.svg";
-import logoAtlassian from "assets/images/small-logos/logo-atlassian.svg";
-import logoAsana from "assets/images/small-logos/logo-asana.svg";
+import logoSlack from 'assets/images/small-logos/logo-slack.svg';
+import logoSpotify from 'assets/images/small-logos/logo-spotify.svg';
+import logoAtlassian from 'assets/images/small-logos/logo-atlassian.svg';
+import logoAsana from 'assets/images/small-logos/logo-asana.svg';
 
-import { useMaterialUIController } from "context";
+import { useMaterialUIController } from 'context';
 
 function Accounts(): JSX.Element {
   const [controller] = useMaterialUIController();
@@ -49,8 +49,8 @@ function Accounts(): JSX.Element {
         <MDBox
           display="flex"
           justifyContent="space-between"
-          alignItems={{ xs: "flex-start", sm: "center" }}
-          flexDirection={{ xs: "column", sm: "row" }}
+          alignItems={{ xs: 'flex-start', sm: 'center' }}
+          flexDirection={{ xs: 'column', sm: 'row' }}
         >
           <MDBox display="flex" alignItems="center">
             <MDAvatar src={logoSlack} alt="Slack logo" variant="rounded" />
@@ -62,7 +62,11 @@ function Accounts(): JSX.Element {
                 <MDTypography variant="button" color="text">
                   Show less
                 </MDTypography>
-                <MDTypography variant="button" color="text" sx={{ lineHeight: 0 }}>
+                <MDTypography
+                  variant="button"
+                  color="text"
+                  sx={{ lineHeight: 0 }}
+                >
                   <Icon fontSize="small">expand_less</Icon>
                 </MDTypography>
               </MDBox>
@@ -72,12 +76,12 @@ function Accounts(): JSX.Element {
             display="flex"
             alignItems="center"
             justifyContent="flex-end"
-            width={{ xs: "100%", sm: "auto" }}
+            width={{ xs: '100%', sm: 'auto' }}
             mt={{ xs: 1, sm: 0 }}
           >
             <MDBox lineHeight={0} mx={2}>
               <MDTypography variant="button" color="text">
-                {slack2FA ? "Enabled" : "Disabled"}
+                {slack2FA ? 'Enabled' : 'Disabled'}
               </MDTypography>
             </MDBox>
             <MDBox mr={1}>
@@ -87,17 +91,18 @@ function Accounts(): JSX.Element {
         </MDBox>
         <MDBox ml={2} pl={6} pt={2} lineHeight={1}>
           <MDTypography variant="button" color="text">
-            You haven&apos;t added your Slack yet or you aren&apos;t authorized. Please add our
-            Slack Bot to your account by clicking on here. When you&apos;ve added the bot, send your
-            verification code that you have received.
+            You haven&apos;t added your Slack yet or you aren&apos;t authorized.
+            Please add our Slack Bot to your account by clicking on here. When
+            you&apos;ve added the bot, send your verification code that you have
+            received.
           </MDTypography>
           <MDBox
-            bgColor={darkMode ? "grey-900" : "grey-100"}
+            bgColor={darkMode ? 'grey-900' : 'grey-100'}
             borderRadius="lg"
             display="flex"
             justifyContent="space-between"
-            alignItems={{ xs: "flex-start", sm: "center" }}
-            flexDirection={{ xs: "column", sm: "row" }}
+            alignItems={{ xs: 'flex-start', sm: 'center' }}
+            flexDirection={{ xs: 'column', sm: 'row' }}
             my={3}
             py={1}
             pl={{ xs: 1, sm: 2 }}
@@ -106,19 +111,22 @@ function Accounts(): JSX.Element {
             <MDTypography variant="button" fontWeight="medium" color="text">
               Verification Code
             </MDTypography>
-            <MDBox width={{ xs: "100%", sm: "25%", md: "15%" }} mt={{ xs: 1, sm: 0 }}>
+            <MDBox
+              width={{ xs: '100%', sm: '25%', md: '15%' }}
+              mt={{ xs: 1, sm: 0 }}
+            >
               <Tooltip title="Copy" placement="top">
                 <MDInput size="small" value="1172913" />
               </Tooltip>
             </MDBox>
           </MDBox>
           <MDBox
-            bgColor={darkMode ? "grey-900" : "grey-100"}
+            bgColor={darkMode ? 'grey-900' : 'grey-100'}
             borderRadius="lg"
             display="flex"
             justifyContent="space-between"
-            alignItems={{ xs: "flex-start", sm: "center" }}
-            flexDirection={{ xs: "column", sm: "row" }}
+            alignItems={{ xs: 'flex-start', sm: 'center' }}
+            flexDirection={{ xs: 'column', sm: 'row' }}
             my={3}
             py={1}
             pl={{ xs: 1, sm: 2 }}
@@ -129,8 +137,8 @@ function Accounts(): JSX.Element {
             </MDTypography>
             <MDBox
               display="flex"
-              alignItems={{ xs: "flex-start", sm: "center" }}
-              flexDirection={{ xs: "column", sm: "row" }}
+              alignItems={{ xs: 'flex-start', sm: 'center' }}
+              flexDirection={{ xs: 'column', sm: 'row' }}
             >
               <MDBox mr={2} mb={{ xs: 1, sm: 0 }} lineHeight={0}>
                 <MDTypography variant="button" fontWeight="medium">
@@ -147,8 +155,8 @@ function Accounts(): JSX.Element {
         <MDBox
           display="flex"
           justifyContent="space-between"
-          alignItems={{ xs: "flex-start", sm: "center" }}
-          flexDirection={{ xs: "column", sm: "row" }}
+          alignItems={{ xs: 'flex-start', sm: 'center' }}
+          flexDirection={{ xs: 'column', sm: 'row' }}
         >
           <MDBox display="flex" alignItems="center">
             <MDAvatar src={logoSpotify} alt="Slack logo" variant="rounded" />
@@ -165,12 +173,12 @@ function Accounts(): JSX.Element {
             display="flex"
             justifyContent="flex-end"
             alignItems="center"
-            width={{ xs: "100%", sm: "auto" }}
+            width={{ xs: '100%', sm: 'auto' }}
             mt={{ xs: 1, sm: 0 }}
           >
             <MDBox lineHeight={0} mx={2}>
               <MDTypography variant="button" color="text">
-                {spotify2FA ? "Enabled" : "Disabled"}
+                {spotify2FA ? 'Enabled' : 'Disabled'}
               </MDTypography>
             </MDBox>
             <MDBox mr={1}>
@@ -182,8 +190,8 @@ function Accounts(): JSX.Element {
         <MDBox
           display="flex"
           justifyContent="space-between"
-          alignItems={{ xs: "flex-start", sm: "center" }}
-          flexDirection={{ xs: "column", sm: "row" }}
+          alignItems={{ xs: 'flex-start', sm: 'center' }}
+          flexDirection={{ xs: 'column', sm: 'row' }}
         >
           <MDBox display="flex" alignItems="center">
             <MDAvatar src={logoAtlassian} alt="Slack logo" variant="rounded" />
@@ -200,12 +208,12 @@ function Accounts(): JSX.Element {
             display="flex"
             justifyContent="flex-end"
             alignItems="center"
-            width={{ xs: "100%", sm: "auto" }}
+            width={{ xs: '100%', sm: 'auto' }}
             mt={{ xs: 1, sm: 0 }}
           >
             <MDBox lineHeight={0} mx={2}>
               <MDTypography variant="button" color="text">
-                {atlassian2FA ? "Enabled" : "Disabled"}
+                {atlassian2FA ? 'Enabled' : 'Disabled'}
               </MDTypography>
             </MDBox>
             <MDBox mr={1}>
@@ -217,8 +225,8 @@ function Accounts(): JSX.Element {
         <MDBox
           display="flex"
           justifyContent="space-between"
-          alignItems={{ xs: "flex-start", sm: "center" }}
-          flexDirection={{ xs: "column", sm: "row" }}
+          alignItems={{ xs: 'flex-start', sm: 'center' }}
+          flexDirection={{ xs: 'column', sm: 'row' }}
         >
           <MDBox display="flex" alignItems="center">
             <MDAvatar src={logoAsana} alt="Slack logo" variant="rounded" />
@@ -235,12 +243,12 @@ function Accounts(): JSX.Element {
             display="flex"
             alignItems="center"
             justifyContent="flex-end"
-            width={{ xs: "100%", sm: "auto" }}
+            width={{ xs: '100%', sm: 'auto' }}
             mt={{ xs: 1, sm: 0 }}
           >
             <MDBox lineHeight={0} mx={2}>
               <MDTypography variant="button" color="text">
-                {asana2FA ? "Enabled" : "Disabled"}
+                {asana2FA ? 'Enabled' : 'Disabled'}
               </MDTypography>
             </MDBox>
             <MDBox mr={1}>

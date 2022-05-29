@@ -1,7 +1,7 @@
-import MDTypography from "components/MDTypography";
-import { useState } from "react";
-import { Icon } from "@mui/material";
-import Tooltip from "@mui/material/Tooltip";
+import MDTypography from 'components/MDTypography';
+import { useState } from 'react';
+import { Icon } from '@mui/material';
+import Tooltip from '@mui/material/Tooltip';
 
 // Declaring props types for DefaultCell
 interface Props {
@@ -10,7 +10,6 @@ interface Props {
 }
 
 function TextOverflowEllipsisCell({ value, suffix }: Props): JSX.Element {
-
   const [copied, setCopied] = useState<boolean>(false);
 
   const handleCopy = () => {
@@ -19,10 +18,19 @@ function TextOverflowEllipsisCell({ value, suffix }: Props): JSX.Element {
   };
 
   return (
-    <div style={{ overflow: "hidden", textOverflow: "ellipsis", width: "11rem" }}>
+    <div
+      style={{ overflow: 'hidden', textOverflow: 'ellipsis', width: '11rem' }}
+    >
       <MDTypography noWrap variant="caption" fontWeight="medium" color="text">
-        <Tooltip title={copied ? "Copied" : "Copy"} placement="top">
-          <Icon fontSize={"small"} sx={{ mr: 1 }} onClick={handleCopy} onMouseLeave={() => setCopied(false)}>copy</Icon>
+        <Tooltip title={copied ? 'Copied' : 'Copy'} placement="top">
+          <Icon
+            fontSize={'small'}
+            sx={{ mr: 1 }}
+            onClick={handleCopy}
+            onMouseLeave={() => setCopied(false)}
+          >
+            copy
+          </Icon>
         </Tooltip>
         {value}
         {suffix && (
@@ -37,7 +45,7 @@ function TextOverflowEllipsisCell({ value, suffix }: Props): JSX.Element {
 
 // Declaring default props for DefaultCell
 TextOverflowEllipsisCell.defaultProps = {
-  suffix: ""
+  suffix: ''
 };
 
 export default TextOverflowEllipsisCell;

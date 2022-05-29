@@ -1,26 +1,34 @@
-import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 
 // react-chartjs-2 components
-import { Line } from "react-chartjs-2";
+import { Line } from 'react-chartjs-2';
 
 // @mui material components
-import Card from "@mui/material/Card";
-import Icon from "@mui/material/Icon";
+import Card from '@mui/material/Card';
+import Icon from '@mui/material/Icon';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
-import gradientChartLine from "assets/theme/functions/gradientChartLine";
+import gradientChartLine from 'assets/theme/functions/gradientChartLine';
 
 // MixedChart configurations
-import configs from "examples/Charts/MixedChart/configs";
+import configs from 'examples/Charts/MixedChart/configs';
 
-import colors from "assets/theme/base/colors";
+import colors from 'assets/theme/base/colors';
 
 // Declaring props types for MixedChart
 interface Props {
   icon?: {
-    color?: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "light" | "dark";
+    color?:
+      | 'primary'
+      | 'secondary'
+      | 'info'
+      | 'success'
+      | 'warning'
+      | 'error'
+      | 'light'
+      | 'dark';
     component: ReactNode;
   };
   title?: string;
@@ -31,7 +39,15 @@ interface Props {
     datasets: {
       chartType: string;
       label: string;
-      color: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "light" | "dark";
+      color:
+        | 'primary'
+        | 'secondary'
+        | 'info'
+        | 'success'
+        | 'warning'
+        | 'error'
+        | 'light'
+        | 'dark';
       data: number[];
     }[];
   };
@@ -39,7 +55,13 @@ interface Props {
   [key: string]: any;
 }
 
-function MixedChart({ icon, title, description, height, chart }: Props): JSX.Element {
+function MixedChart({
+  icon,
+  title,
+  description,
+  height,
+  chart
+}: Props): JSX.Element {
   const chartRef = useRef(null);
   const [chartData, setChartData] = useState({});
   const { data, options }: any = chartData;
@@ -47,78 +69,80 @@ function MixedChart({ icon, title, description, height, chart }: Props): JSX.Ele
   useEffect(() => {
     const chartDatasets = chart.datasets
       ? chart.datasets.map((dataset) => {
-        let finalConfigs;
+          let finalConfigs;
 
-        const defaultLine = {
-          ...dataset,
-          type: "line",
-          tension: 0,
-          borderWidth: 4,
-          pointRadius: 2,
-          pointBackgroundColor: colors[dataset.color]
-            ? colors[dataset.color || "dark"].main
-            : colors.dark.main,
-          borderColor: colors[dataset.color]
-            ? colors[dataset.color || "dark"].main
-            : colors.dark.main,
-          maxBarThickness: 6
-        };
+          const defaultLine = {
+            ...dataset,
+            type: 'line',
+            tension: 0,
+            borderWidth: 4,
+            pointRadius: 2,
+            pointBackgroundColor: colors[dataset.color]
+              ? colors[dataset.color || 'dark'].main
+              : colors.dark.main,
+            borderColor: colors[dataset.color]
+              ? colors[dataset.color || 'dark'].main
+              : colors.dark.main,
+            maxBarThickness: 6
+          };
 
-        const gradientLine = {
-          ...dataset,
-          type: "line",
-          tension: 0,
-          pointRadius: 0,
-          borderWidth: 4,
-          borderColor: colors[dataset.color]
-            ? colors[dataset.color || "dark"].main
-            : colors.dark.main,
-          fill: true,
-          maxBarThickness: 6,
-          backgroundColor: gradientChartLine(
-            chartRef.current.children[0],
-            colors[dataset.color] ? colors[dataset.color || "dark"].main : colors.dark.main
-          )
-        };
+          const gradientLine = {
+            ...dataset,
+            type: 'line',
+            tension: 0,
+            pointRadius: 0,
+            borderWidth: 4,
+            borderColor: colors[dataset.color]
+              ? colors[dataset.color || 'dark'].main
+              : colors.dark.main,
+            fill: true,
+            maxBarThickness: 6,
+            backgroundColor: gradientChartLine(
+              chartRef.current.children[0],
+              colors[dataset.color]
+                ? colors[dataset.color || 'dark'].main
+                : colors.dark.main
+            )
+          };
 
-        const bar = {
-          ...dataset,
-          type: "bar",
-          weight: 5,
-          borderWidth: 0,
-          borderRadius: 4,
-          backgroundColor: colors[dataset.color]
-            ? colors[dataset.color || "dark"].main
-            : colors.dark.main,
-          fill: false,
-          maxBarThickness: 35
-        };
+          const bar = {
+            ...dataset,
+            type: 'bar',
+            weight: 5,
+            borderWidth: 0,
+            borderRadius: 4,
+            backgroundColor: colors[dataset.color]
+              ? colors[dataset.color || 'dark'].main
+              : colors.dark.main,
+            fill: false,
+            maxBarThickness: 35
+          };
 
-        const thinBar = {
-          ...dataset,
-          type: "bar",
-          weight: 5,
-          borderWidth: 0,
-          borderRadius: 4,
-          backgroundColor: colors[dataset.color]
-            ? colors[dataset.color || "dark"].main
-            : colors.dark.main,
-          fill: false,
-          maxBarThickness: 10
-        };
+          const thinBar = {
+            ...dataset,
+            type: 'bar',
+            weight: 5,
+            borderWidth: 0,
+            borderRadius: 4,
+            backgroundColor: colors[dataset.color]
+              ? colors[dataset.color || 'dark'].main
+              : colors.dark.main,
+            fill: false,
+            maxBarThickness: 10
+          };
 
-        if (dataset.chartType === "default-line") {
-          finalConfigs = defaultLine;
-        } else if (dataset.chartType === "gradient-line") {
-          finalConfigs = gradientLine;
-        } else if (dataset.chartType === "thin-bar") {
-          finalConfigs = thinBar;
-        } else {
-          finalConfigs = bar;
-        }
+          if (dataset.chartType === 'default-line') {
+            finalConfigs = defaultLine;
+          } else if (dataset.chartType === 'gradient-line') {
+            finalConfigs = gradientLine;
+          } else if (dataset.chartType === 'thin-bar') {
+            finalConfigs = thinBar;
+          } else {
+            finalConfigs = bar;
+          }
 
-        return { ...finalConfigs };
-      })
+          return { ...finalConfigs };
+        })
       : [];
 
     setChartData(configs(chart.labels || [], chartDatasets));
@@ -132,9 +156,9 @@ function MixedChart({ icon, title, description, height, chart }: Props): JSX.Ele
             <MDBox
               width="4rem"
               height="4rem"
-              bgColor={icon.color || "info"}
+              bgColor={icon.color || 'info'}
               variant="gradient"
-              coloredShadow={icon.color || "info"}
+              coloredShadow={icon.color || 'info'}
               borderRadius="xl"
               display="flex"
               justifyContent="center"
@@ -172,10 +196,10 @@ function MixedChart({ icon, title, description, height, chart }: Props): JSX.Ele
 
 // Declaring default props for MixedChart
 MixedChart.defaultProps = {
-  icon: { color: "info", component: "" },
-  title: "",
-  description: "",
-  height: "19.125rem"
+  icon: { color: 'info', component: '' },
+  title: '',
+  description: '',
+  height: '19.125rem'
 };
 
 export default MixedChart;

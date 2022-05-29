@@ -1,24 +1,32 @@
-import { ReactNode, useMemo } from "react";
+import { ReactNode, useMemo } from 'react';
 
 // react-chartjs-2 components
-import { Bar } from "react-chartjs-2";
+import { Bar } from 'react-chartjs-2';
 
 // @mui material components
-import Card from "@mui/material/Card";
-import Icon from "@mui/material/Icon";
+import Card from '@mui/material/Card';
+import Icon from '@mui/material/Icon';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
 // VerticalBarChart configurations
-import configs from "examples/Charts/BarCharts/VerticalBarChart/configs";
+import configs from 'examples/Charts/BarCharts/VerticalBarChart/configs';
 
-import colors from "assets/theme/base/colors";
+import colors from 'assets/theme/base/colors';
 
 // Declaring props types for HorizontalBarChart
 interface Props {
   icon?: {
-    color?: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "light" | "dark";
+    color?:
+      | 'primary'
+      | 'secondary'
+      | 'info'
+      | 'success'
+      | 'warning'
+      | 'error'
+      | 'light'
+      | 'dark';
     component: ReactNode;
   };
   title?: string;
@@ -28,7 +36,15 @@ interface Props {
     labels: string[];
     datasets: {
       label: string;
-      color: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "light" | "dark";
+      color:
+        | 'primary'
+        | 'secondary'
+        | 'info'
+        | 'success'
+        | 'warning'
+        | 'error'
+        | 'light'
+        | 'dark';
       data: number[];
     }[];
   };
@@ -36,19 +52,25 @@ interface Props {
   [key: string]: any;
 }
 
-function VerticalBarChart({ icon, title, description, height, chart }: Props): JSX.Element {
+function VerticalBarChart({
+  icon,
+  title,
+  description,
+  height,
+  chart
+}: Props): JSX.Element {
   const chartDatasets = chart.datasets
     ? chart.datasets.map((dataset) => ({
-      ...dataset,
-      weight: 5,
-      borderWidth: 0,
-      borderRadius: 4,
-      backgroundColor: colors[dataset.color]
-        ? colors[dataset.color || "dark"].main
-        : colors.dark.main,
-      fill: false,
-      maxBarThickness: 35
-    }))
+        ...dataset,
+        weight: 5,
+        borderWidth: 0,
+        borderRadius: 4,
+        backgroundColor: colors[dataset.color]
+          ? colors[dataset.color || 'dark'].main
+          : colors.dark.main,
+        fill: false,
+        maxBarThickness: 35
+      }))
     : [];
 
   const { data, options } = configs(chart.labels || [], chartDatasets);
@@ -61,9 +83,9 @@ function VerticalBarChart({ icon, title, description, height, chart }: Props): J
             <MDBox
               width="4rem"
               height="4rem"
-              bgColor={icon.color || "info"}
+              bgColor={icon.color || 'info'}
               variant="gradient"
-              coloredShadow={icon.color || "info"}
+              coloredShadow={icon.color || 'info'}
               borderRadius="xl"
               display="flex"
               justifyContent="center"
@@ -101,10 +123,10 @@ function VerticalBarChart({ icon, title, description, height, chart }: Props): J
 
 // Declaring default props for VerticalBarChart
 VerticalBarChart.defaultProps = {
-  icon: { color: "info", component: "" },
-  title: "",
-  description: "",
-  height: "19.125rem"
+  icon: { color: 'info', component: '' },
+  title: '',
+  description: '',
+  height: '19.125rem'
 };
 
 export default VerticalBarChart;

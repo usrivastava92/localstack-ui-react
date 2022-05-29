@@ -1,20 +1,36 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 // @mui material components
-import Card from "@mui/material/Card";
-import Divider from "@mui/material/Divider";
-import Icon from "@mui/material/Icon";
+import Card from '@mui/material/Card';
+import Divider from '@mui/material/Divider';
+import Icon from '@mui/material/Icon';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
 // Declaring props types for CompleStatisticsCard
 interface Props {
-  color?: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "light" | "dark";
+  color?:
+    | 'primary'
+    | 'secondary'
+    | 'info'
+    | 'success'
+    | 'warning'
+    | 'error'
+    | 'light'
+    | 'dark';
   title: string;
   count: string | number;
   percentage?: {
-    color: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "dark" | "white";
+    color:
+      | 'primary'
+      | 'secondary'
+      | 'info'
+      | 'success'
+      | 'warning'
+      | 'error'
+      | 'dark'
+      | 'white';
     amount: string | number;
     label: string;
   };
@@ -23,14 +39,20 @@ interface Props {
   [key: string]: any;
 }
 
-function ComplexStatisticsCard({ color, title, count, percentage, icon }: Props): JSX.Element {
+function ComplexStatisticsCard({
+  color,
+  title,
+  count,
+  percentage,
+  icon
+}: Props): JSX.Element {
   return (
     <Card>
       <MDBox display="flex" justifyContent="space-between" pt={1} px={2}>
         <MDBox
           variant="gradient"
           bgColor={color}
-          color={color === "light" ? "dark" : "white"}
+          color={color === 'light' ? 'dark' : 'white'}
           coloredShadow={color}
           borderRadius="xl"
           display="flex"
@@ -53,7 +75,12 @@ function ComplexStatisticsCard({ color, title, count, percentage, icon }: Props)
       </MDBox>
       <Divider />
       <MDBox pb={2} px={2}>
-        <MDTypography component="p" variant="button" color="text" display="flex">
+        <MDTypography
+          component="p"
+          variant="button"
+          color="text"
+          display="flex"
+        >
           <MDTypography
             component="span"
             variant="button"
@@ -71,11 +98,11 @@ function ComplexStatisticsCard({ color, title, count, percentage, icon }: Props)
 
 // Declaring defualt props for ComplexStatisticsCard
 ComplexStatisticsCard.defaultProps = {
-  color: "info",
+  color: 'info',
   percentage: {
-    color: "success",
-    text: "",
-    label: ""
+    color: 'success',
+    text: '',
+    label: ''
   }
 };
 

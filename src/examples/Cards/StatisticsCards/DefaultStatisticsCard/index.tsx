@@ -1,22 +1,30 @@
 /* eslint-disable no-unused-vars */
 
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 // @mui material components
-import Card from "@mui/material/Card";
-import Grid from "@mui/material/Grid";
+import Card from '@mui/material/Card';
+import Grid from '@mui/material/Grid';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
-import { useMaterialUIController } from "context";
+import { useMaterialUIController } from 'context';
 
 // Declaring prop types for DefaultStatisticsCard
 interface Props {
   title: string;
   count: string | number;
   percentage?: {
-    color: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "dark" | "white";
+    color:
+      | 'primary'
+      | 'secondary'
+      | 'info'
+      | 'success'
+      | 'warning'
+      | 'error'
+      | 'dark'
+      | 'white';
     value: string | number;
     label: string;
   };
@@ -29,7 +37,12 @@ interface Props {
   [key: string]: any;
 }
 
-function DefaultStatisticsCard({ title, count, percentage, dropdown }: Props): JSX.Element {
+function DefaultStatisticsCard({
+  title,
+  count,
+  percentage,
+  dropdown
+}: Props): JSX.Element {
   const [controller] = useMaterialUIController();
   const { darkMode } = controller;
 
@@ -52,12 +65,16 @@ function DefaultStatisticsCard({ title, count, percentage, dropdown }: Props): J
               <MDTypography variant="h5" fontWeight="bold">
                 {count}
               </MDTypography>
-              <MDTypography variant="button" fontWeight="bold" color={percentage.color}>
+              <MDTypography
+                variant="button"
+                fontWeight="bold"
+                color={percentage.color}
+              >
                 {percentage.value}&nbsp;
                 <MDTypography
                   variant="button"
                   fontWeight="regular"
-                  color={darkMode ? "text" : "secondary"}
+                  color={darkMode ? 'text' : 'secondary'}
                 >
                   {percentage.label}
                 </MDTypography>
@@ -71,7 +88,7 @@ function DefaultStatisticsCard({ title, count, percentage, dropdown }: Props): J
                   variant="caption"
                   color="secondary"
                   fontWeight="regular"
-                  sx={{ cursor: "pointer" }}
+                  sx={{ cursor: 'pointer' }}
                   onClick={dropdown.action}
                 >
                   {dropdown.value}
@@ -89,9 +106,9 @@ function DefaultStatisticsCard({ title, count, percentage, dropdown }: Props): J
 // Setting default values for the props of DefaultStatisticsCard
 DefaultStatisticsCard.defaultProps = {
   percentage: {
-    color: "success",
-    value: "",
-    label: ""
+    color: 'success',
+    value: '',
+    label: ''
   },
   dropdown: false
 };

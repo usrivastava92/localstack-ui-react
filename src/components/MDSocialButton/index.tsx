@@ -1,27 +1,27 @@
-import { FC, forwardRef, ReactNode } from "react";
+import { FC, forwardRef, ReactNode } from 'react';
 
 // @mui material components
-import { ButtonProps } from "@mui/material";
+import { ButtonProps } from '@mui/material';
 
 // Custom styles for MDSocialButton
-import MDSocialButtonRoot from "components/MDSocialButton/MDSocialButtonRoot";
+import MDSocialButtonRoot from 'components/MDSocialButton/MDSocialButtonRoot';
 
 // Declaring props types for MDButton
-interface Props extends Omit<ButtonProps, "color" | "variant"> {
+interface Props extends Omit<ButtonProps, 'color' | 'variant'> {
   color?:
-    | "facebook"
-    | "twitter"
-    | "instagram"
-    | "linkedin"
-    | "pinterest"
-    | "youtube"
-    | "github"
-    | "vimeo"
-    | "slack"
-    | "dribbble"
-    | "reddit"
-    | "tumblr";
-  size?: "small" | "medium" | "large";
+    | 'facebook'
+    | 'twitter'
+    | 'instagram'
+    | 'linkedin'
+    | 'pinterest'
+    | 'youtube'
+    | 'github'
+    | 'vimeo'
+    | 'slack'
+    | 'dribbble'
+    | 'reddit'
+    | 'tumblr';
+  size?: 'small' | 'medium' | 'large';
   circular?: boolean;
   iconOnly?: boolean;
   children?: ReactNode;
@@ -46,8 +46,8 @@ const MDSocialButton: FC<Props> = forwardRef(
 
 // Setting default values for the props of MDSocialButton
 MDSocialButton.defaultProps = {
-  size: "medium",
-  color: "facebook",
+  size: 'medium',
+  color: 'facebook',
   iconOnly: false,
   circular: false
 };

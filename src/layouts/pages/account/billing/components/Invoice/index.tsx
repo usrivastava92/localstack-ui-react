@@ -1,8 +1,8 @@
 // @mui material components
-import Icon from "@mui/material/Icon";
+import Icon from '@mui/material/Icon';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
 // Declaring props types for Invoice
 interface Props {
@@ -35,7 +35,13 @@ function Invoice({ date, id, price, noGutter }: Props): JSX.Element {
         <MDTypography variant="button" fontWeight="regular" color="text">
           {price}
         </MDTypography>
-        <MDBox display="flex" alignItems="center" lineHeight={1} ml={3} sx={{ cursor: "pointer" }}>
+        <MDBox
+          display="flex"
+          alignItems="center"
+          lineHeight={1}
+          ml={3}
+          sx={{ cursor: 'pointer' }}
+        >
           <Icon fontSize="small">picture_as_pdf</Icon>
           <MDTypography variant="button" fontWeight="bold">
             &nbsp;PDF

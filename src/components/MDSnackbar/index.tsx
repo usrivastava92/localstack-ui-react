@@ -1,26 +1,34 @@
 /* eslint-disable react/default-props-match-prop-types */
 
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 // @mui material components
-import Snackbar from "@mui/material/Snackbar";
-import IconButton from "@mui/material/IconButton";
-import Icon from "@mui/material/Icon";
-import Divider from "@mui/material/Divider";
-import Fade from "@mui/material/Fade";
-import { SnackbarProps } from "@mui/material";
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+import Icon from '@mui/material/Icon';
+import Divider from '@mui/material/Divider';
+import Fade from '@mui/material/Fade';
+import { SnackbarProps } from '@mui/material';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
 // Custom styles for the MDSnackbar
-import MDSnackbarIconRoot from "components/MDSnackbar/MDSnackbarIconRoot";
+import MDSnackbarIconRoot from 'components/MDSnackbar/MDSnackbarIconRoot';
 
-import { useMaterialUIController } from "context";
+import { useMaterialUIController } from 'context';
 
 // Declaring props types for MDSnackbar
 export interface SBProps extends SnackbarProps {
-  color?: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "dark" | "light";
+  color?:
+    | 'primary'
+    | 'secondary'
+    | 'info'
+    | 'success'
+    | 'warning'
+    | 'error'
+    | 'dark'
+    | 'light';
   icon: ReactNode;
   title: string;
   dateTime: string;
@@ -32,15 +40,15 @@ export interface SBProps extends SnackbarProps {
 }
 
 function MDSnackbar({
-                      color,
-                      icon,
-                      title,
-                      dateTime,
-                      content,
-                      close,
-                      bgWhite,
-                      ...rest
-                    }: SBProps): JSX.Element {
+  color,
+  icon,
+  title,
+  dateTime,
+  content,
+  close,
+  bgWhite,
+  ...rest
+}: SBProps): JSX.Element {
   const [controller] = useMaterialUIController();
   const { darkMode } = controller;
 
@@ -50,15 +58,15 @@ function MDSnackbar({
 
   if (bgWhite) {
     titleColor = color;
-    dateTimeColor = "dark";
+    dateTimeColor = 'dark';
     dividerColor = false;
-  } else if (color === "light") {
-    titleColor = darkMode ? "inherit" : "dark";
-    dateTimeColor = darkMode ? "inherit" : "text";
+  } else if (color === 'light') {
+    titleColor = darkMode ? 'inherit' : 'dark';
+    dateTimeColor = darkMode ? 'inherit' : 'text';
     dividerColor = false;
   } else {
-    titleColor = "white";
-    dateTimeColor = "white";
+    titleColor = 'white';
+    dateTimeColor = 'white';
     dividerColor = true;
   }
 
@@ -67,19 +75,24 @@ function MDSnackbar({
       TransitionComponent={Fade}
       autoHideDuration={5000}
       anchorOrigin={{
-        vertical: "bottom",
-        horizontal: "right"
+        vertical: 'bottom',
+        horizontal: 'right'
       }}
       {...rest}
       action={
-        <IconButton size="small" aria-label="close" color="inherit" onClick={close}>
+        <IconButton
+          size="small"
+          aria-label="close"
+          color="inherit"
+          onClick={close}
+        >
           <Icon fontSize="small">close</Icon>
         </IconButton>
       }
     >
       <MDBox
-        variant={bgWhite ? "contained" : "gradient"}
-        bgColor={bgWhite ? "white" : color}
+        variant={bgWhite ? 'contained' : 'gradient'}
+        bgColor={bgWhite ? 'white' : color}
         minWidth="21.875rem"
         maxWidth="100%"
         shadow="md"
@@ -87,7 +100,9 @@ function MDSnackbar({
         p={1}
         sx={{
           backgroundColor: ({ palette }: { palette: any }) =>
-            darkMode ? palette.background.card : palette[color] || palette.white.main
+            darkMode
+              ? palette.background.card
+              : palette[color] || palette.white.main
         }}
       >
         <MDBox
@@ -98,7 +113,10 @@ function MDSnackbar({
           p={1.5}
         >
           <MDBox display="flex" alignItems="center" lineHeight={0}>
-            <MDSnackbarIconRoot fontSize="small" ownerState={{ color, bgWhite }}>
+            <MDSnackbarIconRoot
+              fontSize="small"
+              ownerState={{ color, bgWhite }}
+            >
               {icon}
             </MDSnackbarIconRoot>
             <MDTypography
@@ -117,11 +135,14 @@ function MDSnackbar({
             <Icon
               sx={{
                 color: ({ palette: { dark, white } }) =>
-                  (bgWhite && !darkMode) || color === "light" ? dark.main : white.main,
-                fontWeight: ({ typography: { fontWeightBold } }) => fontWeightBold,
-                cursor: "pointer",
+                  (bgWhite && !darkMode) || color === 'light'
+                    ? dark.main
+                    : white.main,
+                fontWeight: ({ typography: { fontWeightBold } }) =>
+                  fontWeightBold,
+                cursor: 'pointer',
                 marginLeft: 2,
-                transform: "translateY(-1px)"
+                transform: 'translateY(-1px)'
               }}
               onClick={close}
             >
@@ -136,10 +157,12 @@ function MDSnackbar({
             fontSize: ({ typography: { size } }) => size.sm,
             color: ({ palette }: { palette: any }) => {
               let colorValue =
-                bgWhite || color === "light" ? palette.text.main : palette.white.main;
+                bgWhite || color === 'light'
+                  ? palette.text.main
+                  : palette.white.main;
 
               if (darkMode) {
-                colorValue = color === "light" ? "inherit" : palette.white.main;
+                colorValue = color === 'light' ? 'inherit' : palette.white.main;
               }
 
               return colorValue;
@@ -156,7 +179,7 @@ function MDSnackbar({
 // Setting default values for the props of MDSnackbar
 MDSnackbar.defaultProps = {
   bgWhite: false,
-  color: "info"
+  color: 'info'
 };
 
 export default MDSnackbar;

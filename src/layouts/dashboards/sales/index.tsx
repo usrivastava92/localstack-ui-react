@@ -1,59 +1,67 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 // @mui material components
-import Grid from "@mui/material/Grid";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Tooltip from "@mui/material/Tooltip";
-import Icon from "@mui/material/Icon";
-import Card from "@mui/material/Card";
+import Grid from '@mui/material/Grid';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Tooltip from '@mui/material/Tooltip';
+import Icon from '@mui/material/Icon';
+import Card from '@mui/material/Card';
 
-import MDBox from "components/MDBox";
-import MDBadgeDot from "components/MDBadgeDot";
-import MDButton from "components/MDButton";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDBadgeDot from 'components/MDBadgeDot';
+import MDButton from 'components/MDButton';
+import MDTypography from 'components/MDTypography';
 
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import Footer from "examples/Footer";
-import DefaultStatisticsCard from "examples/Cards/StatisticsCards/DefaultStatisticsCard";
-import DefaultLineChart from "examples/Charts/LineCharts/DefaultLineChart";
-import HorizontalBarChart from "examples/Charts/BarCharts/HorizontalBarChart";
-import SalesTable from "examples/Tables/SalesTable";
-import DataTable from "examples/Tables/DataTable";
+import DashboardLayout from 'examples/LayoutContainers/DashboardLayout';
+import DashboardNavbar from 'examples/Navbars/DashboardNavbar';
+import Footer from 'examples/Footer';
+import DefaultStatisticsCard from 'examples/Cards/StatisticsCards/DefaultStatisticsCard';
+import DefaultLineChart from 'examples/Charts/LineCharts/DefaultLineChart';
+import HorizontalBarChart from 'examples/Charts/BarCharts/HorizontalBarChart';
+import SalesTable from 'examples/Tables/SalesTable';
+import DataTable from 'examples/Tables/DataTable';
 
 // Sales dashboard components
-import ChannelsChart from "layouts/dashboards/sales/components/ChannelsChart";
+import ChannelsChart from 'layouts/dashboards/sales/components/ChannelsChart';
 
 // Data
-import defaultLineChartData from "layouts/dashboards/sales/data/defaultLineChartData";
-import horizontalBarChartData from "layouts/dashboards/sales/data/horizontalBarChartData";
-import salesTableData from "layouts/dashboards/sales/data/salesTableData";
-import dataTableData from "layouts/dashboards/sales/data/dataTableData";
+import defaultLineChartData from 'layouts/dashboards/sales/data/defaultLineChartData';
+import horizontalBarChartData from 'layouts/dashboards/sales/data/horizontalBarChartData';
+import salesTableData from 'layouts/dashboards/sales/data/salesTableData';
+import dataTableData from 'layouts/dashboards/sales/data/dataTableData';
 
 function Sales(): JSX.Element {
   // DefaultStatisticsCard state for the dropdown value
-  const [salesDropdownValue, setSalesDropdownValue] = useState<string>("6 May - 7 May");
-  const [customersDropdownValue, setCustomersDropdownValue] = useState<string>("6 May - 7 May");
-  const [revenueDropdownValue, setRevenueDropdownValue] = useState<string>("6 May - 7 May");
+  const [salesDropdownValue, setSalesDropdownValue] =
+    useState<string>('6 May - 7 May');
+  const [customersDropdownValue, setCustomersDropdownValue] =
+    useState<string>('6 May - 7 May');
+  const [revenueDropdownValue, setRevenueDropdownValue] =
+    useState<string>('6 May - 7 May');
 
   // DefaultStatisticsCard state for the dropdown action
   const [salesDropdown, setSalesDropdown] = useState<string | null>(null);
-  const [customersDropdown, setCustomersDropdown] = useState<string | null>(null);
+  const [customersDropdown, setCustomersDropdown] = useState<string | null>(
+    null
+  );
   const [revenueDropdown, setRevenueDropdown] = useState<string | null>(null);
 
   // DefaultStatisticsCard handler for the dropdown action
-  const openSalesDropdown = ({ currentTarget }: any) => setSalesDropdown(currentTarget);
+  const openSalesDropdown = ({ currentTarget }: any) =>
+    setSalesDropdown(currentTarget);
   const closeSalesDropdown = ({ currentTarget }: any) => {
     setSalesDropdown(null);
     setSalesDropdownValue(currentTarget.innerText || salesDropdownValue);
   };
-  const openCustomersDropdown = ({ currentTarget }: any) => setCustomersDropdown(currentTarget);
+  const openCustomersDropdown = ({ currentTarget }: any) =>
+    setCustomersDropdown(currentTarget);
   const closeCustomersDropdown = ({ currentTarget }: any) => {
     setCustomersDropdown(null);
     setCustomersDropdownValue(currentTarget.innerText || salesDropdownValue);
   };
-  const openRevenueDropdown = ({ currentTarget }: any) => setRevenueDropdown(currentTarget);
+  const openRevenueDropdown = ({ currentTarget }: any) =>
+    setRevenueDropdown(currentTarget);
   const closeRevenueDropdown = ({ currentTarget }: any) => {
     setRevenueDropdown(null);
     setRevenueDropdownValue(currentTarget.innerText || salesDropdownValue);
@@ -63,7 +71,7 @@ function Sales(): JSX.Element {
   const renderMenu = (state: any, close: any) => (
     <Menu
       anchorEl={state}
-      transformOrigin={{ vertical: "top", horizontal: "center" }}
+      transformOrigin={{ vertical: 'top', horizontal: 'center' }}
       open={Boolean(state)}
       onClose={close}
       keepMounted
@@ -86,9 +94,9 @@ function Sales(): JSX.Element {
                 title="sales"
                 count="$230,220"
                 percentage={{
-                  color: "success",
-                  value: "+55%",
-                  label: "since last month"
+                  color: 'success',
+                  value: '+55%',
+                  label: 'since last month'
                 }}
                 dropdown={{
                   action: openSalesDropdown,
@@ -102,9 +110,9 @@ function Sales(): JSX.Element {
                 title="customers"
                 count="3.200"
                 percentage={{
-                  color: "success",
-                  value: "+12%",
-                  label: "since last month"
+                  color: 'success',
+                  value: '+12%',
+                  label: 'since last month'
                 }}
                 dropdown={{
                   action: openCustomersDropdown,
@@ -118,9 +126,9 @@ function Sales(): JSX.Element {
                 title="avg. revenue"
                 count="$1.200"
                 percentage={{
-                  color: "secondary",
-                  value: "+$213",
-                  label: "since last month"
+                  color: 'secondary',
+                  value: '+$213',
+                  label: 'since last month'
                 }}
                 dropdown={{
                   action: openRevenueDropdown,
@@ -142,11 +150,23 @@ function Sales(): JSX.Element {
                 description={
                   <MDBox display="flex" justifyContent="space-between">
                     <MDBox display="flex" ml={-1}>
-                      <MDBadgeDot color="info" size="sm" badgeContent="Facebook Ads" />
-                      <MDBadgeDot color="dark" size="sm" badgeContent="Google Ads" />
+                      <MDBadgeDot
+                        color="info"
+                        size="sm"
+                        badgeContent="Facebook Ads"
+                      />
+                      <MDBadgeDot
+                        color="dark"
+                        size="sm"
+                        badgeContent="Google Ads"
+                      />
                     </MDBox>
                     <MDBox mt={-4} mr={-1} position="absolute" right="1.5rem">
-                      <Tooltip title="See which ads perform better" placement="left" arrow>
+                      <Tooltip
+                        title="See which ads perform better"
+                        placement="left"
+                        arrow
+                      >
                         <MDButton
                           variant="outlined"
                           color="secondary"
@@ -168,7 +188,10 @@ function Sales(): JSX.Element {
         <MDBox mb={3}>
           <Grid container spacing={3}>
             <Grid item xs={12} lg={8}>
-              <HorizontalBarChart title="Sales by age" chart={horizontalBarChartData} />
+              <HorizontalBarChart
+                title="Sales by age"
+                chart={horizontalBarChartData}
+              />
             </Grid>
             <Grid item xs={12} lg={4}>
               <SalesTable title="Sales by Country" rows={salesTableData} />

@@ -1,17 +1,17 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 // @mui material components
-import Grid from "@mui/material/Grid";
+import Grid from '@mui/material/Grid';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
-import DefaultNavbar from "examples/Navbars/DefaultNavbar";
-import PageLayout from "examples/LayoutContainers/PageLayout";
+import DefaultNavbar from 'examples/Navbars/DefaultNavbar';
+import PageLayout from 'examples/LayoutContainers/PageLayout';
 
-import pageRoutes from "page.routes";
+import pageRoutes from 'page.routes';
 
-import { useMaterialUIController } from "context";
+import { useMaterialUIController } from 'context';
 
 // Declaring props types for IllustrationLayout
 interface Props {
@@ -23,12 +23,12 @@ interface Props {
 }
 
 function IllustrationLayout({
-                              header,
-                              title,
-                              description,
-                              illustration,
-                              children
-                            }: Props): JSX.Element {
+  header,
+  title,
+  description,
+  illustration,
+  children
+}: Props): JSX.Element {
   const [controller] = useMaterialUIController();
   const { darkMode } = controller;
 
@@ -37,10 +37,10 @@ function IllustrationLayout({
       <DefaultNavbar
         routes={pageRoutes}
         action={{
-          type: "external",
-          route: "https://creative-tim.com/product/localstack-ui",
-          label: "buy now",
-          color: "info"
+          type: 'external',
+          route: 'https://creative-tim.com/product/localstack-ui',
+          label: 'buy now',
+          color: 'info'
         }}
       />
       <Grid
@@ -52,7 +52,7 @@ function IllustrationLayout({
       >
         <Grid item xs={12} lg={6}>
           <MDBox
-            display={{ xs: "none", lg: "flex" }}
+            display={{ xs: 'none', lg: 'flex' }}
             width="calc(100% - 2rem)"
             height="calc(100vh - 2rem)"
             borderRadius="lg"
@@ -61,8 +61,13 @@ function IllustrationLayout({
             sx={{ backgroundImage: `url(${illustration})` }}
           />
         </Grid>
-        <Grid item xs={11} sm={8} md={6} lg={4} xl={3} sx={{ mx: "auto" }}>
-          <MDBox display="flex" flexDirection="column" justifyContent="center" height="100vh">
+        <Grid item xs={11} sm={8} md={6} lg={4} xl={3} sx={{ mx: 'auto' }}>
+          <MDBox
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            height="100vh"
+          >
             <MDBox py={3} px={3} textAlign="center">
               {!header ? (
                 <>
@@ -89,10 +94,10 @@ function IllustrationLayout({
 
 // Declaring default props for IllustrationLayout
 IllustrationLayout.defaultProps = {
-  header: "",
-  title: "",
-  description: "",
-  illustration: ""
+  header: '',
+  title: '',
+  description: '',
+  illustration: ''
 };
 
 export default IllustrationLayout;

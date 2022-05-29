@@ -1,17 +1,17 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 // react-router components
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 // @mui material components
-import Collapse from "@mui/material/Collapse";
-import MuiLink from "@mui/material/Link";
-import { Theme } from "@mui/material/styles";
+import Collapse from '@mui/material/Collapse';
+import MuiLink from '@mui/material/Link';
+import { Theme } from '@mui/material/styles';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
-import DefaultNavbarDropdown from "examples/Navbars/DefaultNavbar/DefaultNavbarDropdown";
+import DefaultNavbarDropdown from 'examples/Navbars/DefaultNavbar/DefaultNavbarDropdown';
 
 // Declaring props types for DefaultNavbarMobile
 interface Props {
@@ -20,13 +20,20 @@ interface Props {
 }
 
 function DefaultNavbarMobile({ routes, open }: Props): JSX.Element {
-  const [collapse, setCollapse] = useState<string | boolean>("");
+  const [collapse, setCollapse] = useState<string | boolean>('');
 
   const handleSetCollapse = (name: string) =>
     collapse === name ? setCollapse(false) : setCollapse(name);
 
   const renderNavbarItems = routes.map(
-    ({ name, icon, collapse: routeCollapses, href, route, collapse: navCollapse }: any) => (
+    ({
+      name,
+      icon,
+      collapse: routeCollapses,
+      href,
+      route,
+      collapse: navCollapse
+    }: any) => (
       <DefaultNavbarDropdown
         key={name}
         name={name}
@@ -37,7 +44,9 @@ function DefaultNavbarMobile({ routes, open }: Props): JSX.Element {
         route={route}
         collapse={Boolean(navCollapse)}
       >
-        <MDBox sx={{ height: "15rem", maxHeight: "15rem", overflowY: "scroll" }}>
+        <MDBox
+          sx={{ height: '15rem', maxHeight: '15rem', overflowY: 'scroll' }}
+        >
           {routeCollapses &&
             routeCollapses.map((item: any) => (
               <MDBox key={item.name} px={2}>
@@ -57,10 +66,10 @@ function DefaultNavbarMobile({ routes, open }: Props): JSX.Element {
                       <MDTypography
                         key={el.name}
                         component={el.route ? Link : MuiLink}
-                        to={el.route ? el.route : ""}
-                        href={el.href ? el.href : ""}
-                        target={el.href ? "_blank" : ""}
-                        rel={el.href ? "noreferrer" : "noreferrer"}
+                        to={el.route ? el.route : ''}
+                        href={el.href ? el.href : ''}
+                        target={el.href ? '_blank' : ''}
+                        rel={el.href ? 'noreferrer' : 'noreferrer'}
                         minWidth="11.25rem"
                         display="block"
                         variant="button"
@@ -69,12 +78,15 @@ function DefaultNavbarMobile({ routes, open }: Props): JSX.Element {
                         fontWeight="regular"
                         py={0.625}
                         px={2}
-                        sx={({ palette: { grey, dark }, borders: { borderRadius } }: Theme) => ({
+                        sx={({
+                          palette: { grey, dark },
+                          borders: { borderRadius }
+                        }: Theme) => ({
                           borderRadius: borderRadius.md,
-                          cursor: "pointer",
-                          transition: "all 300ms linear",
+                          cursor: 'pointer',
+                          transition: 'all 300ms linear',
 
-                          "&:hover": {
+                          '&:hover': {
                             backgroundColor: grey[200],
                             color: dark.main
                           }
@@ -89,22 +101,25 @@ function DefaultNavbarMobile({ routes, open }: Props): JSX.Element {
                     key={item.key}
                     display="block"
                     component={item.route ? Link : MuiLink}
-                    to={item.route ? item.route : ""}
-                    href={item.href ? item.href : ""}
-                    target={item.href ? "_blank" : ""}
-                    rel={item.href ? "noreferrer" : "noreferrer"}
-                    sx={({ palette: { grey, dark }, borders: { borderRadius } }) => ({
+                    to={item.route ? item.route : ''}
+                    href={item.href ? item.href : ''}
+                    target={item.href ? '_blank' : ''}
+                    rel={item.href ? 'noreferrer' : 'noreferrer'}
+                    sx={({
+                      palette: { grey, dark },
+                      borders: { borderRadius }
+                    }) => ({
                       borderRadius: borderRadius.md,
-                      cursor: "pointer",
-                      transition: "all 300ms linear",
+                      cursor: 'pointer',
+                      transition: 'all 300ms linear',
                       py: 1,
                       px: 1.625,
 
-                      "&:hover": {
+                      '&:hover': {
                         backgroundColor: grey[200],
                         color: dark.main,
 
-                        "& *": {
+                        '& *': {
                           color: dark.main
                         }
                       }
@@ -123,7 +138,7 @@ function DefaultNavbarMobile({ routes, open }: Props): JSX.Element {
                       variant="button"
                       color="text"
                       fontWeight="regular"
-                      sx={{ transition: "all 300ms linear" }}
+                      sx={{ transition: 'all 300ms linear' }}
                     >
                       {item.description}
                     </MDTypography>

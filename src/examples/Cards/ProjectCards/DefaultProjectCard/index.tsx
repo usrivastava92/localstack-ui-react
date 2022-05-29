@@ -1,15 +1,15 @@
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 // @mui material components
-import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
-import Tooltip from "@mui/material/Tooltip";
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import Tooltip from '@mui/material/Tooltip';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDButton from "components/MDButton";
-import MDAvatar from "components/MDAvatar";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
+import MDButton from 'components/MDButton';
+import MDAvatar from 'components/MDAvatar';
 
 // Declaring props types for DefaultProjectCard
 interface Props {
@@ -18,18 +18,18 @@ interface Props {
   title: string;
   description: string;
   action: {
-    type: "external" | "internal";
+    type: 'external' | 'internal';
     route: string;
     color:
-      | "primary"
-      | "secondary"
-      | "info"
-      | "success"
-      | "warning"
-      | "error"
-      | "light"
-      | "dark"
-      | "white";
+      | 'primary'
+      | 'secondary'
+      | 'info'
+      | 'success'
+      | 'warning'
+      | 'error'
+      | 'light'
+      | 'dark'
+      | 'white';
     label: string;
   };
   authors?: {
@@ -41,13 +41,13 @@ interface Props {
 }
 
 function DefaultProjectCard({
-                              image,
-                              label,
-                              title,
-                              description,
-                              action,
-                              authors
-                            }: Props): JSX.Element {
+  image,
+  label,
+  title,
+  description,
+  action,
+  authors
+}: Props): JSX.Element {
   const renderAuthors = authors.map(({ image: media, name }) => (
     <Tooltip key={name} title={name} placement="bottom">
       <MDAvatar
@@ -56,12 +56,12 @@ function DefaultProjectCard({
         size="xs"
         sx={({ borders: { borderWidth }, palette: { white } }) => ({
           border: `${borderWidth[2]} solid ${white.main}`,
-          cursor: "pointer",
-          position: "relative",
+          cursor: 'pointer',
+          position: 'relative',
           ml: -1.25,
 
-          "&:hover, &:focus": {
-            zIndex: "10"
+          '&:hover, &:focus': {
+            zIndex: '10'
           }
         })}
       />
@@ -71,11 +71,11 @@ function DefaultProjectCard({
   return (
     <Card
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        backgroundColor: "transparent",
-        boxShadow: "none",
-        overflow: "visible"
+        display: 'flex',
+        flexDirection: 'column',
+        backgroundColor: 'transparent',
+        boxShadow: 'none',
+        overflow: 'visible'
       }}
     >
       <MDBox position="relative" width="100.25%" shadow="xl" borderRadius="xl">
@@ -84,20 +84,25 @@ function DefaultProjectCard({
           component="img"
           title={title}
           sx={{
-            maxWidth: "100%",
+            maxWidth: '100%',
             margin: 0,
             boxShadow: ({ boxShadows: { md } }) => md,
-            objectFit: "cover",
-            objectPosition: "center"
+            objectFit: 'cover',
+            objectPosition: 'center'
           }}
         />
       </MDBox>
       <MDBox mt={1} mx={0.5}>
-        <MDTypography variant="button" fontWeight="regular" color="text" textTransform="capitalize">
+        <MDTypography
+          variant="button"
+          fontWeight="regular"
+          color="text"
+          textTransform="capitalize"
+        >
           {label}
         </MDTypography>
         <MDBox mb={1}>
-          {action.type === "internal" ? (
+          {action.type === 'internal' ? (
             <MDTypography
               component={Link}
               to={action.route}
@@ -124,8 +129,12 @@ function DefaultProjectCard({
             {description}
           </MDTypography>
         </MDBox>
-        <MDBox display="flex" justifyContent="space-between" alignItems="center">
-          {action.type === "internal" ? (
+        <MDBox
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+        >
+          {action.type === 'internal' ? (
             <MDButton
               component={Link}
               to={action.route}

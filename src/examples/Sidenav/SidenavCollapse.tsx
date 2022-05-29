@@ -1,13 +1,13 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 // @mui material components
-import Collapse from "@mui/material/Collapse";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import Icon from "@mui/material/Icon";
+import Collapse from '@mui/material/Collapse';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Icon from '@mui/material/Icon';
 
-import MDBox from "components/MDBox";
+import MDBox from 'components/MDBox';
 
 // Custom styles for the SidenavCollapse
 import {
@@ -16,9 +16,9 @@ import {
   collapseIconBox,
   collapseItem,
   collapseText
-} from "examples/Sidenav/styles/sidenavCollapse";
+} from 'examples/Sidenav/styles/sidenavCollapse';
 
-import { useMaterialUIController } from "context";
+import { useMaterialUIController } from 'context';
 
 // Declaring props types for SidenavCollapse
 interface Props {
@@ -33,16 +33,17 @@ interface Props {
 }
 
 function SidenavCollapse({
-                           icon,
-                           name,
-                           children,
-                           active,
-                           noCollapse,
-                           open,
-                           ...rest
-                         }: Props): JSX.Element {
+  icon,
+  name,
+  children,
+  active,
+  noCollapse,
+  open,
+  ...rest
+}: Props): JSX.Element {
   const [controller] = useMaterialUIController();
-  const { miniSidenav, transparentSidenav, whiteSidenav, darkMode } = controller;
+  const { miniSidenav, transparentSidenav, whiteSidenav, darkMode } =
+    controller;
 
   return (
     <>
@@ -50,14 +51,27 @@ function SidenavCollapse({
         <MDBox
           {...rest}
           sx={(theme: any) =>
-            collapseItem(theme, { active, transparentSidenav, whiteSidenav, darkMode })
+            collapseItem(theme, {
+              active,
+              transparentSidenav,
+              whiteSidenav,
+              darkMode
+            })
           }
         >
           <ListItemIcon
-            sx={(theme) => collapseIconBox(theme, { transparentSidenav, whiteSidenav, darkMode })}
+            sx={(theme) =>
+              collapseIconBox(theme, {
+                transparentSidenav,
+                whiteSidenav,
+                darkMode
+              })
+            }
           >
-            {typeof icon === "string" ? (
-              <Icon sx={(theme) => collapseIcon(theme, { active })}>{icon}</Icon>
+            {typeof icon === 'string' ? (
+              <Icon sx={(theme) => collapseIcon(theme, { active })}>
+                {icon}
+              </Icon>
             ) : (
               icon
             )}

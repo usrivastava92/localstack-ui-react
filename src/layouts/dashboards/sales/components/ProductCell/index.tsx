@@ -1,6 +1,6 @@
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDAvatar from "components/MDAvatar";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
+import MDAvatar from 'components/MDAvatar';
 
 // Declaring props types for ProductCell
 interface Props {
@@ -20,9 +20,14 @@ function ProductCell({ image, name, orders }: Props): JSX.Element {
           {name}
         </MDTypography>
         <MDTypography variant="button" fontWeight="regular" color="secondary">
-          <MDTypography component="span" variant="button" fontWeight="regular" color="success">
+          <MDTypography
+            component="span"
+            variant="button"
+            fontWeight="regular"
+            color="success"
+          >
             {orders}
-          </MDTypography>{" "}
+          </MDTypography>{' '}
           orders
         </MDTypography>
       </MDBox>

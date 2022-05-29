@@ -1,12 +1,12 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 // @mui material components
-import Card from "@mui/material/Card";
-import Divider from "@mui/material/Divider";
-import Icon from "@mui/material/Icon";
+import Card from '@mui/material/Card';
+import Divider from '@mui/material/Divider';
+import Icon from '@mui/material/Icon';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
 // Declaring props types for BookingCard
 interface Props {
@@ -20,12 +20,19 @@ interface Props {
   [key: string]: any;
 }
 
-function BookingCard({ image, title, description, price, location, action }: Props): JSX.Element {
+function BookingCard({
+  image,
+  title,
+  description,
+  price,
+  location,
+  action
+}: Props): JSX.Element {
   return (
     <Card
       sx={{
-        "&:hover .card-header": {
-          transform: action && "translate3d(0, -50px, 0)"
+        '&:hover .card-header': {
+          transform: action && 'translate3d(0, -50px, 0)'
         }
       }}
     >
@@ -35,7 +42,7 @@ function BookingCard({ image, title, description, price, location, action }: Pro
         mt={-3}
         mx={2}
         className="card-header"
-        sx={{ transition: "transform 300ms cubic-bezier(0.34, 1.61, 0.7, 1)" }}
+        sx={{ transition: 'transform 300ms cubic-bezier(0.34, 1.61, 0.7, 1)' }}
       >
         <MDBox
           component="img"
@@ -58,14 +65,19 @@ function BookingCard({ image, title, description, price, location, action }: Pro
           top="0"
           sx={{
             backgroundImage: `url(${image})`,
-            transform: "scale(0.94)",
-            filter: "blur(12px)",
-            backgroundSize: "cover"
+            transform: 'scale(0.94)',
+            filter: 'blur(12px)',
+            backgroundSize: 'cover'
           }}
         />
       </MDBox>
       <MDBox textAlign="center" pt={3} px={3}>
-        <MDBox display="flex" justifyContent="center" alignItems="center" mt={action ? -8 : -4.25}>
+        <MDBox
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          mt={action ? -8 : -4.25}
+        >
           {action}
         </MDBox>
         <MDTypography variant="h5" fontWeight="regular" sx={{ mt: 4 }}>

@@ -1,26 +1,34 @@
-import { ReactNode, useMemo } from "react";
+import { ReactNode, useMemo } from 'react';
 
 // react-chartjs-2 components
-import { Radar } from "react-chartjs-2";
+import { Radar } from 'react-chartjs-2';
 
 // @mui material components
-import Card from "@mui/material/Card";
-import Icon from "@mui/material/Icon";
+import Card from '@mui/material/Card';
+import Icon from '@mui/material/Icon';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
 // RadarChart configurations
-import configs from "examples/Charts/RadarChart/configs";
+import configs from 'examples/Charts/RadarChart/configs';
 
-import colors from "assets/theme/base/colors";
+import colors from 'assets/theme/base/colors';
 
-import rgba from "assets/theme/functions/rgba";
+import rgba from 'assets/theme/functions/rgba';
 
 // Declaring props types for RadarChart
 interface Props {
   icon?: {
-    color?: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "light" | "dark";
+    color?:
+      | 'primary'
+      | 'secondary'
+      | 'info'
+      | 'success'
+      | 'warning'
+      | 'error'
+      | 'light'
+      | 'dark';
     component: ReactNode;
   };
   title?: string;
@@ -29,7 +37,15 @@ interface Props {
     labels: string[];
     datasets: {
       label: string;
-      color: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "light" | "dark";
+      color:
+        | 'primary'
+        | 'secondary'
+        | 'info'
+        | 'success'
+        | 'warning'
+        | 'error'
+        | 'light'
+        | 'dark';
       data: number[];
       borderDash?: number[];
     }[];
@@ -41,11 +57,11 @@ interface Props {
 function RadarChart({ icon, title, description, chart }: Props): JSX.Element {
   const chartDatasets = chart.datasets
     ? chart.datasets.map((dataset) => ({
-      ...dataset,
-      backgroundColor: colors[dataset.color]
-        ? rgba(colors[dataset.color || "dark"].main, 0.2)
-        : rgba(colors.dark.main, 0.2)
-    }))
+        ...dataset,
+        backgroundColor: colors[dataset.color]
+          ? rgba(colors[dataset.color || 'dark'].main, 0.2)
+          : rgba(colors.dark.main, 0.2)
+      }))
     : [];
 
   const { data, options } = configs(chart.labels || [], chartDatasets);
@@ -58,9 +74,9 @@ function RadarChart({ icon, title, description, chart }: Props): JSX.Element {
             <MDBox
               width="4rem"
               height="4rem"
-              bgColor={icon.color || "info"}
+              bgColor={icon.color || 'info'}
               variant="gradient"
-              coloredShadow={icon.color || "info"}
+              coloredShadow={icon.color || 'info'}
               borderRadius="xl"
               display="flex"
               justifyContent="center"
@@ -98,9 +114,9 @@ function RadarChart({ icon, title, description, chart }: Props): JSX.Element {
 
 // Declaring default props for RadarChart
 RadarChart.defaultProps = {
-  icon: { color: "info", component: "" },
-  title: "",
-  description: ""
+  icon: { color: 'info', component: '' },
+  title: '',
+  description: ''
 };
 
 export default RadarChart;

@@ -1,9 +1,16 @@
-import { createContext, FC, forwardRef, ReactNode, useContext, useMemo } from "react";
+import {
+  createContext,
+  FC,
+  forwardRef,
+  ReactNode,
+  useContext,
+  useMemo
+} from 'react';
 
-import MDBox from "components/MDBox";
+import MDBox from 'components/MDBox';
 
 // Custom styles for MDPagination
-import MDPaginationItemRoot from "components/MDPagination/MDPaginationItemRoot";
+import MDPaginationItemRoot from 'components/MDPagination/MDPaginationItemRoot';
 
 // The Pagination main context
 const Context = createContext<any>(null);
@@ -11,18 +18,18 @@ const Context = createContext<any>(null);
 // Declare props types for MDPagination
 interface Props {
   item?: boolean;
-  variant?: "gradient" | "contained";
+  variant?: 'gradient' | 'contained';
   color?:
-    | "white"
-    | "primary"
-    | "secondary"
-    | "info"
-    | "success"
-    | "warning"
-    | "error"
-    | "light"
-    | "dark";
-  size?: "small" | "medium" | "large";
+    | 'white'
+    | 'primary'
+    | 'secondary'
+    | 'info'
+    | 'success'
+    | 'warning'
+    | 'error'
+    | 'light'
+    | 'dark';
+  size?: 'small' | 'medium' | 'large';
   active?: boolean;
   children: ReactNode;
 
@@ -49,8 +56,8 @@ const MDPagination: FC<Props | any> = forwardRef(
           <MDPaginationItemRoot
             {...rest}
             ref={ref}
-            variant={active ? context.variant : "outlined"}
-            color={active ? context.color : "secondary"}
+            variant={active ? context.variant : 'outlined'}
+            color={active ? context.color : 'secondary'}
             iconOnly
             circular
             ownerState={{ variant, active, paginationSize }}
@@ -62,7 +69,7 @@ const MDPagination: FC<Props | any> = forwardRef(
             display="flex"
             justifyContent="flex-end"
             alignItems="center"
-            sx={{ listStyle: "none" }}
+            sx={{ listStyle: 'none' }}
           >
             {children}
           </MDBox>
@@ -75,9 +82,9 @@ const MDPagination: FC<Props | any> = forwardRef(
 // Declaring default props for MDPagination
 MDPagination.defaultProps = {
   item: false,
-  variant: "gradient",
-  color: "info",
-  size: "medium",
+  variant: 'gradient',
+  color: 'info',
+  size: 'medium',
   active: false
 };
 

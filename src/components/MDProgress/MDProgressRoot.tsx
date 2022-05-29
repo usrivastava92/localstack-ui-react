@@ -1,6 +1,6 @@
 // @mui material components
-import { styled, Theme } from "@mui/material/styles";
-import LinearProgress from "@mui/material/LinearProgress";
+import { styled, Theme } from '@mui/material/styles';
+import LinearProgress from '@mui/material/LinearProgress';
 
 export default styled(LinearProgress)(
   ({ theme, ownerState }: { theme?: Theme | any; ownerState: any }) => {
@@ -13,16 +13,18 @@ export default styled(LinearProgress)(
     // background value
     let backgroundValue;
 
-    if (variant === "gradient") {
+    if (variant === 'gradient') {
       backgroundValue = gradients[color]
         ? linearGradient(gradients[color].main, gradients[color].state)
         : linearGradient(gradients.info.main, gradients.info.state);
     } else {
-      backgroundValue = palette[color] ? palette[color].main : palette.info.main;
+      backgroundValue = palette[color]
+        ? palette[color].main
+        : palette.info.main;
     }
 
     return {
-      "& .MuiLinearProgress-bar": {
+      '& .MuiLinearProgress-bar': {
         background: backgroundValue,
         width: `${value}%`,
         color: text.main

@@ -1,14 +1,14 @@
 // @mui material components
-import Card from "@mui/material/Card";
+import Card from '@mui/material/Card';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
-import DefaultItem from "examples/Items/DefaultItem";
+import DefaultItem from 'examples/Items/DefaultItem';
 
 function UpcomingEvents(): JSX.Element {
   return (
-    <Card sx={{ height: "100%" }}>
+    <Card sx={{ height: '100%' }}>
       <MDBox pt={2} px={2} lineHeight={1}>
         <MDTypography variant="h6" fontWeight="medium">
           Upcoming events

@@ -1,31 +1,41 @@
-import {JSXElementConstructor, Key, ReactElement, useEffect, useState} from "react";
+import {
+  JSXElementConstructor,
+  Key,
+  ReactElement,
+  useEffect,
+  useState
+} from 'react';
 
 // react-router components
-import {Navigate, Route, Routes, useLocation} from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
 // @mui material components
-import {ThemeProvider} from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import Icon from "@mui/material/Icon";
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import Icon from '@mui/material/Icon';
 
-import MDBox from "components/MDBox";
+import MDBox from 'components/MDBox';
 
-import Sidenav from "examples/Sidenav";
-import Configurator from "examples/Configurator";
+import Sidenav from 'examples/Sidenav';
+import Configurator from 'examples/Configurator';
 
-import theme from "assets/theme";
+import theme from 'assets/theme';
 
-import themeDark from "assets/theme-dark";
+import themeDark from 'assets/theme-dark';
 
-import routes from "routes";
+import routes from 'routes';
 
-import {setMiniSidenav, setOpenConfigurator, useMaterialUIController} from "context";
+import {
+  setMiniSidenav,
+  setOpenConfigurator,
+  useMaterialUIController
+} from 'context';
 
 // Images
-import brandWhite from "assets/images/logo-ct.png";
-import brandDark from "assets/images/logo-ct-dark.png";
-import AwsHome from "./layouts/pages/aws/AwsHome";
-import Widgets from "./layouts/pages/widgets";
+import brandWhite from 'assets/images/logo-ct.png';
+import brandDark from 'assets/images/logo-ct-dark.png';
+import AwsHome from './layouts/pages/aws/AwsHome';
+import Widgets from './layouts/pages/widgets';
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -59,11 +69,12 @@ export default function App() {
   };
 
   // Change the openConfigurator state
-  const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
+  const handleConfiguratorOpen = () =>
+    setOpenConfigurator(dispatch, !openConfigurator);
 
   // Setting the dir attribute for the body element
   useEffect(() => {
-    document.body.setAttribute("dir", direction);
+    document.body.setAttribute('dir', direction);
   }, [direction]);
 
   // Setting page scroll to 0 when changing the route
@@ -85,7 +96,13 @@ export default function App() {
         }
 
         if (route.route) {
-          return <Route path={route.route} element={route.component} key={route.key} />;
+          return (
+            <Route
+              path={route.route}
+              element={route.component}
+              key={route.key}
+            />
+          );
         }
 
         return null;
@@ -107,7 +124,7 @@ export default function App() {
       bottom="2rem"
       zIndex={99}
       color="dark"
-      sx={{ cursor: "pointer" }}
+      sx={{ cursor: 'pointer' }}
       onClick={handleConfiguratorOpen}
     >
       <Icon fontSize="small" color="inherit">
@@ -119,11 +136,15 @@ export default function App() {
   return (
     <ThemeProvider theme={darkMode ? themeDark : theme}>
       <CssBaseline />
-      {layout === "dashboard" && (
+      {layout === 'dashboard' && (
         <>
           <Sidenav
             color={sidenavColor}
-            brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
+            brand={
+              (transparentSidenav && !darkMode) || whiteSidenav
+                ? brandDark
+                : brandWhite
+            }
             brandName="Localstack UI"
             routes={routes}
             onMouseEnter={handleOnMouseEnter}
@@ -133,11 +154,11 @@ export default function App() {
           {configsButton}
         </>
       )}
-      {layout === "vr" && <Configurator />}
+      {layout === 'vr' && <Configurator />}
       <Routes>
         {getRoutes(routes)}
-        <Route path="/pages/aws/home" element={<AwsHome/>} key="awsHome"/>
-        <Route path="*" element={<Navigate to="/pages/aws/home"/>}/>
+        <Route path="/pages/aws/home" element={<AwsHome />} key="awsHome" />
+        <Route path="*" element={<Navigate to="/pages/aws/home" />} />
       </Routes>
     </ThemeProvider>
   );

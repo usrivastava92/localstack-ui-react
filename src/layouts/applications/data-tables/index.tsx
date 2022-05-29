@@ -1,16 +1,16 @@
 // @mui material components
-import Card from "@mui/material/Card";
+import Card from '@mui/material/Card';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import Footer from "examples/Footer";
-import DataTable from "examples/Tables/DataTable";
+import DashboardLayout from 'examples/LayoutContainers/DashboardLayout';
+import DashboardNavbar from 'examples/Navbars/DashboardNavbar';
+import Footer from 'examples/Footer';
+import DataTable from 'examples/Tables/DataTable';
 
 // Data
-import dataTableData from "layouts/applications/data-tables/data/dataTableData";
+import dataTableData from 'layouts/applications/data-tables/data/dataTableData';
 
 function DataTables(): JSX.Element {
   return (
@@ -24,7 +24,8 @@ function DataTables(): JSX.Element {
                 Datatable Simple
               </MDTypography>
               <MDTypography variant="button" color="text">
-                A lightweight, extendable, dependency-free javascript HTML table plugin.
+                A lightweight, extendable, dependency-free javascript HTML table
+                plugin.
               </MDTypography>
             </MDBox>
             <DataTable table={dataTableData} />
@@ -36,7 +37,8 @@ function DataTables(): JSX.Element {
               Datatable Search
             </MDTypography>
             <MDTypography variant="button" color="text">
-              A lightweight, extendable, dependency-free javascript HTML table plugin.
+              A lightweight, extendable, dependency-free javascript HTML table
+              plugin.
             </MDTypography>
           </MDBox>
           <DataTable table={dataTableData} canSearch />

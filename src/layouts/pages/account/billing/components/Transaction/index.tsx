@@ -1,29 +1,43 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 // @mui material components
-import Icon from "@mui/material/Icon";
+import Icon from '@mui/material/Icon';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDButton from "components/MDButton";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
+import MDButton from 'components/MDButton';
 
 // Declaring props types for Transaction
 interface Props {
-  color: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "light" | "dark";
+  color:
+    | 'primary'
+    | 'secondary'
+    | 'info'
+    | 'success'
+    | 'warning'
+    | 'error'
+    | 'light'
+    | 'dark';
   icon: ReactNode;
   name: string;
   description: string;
   value: string;
 }
 
-function Transaction({ color, icon, name, description, value }: Props): JSX.Element {
+function Transaction({
+  color,
+  icon,
+  name,
+  description,
+  value
+}: Props): JSX.Element {
   return (
     <MDBox key={name} component="li" py={1} pr={2} mb={1}>
       <MDBox display="flex" justifyContent="space-between" alignItems="center">
         <MDBox display="flex" alignItems="center">
           <MDBox mr={2}>
             <MDButton variant="outlined" color={color} iconOnly circular>
-              <Icon sx={{ fontWeight: "bold" }}>{icon}</Icon>
+              <Icon sx={{ fontWeight: 'bold' }}>{icon}</Icon>
             </MDButton>
           </MDBox>
           <MDBox display="flex" flexDirection="column">
@@ -35,7 +49,12 @@ function Transaction({ color, icon, name, description, value }: Props): JSX.Elem
             </MDTypography>
           </MDBox>
         </MDBox>
-        <MDTypography variant="button" color={color} fontWeight="medium" textGradient>
+        <MDTypography
+          variant="button"
+          color={color}
+          fontWeight="medium"
+          textGradient
+        >
           {value}
         </MDTypography>
       </MDBox>

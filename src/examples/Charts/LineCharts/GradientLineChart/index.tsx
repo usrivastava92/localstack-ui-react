@@ -1,26 +1,34 @@
-import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 
 // react-chartjs-2 components
-import { Line } from "react-chartjs-2";
+import { Line } from 'react-chartjs-2';
 
 // @mui material components
-import Card from "@mui/material/Card";
-import Icon from "@mui/material/Icon";
+import Card from '@mui/material/Card';
+import Icon from '@mui/material/Icon';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
-import gradientChartLine from "assets/theme/functions/gradientChartLine";
+import gradientChartLine from 'assets/theme/functions/gradientChartLine';
 
 // GradientLineChart configurations
-import configs from "examples/Charts/LineCharts/GradientLineChart/configs";
+import configs from 'examples/Charts/LineCharts/GradientLineChart/configs';
 
-import colors from "assets/theme/base/colors";
+import colors from 'assets/theme/base/colors';
 
 // Declaring props types for GradientLineChart
 interface Props {
   icon?: {
-    color?: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "light" | "dark";
+    color?:
+      | 'primary'
+      | 'secondary'
+      | 'info'
+      | 'success'
+      | 'warning'
+      | 'error'
+      | 'light'
+      | 'dark';
     component: ReactNode;
   };
   title?: string;
@@ -30,7 +38,15 @@ interface Props {
     labels: string[];
     datasets: {
       label: string;
-      color: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "light" | "dark";
+      color:
+        | 'primary'
+        | 'secondary'
+        | 'info'
+        | 'success'
+        | 'warning'
+        | 'error'
+        | 'light'
+        | 'dark';
       data: number[];
     }[];
   };
@@ -38,7 +54,13 @@ interface Props {
   [key: string]: any;
 }
 
-function GradientLineChart({ icon, title, description, height, chart }: Props): JSX.Element {
+function GradientLineChart({
+  icon,
+  title,
+  description,
+  height,
+  chart
+}: Props): JSX.Element {
   const chartRef = useRef(null);
   const [chartData, setChartData] = useState({});
   const { data, options }: any = chartData;
@@ -46,20 +68,22 @@ function GradientLineChart({ icon, title, description, height, chart }: Props): 
   useEffect(() => {
     const chartDatasets = chart.datasets
       ? chart.datasets.map((dataset) => ({
-        ...dataset,
-        tension: 0,
-        pointRadius: 0,
-        borderWidth: 4,
-        borderColor: colors[dataset.color]
-          ? colors[dataset.color || "dark"].main
-          : colors.dark.main,
-        fill: true,
-        maxBarThickness: 6,
-        backgroundColor: gradientChartLine(
-          chartRef.current.children[0],
-          colors[dataset.color] ? colors[dataset.color || "dark"].main : colors.dark.main
-        )
-      }))
+          ...dataset,
+          tension: 0,
+          pointRadius: 0,
+          borderWidth: 4,
+          borderColor: colors[dataset.color]
+            ? colors[dataset.color || 'dark'].main
+            : colors.dark.main,
+          fill: true,
+          maxBarThickness: 6,
+          backgroundColor: gradientChartLine(
+            chartRef.current.children[0],
+            colors[dataset.color]
+              ? colors[dataset.color || 'dark'].main
+              : colors.dark.main
+          )
+        }))
       : [];
 
     setChartData(configs(chart.labels || [], chartDatasets));
@@ -73,9 +97,9 @@ function GradientLineChart({ icon, title, description, height, chart }: Props): 
             <MDBox
               width="4rem"
               height="4rem"
-              bgColor={icon.color || "info"}
+              bgColor={icon.color || 'info'}
               variant="gradient"
-              coloredShadow={icon.color || "info"}
+              coloredShadow={icon.color || 'info'}
               borderRadius="xl"
               display="flex"
               justifyContent="center"
@@ -113,10 +137,10 @@ function GradientLineChart({ icon, title, description, height, chart }: Props): 
 
 // Declaring default props for GradientLineChart
 GradientLineChart.defaultProps = {
-  icon: { color: "info", component: "" },
-  title: "",
-  description: "",
-  height: "19.125rem"
+  icon: { color: 'info', component: '' },
+  title: '',
+  description: '',
+  height: '19.125rem'
 };
 
 export default GradientLineChart;

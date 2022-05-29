@@ -1,20 +1,28 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 // @mui material components
-import Icon from "@mui/material/Icon";
-import { Theme } from "@mui/material/styles";
+import Icon from '@mui/material/Icon';
+import { Theme } from '@mui/material/styles';
 
-import MDBox from "components/MDBox";
-import MDBadge from "components/MDBadge";
-import MDTypography from "components/MDTypography";
-import MDAvatar from "components/MDAvatar";
-import MDProgress from "components/MDProgress";
+import MDBox from 'components/MDBox';
+import MDBadge from 'components/MDBadge';
+import MDTypography from 'components/MDTypography';
+import MDAvatar from 'components/MDAvatar';
+import MDProgress from 'components/MDProgress';
 
 // Declaring props types for Card
 interface Props {
   image?: string;
   badge: {
-    color: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "dark" | "light";
+    color:
+      | 'primary'
+      | 'secondary'
+      | 'info'
+      | 'success'
+      | 'warning'
+      | 'error'
+      | 'dark'
+      | 'light';
     label: string;
   };
   content: ReactNode;
@@ -23,7 +31,14 @@ interface Props {
   members: string[];
 }
 
-function Card({ image, badge, content, progress, attachedFiles, members }: Props): JSX.Element {
+function Card({
+  image,
+  badge,
+  content,
+  progress,
+  attachedFiles,
+  members
+}: Props): JSX.Element {
   const renderMembers = members.map((member, key) => {
     const imageAlt = `image-${key}`;
 
@@ -36,13 +51,13 @@ function Card({ image, badge, content, progress, attachedFiles, members }: Props
         sx={{
           border: ({ borders: { borderWidth }, palette: { white } }: Theme) =>
             `${borderWidth[2]} solid ${white.main}`,
-          cursor: "pointer",
-          position: "relative",
+          cursor: 'pointer',
+          position: 'relative',
           ml: -1,
           mr: 0,
 
-          "&:hover, &:focus": {
-            zIndex: "10"
+          '&:hover, &:focus': {
+            zIndex: '10'
           }
         }}
       />
@@ -51,15 +66,32 @@ function Card({ image, badge, content, progress, attachedFiles, members }: Props
 
   return (
     <>
-      {image && <MDBox component="img" src={image} width="100%" borderRadius="lg" mb={1} />}
-      <MDBadge size="xs" color={badge.color} badgeContent={badge.label} container />
+      {image && (
+        <MDBox
+          component="img"
+          src={image}
+          width="100%"
+          borderRadius="lg"
+          mb={1}
+        />
+      )}
+      <MDBadge
+        size="xs"
+        color={badge.color}
+        badgeContent={badge.label}
+        container
+      />
       <MDBox mt={1} mb={2}>
         <MDTypography variant="body2" color="text">
           {content}
         </MDTypography>
         {progress > 0 && (
           <MDBox mt={0.25}>
-            <MDProgress variant="gradient" value={progress} color={badge.color} />
+            <MDProgress
+              variant="gradient"
+              value={progress}
+              color={badge.color}
+            />
           </MDBox>
         )}
       </MDBox>
@@ -68,7 +100,7 @@ function Card({ image, badge, content, progress, attachedFiles, members }: Props
           {attachedFiles && (
             <>
               <MDTypography variant="body2" color="text" sx={{ lineHeight: 0 }}>
-                <Icon sx={{ fontWeight: "bold" }}>attach_file</Icon>
+                <Icon sx={{ fontWeight: 'bold' }}>attach_file</Icon>
               </MDTypography>
               <MDTypography variant="button" fontWeight="regular" color="text">
                 &nbsp;{attachedFiles}
@@ -84,9 +116,9 @@ function Card({ image, badge, content, progress, attachedFiles, members }: Props
 
 // Declaring default props for Card
 Card.defaultProps = {
-  image: "",
+  image: '',
   progress: 0,
-  attachedFiles: ""
+  attachedFiles: ''
 };
 
 export default Card;

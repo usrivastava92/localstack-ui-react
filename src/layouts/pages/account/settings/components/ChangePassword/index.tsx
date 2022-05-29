@@ -1,26 +1,37 @@
 // @mui material components
-import Card from "@mui/material/Card";
-import Grid from "@mui/material/Grid";
+import Card from '@mui/material/Card';
+import Grid from '@mui/material/Grid';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDButton from "components/MDButton";
-import MDInput from "components/MDInput";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
+import MDButton from 'components/MDButton';
+import MDInput from 'components/MDInput';
 
 function ChangePassword(): JSX.Element {
   const passwordRequirements = [
-    "One special characters",
-    "Min 6 characters",
-    "One number (2 are recommended)",
-    "Change it often"
+    'One special characters',
+    'Min 6 characters',
+    'One number (2 are recommended)',
+    'Change it often'
   ];
 
   const renderPasswordRequirements = passwordRequirements.map((item, key) => {
     const itemKey = `element-${key}`;
 
     return (
-      <MDBox key={itemKey} component="li" color="text" fontSize="1.25rem" lineHeight={1}>
-        <MDTypography variant="button" color="text" fontWeight="regular" verticalAlign="middle">
+      <MDBox
+        key={itemKey}
+        component="li"
+        color="text"
+        fontSize="1.25rem"
+        lineHeight={1}
+      >
+        <MDTypography
+          variant="button"
+          color="text"
+          fontWeight="regular"
+          verticalAlign="middle"
+        >
           {item}
         </MDTypography>
       </MDBox>
@@ -38,21 +49,21 @@ function ChangePassword(): JSX.Element {
             <MDInput
               fullWidth
               label="Current Password"
-              inputProps={{ type: "password", autoComplete: "" }}
+              inputProps={{ type: 'password', autoComplete: '' }}
             />
           </Grid>
           <Grid item xs={12}>
             <MDInput
               fullWidth
               label="New Password"
-              inputProps={{ type: "password", autoComplete: "" }}
+              inputProps={{ type: 'password', autoComplete: '' }}
             />
           </Grid>
           <Grid item xs={12}>
             <MDInput
               fullWidth
               label="Confirm New Password"
-              inputProps={{ type: "password", autoComplete: "" }}
+              inputProps={{ type: 'password', autoComplete: '' }}
             />
           </Grid>
         </Grid>
@@ -64,7 +75,12 @@ function ChangePassword(): JSX.Element {
             Please follow this guide for a strong password
           </MDTypography>
         </MDBox>
-        <MDBox display="flex" justifyContent="space-between" alignItems="flex-end" flexWrap="wrap">
+        <MDBox
+          display="flex"
+          justifyContent="space-between"
+          alignItems="flex-end"
+          flexWrap="wrap"
+        >
           <MDBox component="ul" m={0} pl={3.25} mb={{ xs: 8, sm: 0 }}>
             {renderPasswordRequirements}
           </MDBox>

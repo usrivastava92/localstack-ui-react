@@ -1,11 +1,11 @@
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect } from 'react';
 
 // react-router-dom components
-import { useLocation } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 
-import MDBox from "components/MDBox";
+import MDBox from 'components/MDBox';
 
-import { setLayout, useMaterialUIController } from "context";
+import { setLayout, useMaterialUIController } from 'context';
 
 function DashboardLayout({ children }: { children: ReactNode }): JSX.Element {
   const [controller, dispatch] = useMaterialUIController();
@@ -13,18 +13,18 @@ function DashboardLayout({ children }: { children: ReactNode }): JSX.Element {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    setLayout(dispatch, "dashboard");
+    setLayout(dispatch, 'dashboard');
   }, [pathname]);
 
   return (
     <MDBox
       sx={({ breakpoints, transitions, functions: { pxToRem } }) => ({
         p: 3,
-        position: "relative",
+        position: 'relative',
 
-        [breakpoints.up("xl")]: {
+        [breakpoints.up('xl')]: {
           marginLeft: miniSidenav ? pxToRem(120) : pxToRem(274),
-          transition: transitions.create(["margin-left", "margin-right"], {
+          transition: transitions.create(['margin-left', 'margin-right'], {
             easing: transitions.easing.easeInOut,
             duration: transitions.duration.standard
           })

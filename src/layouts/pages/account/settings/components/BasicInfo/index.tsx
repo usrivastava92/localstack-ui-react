@@ -1,20 +1,20 @@
 // @material-ui core components
-import Card from "@mui/material/Card";
-import Grid from "@mui/material/Grid";
-import Autocomplete from "@mui/material/Autocomplete";
+import Card from '@mui/material/Card';
+import Grid from '@mui/material/Grid';
+import Autocomplete from '@mui/material/Autocomplete';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
 // Settings page components
-import FormField from "layouts/pages/account/components/FormField";
+import FormField from 'layouts/pages/account/components/FormField';
 
 // Data
-import selectData from "layouts/pages/account/settings/components/BasicInfo/data/selectData";
+import selectData from 'layouts/pages/account/settings/components/BasicInfo/data/selectData';
 
 function BasicInfo(): JSX.Element {
   return (
-    <Card id="basic-info" sx={{ overflow: "visible" }}>
+    <Card id="basic-info" sx={{ overflow: 'visible' }}>
       <MDBox p={3}>
         <MDTypography variant="h5">Basic Info</MDTypography>
       </MDBox>
@@ -33,7 +33,11 @@ function BasicInfo(): JSX.Element {
                   defaultValue="Male"
                   options={selectData.gender}
                   renderInput={(params) => (
-                    <FormField {...params} label="I'm" InputLabelProps={{ shrink: true }} />
+                    <FormField
+                      {...params}
+                      label="I'm"
+                      InputLabelProps={{ shrink: true }}
+                    />
                   )}
                 />
               </Grid>
@@ -57,7 +61,10 @@ function BasicInfo(): JSX.Element {
                       defaultValue="1"
                       options={selectData.days}
                       renderInput={(params) => (
-                        <FormField {...params} InputLabelProps={{ shrink: true }} />
+                        <FormField
+                          {...params}
+                          InputLabelProps={{ shrink: true }}
+                        />
                       )}
                     />
                   </Grid>
@@ -66,7 +73,10 @@ function BasicInfo(): JSX.Element {
                       defaultValue="2021"
                       options={selectData.years}
                       renderInput={(params) => (
-                        <FormField {...params} InputLabelProps={{ shrink: true }} />
+                        <FormField
+                          {...params}
+                          InputLabelProps={{ shrink: true }}
+                        />
                       )}
                     />
                   </Grid>
@@ -78,14 +88,14 @@ function BasicInfo(): JSX.Element {
             <FormField
               label="Email"
               placeholder="example@email.com"
-              inputProps={{ type: "email" }}
+              inputProps={{ type: 'email' }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <FormField
               label="confirmation email"
               placeholder="example@email.com"
-              inputProps={{ type: "email" }}
+              inputProps={{ type: 'email' }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -95,7 +105,7 @@ function BasicInfo(): JSX.Element {
             <FormField
               label="Phone Number"
               placeholder="+40 735 631 620"
-              inputProps={{ type: "number" }}
+              inputProps={{ type: 'number' }}
             />
           </Grid>
           <Grid item xs={12} md={6}>
@@ -104,9 +114,11 @@ function BasicInfo(): JSX.Element {
           <Grid item xs={12} md={6}>
             <Autocomplete
               multiple
-              defaultValue={["react", "angular"]}
+              defaultValue={['react', 'angular']}
               options={selectData.skills}
-              renderInput={(params) => <FormField {...params} InputLabelProps={{ shrink: true }} />}
+              renderInput={(params) => (
+                <FormField {...params} InputLabelProps={{ shrink: true }} />
+              )}
             />
           </Grid>
         </Grid>

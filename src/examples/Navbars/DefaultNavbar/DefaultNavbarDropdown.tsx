@@ -1,14 +1,14 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 // @mui material components
-import Collapse from "@mui/material/Collapse";
-import Icon from "@mui/material/Icon";
+import Collapse from '@mui/material/Collapse';
+import Icon from '@mui/material/Icon';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
 // Declaring props types for DefaultNavbarDropdown
 interface Props {
@@ -25,21 +25,21 @@ interface Props {
 }
 
 function DefaultNavbarDropdown({
-                                 name,
-                                 icon,
-                                 children,
-                                 collapseStatus,
-                                 light,
-                                 href,
-                                 route,
-                                 collapse,
-                                 ...rest
-                               }: Props): JSX.Element {
+  name,
+  icon,
+  children,
+  collapseStatus,
+  light,
+  href,
+  route,
+  collapse,
+  ...rest
+}: Props): JSX.Element {
   const linkComponent = {
-    component: "a",
+    component: 'a',
     href,
-    target: "_blank",
-    rel: "noreferrer"
+    target: '_blank',
+    rel: 'noreferrer'
   };
 
   const routeComponent: any = {
@@ -55,9 +55,9 @@ function DefaultNavbarDropdown({
         p={1}
         display="flex"
         alignItems="baseline"
-        color={light ? "white" : "dark"}
+        color={light ? 'white' : 'dark'}
         opacity={light ? 1 : 0.6}
-        sx={{ cursor: "pointer", userSelect: "none" }}
+        sx={{ cursor: 'pointer', userSelect: 'none' }}
         {...(route && routeComponent)}
         {...(href && linkComponent)}
       >
@@ -65,7 +65,7 @@ function DefaultNavbarDropdown({
           variant="body2"
           lineHeight={1}
           color="inherit"
-          sx={{ alignSelf: "center", "& *": { verticalAlign: "middle" } }}
+          sx={{ alignSelf: 'center', '& *': { verticalAlign: 'middle' } }}
         >
           {icon}
         </MDTypography>
@@ -73,14 +73,18 @@ function DefaultNavbarDropdown({
           variant="button"
           fontWeight="regular"
           textTransform="capitalize"
-          color={light ? "white" : "dark"}
-          sx={{ fontWeight: "100%", ml: 1, mr: 0.25 }}
+          color={light ? 'white' : 'dark'}
+          sx={{ fontWeight: '100%', ml: 1, mr: 0.25 }}
         >
           {name}
         </MDTypography>
-        <MDTypography variant="body2" color={light ? "white" : "dark"} ml="auto">
-          <Icon sx={{ fontWeight: "normal", verticalAlign: "middle" }}>
-            {collapse && "keyboard_arrow_down"}
+        <MDTypography
+          variant="body2"
+          color={light ? 'white' : 'dark'}
+          ml="auto"
+        >
+          <Icon sx={{ fontWeight: 'normal', verticalAlign: 'middle' }}>
+            {collapse && 'keyboard_arrow_down'}
           </Icon>
         </MDTypography>
       </MDBox>
@@ -99,8 +103,8 @@ DefaultNavbarDropdown.defaultProps = {
   children: false,
   collapseStatus: false,
   light: false,
-  href: "",
-  route: ""
+  href: '',
+  route: ''
 };
 
 export default DefaultNavbarDropdown;

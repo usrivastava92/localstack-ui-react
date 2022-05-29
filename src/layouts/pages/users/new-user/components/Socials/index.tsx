@@ -1,16 +1,20 @@
 // @mui material components
-import Grid from "@mui/material/Grid";
+import Grid from '@mui/material/Grid';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
 // NewUser page components
-import FormField from "layouts/pages/users/new-user/components/FormField";
+import FormField from 'layouts/pages/users/new-user/components/FormField';
 
 function Socials({ formData }: any): JSX.Element {
   const { formField, values, errors, touched } = formData;
   const { twitter, facebook, instagram } = formField;
-  const { twitter: twitterV, facebook: facebookV, instagram: instagramV } = values;
+  const {
+    twitter: twitterV,
+    facebook: facebookV,
+    instagram: instagramV
+  } = values;
 
   return (
     <MDBox>

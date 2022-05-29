@@ -1,4 +1,4 @@
-import MDInput from "components/MDInput";
+import MDInput from 'components/MDInput';
 
 // Declaring props types for FormField
 interface Props {
@@ -21,7 +21,7 @@ function FormField({ label, ...rest }: Props): JSX.Element {
 
 // Declaring default props for FormField
 FormField.defaultProps = {
-  label: " "
+  label: ' '
 };
 
 export default FormField;

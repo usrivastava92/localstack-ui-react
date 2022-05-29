@@ -1,22 +1,30 @@
-import { ReactNode, useMemo } from "react";
+import { ReactNode, useMemo } from 'react';
 
 // react-chartjs-2 components
-import { Doughnut } from "react-chartjs-2";
+import { Doughnut } from 'react-chartjs-2';
 
 // @mui material components
-import Card from "@mui/material/Card";
-import Icon from "@mui/material/Icon";
+import Card from '@mui/material/Card';
+import Icon from '@mui/material/Icon';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
 // DefaultDoughnutChart configurations
-import configs from "examples/Charts/DoughnutCharts/DefaultDoughnutChart/configs";
+import configs from 'examples/Charts/DoughnutCharts/DefaultDoughnutChart/configs';
 
 // Declaring props types for DefaultDoughnutChart
 interface Props {
   icon?: {
-    color?: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "light" | "dark";
+    color?:
+      | 'primary'
+      | 'secondary'
+      | 'info'
+      | 'success'
+      | 'warning'
+      | 'error'
+      | 'light'
+      | 'dark';
     component: ReactNode;
   };
   title?: string;
@@ -35,8 +43,18 @@ interface Props {
   [key: string]: any;
 }
 
-function DefaultDoughnutChart({ icon, title, description, height, chart }: Props): JSX.Element {
-  const { data, options } = configs(chart.labels || [], chart.datasets || {}, chart.cutout);
+function DefaultDoughnutChart({
+  icon,
+  title,
+  description,
+  height,
+  chart
+}: Props): JSX.Element {
+  const { data, options } = configs(
+    chart.labels || [],
+    chart.datasets || {},
+    chart.cutout
+  );
 
   const renderChart = (
     <MDBox py={2} pr={2} pl={icon.component ? 1 : 2}>
@@ -46,9 +64,9 @@ function DefaultDoughnutChart({ icon, title, description, height, chart }: Props
             <MDBox
               width="4rem"
               height="4rem"
-              bgColor={icon.color || "info"}
+              bgColor={icon.color || 'info'}
               variant="gradient"
-              coloredShadow={icon.color || "info"}
+              coloredShadow={icon.color || 'info'}
               borderRadius="xl"
               display="flex"
               justifyContent="center"
@@ -86,10 +104,10 @@ function DefaultDoughnutChart({ icon, title, description, height, chart }: Props
 
 // Declaring default props DefaultDoughnutChart
 DefaultDoughnutChart.defaultProps = {
-  icon: { color: "info", component: "" },
-  title: "",
-  description: "",
-  height: "19.125rem"
+  icon: { color: 'info', component: '' },
+  title: '',
+  description: '',
+  height: '19.125rem'
 };
 
 export default DefaultDoughnutChart;

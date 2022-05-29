@@ -1,19 +1,19 @@
 // @fullcalendar components
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/timegrid";
-import interactionPlugin from "@fullcalendar/interaction";
+import FullCalendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
 
 // @mui material components
-import Card from "@mui/material/Card";
+import Card from '@mui/material/Card';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
 // Custom styles for Calendar
-import CalendarRoot from "examples/Calendar/CalendarRoot";
+import CalendarRoot from 'examples/Calendar/CalendarRoot';
 
-import { useMaterialUIController } from "context";
+import { useMaterialUIController } from 'context';
 
 // Declaring props types for the Calender
 interface Props {
@@ -30,35 +30,44 @@ function Calendar({ header, ...rest }: Props): JSX.Element {
   const { darkMode } = controller;
 
   const validClassNames = [
-    "primary",
-    "secondary",
-    "info",
-    "success",
-    "warning",
-    "error",
-    "light",
-    "dark"
+    'primary',
+    'secondary',
+    'info',
+    'success',
+    'warning',
+    'error',
+    'light',
+    'dark'
   ];
 
   const events = rest.events
     ? rest.events.map((el: any) => ({
-      ...el,
-      className: validClassNames.find((item) => item === el.className)
-        ? `event-${el.className}`
-        : "event-info"
-    }))
+        ...el,
+        className: validClassNames.find((item) => item === el.className)
+          ? `event-${el.className}`
+          : 'event-info'
+      }))
     : [];
 
   return (
-    <Card sx={{ height: "100%" }}>
+    <Card sx={{ height: '100%' }}>
       <MDBox pt={header.title || header.date ? 2 : 0} px={2} lineHeight={1}>
         {header.title ? (
-          <MDTypography variant="h6" fontWeight="medium" textTransform="capitalize">
+          <MDTypography
+            variant="h6"
+            fontWeight="medium"
+            textTransform="capitalize"
+          >
             {header.title}
           </MDTypography>
         ) : null}
         {header.date ? (
-          <MDTypography component="p" variant="button" color="text" fontWeight="regular">
+          <MDTypography
+            component="p"
+            variant="button"
+            color="text"
+            fontWeight="regular"
+          >
             {header.date}
           </MDTypography>
         ) : null}
@@ -78,8 +87,8 @@ function Calendar({ header, ...rest }: Props): JSX.Element {
 // Declaring default props for Calendar
 Calendar.defaultProps = {
   header: {
-    title: "",
-    date: ""
+    title: '',
+    date: ''
   }
 };
 

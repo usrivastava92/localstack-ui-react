@@ -1,28 +1,28 @@
-import { FC, forwardRef, ReactNode } from "react";
+import { FC, forwardRef, ReactNode } from 'react';
 
 // @mui material components
-import { ButtonProps } from "@mui/material";
+import { ButtonProps } from '@mui/material';
 
 // Custom styles for MDButton
-import MDButtonRoot from "components/MDButton/MDButtonRoot";
+import MDButtonRoot from 'components/MDButton/MDButtonRoot';
 
-import { useMaterialUIController } from "context";
+import { useMaterialUIController } from 'context';
 
 // Declaring props types for MDButton
-interface Props extends Omit<ButtonProps, "color" | "variant"> {
+interface Props extends Omit<ButtonProps, 'color' | 'variant'> {
   color?:
-    | "white"
-    | "primary"
-    | "secondary"
-    | "info"
-    | "success"
-    | "warning"
-    | "error"
-    | "light"
-    | "dark"
-    | "default";
-  variant?: "text" | "contained" | "outlined" | "gradient";
-  size?: "small" | "medium" | "large";
+    | 'white'
+    | 'primary'
+    | 'secondary'
+    | 'info'
+    | 'success'
+    | 'warning'
+    | 'error'
+    | 'light'
+    | 'dark'
+    | 'default';
+  variant?: 'text' | 'contained' | 'outlined' | 'gradient';
+  size?: 'small' | 'medium' | 'large';
   circular?: boolean;
   iconOnly?: boolean;
   children?: ReactNode;
@@ -49,9 +49,9 @@ const MDButton: FC<Props> = forwardRef(
 
 // Declaring default props for MDButton
 MDButton.defaultProps = {
-  color: "white",
-  variant: "contained",
-  size: "medium",
+  color: 'white',
+  variant: 'contained',
+  size: 'medium',
   circular: false,
   iconOnly: false
 };

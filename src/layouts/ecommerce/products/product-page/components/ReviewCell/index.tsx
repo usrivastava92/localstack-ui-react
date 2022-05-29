@@ -1,7 +1,7 @@
 // @mui material components
-import Icon from "@mui/material/Icon";
+import Icon from '@mui/material/Icon';
 
-import MDTypography from "components/MDTypography";
+import MDTypography from 'components/MDTypography';
 
 function ReviewCell({ rating }: { rating: number }): JSX.Element {
   const ratings: any = {

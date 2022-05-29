@@ -1,17 +1,17 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 // @mui material components
-import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
-import Autocomplete from "@mui/material/Autocomplete";
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import Autocomplete from '@mui/material/Autocomplete';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDEditor from "components/MDEditor";
-import MDInput from "components/MDInput";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
+import MDEditor from 'components/MDEditor';
+import MDInput from 'components/MDInput';
 
 // NewProduct page components
-import FormField from "layouts/ecommerce/products/edit-product/components/FormField";
+import FormField from 'layouts/ecommerce/products/edit-product/components/FormField';
 
 function ProductInfo(): JSX.Element {
   const [editorValue, setEditorValue] = useState<string>(
@@ -27,7 +27,11 @@ function ProductInfo(): JSX.Element {
         <MDBox mt={1}>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6}>
-              <FormField type="text" label="Name" defaultValue="Minimal Bar Stool" />
+              <FormField
+                type="text"
+                label="Name"
+                defaultValue="Minimal Bar Stool"
+              />
             </Grid>
             <Grid item xs={12} sm={6}>
               <FormField type="number" label="Weight" defaultValue={2} />
@@ -51,9 +55,18 @@ function ProductInfo(): JSX.Element {
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6}>
               <MDBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
-                <MDTypography component="label" variant="button" fontWeight="regular" color="text">
+                <MDTypography
+                  component="label"
+                  variant="button"
+                  fontWeight="regular"
+                  color="text"
+                >
                   Description&nbsp;&nbsp;
-                  <MDTypography variant="caption" fontWeight="regular" color="text">
+                  <MDTypography
+                    variant="caption"
+                    fontWeight="regular"
+                    color="text"
+                  >
                     (optional)
                   </MDTypography>
                 </MDTypography>
@@ -75,8 +88,16 @@ function ProductInfo(): JSX.Element {
                 </MDBox>
                 <Autocomplete
                   defaultValue="Clothing"
-                  options={["Clothing", "Electronics", "Furniture", "Others", "Real Estate"]}
-                  renderInput={(params) => <MDInput {...params} variant="standard" />}
+                  options={[
+                    'Clothing',
+                    'Electronics',
+                    'Furniture',
+                    'Others',
+                    'Real Estate'
+                  ]}
+                  renderInput={(params) => (
+                    <MDInput {...params} variant="standard" />
+                  )}
                 />
               </MDBox>
               <MDBox mb={1.625} display="inline-block">
@@ -92,8 +113,10 @@ function ProductInfo(): JSX.Element {
               </MDBox>
               <Autocomplete
                 defaultValue="Black"
-                options={["Black", "Blue", "Green", "Orange", "White"]}
-                renderInput={(params) => <MDInput {...params} variant="standard" />}
+                options={['Black', 'Blue', 'Green', 'Orange', 'White']}
+                renderInput={(params) => (
+                  <MDInput {...params} variant="standard" />
+                )}
               />
             </Grid>
           </Grid>

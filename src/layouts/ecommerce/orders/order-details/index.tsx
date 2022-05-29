@@ -1,21 +1,21 @@
 // @mui material components
-import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
-import Divider from "@mui/material/Divider";
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import Divider from '@mui/material/Divider';
 
-import MDBox from "components/MDBox";
+import MDBox from 'components/MDBox';
 
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import Footer from "examples/Footer";
+import DashboardLayout from 'examples/LayoutContainers/DashboardLayout';
+import DashboardNavbar from 'examples/Navbars/DashboardNavbar';
+import Footer from 'examples/Footer';
 
 // OrderDetails page components
-import Header from "layouts/ecommerce/orders/order-details/components/Header";
-import OrderInfo from "layouts/ecommerce/orders/order-details/components/OrderInfo";
-import TrackOrder from "layouts/ecommerce/orders/order-details/components/TrackOrder";
-import PaymentDetails from "layouts/ecommerce/orders/order-details/components/PaymentDetails";
-import BillingInformation from "layouts/ecommerce/orders/order-details/components/BillingInformation";
-import OrderSummary from "layouts/ecommerce/orders/order-details/components/OrderSummary";
+import Header from 'layouts/ecommerce/orders/order-details/components/Header';
+import OrderInfo from 'layouts/ecommerce/orders/order-details/components/OrderInfo';
+import TrackOrder from 'layouts/ecommerce/orders/order-details/components/TrackOrder';
+import PaymentDetails from 'layouts/ecommerce/orders/order-details/components/PaymentDetails';
+import BillingInformation from 'layouts/ecommerce/orders/order-details/components/BillingInformation';
+import OrderSummary from 'layouts/ecommerce/orders/order-details/components/OrderSummary';
 
 function OrderDetails(): JSX.Element {
   return (
@@ -45,7 +45,7 @@ function OrderDetails(): JSX.Element {
                         <BillingInformation />
                       </MDBox>
                     </Grid>
-                    <Grid item xs={12} lg={3} sx={{ ml: "auto" }}>
+                    <Grid item xs={12} lg={3} sx={{ ml: 'auto' }}>
                       <OrderSummary />
                     </Grid>
                   </Grid>

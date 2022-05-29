@@ -1,13 +1,13 @@
 // react-router components
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 // @mui material components
-import Card from "@mui/material/Card";
-import MuiLink from "@mui/material/Link";
+import Card from '@mui/material/Card';
+import MuiLink from '@mui/material/Link';
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDButton from "components/MDButton";
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
+import MDButton from 'components/MDButton';
 
 // Declaring props types for SimpleBlogCard
 interface Props {
@@ -15,24 +15,29 @@ interface Props {
   title: string;
   description: string;
   action: {
-    type: "external" | "internal";
+    type: 'external' | 'internal';
     route: string;
     color:
-      | "primary"
-      | "secondary"
-      | "info"
-      | "success"
-      | "warning"
-      | "error"
-      | "dark"
-      | "light"
-      | "default";
+      | 'primary'
+      | 'secondary'
+      | 'info'
+      | 'success'
+      | 'warning'
+      | 'error'
+      | 'dark'
+      | 'light'
+      | 'default';
     label: string;
     [key: string]: any;
   };
 }
 
-function SimpleBlogCard({ image, title, description, action }: Props): JSX.Element {
+function SimpleBlogCard({
+  image,
+  title,
+  description,
+  action
+}: Props): JSX.Element {
   return (
     <Card>
       <MDBox position="relative" borderRadius="lg" mt={-3} mx={2}>
@@ -57,14 +62,19 @@ function SimpleBlogCard({ image, title, description, action }: Props): JSX.Eleme
           top="3%"
           sx={{
             backgroundImage: `url(${image})`,
-            transform: "scale(0.94)",
-            filter: "blur(12px)",
-            backgroundSize: "cover"
+            transform: 'scale(0.94)',
+            filter: 'blur(12px)',
+            backgroundSize: 'cover'
           }}
         />
       </MDBox>
       <MDBox p={3}>
-        <MDTypography display="inline" variant="h3" textTransform="capitalize" fontWeight="bold">
+        <MDTypography
+          display="inline"
+          variant="h3"
+          textTransform="capitalize"
+          fontWeight="bold"
+        >
           {title}
         </MDTypography>
         <MDBox mt={2} mb={3}>
@@ -72,13 +82,17 @@ function SimpleBlogCard({ image, title, description, action }: Props): JSX.Eleme
             {description}
           </MDTypography>
         </MDBox>
-        {action.type === "external" ? (
+        {action.type === 'external' ? (
           <MuiLink href={action.route} target="_blank" rel="noreferrer">
-            <MDButton color={action.color ? action.color : "dark"}>{action.label}</MDButton>
+            <MDButton color={action.color ? action.color : 'dark'}>
+              {action.label}
+            </MDButton>
           </MuiLink>
         ) : (
           <Link to={action.route}>
-            <MDButton color={action.color ? action.color : "dark"}>{action.label}</MDButton>
+            <MDButton color={action.color ? action.color : 'dark'}>
+              {action.label}
+            </MDButton>
           </Link>
         )}
       </MDBox>
