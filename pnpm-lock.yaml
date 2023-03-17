@@ -42,9 +42,9 @@ specifiers:
   electron: 19.0.1
   electron-builder: 23.0.3
   electron-is-dev: 2.0.0
-  flatpickr: 4.6.13
+  flatpickr: 4.6.9
   formik: 2.2.9
-  html-react-parser: 1.4.8
+  html-react-parser: 1.4.14
   prettier: 2.6.2
   react: 17.0.2
   react-chartjs-2: 3.0.4
@@ -94,9 +94,9 @@ dependencies:
   cross-env: 7.0.3
   dropzone: 5.9.2
   electron-is-dev: 2.0.0
-  flatpickr: 4.6.13
+  flatpickr: 4.6.9
   formik: 2.2.9_react@17.0.2
-  html-react-parser: 1.4.8_react@17.0.2
+  html-react-parser: 1.4.14_react@17.0.2
   react: 17.0.2
   react-chartjs-2: 3.0.4_27meab5fhv4bvzi564ylv3zhtm
   react-dom: 17.0.2_react@17.0.2
@@ -3826,7 +3826,7 @@ packages:
     resolution: {integrity: sha512-oW1oUmZHAhdqNhK0V+U0a2FzgD6C18ZFpgKgsUyNri852PnKsyPwBx3PSU1ffmD5R2M/rhHfaYzb0PO5TYT46Q==}
     dependencies:
       '@types/react': 17.0.45
-      flatpickr: 4.6.13
+      flatpickr: 4.6.9
     dev: true
 
   /@types/react-is/17.0.3:
@@ -6039,7 +6039,7 @@ packages:
     resolution: {integrity: sha512-VHwB3KfrcOOkelEG2ZOfxqLZdfkil8PtJi4P8N2MMXucZq2yLp75ClViUlOVwyoHEDjYU433Aq+5zWP61+RGag==}
     dependencies:
       domelementtype: 2.3.0
-      domhandler: 4.3.0
+      domhandler: 4.3.1
       entities: 2.2.0
     dev: false
 
@@ -6056,13 +6056,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       webidl-conversions: 5.0.0
-    dev: false
-
-  /domhandler/4.3.0:
-    resolution: {integrity: sha512-fC0aXNQXqKSFTr2wDNZDhsEYjCiYsDWl3D01kwt25hm1YIPyDGHvvi3rw+PLqHAl/m71MaiF7d5zvBr0p5UB2g==}
-    engines: {node: '>= 4'}
-    dependencies:
-      domelementtype: 2.3.0
     dev: false
 
   /domhandler/4.3.1:
@@ -6084,7 +6077,7 @@ packages:
     dependencies:
       dom-serializer: 1.4.1
       domelementtype: 2.3.0
-      domhandler: 4.3.0
+      domhandler: 4.3.1
     dev: false
 
   /dot-case/3.0.4:
@@ -6987,8 +6980,8 @@ packages:
       rimraf: 3.0.2
     dev: false
 
-  /flatpickr/4.6.13:
-    resolution: {integrity: sha512-97PMG/aywoYpB4IvbvUJi0RQi8vearvU0oov1WW3k0WZPBMrTQVqekSX5CjSG/M4Q3i6A/0FKXC7RyAoAUUSPw==}
+  /flatpickr/4.6.9:
+    resolution: {integrity: sha512-F0azNNi8foVWKSF+8X+ZJzz8r9sE1G4hl06RyceIaLvyltKvDl6vqk9Lm/6AUUCi5HWaIjiUbk7UpeE/fOXOpw==}
 
   /flatted/3.2.5:
     resolution: {integrity: sha512-WIWGi2L3DyTUvUrwRKgGi9TwxQMUEqPOPQBVi71R96jZXJdFskXEmf54BoZaS1kknGODoIGASGEzBUYdyMCBJg==}
@@ -7427,10 +7420,10 @@ packages:
       wbuf: 1.7.3
     dev: false
 
-  /html-dom-parser/1.1.0:
-    resolution: {integrity: sha512-x3MOz8S8BkihGgggtp2N0U+JAWlD9iGERbjuBJH+gIGF9B1kGQh5x489IQ0YPqi8HyMIWCRLdJY1q3IaQlqG/Q==}
+  /html-dom-parser/1.2.0:
+    resolution: {integrity: sha512-2HIpFMvvffsXHFUFjso0M9LqM+1Lm22BF+Df2ba+7QHJXjk63pWChEnI6YG27eaWqUdfnh5/Vy+OXrNTtepRsg==}
     dependencies:
-      domhandler: 4.3.0
+      domhandler: 4.3.1
       htmlparser2: 7.2.0
     dev: false
 
@@ -7463,16 +7456,16 @@ packages:
       terser: 5.13.1
     dev: false
 
-  /html-react-parser/1.4.8_react@17.0.2:
-    resolution: {integrity: sha512-5XsBdFVhJLxdtRp7tWwZ6DwqOt6fJ+2lJc0lctwjX1yaxWNB41S5uzqii7vJcSCaabM+CK28U75e5f4wIMqdSg==}
+  /html-react-parser/1.4.14_react@17.0.2:
+    resolution: {integrity: sha512-pxhNWGie8Y+DGDpSh8cTa0k3g8PsDcwlfolA+XxYo1AGDeB6e2rdlyv4ptU9bOTiZ2i3fID+6kyqs86MN0FYZQ==}
     peerDependencies:
-      react: 0.14 || 15 || 16 || 17
+      react: 0.14 || 15 || 16 || 17 || 18
     dependencies:
-      domhandler: 4.3.0
-      html-dom-parser: 1.1.0
+      domhandler: 4.3.1
+      html-dom-parser: 1.2.0
       react: 17.0.2
       react-property: 2.0.0
-      style-to-js: 1.1.0
+      style-to-js: 1.1.1
     dev: false
 
   /html-webpack-plugin/5.5.0_webpack@5.72.1:
@@ -7493,7 +7486,7 @@ packages:
     resolution: {integrity: sha512-gyyPk6rgonLFEDGoeRgQNaEUvdJ4ktTmmUh/h2t7s+M8oPpIPxgNACWa+6ESR57kXstwqPiCut0V8NRpcwgU7A==}
     dependencies:
       domelementtype: 2.3.0
-      domhandler: 4.3.0
+      domhandler: 4.3.1
       domutils: 2.8.0
       entities: 2.2.0
     dev: false
@@ -7502,7 +7495,7 @@ packages:
     resolution: {integrity: sha512-H7MImA4MS6cw7nbyURtLPO1Tms7C5H602LRETv95z1MxO/7CP7rDVROehUYeYBUYEON94NXXDEPmZuq+hX4sog==}
     dependencies:
       domelementtype: 2.3.0
-      domhandler: 4.3.0
+      domhandler: 4.3.1
       domutils: 2.8.0
       entities: 3.0.1
     dev: false
@@ -8672,6 +8665,7 @@ packages:
 
   /json-schema-traverse/0.4.1:
     resolution: {integrity: sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==}
+    requiresBuild: true
 
   /json-schema-traverse/1.0.0:
     resolution: {integrity: sha512-NM8/P9n3XjXhIZn1lLhkFaACTOURQXjWhV4BA/RnOv8xvgqtqpAX9IO4mRQxSx1Rlo4tqzeqb0sOlruaOy3dug==}
@@ -10607,7 +10601,7 @@ packages:
     peerDependencies:
       react: ^17.0.1
     dependencies:
-      flatpickr: 4.6.13
+      flatpickr: 4.6.9
       prop-types: 15.8.1
       react: 17.0.2
     dev: false
@@ -11695,8 +11689,8 @@ packages:
       webpack: 5.72.1
     dev: false
 
-  /style-to-js/1.1.0:
-    resolution: {integrity: sha512-1OqefPDxGrlMwcbfpsTVRyzwdhr4W0uxYQzeA2F1CBc8WG04udg2+ybRnvh3XYL4TdHQrCahLtax2jc8xaE6rA==}
+  /style-to-js/1.1.1:
+    resolution: {integrity: sha512-RJ18Z9t2B02sYhZtfWKQq5uplVctgvjTfLWT7+Eb1zjUjIrWzX5SdlkwLGQozrqarTmEzJJ/YmdNJCUNI47elg==}
     dependencies:
       style-to-object: 0.3.0
     dev: false
