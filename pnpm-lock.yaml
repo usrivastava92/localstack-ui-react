@@ -34,7 +34,7 @@ specifiers:
   '@types/react-table': 7.7.9
   '@types/uuid': 8.3.4
   axios: 0.27.2
-  chart.js: 3.4.1
+  chart.js: 3.9.1
   chroma-js: 2.4.2
   concurrently: 7.2.1
   cross-env: 7.0.3
@@ -42,7 +42,7 @@ specifiers:
   electron: 19.0.1
   electron-builder: 23.0.3
   electron-is-dev: 2.0.0
-  flatpickr: 4.6.13
+  flatpickr: 4.6.9
   formik: 2.2.9
   html-react-parser: 1.4.8
   prettier: 2.6.2
@@ -89,16 +89,16 @@ dependencies:
   '@testing-library/react': 12.1.2_sfoxds7t5ydpegc3knd667wn6m
   '@testing-library/user-event': 13.5.0
   axios: 0.27.2
-  chart.js: 3.4.1
+  chart.js: 3.9.1
   chroma-js: 2.4.2
   cross-env: 7.0.3
   dropzone: 5.9.2
   electron-is-dev: 2.0.0
-  flatpickr: 4.6.13
+  flatpickr: 4.6.9
   formik: 2.2.9_react@17.0.2
   html-react-parser: 1.4.8_react@17.0.2
   react: 17.0.2
-  react-chartjs-2: 3.0.4_27meab5fhv4bvzi564ylv3zhtm
+  react-chartjs-2: 3.0.4_5vgmout2ofjcau3vzj5upbaj34
   react-dom: 17.0.2_react@17.0.2
   react-flatpickr: 3.10.7_react@17.0.2
   react-github-btn: 1.2.1_react@17.0.2
@@ -3826,7 +3826,7 @@ packages:
     resolution: {integrity: sha512-oW1oUmZHAhdqNhK0V+U0a2FzgD6C18ZFpgKgsUyNri852PnKsyPwBx3PSU1ffmD5R2M/rhHfaYzb0PO5TYT46Q==}
     dependencies:
       '@types/react': 17.0.45
-      flatpickr: 4.6.13
+      flatpickr: 4.6.9
     dev: true
 
   /@types/react-is/17.0.3:
@@ -5109,8 +5109,8 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
-  /chart.js/3.4.1:
-    resolution: {integrity: sha512-0R4mL7WiBcYoazIhrzSYnWcOw6RmrRn7Q4nKZNsBQZCBrlkZKodQbfeojCCo8eETPRCs1ZNTsAcZhIfyhyP61g==}
+  /chart.js/3.9.1:
+    resolution: {integrity: sha512-Ro2JbLmvg83gXF5F4sniaQ+lTbSv18E+TIf2cOeiH1Iqd2PGFOtem+DUufMZsCJwFE7ywPOpfXFBwRTGq7dh6w==}
     dev: false
 
   /check-types/11.1.2:
@@ -6220,6 +6220,7 @@ packages:
 
   /emoji-regex/8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
+    requiresBuild: true
 
   /emoji-regex/9.2.2:
     resolution: {integrity: sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==}
@@ -6987,8 +6988,8 @@ packages:
       rimraf: 3.0.2
     dev: false
 
-  /flatpickr/4.6.13:
-    resolution: {integrity: sha512-97PMG/aywoYpB4IvbvUJi0RQi8vearvU0oov1WW3k0WZPBMrTQVqekSX5CjSG/M4Q3i6A/0FKXC7RyAoAUUSPw==}
+  /flatpickr/4.6.9:
+    resolution: {integrity: sha512-F0azNNi8foVWKSF+8X+ZJzz8r9sE1G4hl06RyceIaLvyltKvDl6vqk9Lm/6AUUCi5HWaIjiUbk7UpeE/fOXOpw==}
 
   /flatted/3.2.5:
     resolution: {integrity: sha512-WIWGi2L3DyTUvUrwRKgGi9TwxQMUEqPOPQBVi71R96jZXJdFskXEmf54BoZaS1kknGODoIGASGEzBUYdyMCBJg==}
@@ -7829,6 +7830,7 @@ packages:
   /is-fullwidth-code-point/3.0.0:
     resolution: {integrity: sha512-zymm5+u+sCsSWyD9qNaejV3DFvhCKclKdizYaJUuHA83RLjb7nSuGnddCHGv0hk+KY7BMAlsWeK4Ueg6EV6XQg==}
     engines: {node: '>=8'}
+    requiresBuild: true
 
   /is-generator-fn/2.1.0:
     resolution: {integrity: sha512-cTIB4yPYL/Grw0EaSzASzg6bBy9gqCofvWN8okThAYIxKJZC+udlRAmGbM0XLeniEJSs8uEgHPGuHSe1XsOLSQ==}
@@ -8672,6 +8674,7 @@ packages:
 
   /json-schema-traverse/0.4.1:
     resolution: {integrity: sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==}
+    requiresBuild: true
 
   /json-schema-traverse/1.0.0:
     resolution: {integrity: sha512-NM8/P9n3XjXhIZn1lLhkFaACTOURQXjWhV4BA/RnOv8xvgqtqpAX9IO4mRQxSx1Rlo4tqzeqb0sOlruaOy3dug==}
@@ -10530,13 +10533,13 @@ packages:
       - react-native
     dev: false
 
-  /react-chartjs-2/3.0.4_27meab5fhv4bvzi564ylv3zhtm:
+  /react-chartjs-2/3.0.4_5vgmout2ofjcau3vzj5upbaj34:
     resolution: {integrity: sha512-pcbFNpkPMTkGXXJ7k7hnukbRD0ZV01qB6JQY1ontITc2IYvhGlK6BBDy28VeydYs1Dl/c5ZpRgRVEtT5GUnxcQ==}
     peerDependencies:
       chart.js: ^3.1.0
       react: ^16.8.0 || ^17.0.0
     dependencies:
-      chart.js: 3.4.1
+      chart.js: 3.9.1
       lodash: 4.17.21
       react: 17.0.2
     dev: false
@@ -10607,7 +10610,7 @@ packages:
     peerDependencies:
       react: ^17.0.1
     dependencies:
-      flatpickr: 4.6.13
+      flatpickr: 4.6.9
       prop-types: 15.8.1
       react: 17.0.2
     dev: false
