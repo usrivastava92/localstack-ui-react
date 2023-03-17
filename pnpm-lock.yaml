@@ -20,7 +20,7 @@ specifiers:
   '@mui/icons-material': 5.4.1
   '@mui/material': 5.4.1
   '@mui/styled-engine': 5.4.1
-  '@react-jvectormap/core': 1.0.4
+  '@react-jvectormap/core': 1.0.1
   '@react-jvectormap/world': 1.0.0
   '@testing-library/jest-dom': 5.16.4
   '@testing-library/react': 12.1.2
@@ -42,7 +42,7 @@ specifiers:
   electron: 19.0.1
   electron-builder: 23.0.3
   electron-is-dev: 2.0.0
-  flatpickr: 4.6.9
+  flatpickr: 4.6.13
   formik: 2.2.9
   html-react-parser: 1.4.8
   prettier: 2.6.2
@@ -83,7 +83,7 @@ dependencies:
   '@mui/icons-material': 5.4.1_qhzrnt5xreqv4ev7rsqkjkto2y
   '@mui/material': 5.4.1_til6k43cmm75ghtjopyt37wi6q
   '@mui/styled-engine': 5.4.1_sivilwsx4nsguv2gln4xbmg6qu
-  '@react-jvectormap/core': 1.0.4_sfoxds7t5ydpegc3knd667wn6m
+  '@react-jvectormap/core': 1.0.1_sfoxds7t5ydpegc3knd667wn6m
   '@react-jvectormap/world': 1.0.0
   '@testing-library/jest-dom': 5.16.4
   '@testing-library/react': 12.1.2_sfoxds7t5ydpegc3knd667wn6m
@@ -94,7 +94,7 @@ dependencies:
   cross-env: 7.0.3
   dropzone: 5.9.2
   electron-is-dev: 2.0.0
-  flatpickr: 4.6.9
+  flatpickr: 4.6.13
   formik: 2.2.9_react@17.0.2
   html-react-parser: 1.4.8_react@17.0.2
   react: 17.0.2
@@ -3240,12 +3240,12 @@ packages:
     resolution: {integrity: sha512-9X2obfABZuDVLCgPK9aX0a/x4jaOEweTTWE2+9sr0Qqqevj2Uv5XorvusThmc9XGYpS9yI+fhh8RTafBtGposw==}
     dev: false
 
-  /@react-jvectormap/core/1.0.4_sfoxds7t5ydpegc3knd667wn6m:
-    resolution: {integrity: sha512-PefUtLG2Uwu6YVMldTqZCaVu5G+4wS3iQDq5aAV/jY/h8+djIgdSKWb1hEsHk/vb0s2pwallS+VvU7N2xCMncA==}
+  /@react-jvectormap/core/1.0.1_sfoxds7t5ydpegc3knd667wn6m:
+    resolution: {integrity: sha512-Rs4jrUeWQd0OKc1DHHvpnFIAC5xfTEZRMf7jtOxlv3mxJ919A4KOUJSZqrRr++Dhtnod1hOm4QeDkEJe83UeEg==}
     peerDependencies:
-      jquery: ^3.6
-      react: ^16.8 || ^17 || ^18
-      react-dom: ^16.8 || ^17 || ^18
+      jquery: ^3.6.0
+      react: ~17.0.2
+      react-dom: ~17.0.2
     dependencies:
       '@react-jvectormap/lib': 1.0.3
       classnames: 2.3.1
@@ -3826,7 +3826,7 @@ packages:
     resolution: {integrity: sha512-oW1oUmZHAhdqNhK0V+U0a2FzgD6C18ZFpgKgsUyNri852PnKsyPwBx3PSU1ffmD5R2M/rhHfaYzb0PO5TYT46Q==}
     dependencies:
       '@types/react': 17.0.45
-      flatpickr: 4.6.9
+      flatpickr: 4.6.13
     dev: true
 
   /@types/react-is/17.0.3:
@@ -6987,8 +6987,8 @@ packages:
       rimraf: 3.0.2
     dev: false
 
-  /flatpickr/4.6.9:
-    resolution: {integrity: sha512-F0azNNi8foVWKSF+8X+ZJzz8r9sE1G4hl06RyceIaLvyltKvDl6vqk9Lm/6AUUCi5HWaIjiUbk7UpeE/fOXOpw==}
+  /flatpickr/4.6.13:
+    resolution: {integrity: sha512-97PMG/aywoYpB4IvbvUJi0RQi8vearvU0oov1WW3k0WZPBMrTQVqekSX5CjSG/M4Q3i6A/0FKXC7RyAoAUUSPw==}
 
   /flatted/3.2.5:
     resolution: {integrity: sha512-WIWGi2L3DyTUvUrwRKgGi9TwxQMUEqPOPQBVi71R96jZXJdFskXEmf54BoZaS1kknGODoIGASGEzBUYdyMCBJg==}
@@ -10607,7 +10607,7 @@ packages:
     peerDependencies:
       react: ^17.0.1
     dependencies:
-      flatpickr: 4.6.9
+      flatpickr: 4.6.13
       prop-types: 15.8.1
       react: 17.0.2
     dev: false
