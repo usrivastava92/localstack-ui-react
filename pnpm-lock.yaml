@@ -30,7 +30,7 @@ specifiers:
   '@types/jest': 27.4.0
   '@types/react': 17.0.45
   '@types/react-dom': 17.0.11
-  '@types/react-flatpickr': 3.8.5
+  '@types/react-flatpickr': 3.8.11
   '@types/react-table': 7.7.9
   '@types/uuid': 8.3.4
   axios: 0.27.2
@@ -42,14 +42,14 @@ specifiers:
   electron: 19.0.1
   electron-builder: 23.0.3
   electron-is-dev: 2.0.0
-  flatpickr: 4.6.13
+  flatpickr: 4.6.9
   formik: 2.2.9
   html-react-parser: 1.4.8
   prettier: 2.6.2
   react: 17.0.2
   react-chartjs-2: 3.0.4
   react-dom: 17.0.2
-  react-flatpickr: 3.10.7
+  react-flatpickr: 3.10.13
   react-github-btn: 1.2.1
   react-images-viewer: 1.7.1
   react-quill: 2.0.0-beta.4
@@ -94,13 +94,13 @@ dependencies:
   cross-env: 7.0.3
   dropzone: 5.9.2
   electron-is-dev: 2.0.0
-  flatpickr: 4.6.13
+  flatpickr: 4.6.9
   formik: 2.2.9_react@17.0.2
   html-react-parser: 1.4.8_react@17.0.2
   react: 17.0.2
   react-chartjs-2: 3.0.4_27meab5fhv4bvzi564ylv3zhtm
   react-dom: 17.0.2_react@17.0.2
-  react-flatpickr: 3.10.7_react@17.0.2
+  react-flatpickr: 3.10.13_react@17.0.2
   react-github-btn: 1.2.1_react@17.0.2
   react-images-viewer: 1.7.1_sfoxds7t5ydpegc3knd667wn6m
   react-quill: 2.0.0-beta.4_sfoxds7t5ydpegc3knd667wn6m
@@ -118,7 +118,7 @@ devDependencies:
   '@types/jest': 27.4.0
   '@types/react': 17.0.45
   '@types/react-dom': 17.0.11
-  '@types/react-flatpickr': 3.8.5
+  '@types/react-flatpickr': 3.8.11
   '@types/react-table': 7.7.9
   '@types/uuid': 8.3.4
   concurrently: 7.2.1
@@ -3822,11 +3822,11 @@ packages:
       '@types/react': 17.0.45
     dev: true
 
-  /@types/react-flatpickr/3.8.5:
-    resolution: {integrity: sha512-oW1oUmZHAhdqNhK0V+U0a2FzgD6C18ZFpgKgsUyNri852PnKsyPwBx3PSU1ffmD5R2M/rhHfaYzb0PO5TYT46Q==}
+  /@types/react-flatpickr/3.8.11:
+    resolution: {integrity: sha512-wXGyGRpUjiGknioxWzWJdNvF2XxKw5lAI7H64Iv7w4iL+1iT7QvAzrigz5FkW4lTg9IJOww6t7g21FzsrmRV6A==}
     dependencies:
       '@types/react': 17.0.45
-      flatpickr: 4.6.13
+      flatpickr: 4.6.9
     dev: true
 
   /@types/react-is/17.0.3:
@@ -6987,8 +6987,8 @@ packages:
       rimraf: 3.0.2
     dev: false
 
-  /flatpickr/4.6.13:
-    resolution: {integrity: sha512-97PMG/aywoYpB4IvbvUJi0RQi8vearvU0oov1WW3k0WZPBMrTQVqekSX5CjSG/M4Q3i6A/0FKXC7RyAoAUUSPw==}
+  /flatpickr/4.6.9:
+    resolution: {integrity: sha512-F0azNNi8foVWKSF+8X+ZJzz8r9sE1G4hl06RyceIaLvyltKvDl6vqk9Lm/6AUUCi5HWaIjiUbk7UpeE/fOXOpw==}
 
   /flatted/3.2.5:
     resolution: {integrity: sha512-WIWGi2L3DyTUvUrwRKgGi9TwxQMUEqPOPQBVi71R96jZXJdFskXEmf54BoZaS1kknGODoIGASGEzBUYdyMCBJg==}
@@ -8672,6 +8672,7 @@ packages:
 
   /json-schema-traverse/0.4.1:
     resolution: {integrity: sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==}
+    requiresBuild: true
 
   /json-schema-traverse/1.0.0:
     resolution: {integrity: sha512-NM8/P9n3XjXhIZn1lLhkFaACTOURQXjWhV4BA/RnOv8xvgqtqpAX9IO4mRQxSx1Rlo4tqzeqb0sOlruaOy3dug==}
@@ -10602,12 +10603,12 @@ packages:
     resolution: {integrity: sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==}
     dev: false
 
-  /react-flatpickr/3.10.7_react@17.0.2:
-    resolution: {integrity: sha512-dJ7cZAayefqWJnX4Xe8Piy13oK2h4aeGCH9tz+D2iSNh+kbezUAWVMVCKdTqjsNBqTMS4v0DkfMy2CP2atNCTQ==}
+  /react-flatpickr/3.10.13_react@17.0.2:
+    resolution: {integrity: sha512-4m+K1K8jhvRFI8J/AHmQfA5hLALzhebEtEK8mLevXjX24MV3u502crzBn+EGFIBOfNUtrL5PId9FsGwgtuz/og==}
     peerDependencies:
-      react: ^17.0.1
+      react: '>=16, <=18'
     dependencies:
-      flatpickr: 4.6.13
+      flatpickr: 4.6.9
       prop-types: 15.8.1
       react: 17.0.2
     dev: false
