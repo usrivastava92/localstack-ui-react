@@ -20,7 +20,7 @@ specifiers:
   '@mui/icons-material': 5.4.1
   '@mui/material': 5.4.1
   '@mui/styled-engine': 5.4.1
-  '@react-jvectormap/core': 1.0.4
+  '@react-jvectormap/core': 1.0.1
   '@react-jvectormap/world': 1.0.0
   '@testing-library/jest-dom': 5.16.4
   '@testing-library/react': 12.1.2
@@ -31,7 +31,7 @@ specifiers:
   '@types/react': 17.0.45
   '@types/react-dom': 17.0.11
   '@types/react-flatpickr': 3.8.5
-  '@types/react-table': 7.7.9
+  '@types/react-table': 7.7.20
   '@types/uuid': 8.3.4
   axios: 0.27.2
   chart.js: 3.4.1
@@ -83,7 +83,7 @@ dependencies:
   '@mui/icons-material': 5.4.1_qhzrnt5xreqv4ev7rsqkjkto2y
   '@mui/material': 5.4.1_til6k43cmm75ghtjopyt37wi6q
   '@mui/styled-engine': 5.4.1_sivilwsx4nsguv2gln4xbmg6qu
-  '@react-jvectormap/core': 1.0.4_sfoxds7t5ydpegc3knd667wn6m
+  '@react-jvectormap/core': 1.0.1_sfoxds7t5ydpegc3knd667wn6m
   '@react-jvectormap/world': 1.0.0
   '@testing-library/jest-dom': 5.16.4
   '@testing-library/react': 12.1.2_sfoxds7t5ydpegc3knd667wn6m
@@ -119,7 +119,7 @@ devDependencies:
   '@types/react': 17.0.45
   '@types/react-dom': 17.0.11
   '@types/react-flatpickr': 3.8.5
-  '@types/react-table': 7.7.9
+  '@types/react-table': 7.7.20
   '@types/uuid': 8.3.4
   concurrently: 7.2.1
   electron: 19.0.1
@@ -3240,12 +3240,12 @@ packages:
     resolution: {integrity: sha512-9X2obfABZuDVLCgPK9aX0a/x4jaOEweTTWE2+9sr0Qqqevj2Uv5XorvusThmc9XGYpS9yI+fhh8RTafBtGposw==}
     dev: false
 
-  /@react-jvectormap/core/1.0.4_sfoxds7t5ydpegc3knd667wn6m:
-    resolution: {integrity: sha512-PefUtLG2Uwu6YVMldTqZCaVu5G+4wS3iQDq5aAV/jY/h8+djIgdSKWb1hEsHk/vb0s2pwallS+VvU7N2xCMncA==}
+  /@react-jvectormap/core/1.0.1_sfoxds7t5ydpegc3knd667wn6m:
+    resolution: {integrity: sha512-Rs4jrUeWQd0OKc1DHHvpnFIAC5xfTEZRMf7jtOxlv3mxJ919A4KOUJSZqrRr++Dhtnod1hOm4QeDkEJe83UeEg==}
     peerDependencies:
-      jquery: ^3.6
-      react: ^16.8 || ^17 || ^18
-      react-dom: ^16.8 || ^17 || ^18
+      jquery: ^3.6.0
+      react: ~17.0.2
+      react-dom: ~17.0.2
     dependencies:
       '@react-jvectormap/lib': 1.0.3
       classnames: 2.3.1
@@ -3844,8 +3844,8 @@ packages:
       redux: 4.2.0
     dev: false
 
-  /@types/react-table/7.7.9:
-    resolution: {integrity: sha512-ejP/J20Zlj9VmuLh73YgYkW2xOSFTW39G43rPH93M4mYWdMmqv66lCCr+axZpkdtlNLGjvMG2CwzT4S6abaeGQ==}
+  /@types/react-table/7.7.20:
+    resolution: {integrity: sha512-ahMp4pmjVlnExxNwxyaDrFgmKxSbPwU23sGQw2gJK4EhCvnvmib2s/O/+y1dfV57dXOwpr2plfyBol+vEHbi2w==}
     dependencies:
       '@types/react': 17.0.45
     dev: true
